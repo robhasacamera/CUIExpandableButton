@@ -28,7 +28,7 @@ struct ContentView: View {
             HStack(alignment: .top) {
                 CUIExpandableButton(
                     expanded: $expanded1,
-                    sfSymbolName: "questionmark"
+                    sfSymbolName: "pencil"
                 ) {
                     Text(LoremIpsum.words(8))
                         .frame(width: 200)
@@ -37,7 +37,7 @@ struct ContentView: View {
 
                 CUIExpandableButton(
                     expanded: $expanded2,
-                    sfSymbolName: "questionmark",
+                    sfSymbolName: "gearshape.fill",
                     title: "Information"
                 ) {
                     Text(LoremIpsum.words(8))
@@ -47,11 +47,6 @@ struct ContentView: View {
                     print("tapped action and content")
                 }
 
-                CUIExpandableButton(
-                    sfSymbolName: "questionmark"
-                ) {
-                    print("tapped action only")
-                }
 
                 CUIExpandableButton(
                     expanded: $expanded3
@@ -68,16 +63,9 @@ struct ContentView: View {
                 } action: {
                     print("tapped action only")
                 }
-
-                CUIExpandableButton {
-                    Image("Background")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 26, height: 26)
-                } action: {
-                    print("tapped action only")
-                }
             }
+
+            Spacer()
 
             CUIExpandableButton(
                 expanded: $expanded4,
@@ -131,7 +119,28 @@ struct ContentView: View {
             }
 
             Spacer()
+
+            HStack {
+                CUIExpandableButton(
+                    sfSymbolName: "square.and.arrow.up"
+                ) {
+                    print("tapped action only")
+                }
+
+                CUIExpandableButton {
+                    Image("Background")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 26, height: 26)
+                } action: {
+                    print("tapped action only")
+                }
+            }
         }
+        .background(Image("Background")
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .ignoresSafeArea())
         .animation(.easeInOut, value: expanded1)
         .animation(.easeInOut, value: expanded2)
         .animation(.easeInOut, value: expanded3)
@@ -139,10 +148,7 @@ struct ContentView: View {
         .animation(.easeInOut, value: expanded5)
         .animation(.easeInOut, value: expanded6)
         .animation(.easeInOut, value: expanded7)
-        .background(Image("Background")
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .ignoresSafeArea())
+
     }
 }
 
