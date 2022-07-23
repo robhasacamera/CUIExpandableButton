@@ -26,9 +26,10 @@ struct SFSymbolIcon: View {
                 .renderingMode(.template)
                 .font(.system(size: 24.0))
                 .foregroundColor(color)
-                .scaledToFit()
-                .frame(width: SFSymbolIcon.size.height, height: SFSymbolIcon.size.height)
-                .scaledToFit()
+                .frame(
+                    width: SFSymbolIcon.size.height,
+                    height: SFSymbolIcon.size.height
+                )
         }
     }
 }
