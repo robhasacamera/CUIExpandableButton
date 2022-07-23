@@ -14,7 +14,7 @@
 		9A9FA399288B6E2D00A4BC2C /* ButtonDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA398288B6E2D00A4BC2C /* ButtonDemoTests.swift */; };
 		9A9FA3A3288B6E2D00A4BC2C /* ButtonDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3A2288B6E2D00A4BC2C /* ButtonDemoUITests.swift */; };
 		9A9FA3A5288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3A4288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift */; };
-		9A9FA3E4288B8C2700A4BC2C /* CrystalExpandableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3E3288B8C2700A4BC2C /* CrystalExpandableButton.swift */; };
+		9A9FA3E4288B8C2700A4BC2C /* CUIExpandableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3E3288B8C2700A4BC2C /* CUIExpandableButton.swift */; };
 		9A9FA3E6288B8D4300A4BC2C /* SFSymbolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3E5288B8D4300A4BC2C /* SFSymbolIcon.swift */; };
 		9A9FA3E8288B8D9A00A4BC2C /* CenteredPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3E7288B8D9A00A4BC2C /* CenteredPreview.swift */; };
 		9A9FA3EC288B90F700A4BC2C /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3EB288B90F700A4BC2C /* CloseButton.swift */; };
@@ -50,7 +50,7 @@
 		9A9FA39E288B6E2D00A4BC2C /* ButtonDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ButtonDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9FA3A2288B6E2D00A4BC2C /* ButtonDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDemoUITests.swift; sourceTree = "<group>"; };
 		9A9FA3A4288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		9A9FA3E3288B8C2700A4BC2C /* CrystalExpandableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrystalExpandableButton.swift; sourceTree = "<group>"; };
+		9A9FA3E3288B8C2700A4BC2C /* CUIExpandableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUIExpandableButton.swift; sourceTree = "<group>"; };
 		9A9FA3E5288B8D4300A4BC2C /* SFSymbolIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolIcon.swift; sourceTree = "<group>"; };
 		9A9FA3E7288B8D9A00A4BC2C /* CenteredPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredPreview.swift; sourceTree = "<group>"; };
 		9A9FA3EB288B90F700A4BC2C /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 		9A9FA3E2288B71EB00A4BC2C /* CrystalButton */ = {
 			isa = PBXGroup;
 			children = (
-				9A9FA3E3288B8C2700A4BC2C /* CrystalExpandableButton.swift */,
+				9A9FA3E3288B8C2700A4BC2C /* CUIExpandableButton.swift */,
 				9A9FA3EF288B94A300A4BC2C /* LoremIpsum.swift */,
 				9A9FA3ED288B921C00A4BC2C /* Separator.swift */,
 				9A9FA3EB288B90F700A4BC2C /* CloseButton.swift */,
@@ -290,7 +290,7 @@
 				9A9FA3EE288B921C00A4BC2C /* Separator.swift in Sources */,
 				9A9FA388288B6E2A00A4BC2C /* ButtonDemoApp.swift in Sources */,
 				9A9FA3EC288B90F700A4BC2C /* CloseButton.swift in Sources */,
-				9A9FA3E4288B8C2700A4BC2C /* CrystalExpandableButton.swift in Sources */,
+				9A9FA3E4288B8C2700A4BC2C /* CUIExpandableButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

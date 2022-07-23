@@ -9,13 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @State
-    var expanded0: Bool = false // unused
-    @State
     var expanded1: Bool = false
     @State
     var expanded2: Bool = false
     @State
-    var expanded3: Bool = false // unused
+    var expanded3: Bool = false
     @State
     var expanded4: Bool = true
     @State
@@ -26,7 +24,7 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 8.0) {
             HStack(alignment: .top) {
-                CrystalExpandableButton(
+                CUIExpandableButton(
                     expanded: $expanded1,
                     sfSymbolName: "questionmark"
                 ) {
@@ -35,7 +33,7 @@ struct ContentView: View {
                         .padding(.standardSpacing)
                 }
 
-                CrystalExpandableButton(
+                CUIExpandableButton(
                     expanded: $expanded2,
                     sfSymbolName: "questionmark",
                     title: "Information"
@@ -47,13 +45,13 @@ struct ContentView: View {
                     print("tapped action and content")
                 }
 
-                CrystalExpandableButton(
+                CUIExpandableButton(
                     sfSymbolName: "questionmark"
                 ) {
                     print("tapped action only")
                 }
 
-                CrystalExpandableButton(
+                CUIExpandableButton(
                     expanded: $expanded3
                 ) {
                     Image("Background")
@@ -68,9 +66,18 @@ struct ContentView: View {
                 } action: {
                     print("tapped action only")
                 }
+
+                CUIExpandableButton {
+                    Image("Background")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 26, height: 26)
+                } action: {
+                    print("tapped action only")
+                }
             }
 
-            CrystalExpandableButton(
+            CUIExpandableButton(
                 expanded: $expanded4,
                 sfSymbolName: "questionmark",
                 title: "Information"
@@ -82,7 +89,7 @@ struct ContentView: View {
                 print("tapped action and content")
             }
 
-            CrystalExpandableButton(
+            CUIExpandableButton(
                 expanded: $expanded5,
                 sfSymbolName: "questionmark",
                 title: "Information"
@@ -95,7 +102,7 @@ struct ContentView: View {
             }
             .foregroundColor(.yellow)
 
-            CrystalExpandableButton(
+            CUIExpandableButton(
                 expanded: $expanded6,
                 sfSymbolName: "questionmark",
                 title: "Information"
@@ -110,7 +117,6 @@ struct ContentView: View {
 
             Spacer()
         }
-        .animation(.easeInOut, value: expanded0)
         .animation(.easeInOut, value: expanded1)
         .animation(.easeInOut, value: expanded2)
         .animation(.easeInOut, value: expanded3)

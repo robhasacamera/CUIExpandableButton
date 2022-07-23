@@ -13,18 +13,7 @@ extension CGFloat {
     static let icon: CGFloat = 44
 }
 
-/*
- TODO: Below
- x1. Add optional action for button touch
- x2. Make content into view builder
- x3. Make title optional
- x4. Make content optional, EmptyView as internal default.
- 5. Add previews and tests for the new previews added.
- 6. Add additional inits to make this cleaner?
- 7. Remove expanded width
- 8. Allow for other views for the icon. Will need to add another generic for this.
- */
-public struct CrystalExpandableButton<Icon, Content>: View where Icon: View, Content: View {
+public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content: View {
     @ScaledMetric(relativeTo: .title)
     var iconSize: CGFloat = .icon
 
@@ -54,6 +43,7 @@ public struct CrystalExpandableButton<Icon, Content>: View where Icon: View, Con
     private var nonEmptyViewExpanded: Bool {
         !(content is EmptyView) && expanded
     }
+
     let title: String?
     let hideCloseButton: Bool
     let icon: Icon
@@ -121,7 +111,24 @@ public struct CrystalExpandableButton<Icon, Content>: View where Icon: View, Con
     }
 }
 
-public extension CrystalExpandableButton where Icon == SFSymbolIcon {
+public extension CUIExpandableButton where Content == EmptyView {
+    init(
+        title: String? = nil,
+        hideCloseButton: Bool = false,
+        @ViewBuilder icon: () -> Icon,
+        action: @escaping Action
+    ) {
+        self.init(
+            expanded: .constant(false),
+            title: title,
+            icon: icon,
+            content: { EmptyView() },
+            action: action
+        )
+    }
+}
+
+public extension CUIExpandableButton where Icon == SFSymbolIcon {
     init(
         expanded: Binding<Bool>,
         sfSymbolName: String,
@@ -130,16 +137,18 @@ public extension CrystalExpandableButton where Icon == SFSymbolIcon {
         @ViewBuilder content: () -> Content,
         action: Action? = nil
     ) {
-        _expanded = expanded
-        self.icon = SFSymbolIcon(iconName: sfSymbolName)
-        self.title = title
-        self.hideCloseButton = hideCloseButton
-        self.content = content()
-        self.action = action
+        self.init(
+            expanded: expanded,
+            title: title,
+            hideCloseButton: hideCloseButton,
+            icon: { SFSymbolIcon(iconName: sfSymbolName) },
+            content: content,
+            action: action
+        )
     }
 }
 
-public extension CrystalExpandableButton where Icon == SFSymbolIcon, Content == EmptyView {
+public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == EmptyView {
     init(
         sfSymbolName: String,
         title: String? = nil,
@@ -156,12 +165,12 @@ public extension CrystalExpandableButton where Icon == SFSymbolIcon, Content == 
     }
 }
 
-struct CrystalExpandableButton_PreviewWrapper: View {
+struct CUIExpandableButton_PreviewWrapper: View {
     @State var expanded: Bool
     var title: String?
 
     var body: some View {
-        CrystalExpandableButton(
+        CUIExpandableButton(
             expanded: $expanded,
             sfSymbolName: "questionmark",
             title: title
@@ -174,12 +183,12 @@ struct CrystalExpandableButton_PreviewWrapper: View {
     }
 }
 
-struct CrystalExpandableButton_Previews: PreviewProvider {
+struct CUIExpandableButton_Previews: PreviewProvider {
     static var previews: some View {
         CenteredPreview {
             HStack {
-                CrystalExpandableButton_PreviewWrapper(expanded: false, title: "Some Title")
-                CrystalExpandableButton_PreviewWrapper(expanded: true, title: nil)
+                CUIExpandableButton_PreviewWrapper(expanded: false, title: "Some Title")
+                CUIExpandableButton_PreviewWrapper(expanded: true, title: nil)
             }
         }
     }
