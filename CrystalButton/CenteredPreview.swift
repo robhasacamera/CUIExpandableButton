@@ -31,7 +31,7 @@ struct CenteredPreview<Content>: View where Content: View {
 struct CenteredPreview_Previews: PreviewProvider {
     static var previews: some View {
         CenteredPreview(content: Circle()
-            .foregroundColor(.cystalForegroundDefault)
+            .foregroundColor(.crystalForegroundDefault)
             .frame(width: 100, height: 100))
     }
 }

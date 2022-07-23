@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    init(expanded: Bool = false) {
+        expanded4 = expanded
+    }
+
     @State
     var expanded0: Bool = false
     @State
@@ -16,29 +20,56 @@ struct ContentView: View {
     var expanded2: Bool = false
     @State
     var expanded3: Bool = false
+    @State
+    var expanded4: Bool
 
     var body: some View {
         VStack {
             HStack(alignment: .top) {
-                CrystalButton(expanded: $expanded0, iconName: "questionmark")
-                CrystalButton(expanded: $expanded1, iconName: "questionmark") {
+                CrystalExpandableButton(
+                    expanded: $expanded0,
+                    iconName: "questionmark"
+                )
+                CrystalExpandableButton(
+                    expanded: $expanded1,
+                    iconName: "questionmark"
+                ) {
                     Text(LoremIpsum.words(50))
                         .frame(width: 200)
                         .padding(.standardSpacing)
                 }
-                CrystalButton(expanded: $expanded2, iconName: "questionmark") {
+                CrystalExpandableButton(
+                    expanded: $expanded2,
+                    iconName: "questionmark"
+                ) {
                     Text(LoremIpsum.words(50))
                         .frame(width: 200)
                         .padding(.standardSpacing)
                 } action: {
                     print("tapped action and content")
                 }
-                CrystalButton(expanded: $expanded3, iconName: "questionmark") {
+                CrystalExpandableButton(
+                    expanded: $expanded3,
+                    iconName: "questionmark"
+                ) {
                     print("tapped action only")
+                }
+                CrystalExpandableButton(
+                    expanded: $expanded4,
+                    iconName: "questionmark",
+                    title: "Information",
+                    color: .yellow
+                ) {
+                    Text(LoremIpsum.words(50))
+                        .frame(width: 200)
+                        .padding(.standardSpacing)
+                } action: {
+                    print("tapped action and content")
                 }
             }
             .animation(.easeInOut, value: expanded1)
             .animation(.easeInOut, value: expanded2)
+            .animation(.easeInOut, value: expanded4)
 
             Spacer()
         }
@@ -51,6 +82,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(expanded: false)
+        ContentView(expanded: true)
     }
 }

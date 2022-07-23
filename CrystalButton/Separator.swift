@@ -9,21 +9,20 @@ import SwiftUI
 
 struct Separator: View {
     enum Style: Identifiable, CaseIterable {
-        case paddedHorizontal
         case horizontal
         case vertical
 
         var id: Style { self }
     }
 
-    var style: Style = .paddedHorizontal
+    var style: Style = .horizontal
+    var color: Color = .crystalForegroundDefault
 
     var body: some View {
         Rectangle()
-            .foregroundColor(.cystalForegroundDefault)
+            .foregroundColor(color)
             .frame(width: style == .vertical ? 1 : nil,
-                   height: style == .paddedHorizontal || style == .horizontal ? 1 : nil)
-            .padding(.horizontal, style == .paddedHorizontal ? 22 : 0)
+                   height: style == .horizontal ? 1 : nil)
     }
 }
 
@@ -31,6 +30,9 @@ struct Separator_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(Separator.Style.allCases) { style in
             CenteredPreview(content: Separator(style: style))
+        }
+        ForEach(Separator.Style.allCases) { style in
+            CenteredPreview(content: Separator(style: style, color: Color.yellow))
         }
     }
 }

@@ -9,11 +9,12 @@ import SwiftUI
 
 struct Title: View {
     let text: String
+    var color: Color = .crystalForegroundDefault
 
     var body: some View {
         Text(text)
             .font(.system(size: 16, weight: .medium))
-            .foregroundColor(.cystalForegroundDefault)
+            .foregroundColor(color)
     }
 }
 

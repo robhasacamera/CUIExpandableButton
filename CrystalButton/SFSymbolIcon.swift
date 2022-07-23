@@ -15,22 +15,20 @@ struct SFSymbolIcon: View {
     var iconName: String
     var color: Color
 
-    init(iconName: String, color: Color = .cystalForegroundDefault) {
+    init(iconName: String, color: Color = .crystalForegroundDefault) {
         self.iconName = iconName
         self.color = color
     }
 
     var body: some View {
-        ZStack {
-            Image(systemName: iconName)
-                .renderingMode(.template)
-                .font(.system(size: 24.0))
-                .foregroundColor(color)
-                .frame(
-                    width: SFSymbolIcon.size.height,
-                    height: SFSymbolIcon.size.height
-                )
-        }
+        Image(systemName: iconName)
+            .renderingMode(.template)
+            .font(.system(size: 24.0))
+            .foregroundColor(color)
+            .frame(
+                width: SFSymbolIcon.size.height,
+                height: SFSymbolIcon.size.height
+            )
     }
 }
 
@@ -39,9 +37,9 @@ struct SFSymbolIcon_Previews: PreviewProvider {
         CenteredPreview(content:
             VStack {
                 SFSymbolIcon(iconName: "rectangle.and.pencil.and.ellipsis")
-                    .background(.white)
+                    .background(Color(.systemBackground))
                 SFSymbolIcon(iconName: "gearshape.fill", color: .yellow)
-                    .background(.white)
+                    .background(Color(.systemBackground))
             })
     }
 }

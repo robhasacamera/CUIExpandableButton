@@ -24,17 +24,19 @@ extension CGFloat {
  7. Remove expanded width
  8. Allow for other views for the icon. Will need to add another generic for this.
  */
-public struct CrystalButton<Content>: View where Content: View {
+public struct CrystalExpandableButton<Content>: View where Content: View {
     public init(
         expanded: Binding<Bool>,
         iconName: String,
         title: String? = nil,
+        color: Color = .crystalForegroundDefault,
         @ViewBuilder content: () -> Content,
-        action: CrystalButton<Content>.Action? = nil
+        action: CrystalExpandableButton<Content>.Action? = nil
     ) {
         _expanded = expanded
         self.iconName = iconName
         self.title = title
+        self.color = color
         self.content = content()
         self.action = action
     }
@@ -49,6 +51,7 @@ public struct CrystalButton<Content>: View where Content: View {
 
     let iconName: String
     let title: String?
+    let color: Color
     let content: Content
     let action: Action?
 
@@ -60,19 +63,19 @@ public struct CrystalButton<Content>: View where Content: View {
                     expanded.toggle()
                     action?()
                 } label: {
-                    SFSymbolIcon(iconName: iconName)
+                    SFSymbolIcon(iconName: iconName, color: color)
                 }
                 .disabled(nonEmptyViewExpanded)
 
                 if nonEmptyViewExpanded {
                     HStack(spacing: 0) {
                         if let title {
-                            Title(text: title)
+                            Title(text: title, color: color)
                         }
 
                         Spacer()
 
-                        CloseButton {
+                        CloseButton(color: color) {
                             self.expanded.toggle()
                         }
                     }
@@ -83,7 +86,7 @@ public struct CrystalButton<Content>: View where Content: View {
             }
 
             if nonEmptyViewExpanded {
-                Separator(style: .horizontal)
+                Separator(style: .horizontal, color: color)
             }
         }
         .frame(width: nonEmptyViewExpanded ? nil : SFSymbolIcon.size.height, height: SFSymbolIcon.size.height + (expanded ? 1 : 0))
@@ -112,27 +115,31 @@ public struct CrystalButton<Content>: View where Content: View {
     }
 }
 
-public extension CrystalButton where Content == EmptyView {
+public extension CrystalExpandableButton where Content == EmptyView {
     init(
         expanded: Binding<Bool>,
         iconName: String,
         title: String? = nil,
-        action: CrystalButton<Content>.Action? = nil
+        color: Color = .crystalForegroundDefault,
+        action: CrystalExpandableButton<Content>.Action? = nil
     ) {
-        _expanded = expanded
-        self.iconName = iconName
-        self.title = title
-        self.content = EmptyView()
-        self.action = action
+        self.init(
+            expanded: expanded,
+            iconName: iconName,
+            title: title,
+            color: color,
+            content: { EmptyView() },
+            action: action
+        )
     }
 }
 
-struct CrystalButton_PreviewWrapper: View {
+struct CrystalExpandableButton_PreviewWrapper: View {
     @State var expanded: Bool
     var title: String?
 
     var body: some View {
-        CrystalButton(
+        CrystalExpandableButton(
             expanded: $expanded,
             iconName: "questionmark",
             title: title
@@ -141,16 +148,16 @@ struct CrystalButton_PreviewWrapper: View {
                 .font(.system(size: 18.0))
                 .padding(.standardSpacing)
                 .frame(width: 300)
-                .foregroundColor(.cystalForegroundDefault)
+                .foregroundColor(.crystalForegroundDefault)
         }
         action: {} // Need to make an init to fix this
     }
 }
 
-struct CrystalButton_Previews: PreviewProvider {
+struct CrystalExpandableButton_Previews: PreviewProvider {
     static var previews: some View {
-        CenteredPreview(content: CrystalButton_PreviewWrapper(expanded: true, title: nil))
+        CenteredPreview(content: CrystalExpandableButton_PreviewWrapper(expanded: true, title: nil))
 
-        CenteredPreview(content: CrystalButton_PreviewWrapper(expanded: false, title: "Information"))
+        CenteredPreview(content: CrystalExpandableButton_PreviewWrapper(expanded: false, title: "Information"))
     }
 }

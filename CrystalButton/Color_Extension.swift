@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Color {
-    static var cystalForegroundDefault: Color {
+    public static var crystalForegroundDefault: Color {
         Color(.label)
     }
 }
