@@ -24,12 +24,11 @@ struct SFSymbolIcon: View {
         ZStack {
             Image(systemName: iconName)
                 .renderingMode(.template)
-                .font(.system(size: 24.0))
+                .font(.system(size: 24.0))
                 .foregroundColor(color)
                 .scaledToFit()
                 .frame(width: SFSymbolIcon.size.height, height: SFSymbolIcon.size.height)
                 .scaledToFit()
-                .background(.white)
         }
     }
 }
@@ -39,7 +38,9 @@ struct SFSymbolIcon_Previews: PreviewProvider {
         CenteredPreview(content:
             VStack {
                 SFSymbolIcon(iconName: "rectangle.and.pencil.and.ellipsis")
+                    .background(.white)
                 SFSymbolIcon(iconName: "gearshape.fill", color: .yellow)
+                    .background(.white)
             })
     }
 }
