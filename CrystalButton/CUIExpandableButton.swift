@@ -121,6 +121,7 @@ public extension CUIExpandableButton where Content == EmptyView {
         self.init(
             expanded: .constant(false),
             title: title,
+            hideCloseButton: hideCloseButton,
             icon: icon,
             content: { EmptyView() },
             action: action
