@@ -15,7 +15,7 @@ struct ContentView: View {
     @State
     var expanded2: Bool = false
     @State
-    var expanded3: Bool = false
+    var expanded3: Bool = false // unused
     @State
     var expanded4: Bool = true
     @State
@@ -34,7 +34,7 @@ struct ContentView: View {
                     expanded: $expanded1,
                     iconName: "questionmark"
                 ) {
-                    Text(LoremIpsum.words(50))
+                    Text(LoremIpsum.words(8))
                         .frame(width: 200)
                         .padding(.standardSpacing)
                 }
@@ -42,7 +42,7 @@ struct ContentView: View {
                     expanded: $expanded2,
                     iconName: "questionmark"
                 ) {
-                    Text(LoremIpsum.words(50))
+                    Text(LoremIpsum.words(8))
                         .frame(width: 200)
                         .padding(.standardSpacing)
                 } action: {
