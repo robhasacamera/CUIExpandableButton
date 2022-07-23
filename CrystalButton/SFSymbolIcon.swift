@@ -28,13 +28,14 @@ struct SFSymbolIcon: View {
 
 struct SFSymbolIcon_Previews: PreviewProvider {
     static var previews: some View {
-        CenteredPreview(content:
+        CenteredPreview{
             VStack {
                 SFSymbolIcon(iconName: "rectangle.and.pencil.and.ellipsis")
                     .background(Color(.systemBackground))
                 SFSymbolIcon(iconName: "gearshape.fill")
                     .foregroundColor(.yellow)
                     .background(Color(.systemBackground))
-            })
+            }
+        }
     }
 }

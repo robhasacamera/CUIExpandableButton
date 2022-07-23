@@ -20,7 +20,6 @@
 		9A9FA3EC288B90F700A4BC2C /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3EB288B90F700A4BC2C /* CloseButton.swift */; };
 		9A9FA3EE288B921C00A4BC2C /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3ED288B921C00A4BC2C /* Separator.swift */; };
 		9A9FA3F0288B94A300A4BC2C /* LoremIpsum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3EF288B94A300A4BC2C /* LoremIpsum.swift */; };
-		9A9FA3F2288C74CD00A4BC2C /* Color_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3F1288C74CD00A4BC2C /* Color_Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +56,6 @@
 		9A9FA3EB288B90F700A4BC2C /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		9A9FA3ED288B921C00A4BC2C /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		9A9FA3EF288B94A300A4BC2C /* LoremIpsum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoremIpsum.swift; sourceTree = "<group>"; };
-		9A9FA3F1288C74CD00A4BC2C /* Color_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				9A9FA3E3288B8C2700A4BC2C /* CrystalExpandableButton.swift */,
-				9A9FA3F1288C74CD00A4BC2C /* Color_Extension.swift */,
 				9A9FA3EF288B94A300A4BC2C /* LoremIpsum.swift */,
 				9A9FA3ED288B921C00A4BC2C /* Separator.swift */,
 				9A9FA3EB288B90F700A4BC2C /* CloseButton.swift */,
@@ -294,7 +291,6 @@
 				9A9FA388288B6E2A00A4BC2C /* ButtonDemoApp.swift in Sources */,
 				9A9FA3EC288B90F700A4BC2C /* CloseButton.swift in Sources */,
 				9A9FA3E4288B8C2700A4BC2C /* CrystalExpandableButton.swift in Sources */,
-				9A9FA3F2288C74CD00A4BC2C /* Color_Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

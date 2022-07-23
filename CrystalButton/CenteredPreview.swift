@@ -10,6 +10,10 @@ import SwiftUI
 struct CenteredPreview<Content>: View where Content: View {
     let content: Content
 
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
     var body: some View {
         VStack {
             Spacer()
@@ -30,8 +34,9 @@ struct CenteredPreview<Content>: View where Content: View {
 
 struct CenteredPreview_Previews: PreviewProvider {
     static var previews: some View {
-        CenteredPreview(content: Circle()
-            .foregroundColor(.crystalForegroundDefault)
-            .frame(width: 100, height: 100))
+        CenteredPreview { Circle()
+                .foregroundColor(.yellow)
+                .frame(width: 100, height: 100)
+        }
     }
 }

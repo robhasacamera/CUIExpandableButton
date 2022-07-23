@@ -27,11 +27,15 @@ struct Separator: View {
 struct Separator_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(Separator.Style.allCases) { style in
-            CenteredPreview(content: Separator(style: style))
+            CenteredPreview {
+                Separator(style: style)
+            }
         }
         ForEach(Separator.Style.allCases) { style in
-            CenteredPreview(content: Separator(style: style))
-                .foregroundColor(.yellow)
+            CenteredPreview {
+                Separator(style: style)
+                    .foregroundColor(.yellow)
+            }
         }
     }
 }

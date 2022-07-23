@@ -150,19 +150,21 @@ struct CrystalExpandableButton_PreviewWrapper: View {
             iconName: "questionmark",
             title: title
         ) {
-            Text(LoremIpsum.paragraphs(1))
-                .font(.system(size: 18.0))
+            Text(LoremIpsum.words(8))
+                .font(.body)
                 .padding(.standardSpacing)
-                .frame(width: 300)
-                .foregroundColor(.crystalForegroundDefault)
+                .frame(width: 200)
         }
     }
 }
 
 struct CrystalExpandableButton_Previews: PreviewProvider {
     static var previews: some View {
-        CenteredPreview(content: CrystalExpandableButton_PreviewWrapper(expanded: true, title: nil))
-
-        CenteredPreview(content: CrystalExpandableButton_PreviewWrapper(expanded: false, title: "Information"))
+        CenteredPreview {
+            HStack {
+                CrystalExpandableButton_PreviewWrapper(expanded: false, title: "Some Title")
+                CrystalExpandableButton_PreviewWrapper(expanded: true, title: nil)
+            }
+        }
     }
 }
