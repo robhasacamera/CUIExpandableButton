@@ -10,24 +10,20 @@ import SwiftUI
 import SwiftUI
 
 struct SFSymbolIcon: View {
-    static let size = CGSize(width: 44, height: 44)
+    @ScaledMetric(relativeTo: .title)
+    var size: CGFloat = .icon
 
     var iconName: String
-    var color: Color
-
-    init(iconName: String, color: Color = .crystalForegroundDefault) {
-        self.iconName = iconName
-        self.color = color
-    }
+    var color: Color = .crystalForegroundDefault
 
     var body: some View {
         Image(systemName: iconName)
             .renderingMode(.template)
-            .font(.system(size: 24.0))
+            .font(.title2)
             .foregroundColor(color)
             .frame(
-                width: SFSymbolIcon.size.height,
-                height: SFSymbolIcon.size.height
+                width: size,
+                height: size
             )
     }
 }

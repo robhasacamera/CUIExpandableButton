@@ -11,15 +11,18 @@ struct CloseButton: View {
     // Consider making this a global type alias
     typealias Action = () -> Void
 
+    @ScaledMetric(relativeTo: .title)
+    var size: CGFloat = .icon
+
     var color: Color = .crystalForegroundDefault
     let action: Action
 
     var body: some View {
         Button(action: action) {
             Image(systemName: "xmark")
-                .font(.system(size: 18))
+                .font(.headline)
                 .foregroundColor(color)
-                .frame(width: .icon, height: .icon)
+                .frame(width: size, height: size)
         }
     }
 }

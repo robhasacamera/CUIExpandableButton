@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    init(expanded: Bool = false) {
-        expanded4 = expanded
-    }
-
     @State
     var expanded0: Bool = false
     @State
@@ -21,7 +17,7 @@ struct ContentView: View {
     @State
     var expanded3: Bool = false
     @State
-    var expanded4: Bool
+    var expanded4: Bool = true
 
     var body: some View {
         VStack {
@@ -54,25 +50,25 @@ struct ContentView: View {
                 ) {
                     print("tapped action only")
                 }
-                CrystalExpandableButton(
-                    expanded: $expanded4,
-                    iconName: "questionmark",
-                    title: "Information",
-                    color: .yellow
-                ) {
-                    Text(LoremIpsum.words(50))
-                        .frame(width: 200)
-                        .padding(.standardSpacing)
-                } action: {
-                    print("tapped action and content")
-                }
             }
-            .animation(.easeInOut, value: expanded1)
-            .animation(.easeInOut, value: expanded2)
-            .animation(.easeInOut, value: expanded4)
+            CrystalExpandableButton(
+                expanded: $expanded4,
+                iconName: "questionmark",
+                title: "Information",
+                color: .yellow
+            ) {
+                Text(LoremIpsum.words(8))
+                    .frame(width: 200)
+                    .padding(.standardSpacing)
+            } action: {
+                print("tapped action and content")
+            }.fontWeight(.bold)
 
             Spacer()
         }
+        .animation(.easeInOut, value: expanded1)
+        .animation(.easeInOut, value: expanded2)
+        .animation(.easeInOut, value: expanded4)
         .background(Image("Background")
             .resizable()
             .aspectRatio(contentMode: .fill)
@@ -82,7 +78,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(expanded: false)
-        ContentView(expanded: true)
+        ContentView()
     }
 }

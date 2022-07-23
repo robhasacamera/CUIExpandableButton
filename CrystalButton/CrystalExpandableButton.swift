@@ -25,6 +25,12 @@ extension CGFloat {
  8. Allow for other views for the icon. Will need to add another generic for this.
  */
 public struct CrystalExpandableButton<Content>: View where Content: View {
+    @ScaledMetric(relativeTo: .title)
+    var iconSize: CGFloat = .icon
+
+    @ScaledMetric(relativeTo: .title)
+    var menuCornerRadius: CGFloat = .menuCornerRadius
+
     public init(
         expanded: Binding<Bool>,
         iconName: String,
@@ -89,7 +95,7 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
                 Separator(style: .horizontal, color: color)
             }
         }
-        .frame(width: nonEmptyViewExpanded ? nil : SFSymbolIcon.size.height, height: SFSymbolIcon.size.height + (expanded ? 1 : 0))
+        .frame(width: nonEmptyViewExpanded ? nil : iconSize, height: iconSize + (expanded ? 1 : 0))
     }
 
     public var body: some View {
@@ -109,7 +115,7 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
             }
         }
         .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? .menuCornerRadius : .icon / 2))
+        .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : .infinity))
         .animation(.spring(), value: expanded)
         .fixedSize()
     }
