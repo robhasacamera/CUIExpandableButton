@@ -52,6 +52,21 @@ struct ContentView: View {
                 ) {
                     print("tapped action only")
                 }
+                CrystalExpandableButton(
+                    expanded: $expanded3, iconName: "questionmark"
+                ) {
+                    Image("Background")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 26, height: 26)
+
+                } content: {
+                    Text(LoremIpsum.words(8))
+                        .frame(width: 200)
+                        .padding(.standardSpacing)
+                } action: {
+                    print("tapped action only")
+                }
             }
 
             CrystalExpandableButton(
@@ -94,8 +109,10 @@ struct ContentView: View {
 
             Spacer()
         }
+        .animation(.easeInOut, value: expanded0)
         .animation(.easeInOut, value: expanded1)
         .animation(.easeInOut, value: expanded2)
+        .animation(.easeInOut, value: expanded3)
         .animation(.easeInOut, value: expanded4)
         .animation(.easeInOut, value: expanded5)
         .animation(.easeInOut, value: expanded6)

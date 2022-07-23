@@ -9,20 +9,11 @@ import SwiftUI
 
 import SwiftUI
 
-struct SFSymbolIcon: View {
-    @ScaledMetric(relativeTo: .title)
-    var size: CGFloat = .icon
-
-    var iconName: String
-
-    var body: some View {
+public struct SFSymbolIcon: View {var iconName: String
+    public var body: some View {
         Image(systemName: iconName)
             .renderingMode(.template)
             .font(.title2)
-            .frame(
-                width: size,
-                height: size
-            )
     }
 }
 

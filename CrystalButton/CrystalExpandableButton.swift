@@ -24,7 +24,7 @@ extension CGFloat {
  7. Remove expanded width
  8. Allow for other views for the icon. Will need to add another generic for this.
  */
-public struct CrystalExpandableButton<Content>: View where Content: View {
+public struct CrystalExpandableButton<Icon, Content>: View where Icon: View, Content: View {
     @ScaledMetric(relativeTo: .title)
     var iconSize: CGFloat = .icon
 
@@ -36,13 +36,15 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
         iconName: String,
         title: String? = nil,
         hideCloseButton: Bool = false,
+        @ViewBuilder icon: () -> Icon,
         @ViewBuilder content: () -> Content,
-        action: CrystalExpandableButton<Content>.Action? = nil
+        action: Action? = nil
     ) {
         _expanded = expanded
         self.iconName = iconName
         self.title = title
         self.hideCloseButton = hideCloseButton
+        self.icon = icon()
         self.content = content()
         self.action = action
     }
@@ -58,6 +60,7 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
     let iconName: String
     let title: String?
     let hideCloseButton: Bool
+    let icon: Icon
     let content: Content
     let action: Action?
 
@@ -69,7 +72,7 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
                     expanded.toggle()
                     action?()
                 } label: {
-                    SFSymbolIcon(iconName: iconName)
+                    icon.frame(maxWidth: iconSize, maxHeight: iconSize)
                 }
                 .buttonStyle(.plain)
 
@@ -122,7 +125,26 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
     }
 }
 
-public extension CrystalExpandableButton where Content == EmptyView {
+public extension CrystalExpandableButton where Icon == SFSymbolIcon {
+    init(
+        expanded: Binding<Bool>,
+        iconName: String,
+        title: String? = nil,
+        hideCloseButton: Bool = false,
+        @ViewBuilder content: () -> Content,
+        action: Action? = nil
+    ) {
+        _expanded = expanded
+        self.iconName = iconName
+        self.icon = SFSymbolIcon(iconName: iconName)
+        self.title = title
+        self.hideCloseButton = hideCloseButton
+        self.content = content()
+        self.action = action
+    }
+}
+
+public extension CrystalExpandableButton where Icon == SFSymbolIcon, Content == EmptyView {
     init(
         iconName: String,
         title: String? = nil,
