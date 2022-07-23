@@ -16,11 +16,9 @@ struct Separator: View {
     }
 
     var style: Style = .horizontal
-    var color: Color = .crystalForegroundDefault
 
     var body: some View {
         Rectangle()
-            .foregroundColor(color)
             .frame(width: style == .vertical ? 1 : nil,
                    height: style == .horizontal ? 1 : nil)
     }
@@ -32,7 +30,8 @@ struct Separator_Previews: PreviewProvider {
             CenteredPreview(content: Separator(style: style))
         }
         ForEach(Separator.Style.allCases) { style in
-            CenteredPreview(content: Separator(style: style, color: Color.yellow))
+            CenteredPreview(content: Separator(style: style))
+                .foregroundColor(.yellow)
         }
     }
 }

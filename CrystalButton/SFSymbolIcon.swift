@@ -14,13 +14,11 @@ struct SFSymbolIcon: View {
     var size: CGFloat = .icon
 
     var iconName: String
-    var color: Color = .crystalForegroundDefault
 
     var body: some View {
         Image(systemName: iconName)
             .renderingMode(.template)
             .font(.title2)
-            .foregroundColor(color)
             .frame(
                 width: size,
                 height: size
@@ -34,7 +32,8 @@ struct SFSymbolIcon_Previews: PreviewProvider {
             VStack {
                 SFSymbolIcon(iconName: "rectangle.and.pencil.and.ellipsis")
                     .background(Color(.systemBackground))
-                SFSymbolIcon(iconName: "gearshape.fill", color: .yellow)
+                SFSymbolIcon(iconName: "gearshape.fill")
+                    .foregroundColor(.yellow)
                     .background(Color(.systemBackground))
             })
     }

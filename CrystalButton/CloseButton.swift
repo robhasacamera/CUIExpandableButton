@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+public struct CustomButtonStyle: ButtonStyle {
+
+    let color: Color
+
+    public init(color: Color = .crystalForegroundDefault) {
+        self.color = color
+    }
+
+    public func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .foregroundColor(color)
+    }
+}
+
 struct CloseButton: View {
     // Consider making this a global type alias
     typealias Action = () -> Void
@@ -21,9 +35,10 @@ struct CloseButton: View {
         Button(action: action) {
             Image(systemName: "xmark")
                 .font(.headline)
-                .foregroundColor(color)
                 .frame(width: size, height: size)
         }
+        .buttonStyle(.plain)
+
     }
 }
 

@@ -62,7 +62,22 @@ struct ContentView: View {
                     .padding(.standardSpacing)
             } action: {
                 print("tapped action and content")
-            }.fontWeight(.bold)
+            }
+            .fontWeight(.bold)
+            .foregroundColor(.white)
+
+            CrystalExpandableButton(
+                expanded: $expanded4,
+                iconName: "questionmark",
+                title: "Information"
+            ) {
+                Text(LoremIpsum.words(8))
+                    .frame(width: 200)
+                    .padding(.standardSpacing)
+            } action: {
+                print("tapped action and content")
+            }
+            .fontWeight(.bold)
 
             Spacer()
         }

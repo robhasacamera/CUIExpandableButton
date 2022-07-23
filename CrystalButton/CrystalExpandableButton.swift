@@ -69,14 +69,15 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
                     expanded.toggle()
                     action?()
                 } label: {
-                    SFSymbolIcon(iconName: iconName, color: color)
+                    SFSymbolIcon(iconName: iconName)
                 }
-                .disabled(nonEmptyViewExpanded)
+                .buttonStyle(.plain)
 
                 if nonEmptyViewExpanded {
                     HStack(spacing: 0) {
                         if let title {
-                            Title(text: title, color: color)
+                            Text(title)
+                                .font(.headline)
                         }
 
                         Spacer()
@@ -92,7 +93,7 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
             }
 
             if nonEmptyViewExpanded {
-                Separator(style: .horizontal, color: color)
+                Separator(style: .horizontal)
             }
         }
         .frame(width: nonEmptyViewExpanded ? nil : iconSize, height: iconSize + (expanded ? 1 : 0))
