@@ -18,9 +18,13 @@ struct ContentView: View {
     var expanded3: Bool = false
     @State
     var expanded4: Bool = true
+    @State
+    var expanded5: Bool = true
+    @State
+    var expanded6: Bool = true
 
     var body: some View {
-        VStack {
+        VStack(spacing: 8.0) {
             HStack(alignment: .top) {
                 CrystalExpandableButton(
                     expanded: $expanded0,
@@ -51,11 +55,11 @@ struct ContentView: View {
                     print("tapped action only")
                 }
             }
+
             CrystalExpandableButton(
                 expanded: $expanded4,
                 iconName: "questionmark",
-                title: "Information",
-                color: .yellow
+                title: "Information"
             ) {
                 Text(LoremIpsum.words(8))
                     .frame(width: 200)
@@ -63,11 +67,22 @@ struct ContentView: View {
             } action: {
                 print("tapped action and content")
             }
-            .fontWeight(.bold)
-            .foregroundColor(.white)
 
             CrystalExpandableButton(
-                expanded: $expanded4,
+                expanded: $expanded5,
+                iconName: "questionmark",
+                title: "Information"
+            ) {
+                Text(LoremIpsum.words(8))
+                    .frame(width: 200)
+                    .padding(.standardSpacing)
+            } action: {
+                print("tapped action and content")
+            }
+            .foregroundColor(.yellow)
+
+            CrystalExpandableButton(
+                expanded: $expanded6,
                 iconName: "questionmark",
                 title: "Information"
             ) {
@@ -84,6 +99,8 @@ struct ContentView: View {
         .animation(.easeInOut, value: expanded1)
         .animation(.easeInOut, value: expanded2)
         .animation(.easeInOut, value: expanded4)
+        .animation(.easeInOut, value: expanded5)
+        .animation(.easeInOut, value: expanded6)
         .background(Image("Background")
             .resizable()
             .aspectRatio(contentMode: .fill)

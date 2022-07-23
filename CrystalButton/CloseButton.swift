@@ -8,7 +8,6 @@
 import SwiftUI
 
 public struct CustomButtonStyle: ButtonStyle {
-
     let color: Color
 
     public init(color: Color = .crystalForegroundDefault) {
@@ -38,13 +37,13 @@ struct CloseButton: View {
                 .frame(width: size, height: size)
         }
         .buttonStyle(.plain)
-
     }
 }
 
 struct CloseButton_Previews: PreviewProvider {
     static var previews: some View {
         CenteredPreview(content: CloseButton(action: {}))
-        CenteredPreview(content: CloseButton(color: .yellow, action: {}))
+        CenteredPreview(content: CloseButton(action: {}))
+            .foregroundColor(.yellow)
     }
 }

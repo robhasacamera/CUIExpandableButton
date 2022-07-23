@@ -35,14 +35,14 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
         expanded: Binding<Bool>,
         iconName: String,
         title: String? = nil,
-        color: Color = .crystalForegroundDefault,
+        hideCloseButton: Bool = false,
         @ViewBuilder content: () -> Content,
         action: CrystalExpandableButton<Content>.Action? = nil
     ) {
         _expanded = expanded
         self.iconName = iconName
         self.title = title
-        self.color = color
+        self.hideCloseButton = hideCloseButton
         self.content = content()
         self.action = action
     }
@@ -57,7 +57,7 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
 
     let iconName: String
     let title: String?
-    let color: Color
+    let hideCloseButton: Bool
     let content: Content
     let action: Action?
 
@@ -82,7 +82,7 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
 
                         Spacer()
 
-                        CloseButton(color: color) {
+                        CloseButton {
                             self.expanded.toggle()
                         }
                     }
@@ -127,14 +127,13 @@ public extension CrystalExpandableButton where Content == EmptyView {
         expanded: Binding<Bool>,
         iconName: String,
         title: String? = nil,
-        color: Color = .crystalForegroundDefault,
+        hideCloseButton: Bool = false,
         action: CrystalExpandableButton<Content>.Action? = nil
     ) {
         self.init(
             expanded: expanded,
             iconName: iconName,
             title: title,
-            color: color,
             content: { EmptyView() },
             action: action
         )
@@ -157,7 +156,6 @@ struct CrystalExpandableButton_PreviewWrapper: View {
                 .frame(width: 300)
                 .foregroundColor(.crystalForegroundDefault)
         }
-        action: {} // Need to make an init to fix this
     }
 }
 
