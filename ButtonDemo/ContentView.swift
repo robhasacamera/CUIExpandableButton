@@ -28,7 +28,7 @@ struct ContentView: View {
             HStack(alignment: .top) {
                 CrystalExpandableButton(
                     expanded: $expanded1,
-                    iconName: "questionmark"
+                    sfSymbolName: "questionmark"
                 ) {
                     Text(LoremIpsum.words(8))
                         .frame(width: 200)
@@ -37,7 +37,7 @@ struct ContentView: View {
 
                 CrystalExpandableButton(
                     expanded: $expanded2,
-                    iconName: "questionmark",
+                    sfSymbolName: "questionmark",
                     title: "Information"
                 ) {
                     Text(LoremIpsum.words(8))
@@ -48,12 +48,13 @@ struct ContentView: View {
                 }
 
                 CrystalExpandableButton(
-                    iconName: "questionmark"
+                    sfSymbolName: "questionmark"
                 ) {
                     print("tapped action only")
                 }
+
                 CrystalExpandableButton(
-                    expanded: $expanded3, iconName: "questionmark"
+                    expanded: $expanded3
                 ) {
                     Image("Background")
                         .resizable()
@@ -71,7 +72,7 @@ struct ContentView: View {
 
             CrystalExpandableButton(
                 expanded: $expanded4,
-                iconName: "questionmark",
+                sfSymbolName: "questionmark",
                 title: "Information"
             ) {
                 Text(LoremIpsum.words(8))
@@ -83,7 +84,7 @@ struct ContentView: View {
 
             CrystalExpandableButton(
                 expanded: $expanded5,
-                iconName: "questionmark",
+                sfSymbolName: "questionmark",
                 title: "Information"
             ) {
                 Text(LoremIpsum.words(8))
@@ -96,7 +97,7 @@ struct ContentView: View {
 
             CrystalExpandableButton(
                 expanded: $expanded6,
-                iconName: "questionmark",
+                sfSymbolName: "questionmark",
                 title: "Information"
             ) {
                 Text(LoremIpsum.words(8))

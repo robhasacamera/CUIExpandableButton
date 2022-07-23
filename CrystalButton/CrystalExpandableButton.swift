@@ -33,7 +33,6 @@ public struct CrystalExpandableButton<Icon, Content>: View where Icon: View, Con
 
     public init(
         expanded: Binding<Bool>,
-        iconName: String,
         title: String? = nil,
         hideCloseButton: Bool = false,
         @ViewBuilder icon: () -> Icon,
@@ -41,7 +40,6 @@ public struct CrystalExpandableButton<Icon, Content>: View where Icon: View, Con
         action: Action? = nil
     ) {
         _expanded = expanded
-        self.iconName = iconName
         self.title = title
         self.hideCloseButton = hideCloseButton
         self.icon = icon()
@@ -56,8 +54,6 @@ public struct CrystalExpandableButton<Icon, Content>: View where Icon: View, Con
     private var nonEmptyViewExpanded: Bool {
         !(content is EmptyView) && expanded
     }
-
-    let iconName: String
     let title: String?
     let hideCloseButton: Bool
     let icon: Icon
@@ -128,15 +124,14 @@ public struct CrystalExpandableButton<Icon, Content>: View where Icon: View, Con
 public extension CrystalExpandableButton where Icon == SFSymbolIcon {
     init(
         expanded: Binding<Bool>,
-        iconName: String,
+        sfSymbolName: String,
         title: String? = nil,
         hideCloseButton: Bool = false,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
     ) {
         _expanded = expanded
-        self.iconName = iconName
-        self.icon = SFSymbolIcon(iconName: iconName)
+        self.icon = SFSymbolIcon(iconName: sfSymbolName)
         self.title = title
         self.hideCloseButton = hideCloseButton
         self.content = content()
@@ -146,14 +141,14 @@ public extension CrystalExpandableButton where Icon == SFSymbolIcon {
 
 public extension CrystalExpandableButton where Icon == SFSymbolIcon, Content == EmptyView {
     init(
-        iconName: String,
+        sfSymbolName: String,
         title: String? = nil,
         hideCloseButton: Bool = false,
         action: @escaping Action
     ) {
         self.init(
             expanded: .constant(false),
-            iconName: iconName,
+            sfSymbolName: sfSymbolName,
             title: title,
             content: { EmptyView() },
             action: action
@@ -168,7 +163,7 @@ struct CrystalExpandableButton_PreviewWrapper: View {
     var body: some View {
         CrystalExpandableButton(
             expanded: $expanded,
-            iconName: "questionmark",
+            sfSymbolName: "questionmark",
             title: title
         ) {
             Text(LoremIpsum.words(8))
