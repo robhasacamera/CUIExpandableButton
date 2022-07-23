@@ -71,9 +71,12 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
                         Spacer()
 
-                        CloseButton {
-                            self.expanded.toggle()
+                        if !hideCloseButton {
+                            CloseButton {
+                                self.expanded.toggle()
+                            }
                         }
+
                     }
                     .transition(.opacity)
                 }

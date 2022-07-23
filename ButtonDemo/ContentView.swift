@@ -20,6 +20,8 @@ struct ContentView: View {
     var expanded5: Bool = true
     @State
     var expanded6: Bool = true
+    @State
+    var expanded7: Bool = true
 
     var body: some View {
         VStack(spacing: 8.0) {
@@ -115,6 +117,19 @@ struct ContentView: View {
             }
             .fontWeight(.bold)
 
+            CUIExpandableButton(
+                expanded: $expanded7,
+                sfSymbolName: "questionmark",
+                title: "Information",
+                hideCloseButton: true
+            ) {
+                Text(LoremIpsum.words(8))
+                    .frame(width: 200)
+                    .padding(.standardSpacing)
+            } action: {
+                print("tapped action and content")
+            }
+
             Spacer()
         }
         .animation(.easeInOut, value: expanded1)
@@ -123,6 +138,7 @@ struct ContentView: View {
         .animation(.easeInOut, value: expanded4)
         .animation(.easeInOut, value: expanded5)
         .animation(.easeInOut, value: expanded6)
+        .animation(.easeInOut, value: expanded7)
         .background(Image("Background")
             .resizable()
             .aspectRatio(contentMode: .fill)
