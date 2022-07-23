@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State
-    var expanded0: Bool = false
+    var expanded0: Bool = false // unused
     @State
     var expanded1: Bool = false
     @State
@@ -27,10 +27,6 @@ struct ContentView: View {
         VStack(spacing: 8.0) {
             HStack(alignment: .top) {
                 CrystalExpandableButton(
-                    expanded: $expanded0,
-                    iconName: "questionmark"
-                )
-                CrystalExpandableButton(
                     expanded: $expanded1,
                     iconName: "questionmark"
                 ) {
@@ -38,9 +34,11 @@ struct ContentView: View {
                         .frame(width: 200)
                         .padding(.standardSpacing)
                 }
+
                 CrystalExpandableButton(
                     expanded: $expanded2,
-                    iconName: "questionmark"
+                    iconName: "questionmark",
+                    title: "Information"
                 ) {
                     Text(LoremIpsum.words(8))
                         .frame(width: 200)
@@ -48,8 +46,8 @@ struct ContentView: View {
                 } action: {
                     print("tapped action and content")
                 }
+
                 CrystalExpandableButton(
-                    expanded: $expanded3,
                     iconName: "questionmark"
                 ) {
                     print("tapped action only")

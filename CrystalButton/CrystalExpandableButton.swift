@@ -124,14 +124,13 @@ public struct CrystalExpandableButton<Content>: View where Content: View {
 
 public extension CrystalExpandableButton where Content == EmptyView {
     init(
-        expanded: Binding<Bool>,
         iconName: String,
         title: String? = nil,
         hideCloseButton: Bool = false,
-        action: CrystalExpandableButton<Content>.Action? = nil
+        action: @escaping Action
     ) {
         self.init(
-            expanded: expanded,
+            expanded: .constant(false),
             iconName: iconName,
             title: title,
             content: { EmptyView() },
