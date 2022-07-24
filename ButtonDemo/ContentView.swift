@@ -114,8 +114,14 @@ struct ContentView: View {
                 Text(LoremIpsum.words(8))
                     .frame(width: 200)
                     .padding(.standardSpacing)
+                Button {
+                    expanded7.toggle()
+                } label: {
+                    Text("Close")
+                }
             } action: {
                 print("tapped action and content")
+
             }
 
             Spacer()
