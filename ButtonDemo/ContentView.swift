@@ -48,7 +48,6 @@ struct ContentView: View {
                     expanded4 = false
                     expanded5 = false
                     expanded6 = false
-                    expanded7 = false
                 }
 
                 CUIExpandableButton(
@@ -69,7 +68,6 @@ struct ContentView: View {
                     expanded4 = false
                     expanded5 = false
                     expanded6 = false
-                    expanded7 = false
                 }
 
                 CUIExpandableButton(
@@ -91,7 +89,6 @@ struct ContentView: View {
                     expanded4 = false
                     expanded5 = false
                     expanded6 = false
-                    expanded7 = false
                 }
             }
 
@@ -106,7 +103,9 @@ struct ContentView: View {
                     .frame(width: 200)
                     .padding(.standardSpacing)
             } action: {
-                print("tapped action and content")
+                expanded1 = false
+                expanded2 = false
+                expanded3 = false
             }
 
             CUIExpandableButton(
@@ -143,8 +142,8 @@ struct ContentView: View {
             CUIExpandableButton(
                 expanded: $expanded7,
                 sfSymbolName: "flame.fill",
-                title: "Close Button Hidden",
-                hideCloseButton: true
+                title: "Hidden Close Button",
+                hiddenCloseButton: true
             ) {
                 Text("You can hide the close button and define your own close behavior.")
                     .frame(width: 200)

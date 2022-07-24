@@ -30,7 +30,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     ) {
         _expanded = expanded
         self.title = title
-        self.hideCloseButton = hideCloseButton
+        self.hiddenCloseButton = hideCloseButton
         self.icon = icon()
         self.content = content()
         self.action = action
@@ -45,7 +45,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     let title: String?
-    let hideCloseButton: Bool
+    let hiddenCloseButton: Bool
     let icon: Icon
     let content: Content
     let action: Action?
@@ -84,7 +84,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
                         Spacer(minLength: 0)
 
-                        if !hideCloseButton {
+                        if !hiddenCloseButton {
                             CloseButton {
                                 self.expanded.toggle()
                             }
@@ -148,14 +148,14 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
         expanded: Binding<Bool>,
         sfSymbolName: String,
         title: String? = nil,
-        hideCloseButton: Bool = false,
+        hiddenCloseButton: Bool = false,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
     ) {
         self.init(
             expanded: expanded,
             title: title,
-            hideCloseButton: hideCloseButton,
+            hideCloseButton: hiddenCloseButton,
             icon: { SFSymbolIcon(iconName: sfSymbolName) },
             content: content,
             action: action
