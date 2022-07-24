@@ -50,18 +50,30 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     let content: Content
     let action: Action?
 
+    @Namespace private var animation
+
+    var iconView: some View {
+        icon
+            .frame(maxWidth: iconSize, maxHeight: iconSize)
+            .matchedGeometryEffect(id: "icon", in: animation)
+    }
+
     var header: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 0) {
-                // TODO: Find a way to disable this without affecting the color and without overriding the color directly
-                Button {
-                    // add action and pass in expansion state to it.
-                    expanded.toggle()
-                    action?()
-                } label: {
-                    icon.frame(maxWidth: iconSize, maxHeight: iconSize)
+                // This animation looks delayed in previews, but works fine in the simulator
+                if expanded {
+                    iconView
+                } else {
+                    Button {
+                        // add action and pass in expansion state to it.
+                        expanded.toggle()
+                        action?()
+                    } label: {
+                        iconView
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
 
                 if nonEmptyViewExpanded {
                     HStack(spacing: 0) {
