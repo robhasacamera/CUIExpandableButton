@@ -29,7 +29,7 @@ extension CGFloat {
 /// custom icon will be limited to a max width and height of 44 x 44. When using a
 /// custom icon, it is recommended to keep the main body of the icon within a
 /// size 26 x 26, to avoid extending outside the button's background.
-/// 
+///
 /// ```
 /// CUIExpandableButton(
 ///     expanded: $expanded
@@ -71,9 +71,9 @@ extension CGFloat {
 /// weight, title, and close button.
 ///
 /// The color of the button's foreground elements can be changed using the
-/// [`foregroundColor(_:)`](https://tinyurl.com/2s463daw ) modifier.
-/// Similarly, the [`fontWeight(...)`](https://tinyurl.com/yckhcwum )
-/// can be used to adjust the fontweight of the button's icon and header elements.
+/// ``foregroundColor(_:)`` modifier. Similarly, the
+/// ``fontWeight(_:)`` can be used to adjust the fontweight of the button's
+/// icon and header elements.
 ///
 /// The button provides an optional title that will be displayed next to the icon
 /// when expanded. The close button can also be hidden. Hiding the close button
@@ -138,35 +138,18 @@ extension CGFloat {
 /// When expanded, the minimum width the button is 88. Any content displayed
 /// smaller then this will be centered. in the content area.
 public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content: View {
+    @Namespace private var animation
+
     @ScaledMetric(relativeTo: .title)
     var iconSize: CGFloat = .icon
 
     @ScaledMetric(relativeTo: .title)
     var menuCornerRadius: CGFloat = .menuCornerRadius
 
-    public init(
-        expanded: Binding<Bool>,
-        title: String? = nil,
-        hideCloseButton: Bool = false,
-        @ViewBuilder icon: () -> Icon,
-        @ViewBuilder content: () -> Content,
-        action: Action? = nil
-    ) {
-        _expanded = expanded
-        self.title = title
-        self.hiddenCloseButton = hideCloseButton
-        self.icon = icon()
-        self.content = content()
-        self.action = action
-    }
-
+    /// An action is a closure with no return type
     public typealias Action = () -> Void
 
     @Binding var expanded: Bool
-
-    private var nonEmptyViewExpanded: Bool {
-        !(content is EmptyView) && expanded
-    }
 
     let title: String?
     let hiddenCloseButton: Bool
@@ -174,7 +157,36 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     let content: Content
     let action: Action?
 
-    @Namespace private var animation
+    private var nonEmptyViewExpanded: Bool {
+        !(content is EmptyView) && expanded
+    }
+
+    /// Creates an expandable button, using a custom icon.
+    /// - Parameters:
+    ///   - expanded: Bool binding that tracks the button's expanded state.
+    ///   - title: String displayed in the header when expanded.
+    ///   - hiddenCloseButton: When `true`, the close button will be
+    ///   hidden in the header.
+    ///   - icon: View that is displayed as an icon. This view will be
+    ///   constrained to a max width and height of 44 x 44.
+    ///   - content: The content that will be displayed when the button is expanded.
+    ///   - action: Action that will be performed when the button is
+    ///   collapsed or expanded using the built in controls.
+    public init(
+        expanded: Binding<Bool>,
+        title: String? = nil,
+        hiddenCloseButton: Bool = false,
+        @ViewBuilder icon: () -> Icon,
+        @ViewBuilder content: () -> Content,
+        action: Action? = nil
+    ) {
+        _expanded = expanded
+        self.title = title
+        self.hiddenCloseButton = hiddenCloseButton
+        self.icon = icon()
+        self.content = content()
+        self.action = action
+    }
 
     var iconView: some View {
         icon
@@ -250,16 +262,17 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 }
 
 public extension CUIExpandableButton where Content == EmptyView {
+    /// Creates a nonexpandabled button that iniates an action.
+    /// - Parameters:
+    ///   - icon: View that is displayed as an icon. This view will be
+    ///   constrained to a max width and height of 44 x 44.
+    ///   - action: Action that will be performed when tapping the button.
     init(
-        title: String? = nil,
-        hideCloseButton: Bool = false,
         @ViewBuilder icon: () -> Icon,
         action: @escaping Action
     ) {
         self.init(
             expanded: .constant(false),
-            title: title,
-            hideCloseButton: hideCloseButton,
             icon: icon,
             content: { EmptyView() },
             action: action
@@ -268,6 +281,16 @@ public extension CUIExpandableButton where Content == EmptyView {
 }
 
 public extension CUIExpandableButton where Icon == SFSymbolIcon {
+    /// Creates an expandable button, using a SF Symbol as the icon.
+    /// - Parameters:
+    ///   - expanded: Bool binding that tracks the button's expanded state.
+    ///   - sfSymbolName: The name of the SF Symbol to use as the icon.
+    ///   - title: String displayed in the header when expanded.
+    ///   - hiddenCloseButton: When `true`, the close button will be
+    ///   hidden in the header.
+    ///   - content: The content that will be displayed when the button is expanded.
+    ///   - action: Action that will be performed when the button is
+    ///   collapsed or expanded using the built in controls.
     init(
         expanded: Binding<Bool>,
         sfSymbolName: String,
@@ -279,7 +302,7 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
         self.init(
             expanded: expanded,
             title: title,
-            hideCloseButton: hiddenCloseButton,
+            hiddenCloseButton: hiddenCloseButton,
             icon: { SFSymbolIcon(iconName: sfSymbolName) },
             content: content,
             action: action
@@ -288,16 +311,17 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
 }
 
 public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == EmptyView {
+    /// Creates a nonexpandabled button that iniates an action.
+    /// - Parameters:
+    ///   - sfSymbolName: The name of the SF Symbol to use as the icon.
+    ///   - action: Action that will be performed when tapping the button.
     init(
         sfSymbolName: String,
-        title: String? = nil,
-        hideCloseButton: Bool = false,
         action: @escaping Action
     ) {
         self.init(
             expanded: .constant(false),
             sfSymbolName: sfSymbolName,
-            title: title,
             content: { EmptyView() },
             action: action
         )
