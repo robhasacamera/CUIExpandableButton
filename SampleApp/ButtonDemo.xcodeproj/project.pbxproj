@@ -45,7 +45,7 @@
 		9A9FA39E288B6E2D00A4BC2C /* ButtonDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ButtonDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9FA3A2288B6E2D00A4BC2C /* ButtonDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDemoUITests.swift; sourceTree = "<group>"; };
 		9A9FA3A4288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		9A9FA3F8288D1EBC00A4BC2C /* CUIExpandableButton */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CUIExpandableButton; sourceTree = "<group>"; };
+		9A9FA3F8288D1EBC00A4BC2C /* .. */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				9A9FA3F7288D1EBC00A4BC2C /* Packages */,
-				9A9FA3E2288B71EB00A4BC2C /* ExpandableButton */,
 				9A9FA386288B6E2A00A4BC2C /* ButtonDemo */,
 				9A9FA397288B6E2D00A4BC2C /* ButtonDemoTests */,
 				9A9FA3A1288B6E2D00A4BC2C /* ButtonDemoUITests */,
@@ -140,17 +139,10 @@
 			path = ButtonDemoUITests;
 			sourceTree = "<group>";
 		};
-		9A9FA3E2288B71EB00A4BC2C /* ExpandableButton */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ExpandableButton;
-			sourceTree = "<group>";
-		};
 		9A9FA3F7288D1EBC00A4BC2C /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				9A9FA3F8288D1EBC00A4BC2C /* CUIExpandableButton */,
+				9A9FA3F8288D1EBC00A4BC2C /* .. */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
