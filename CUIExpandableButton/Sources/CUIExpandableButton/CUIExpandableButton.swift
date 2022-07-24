@@ -106,7 +106,7 @@ import SwiftUI
 /// ) {
 ///     Text("Additional actions can be performed when expanding/collpasing")
 ///         .frame(width: 200)
-///         .padding(.standardSpacing)
+///         .padding(8)
 /// } action: {
 ///     print("Button was pressed")
 /// }

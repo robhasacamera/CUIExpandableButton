@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A76EDC2288D21CA00F7C17B /* CUIExpandableButton in Frameworks */ = {isa = PBXBuildFile; productRef = 9A76EDC1288D21CA00F7C17B /* CUIExpandableButton */; };
 		9A9FA388288B6E2A00A4BC2C /* ButtonDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA387288B6E2A00A4BC2C /* ButtonDemoApp.swift */; };
 		9A9FA38A288B6E2A00A4BC2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA389288B6E2A00A4BC2C /* ContentView.swift */; };
 		9A9FA38C288B6E2D00A4BC2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FA38B288B6E2D00A4BC2C /* Assets.xcassets */; };
@@ -14,14 +15,6 @@
 		9A9FA399288B6E2D00A4BC2C /* ButtonDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA398288B6E2D00A4BC2C /* ButtonDemoTests.swift */; };
 		9A9FA3A3288B6E2D00A4BC2C /* ButtonDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3A2288B6E2D00A4BC2C /* ButtonDemoUITests.swift */; };
 		9A9FA3A5288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3A4288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift */; };
-		9A9FA3E4288B8C2700A4BC2C /* CUIExpandableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3E3288B8C2700A4BC2C /* CUIExpandableButton.swift */; };
-		9A9FA3E6288B8D4300A4BC2C /* SFSymbolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3E5288B8D4300A4BC2C /* SFSymbolIcon.swift */; };
-		9A9FA3E8288B8D9A00A4BC2C /* CenteredPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3E7288B8D9A00A4BC2C /* CenteredPreview.swift */; };
-		9A9FA3EC288B90F700A4BC2C /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3EB288B90F700A4BC2C /* CloseButton.swift */; };
-		9A9FA3EE288B921C00A4BC2C /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3ED288B921C00A4BC2C /* Separator.swift */; };
-		9A9FA3F0288B94A300A4BC2C /* LoremIpsum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3EF288B94A300A4BC2C /* LoremIpsum.swift */; };
-		9A9FA3F4288CC66300A4BC2C /* NonDimmingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3F3288CC66300A4BC2C /* NonDimmingButton.swift */; };
-		9A9FA3F6288D1DA800A4BC2C /* CGFloat_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3F5288D1DA800A4BC2C /* CGFloat_Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,14 +45,7 @@
 		9A9FA39E288B6E2D00A4BC2C /* ButtonDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ButtonDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9FA3A2288B6E2D00A4BC2C /* ButtonDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDemoUITests.swift; sourceTree = "<group>"; };
 		9A9FA3A4288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		9A9FA3E3288B8C2700A4BC2C /* CUIExpandableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUIExpandableButton.swift; sourceTree = "<group>"; };
-		9A9FA3E5288B8D4300A4BC2C /* SFSymbolIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolIcon.swift; sourceTree = "<group>"; };
-		9A9FA3E7288B8D9A00A4BC2C /* CenteredPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredPreview.swift; sourceTree = "<group>"; };
-		9A9FA3EB288B90F700A4BC2C /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
-		9A9FA3ED288B921C00A4BC2C /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
-		9A9FA3EF288B94A300A4BC2C /* LoremIpsum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoremIpsum.swift; sourceTree = "<group>"; };
-		9A9FA3F3288CC66300A4BC2C /* NonDimmingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonDimmingButton.swift; sourceTree = "<group>"; };
-		9A9FA3F5288D1DA800A4BC2C /* CGFloat_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat_Extension.swift; sourceTree = "<group>"; };
+		9A9FA3F8288D1EBC00A4BC2C /* CUIExpandableButton */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CUIExpandableButton; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A76EDC2288D21CA00F7C17B /* CUIExpandableButton in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,14 +74,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A76EDBE288D21BB00F7C17B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9A9FA37B288B6E2A00A4BC2C = {
 			isa = PBXGroup;
 			children = (
-				9A9FA3E2288B71EB00A4BC2C /* CrystalButton */,
+				9A9FA3F7288D1EBC00A4BC2C /* Packages */,
+				9A9FA3E2288B71EB00A4BC2C /* ExpandableButton */,
 				9A9FA386288B6E2A00A4BC2C /* ButtonDemo */,
 				9A9FA397288B6E2D00A4BC2C /* ButtonDemoTests */,
 				9A9FA3A1288B6E2D00A4BC2C /* ButtonDemoUITests */,
 				9A9FA385288B6E2A00A4BC2C /* Products */,
+				9A76EDBE288D21BB00F7C17B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,19 +140,19 @@
 			path = ButtonDemoUITests;
 			sourceTree = "<group>";
 		};
-		9A9FA3E2288B71EB00A4BC2C /* CrystalButton */ = {
+		9A9FA3E2288B71EB00A4BC2C /* ExpandableButton */ = {
 			isa = PBXGroup;
 			children = (
-				9A9FA3E3288B8C2700A4BC2C /* CUIExpandableButton.swift */,
-				9A9FA3F5288D1DA800A4BC2C /* CGFloat_Extension.swift */,
-				9A9FA3F3288CC66300A4BC2C /* NonDimmingButton.swift */,
-				9A9FA3EF288B94A300A4BC2C /* LoremIpsum.swift */,
-				9A9FA3ED288B921C00A4BC2C /* Separator.swift */,
-				9A9FA3EB288B90F700A4BC2C /* CloseButton.swift */,
-				9A9FA3E5288B8D4300A4BC2C /* SFSymbolIcon.swift */,
-				9A9FA3E7288B8D9A00A4BC2C /* CenteredPreview.swift */,
 			);
-			path = CrystalButton;
+			path = ExpandableButton;
+			sourceTree = "<group>";
+		};
+		9A9FA3F7288D1EBC00A4BC2C /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				9A9FA3F8288D1EBC00A4BC2C /* CUIExpandableButton */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +171,9 @@
 			dependencies = (
 			);
 			name = ButtonDemo;
+			packageProductDependencies = (
+				9A76EDC1288D21CA00F7C17B /* CUIExpandableButton */,
+			);
 			productName = ButtonDemo;
 			productReference = 9A9FA384288B6E2A00A4BC2C /* ButtonDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -290,15 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A9FA38A288B6E2A00A4BC2C /* ContentView.swift in Sources */,
-				9A9FA3F0288B94A300A4BC2C /* LoremIpsum.swift in Sources */,
-				9A9FA3E6288B8D4300A4BC2C /* SFSymbolIcon.swift in Sources */,
-				9A9FA3E8288B8D9A00A4BC2C /* CenteredPreview.swift in Sources */,
-				9A9FA3F6288D1DA800A4BC2C /* CGFloat_Extension.swift in Sources */,
-				9A9FA3F4288CC66300A4BC2C /* NonDimmingButton.swift in Sources */,
-				9A9FA3EE288B921C00A4BC2C /* Separator.swift in Sources */,
 				9A9FA388288B6E2A00A4BC2C /* ButtonDemoApp.swift in Sources */,
-				9A9FA3EC288B90F700A4BC2C /* CloseButton.swift in Sources */,
-				9A9FA3E4288B8C2700A4BC2C /* CUIExpandableButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +614,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9A76EDC1288D21CA00F7C17B /* CUIExpandableButton */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CUIExpandableButton;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9A9FA37C288B6E2A00A4BC2C /* Project object */;
 }

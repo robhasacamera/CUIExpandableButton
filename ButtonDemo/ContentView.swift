@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CUIExpandableButton
 
 struct ContentView: View {
     @State
@@ -60,7 +61,7 @@ struct ContentView: View {
                         Toggle("Setting 3", isOn: $toggleBool3)
                     }
                     .frame(width: 200)
-                    .padding(.standardSpacing)
+                    .padding(8)
 
                 } action: {
                     expanded1 = false
@@ -82,7 +83,7 @@ struct ContentView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 100, height: 100)
-                        .padding(.standardSpacing)
+                        .padding(8)
                 } action: {
                     expanded1 = false
                     expanded2 = false
@@ -101,7 +102,7 @@ struct ContentView: View {
             ) {
                 Text(LoremIpsum.words(8))
                     .frame(width: 200)
-                    .padding(.standardSpacing)
+                    .padding(8)
             } action: {
                 expanded1 = false
                 expanded2 = false
@@ -115,7 +116,7 @@ struct ContentView: View {
             ) {
                 Text("The color can be customized using `foregroundColor()`.")
                     .frame(width: 200)
-                    .padding(.standardSpacing)
+                    .padding(8)
             } action: {
                 expanded1 = false
                 expanded2 = false
@@ -130,7 +131,7 @@ struct ContentView: View {
             ) {
                 Text("`fontWeight()` can be used to change the entire view.")
                     .frame(width: 200)
-                    .padding(.standardSpacing)
+                    .padding(8)
             } action: {
                 expanded1 = false
                 expanded2 = false
@@ -147,12 +148,12 @@ struct ContentView: View {
             ) {
                 Text("You can hide the close button and define your own close behavior.")
                     .frame(width: 200)
-                    .padding(.standardSpacing)
+                    .padding(8)
                 Button {
                     expanded7.toggle()
                 } label: {
                     Text("Close")
-                        .padding(.standardSpacing)
+                        .padding(8)
                 }
             }
 
