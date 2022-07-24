@@ -3,9 +3,6 @@ import XCTest
 
 final class CUIExpandableButtonTests: XCTestCase {
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-//        XCTAssertEqual(CUIExpandableButton().text, "Hello, World!")
+        // TODO: Implement some tests.
     }
 }

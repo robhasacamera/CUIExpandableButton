@@ -12,9 +12,6 @@
 		9A9FA38A288B6E2A00A4BC2C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA389288B6E2A00A4BC2C /* ContentView.swift */; };
 		9A9FA38C288B6E2D00A4BC2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FA38B288B6E2D00A4BC2C /* Assets.xcassets */; };
 		9A9FA38F288B6E2D00A4BC2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FA38E288B6E2D00A4BC2C /* Preview Assets.xcassets */; };
-		9A9FA399288B6E2D00A4BC2C /* ButtonDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA398288B6E2D00A4BC2C /* ButtonDemoTests.swift */; };
-		9A9FA3A3288B6E2D00A4BC2C /* ButtonDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3A2288B6E2D00A4BC2C /* ButtonDemoUITests.swift */; };
-		9A9FA3A5288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3A4288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,10 +38,7 @@
 		9A9FA38B288B6E2D00A4BC2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A9FA38E288B6E2D00A4BC2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9A9FA394288B6E2D00A4BC2C /* ButtonDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ButtonDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A9FA398288B6E2D00A4BC2C /* ButtonDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDemoTests.swift; sourceTree = "<group>"; };
 		9A9FA39E288B6E2D00A4BC2C /* ButtonDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ButtonDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A9FA3A2288B6E2D00A4BC2C /* ButtonDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDemoUITests.swift; sourceTree = "<group>"; };
-		9A9FA3A4288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9A9FA3F8288D1EBC00A4BC2C /* .. */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,8 +80,6 @@
 			children = (
 				9A9FA3F7288D1EBC00A4BC2C /* Packages */,
 				9A9FA386288B6E2A00A4BC2C /* ButtonDemo */,
-				9A9FA397288B6E2D00A4BC2C /* ButtonDemoTests */,
-				9A9FA3A1288B6E2D00A4BC2C /* ButtonDemoUITests */,
 				9A9FA385288B6E2A00A4BC2C /* Products */,
 				9A76EDBE288D21BB00F7C17B /* Frameworks */,
 			);
@@ -120,23 +112,6 @@
 				9A9FA38E288B6E2D00A4BC2C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		9A9FA397288B6E2D00A4BC2C /* ButtonDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				9A9FA398288B6E2D00A4BC2C /* ButtonDemoTests.swift */,
-			);
-			path = ButtonDemoTests;
-			sourceTree = "<group>";
-		};
-		9A9FA3A1288B6E2D00A4BC2C /* ButtonDemoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				9A9FA3A2288B6E2D00A4BC2C /* ButtonDemoUITests.swift */,
-				9A9FA3A4288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift */,
-			);
-			path = ButtonDemoUITests;
 			sourceTree = "<group>";
 		};
 		9A9FA3F7288D1EBC00A4BC2C /* Packages */ = {
@@ -289,7 +264,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A9FA399288B6E2D00A4BC2C /* ButtonDemoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,8 +271,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A9FA3A3288B6E2D00A4BC2C /* ButtonDemoUITests.swift in Sources */,
-				9A9FA3A5288B6E2D00A4BC2C /* ButtonDemoUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
