@@ -102,7 +102,6 @@ import SwiftUI
 /// CUIExpandableButton(
 ///     expanded: $expanded,
 ///     sfSymbolName: "bell.fill",
-///     title: "Custom Color"
 /// ) {
 ///     Text("Additional actions can be performed when expanding/collpasing")
 ///         .frame(width: 200)
@@ -115,19 +114,19 @@ import SwiftUI
 ///
 /// ### Additional support
 ///
-/// It is worth noting that the button fully supports dynamic type variants and dark
-/// mode.
+/// It is worth noting that this button fully supports dynamic type variants, dark
+/// mode, and the right to left layout direction.
 ///
 /// ### Other limitations
 ///
 /// Below are the items that are not currently supported. Support maybe added in
 /// the future.
-/// - Right to left layout for the header
 /// - Hiding the header, separator, or the icon when expanded
 /// - Collapsed button sizes other then 44 x 44
 /// - Background corner radius customization when expanded
 /// - Other button shapes
 /// - Other backgrounds styles or materials
+/// - Displaying a title/subtitle with the icon while collapsed
 ///
 /// When expanded, the minimum width the button is 88. Any content displayed
 /// smaller then this will be centered. in the content area.
