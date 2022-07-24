@@ -13,6 +13,130 @@ extension CGFloat {
     static let icon: CGFloat = 44
 }
 
+/// A control that expands to display additional content and/or initiate an action.
+///
+/// The `CUIExpandableButton` is a prestyled button that when tapped, will
+/// expand to display additional content. When collapsed, it is displayed as a 44 x
+/// 44 tappable button. The button uses the `utlraThinMaterial`
+/// background [defined by Apple](https://tinyurl.com/hbzvf74y ).
+///
+/// ### Icon options
+///
+/// There are two options available for the buttons icon, a custom icon and a SF
+/// Symbol icon.
+///
+/// The custom option allows any view to be used for the icon. The frame of a
+/// custom icon will be limited to a max width and height of 44 x 44. When using a
+/// custom icon, it is recommended to keep the main body of the icon within a
+/// size 26 x 26, to avoid extending outside the button's background.
+/// 
+/// ```
+/// CUIExpandableButton(
+///     expanded: $expanded
+/// ) {
+///     Image("icon")
+///         .resizable()
+///         .aspectRatio(contentMode: .fit)
+///         .frame(width: 26, height: 26)
+/// } content: {
+///     Text("My content")
+/// }
+///
+/// ```
+///
+/// Using a SF Symbol for the icon is straightforward, simply provide the name of
+/// the symbol to display the icon. This  guarantees a consistent experience for
+/// things like dynamic type and will stay within the bounds of the collapsed
+/// button's background.
+///
+/// ```
+/// CUIExpandableButton(
+///     expanded: $expanded,
+///     sfSymbolName: "gearshape.fill"
+/// ) {
+///     VStack {
+///         Toggle("Setting 1", isOn: $toggleBool1)
+///         Toggle("Setting 2", isOn: $toggleBool2)
+///         Toggle("Setting 3", isOn: $toggleBool3)
+///     }
+///     .frame(width: 200)
+///     .padding(8)
+/// }
+///
+/// ```
+///
+/// ### Styling the button
+///
+/// There are several options for styling the button, which include, it's color, font
+/// weight, title, and close button.
+///
+/// The color of the button's foreground elements can be changed using the
+/// [`foregroundColor(_:)`](https://tinyurl.com/2s463daw ) modifier.
+/// Similarly, the [`fontWeight(...)`](https://tinyurl.com/yckhcwum )
+/// can be used to adjust the fontweight of the button's icon and header elements.
+///
+/// The button provides an optional title that will be displayed next to the icon
+/// when expanded. The close button can also be hidden. Hiding the close button
+/// means there is no native control for hiding the content of the button once
+/// expanded.
+///
+/// ```
+/// CUIExpandableButton(
+///     expanded: $expanded,
+///     sfSymbolName: "flame.fill",
+///     title: "Hidden Close Button",
+///     hiddenCloseButton: true
+/// ) {
+///     Text("You can customize the title, color, fontweight, and even hide the close button.")
+///        .frame(width: 200)
+///        .padding(8)
+/// }
+/// .foregroundColor(.yellow)
+/// .fontWeight(.bold)
+///
+/// ```
+///
+/// ### Additional action and non-expanding buttons
+///
+/// The button provides access to an additional action when tapped. This can be
+/// used to perform another action when expanding or collapsing the button's
+/// content. The button also supports not displaying content at all. This is provided
+/// a consistent set of buttons when using expanding and non-expanding buttons
+/// in the same UI.
+///
+/// ```
+/// CUIExpandableButton(
+///     expanded: $expanded,
+///     sfSymbolName: "bell.fill",
+///     title: "Custom Color"
+/// ) {
+///     Text("Additional actions can be performed when expanding/collpasing")
+///         .frame(width: 200)
+///         .padding(.standardSpacing)
+/// } action: {
+///     print("Button was pressed")
+/// }
+///
+/// ```
+///
+/// ### Additional support
+///
+/// It is worth noting that the button fully supports dynamic type variants and dark
+/// mode.
+///
+/// ### Other limitations
+///
+/// Below are the items that are not currently supported. Support maybe added in
+/// the future.
+/// - Right to left layout for the header
+/// - Hiding the header, separator, or the icon when expanded
+/// - Collapsed button sizes other then 44 x 44
+/// - Background corner radius customization when expanded
+/// - Other button shapes
+/// - Other backgrounds styles or materials
+///
+/// When expanded, the minimum width the button is 88. Any content displayed
+/// smaller then this will be centered. in the content area.
 public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content: View {
     @ScaledMetric(relativeTo: .title)
     var iconSize: CGFloat = .icon
