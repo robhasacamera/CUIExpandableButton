@@ -82,7 +82,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                                 .font(.headline)
                         }
 
-                        Spacer()
+                        Spacer(minLength: 0)
 
                         if !hideCloseButton {
                             CloseButton {
@@ -100,7 +100,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 Separator(style: .horizontal)
             }
         }
-        .frame(width: nonEmptyViewExpanded ? nil : iconSize, height: iconSize + (expanded ? 1 : 0))
+        .frame(width: nonEmptyViewExpanded ? nil : iconSize, height: iconSize + (nonEmptyViewExpanded ? 1 : 0))
+        .frame(minWidth: nonEmptyViewExpanded ? iconSize * 2 : nil)
     }
 
     public var body: some View {
@@ -109,13 +110,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 .foregroundColor(.clear)
             VStack(spacing: 0) {
                 header
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity) // This may not be needed
 
                 if nonEmptyViewExpanded {
                     content
                         .transition(.opacity)
-
-                    Spacer()
                 }
             }
         }
