@@ -21,6 +21,7 @@
 		9A9FA3EE288B921C00A4BC2C /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3ED288B921C00A4BC2C /* Separator.swift */; };
 		9A9FA3F0288B94A300A4BC2C /* LoremIpsum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3EF288B94A300A4BC2C /* LoremIpsum.swift */; };
 		9A9FA3F4288CC66300A4BC2C /* NonDimmingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3F3288CC66300A4BC2C /* NonDimmingButton.swift */; };
+		9A9FA3F6288D1DA800A4BC2C /* CGFloat_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FA3F5288D1DA800A4BC2C /* CGFloat_Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		9A9FA3ED288B921C00A4BC2C /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		9A9FA3EF288B94A300A4BC2C /* LoremIpsum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoremIpsum.swift; sourceTree = "<group>"; };
 		9A9FA3F3288CC66300A4BC2C /* NonDimmingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonDimmingButton.swift; sourceTree = "<group>"; };
+		9A9FA3F5288D1DA800A4BC2C /* CGFloat_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat_Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				9A9FA3E3288B8C2700A4BC2C /* CUIExpandableButton.swift */,
+				9A9FA3F5288D1DA800A4BC2C /* CGFloat_Extension.swift */,
 				9A9FA3F3288CC66300A4BC2C /* NonDimmingButton.swift */,
 				9A9FA3EF288B94A300A4BC2C /* LoremIpsum.swift */,
 				9A9FA3ED288B921C00A4BC2C /* Separator.swift */,
@@ -290,6 +293,7 @@
 				9A9FA3F0288B94A300A4BC2C /* LoremIpsum.swift in Sources */,
 				9A9FA3E6288B8D4300A4BC2C /* SFSymbolIcon.swift in Sources */,
 				9A9FA3E8288B8D9A00A4BC2C /* CenteredPreview.swift in Sources */,
+				9A9FA3F6288D1DA800A4BC2C /* CGFloat_Extension.swift in Sources */,
 				9A9FA3F4288CC66300A4BC2C /* NonDimmingButton.swift in Sources */,
 				9A9FA3EE288B921C00A4BC2C /* Separator.swift in Sources */,
 				9A9FA388288B6E2A00A4BC2C /* ButtonDemoApp.swift in Sources */,

@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-extension CGFloat {
-    static let standardSpacing: CGFloat = 8
-    static let menuCornerRadius: CGFloat = 10
-    static let icon: CGFloat = 44
-}
-
 /// A control that expands to display additional content and/or initiate an action.
 ///
 /// The `CUIExpandableButton` is a prestyled button that when tapped, will
