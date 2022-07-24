@@ -5,8 +5,8 @@
 //  Created by Robert Cole on 7/22/22.
 //
 
-import SwiftUI
 import CUIExpandableButton
+import SwiftUI
 
 struct ContentView: View {
     @State
@@ -100,7 +100,7 @@ struct ContentView: View {
                 sfSymbolName: "tag.fill",
                 title: "Regular"
             ) {
-                Text(LoremIpsum.words(8))
+                Text("This is the default style.")
                     .frame(width: 200)
                     .padding(8)
             } action: {
@@ -176,10 +176,11 @@ struct ContentView: View {
                 }
             }
         }
-        .background(Image("Background")
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .ignoresSafeArea())
+        .background(alignment: .center) {
+            Image("Background")
+                .centered()
+                .edgesIgnoringSafeArea(.all)
+        }
         .animation(.easeInOut, value: expanded1)
         .animation(.easeInOut, value: expanded2)
         .animation(.easeInOut, value: expanded3)
@@ -187,6 +188,17 @@ struct ContentView: View {
         .animation(.easeInOut, value: expanded5)
         .animation(.easeInOut, value: expanded6)
         .animation(.easeInOut, value: expanded7)
+    }
+}
+
+extension Image {
+    func centered() -> some View {
+        GeometryReader { geo in
+            self
+            .resizable()
+            .scaledToFill()
+            .frame(width: geo.size.width, height: geo.size.height)
+        }
     }
 }
 

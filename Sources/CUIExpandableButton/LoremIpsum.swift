@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class LoremIpsum {
+class LoremIpsum {
     static let shared = LoremIpsum()
 
     let paragraphSeperator = "\n\n"
@@ -28,11 +28,11 @@ public class LoremIpsum {
         paragraphArray.prefix(count).joined(separator: paragraphSeperator)
     }
 
-    public static func words(_ count: Int = 2) -> String {
+    static func words(_ count: Int = 2) -> String {
         shared.words(count)
     }
 
-    public static func paragraphs(_ count: Int = 2) -> String {
+    static func paragraphs(_ count: Int = 2) -> String {
         shared.paragraphs(count)
     }
 

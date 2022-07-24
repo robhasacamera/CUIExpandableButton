@@ -2,7 +2,7 @@
 
 A SwiftUI button that expands to show more content.
 
-<Gif that shows capability>
+![CUIExpandableButton Demo](Assets/demo.gif)
 
 CUIExpandableButton is part of the Crystal UI framework (under developement). This framework is working to bring a suite of UI components that utilize [SwiftUI Material](https://developer.apple.com/documentation/swiftui/material) for it's background element. 
 
@@ -42,7 +42,7 @@ import CUIExpandableButton
 
 ## Customization
 
-<Screenshot showing different options>
+![CUIExpandableButton Style Options](Assets/styles.png)
 
 There are several ways to customize CUIExpandableButton, including:
 - Adding a title (when expanded).
