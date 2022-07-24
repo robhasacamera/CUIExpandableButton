@@ -69,8 +69,8 @@ struct ContentView: View {
 
             CUIExpandableButton(
                 expanded: $expanded4,
-                sfSymbolName: "questionmark",
-                title: "Information"
+                sfSymbolName: "tag.fill",
+                title: "Regular"
             ) {
                 Text(LoremIpsum.words(8))
                     .frame(width: 200)
@@ -81,8 +81,8 @@ struct ContentView: View {
 
             CUIExpandableButton(
                 expanded: $expanded5,
-                sfSymbolName: "questionmark",
-                title: "Information"
+                sfSymbolName: "bell.fill",
+                title: "Custom Color"
             ) {
                 Text(LoremIpsum.words(8))
                     .frame(width: 200)
@@ -94,8 +94,8 @@ struct ContentView: View {
 
             CUIExpandableButton(
                 expanded: $expanded6,
-                sfSymbolName: "questionmark",
-                title: "Information"
+                sfSymbolName: "exclamationmark.triangle.fill",
+                title: "Bolded"
             ) {
                 Text(LoremIpsum.words(8))
                     .frame(width: 200)
@@ -107,8 +107,8 @@ struct ContentView: View {
 
             CUIExpandableButton(
                 expanded: $expanded7,
-                sfSymbolName: "questionmark",
-                title: "Information",
+                sfSymbolName: "flame.fill",
+                title: "Close Button Hidden",
                 hideCloseButton: true
             ) {
                 Text(LoremIpsum.words(8))

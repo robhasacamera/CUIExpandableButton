@@ -53,6 +53,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     var header: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 0) {
+                // TODO: Find a way to disable this without affecting the color and without overriding the color directly
                 Button {
                     // add action and pass in expansion state to it.
                     expanded.toggle()
@@ -76,7 +77,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                                 self.expanded.toggle()
                             }
                         }
-
                     }
                     .transition(.opacity)
                 }
