@@ -143,20 +143,22 @@ struct ContentView: View {
             }
             .foregroundColor(.yellow)
 
-            CUIExpandableButton(
-                expanded: $expanded6,
-                sfSymbolName: "exclamationmark.triangle.fill",
-                title: "Bolded"
-            ) {
-                Text("`fontWeight()` can be used to change the entire view.")
-                    .frame(width: 200)
-                    .padding(8)
-            } action: {
-                expanded1 = false
-                expanded2 = false
-                expanded3 = false
+            if #available(iOS 16.0, *) {
+                CUIExpandableButton(
+                    expanded: $expanded6,
+                    sfSymbolName: "exclamationmark.triangle.fill",
+                    title: "Bolded"
+                ) {
+                    Text("`fontWeight()` can be used to change the entire view.")
+                        .frame(width: 200)
+                        .padding(8)
+                } action: {
+                    expanded1 = false
+                    expanded2 = false
+                    expanded3 = false
+                }
+                .fontWeight(.bold)
             }
-            .fontWeight(.bold)
 
             // Not having this one close the others as a demo of content that doesn't need an action
             CUIExpandableButton(

@@ -51,7 +51,7 @@ There are several ways to customize CUIExpandableButton, including:
 - Adding a title (when expanded).
 - Hiding the close button.
 - Using `foregroundColor(_:)` to customize color.
-- Applying `fontWeight(_:)` to the icon and header elements. 
+- Applying `fontWeight(_:)` to the icon and header elements. (>=iOS 16.0)
 
 ```swift
 CUIExpandableButton(
@@ -65,7 +65,7 @@ CUIExpandableButton(
        .padding(8)
 }
 .foregroundColor(.yellow)
-.fontWeight(.bold)
+.fontWeight(.bold) // fontWeight is available starting in iOS 16
 ```
 
 ## Actions
@@ -102,7 +102,7 @@ CUIExpandableButton supports Swift Package Manager. To use it the following to y
 
 ```
 dependencies: [
-    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.1.1")
+    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.1.2")
 ],
 ```
 
