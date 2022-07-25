@@ -225,7 +225,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
                 if nonEmptyViewExpanded {
                     HStack(spacing: 0) {
-                        if let title {
+                        if let title = title {
                             Text(title)
                                 .font(.headline)
                         }
