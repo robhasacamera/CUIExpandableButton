@@ -1,6 +1,6 @@
 # CUIExpandableButton
 
-A SwiftUI button that expands to show more content.
+A SwiftUI button that expands to reveal more content.
 
 ![CUIExpandableButton Demo](Assets/demo.gif)
 
