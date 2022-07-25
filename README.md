@@ -4,6 +4,9 @@ A SwiftUI button that expands to reveal more content.
 
 ![CUIExpandableButton Demo](Assets/demo.gif)
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Frobhasacamera%2FCUIExpandableButton%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/robhasacamera/CUIExpandableButton)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Frobhasacamera%2FCUIExpandableButton%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/robhasacamera/CUIExpandableButton)
+
 CUIExpandableButton is part of the Crystal UI framework (under developement). This framework is working to bring a suite of UI components that utilize [SwiftUI Material](https://developer.apple.com/documentation/swiftui/material) for it's background element. 
 
 ## Usage
@@ -82,7 +85,7 @@ CUIExpandableButton(
 }
 ```
 
-There also an option to provide no content to show, in case you want a non-expanding button that's styled like your expanding button.
+There is also an option to provide no content to show, in case you want a non-expanding button that's styled like your expanding button.
 
 ```swift
 CUIExpandableButton(
@@ -99,7 +102,7 @@ CUIExpandableButton supports Swift Package Manager. To use it the following to y
 
 ```
 dependencies: [
-    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.1.0")
+    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.1.1")
 ],
 ```
 
