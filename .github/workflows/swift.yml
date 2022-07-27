@@ -1,0 +1,19 @@
+name: Swift
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: xcodebuild -scheme CUIExpandableButton  -destination 'platform=iOS Simulator,OS=15.5,name=iPhone 13 Pro'
+    - name: Run tests
+      run: xcodebuild -scheme CUIExpandableButton  -destination 'platform=iOS Simulator,OS=15.5,name=iPhone 13 Pro' test
