@@ -266,6 +266,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 }
             }
         }
+        // FIXME: Material doesn't render in snapshot tests for some reason
+        .background(isRunningUnitTests() ? .gray : .clear)
         .background(.ultraThinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : .infinity))
         .animation(.spring(), value: expanded)
@@ -367,4 +369,13 @@ struct CUIExpandableButton_Previews: PreviewProvider {
             }
         }
     }
+}
+
+// From: https://stackoverflow.com/a/33194122/898984
+fileprivate func isRunningUnitTests() -> Bool {
+    if let _ = NSClassFromString("XCTest") {
+        return true
+    }
+
+    return false
 }
