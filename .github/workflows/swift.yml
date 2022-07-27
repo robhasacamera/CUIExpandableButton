@@ -14,6 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
-      run: swift build -v
+      run: xcodebuild -scheme CUIExpandableButton  -destination 'platform=iOS Simulator,OS=15.5,name=iPhone 13 Pro'
     - name: Run tests
-      run: swift test -v
+      run: xcodebuild -scheme CUIExpandableButton  -destination 'platform=iOS Simulator,OS=15.5,name=iPhone 13 Pro' test
