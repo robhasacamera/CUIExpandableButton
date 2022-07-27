@@ -118,7 +118,6 @@ It is worth noting that CUIExpandableButton fully supports dynamic type variants
 ## Future Plans
 
 Below are some of the current limitations for CUIExpandableButton. These are being considered for future releases.
-- Hiding the header, separator, or the icon when expanded
 - Collapsed button sizes other then 44 x 44
 - Background corner radius customization when expanded
 - Other button shapes
