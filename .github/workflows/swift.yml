@@ -16,5 +16,5 @@ jobs:
     - name: Clean Build Test
       run: xcodebuild clean build test -scheme $SCHEME -destination $DESTINATION
       env:
-          SCHEME: Drops
+          SCHEME: CUIExpandableButton
           DESTINATION: platform=iOS Simulator,name=iPhone 13 Pro
