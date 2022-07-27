@@ -66,11 +66,60 @@ final class CUIExpandableButtonTests: XCTestCase {
         assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
     }
 
+    func testButtonWithSFSymbolExpandedHiddenIcon() throws {
+        let button = CUIExpandableButton(
+            expanded: .constant(true),
+            sfSymbolName: "gearshape.fill",
+            title: "Marty",
+            headerOptions: .hideIcon) {
+                mockContent
+        }
+
+        assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
+    }
+
+    func testButtonWithSFSymbolExpandedHiddenTitle() throws {
+        let button = CUIExpandableButton(
+            expanded: .constant(true),
+            sfSymbolName: "gearshape.fill",
+            title: "Marty",
+            headerOptions: .hideTitle) {
+                mockContent
+        }
+
+        assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
+    }
+
     func testButtonWithSFSymbolExpandedHiddenCloseButton() throws {
         let button = CUIExpandableButton(
             expanded: .constant(true),
             sfSymbolName: "gearshape.fill",
-            hiddenCloseButton: true) {
+            title: "Marty",
+            headerOptions: .hideCloseButton) {
+                mockContent
+        }
+
+        assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
+    }
+
+    func testButtonWithSFSymbolExpandedHiddenSeparator() throws {
+        let button = CUIExpandableButton(
+            expanded: .constant(true),
+            sfSymbolName: "gearshape.fill",
+            title: "Marty",
+            headerOptions: .hideSeparator) {
+                mockContent
+        }
+
+        assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
+    }
+
+    func testButtonWithSFSymbolExpandedHiddenHeader() throws {
+        let button = CUIExpandableButton(
+            expanded: .constant(true),
+            sfSymbolName: "gearshape.fill",
+            title: "Marty",
+            headerOptions: .hideHeader) {
                 mockContent
         }
 
@@ -120,10 +169,63 @@ final class CUIExpandableButtonTests: XCTestCase {
         assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
     }
 
+    func testButtonWithCustomIconExpandedWithHiddenIcon() throws {
+        let button = CUIExpandableButton(
+            expanded: .constant(true),
+            title: "Marty",
+            headerOptions: .hideIcon) {
+                mockCustomIcon
+        } content: {
+            mockContent
+        }
+
+        assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
+    }
+
+    func testButtonWithCustomIconExpandedWithHiddenTitle() throws {
+        let button = CUIExpandableButton(
+            expanded: .constant(true),
+            title: "Marty",
+            headerOptions: .hideTitle) {
+                mockCustomIcon
+        } content: {
+            mockContent
+        }
+
+        assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
+    }
+
     func testButtonWithCustomIconExpandedWithHiddenCloseButton() throws {
         let button = CUIExpandableButton(
             expanded: .constant(true),
-            hiddenCloseButton: true) {
+            title: "Marty",
+            headerOptions: .hideCloseButton) {
+                mockCustomIcon
+        } content: {
+            mockContent
+        }
+
+        assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
+    }
+
+    func testButtonWithCustomIconExpandedWithHiddenSeparator() throws {
+        let button = CUIExpandableButton(
+            expanded: .constant(true),
+            title: "Marty",
+            headerOptions: .hideSeparator) {
+                mockCustomIcon
+        } content: {
+            mockContent
+        }
+
+        assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
+    }
+
+    func testButtonWithCustomIconExpandedWithHiddenHeader() throws {
+        let button = CUIExpandableButton(
+            expanded: .constant(true),
+            title: "Marty",
+            headerOptions: .hideHeader) {
                 mockCustomIcon
         } content: {
             mockContent

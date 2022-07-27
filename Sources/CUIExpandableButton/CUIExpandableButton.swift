@@ -81,7 +81,7 @@ import SwiftUI
 /// ### Styling the button
 ///
 /// There are several options for styling the button, which include, it's color, font
-/// weight, title, and close button.
+/// weight, title, and header options (See ``CUIHeaderOptions``.
 ///
 /// The color of the button's foreground elements can be changed using the
 /// ``foregroundColor(_:)`` modifier. Similarly, the
@@ -98,9 +98,9 @@ import SwiftUI
 ///     expanded: $expanded,
 ///     sfSymbolName: "flame.fill",
 ///     title: "Hidden Close Button",
-///     hiddenCloseButton: true
+///     headerOptions: .hideCloseButton
 /// ) {
-///     Text("You can customize the title, color, fontweight, and even hide the close button.")
+///     Text("You can customize the title, color, fontweight, and even hide the close button or other header elements.")
 ///        .frame(width: 200)
 ///        .padding(8)
 /// }
@@ -164,7 +164,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     @Binding var expanded: Bool
 
     let title: String?
-    let hiddenCloseButton: Bool
+    let headerOptions: CUIHeaderOptions
     let icon: Icon
     let content: Content
     let action: Action?
@@ -173,12 +173,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         !(content is EmptyView) && expanded
     }
 
+    // TODO: Document new param
     /// Creates an expandable button, using a custom icon.
     /// - Parameters:
     ///   - expanded: Bool binding that tracks the button's expanded state.
     ///   - title: String displayed in the header when expanded.
-    ///   - hiddenCloseButton: When `true`, the close button will be
-    ///   hidden in the header.
+    ///   - headerOptions: Define the bahavior of the header. See
+    ///   ``CUIHeaderOptions`` for more info.
     ///   - icon: View that is displayed as an icon. This view will be
     ///   constrained to a max width and height of 44 x 44.
     ///   - content: The content that will be displayed when the button is expanded.
@@ -188,13 +189,14 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         expanded: Binding<Bool>,
         title: String? = nil,
         hiddenCloseButton: Bool = false,
+        headerOptions: CUIHeaderOptions = .none,
         @ViewBuilder icon: () -> Icon,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
     ) {
         _expanded = expanded
         self.title = title
-        self.hiddenCloseButton = hiddenCloseButton
+        self.headerOptions = headerOptions
         self.icon = icon()
         self.content = content()
         self.action = action
@@ -211,7 +213,9 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             HStack(spacing: 0) {
                 // This animation looks delayed in previews, but works fine in the simulator
                 if expanded {
-                    iconView
+                    if !headerOptions.contains(.hideIcon) {
+                        iconView
+                    }
                 } else {
                     Button {
                         // add action and pass in expansion state to it.
@@ -225,16 +229,18 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
                 if nonEmptyViewExpanded {
                     HStack(spacing: 0) {
-                        if let title = title {
+                        if let title = title, !headerOptions.contains(.hideTitle) {
                             Text(title)
                                 .font(.headline)
+                                .padding(.leading, headerOptions.contains(.hideIcon) ? .standardSpacing : 0)
                         }
 
                         Spacer(minLength: 0)
 
-                        if !hiddenCloseButton {
+                        if !headerOptions.contains(.hideCloseButton) {
                             CloseButton {
                                 self.expanded.toggle()
+                                self.action?()
                             }
                         }
                     }
@@ -244,12 +250,27 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 Spacer(minLength: 0)
             }
 
-            if nonEmptyViewExpanded {
+            if nonEmptyViewExpanded && !headerOptions.contains(.hideSeparator) {
                 Separator(style: .horizontal)
             }
         }
-        .frame(width: nonEmptyViewExpanded ? nil : iconSize, height: iconSize + (nonEmptyViewExpanded ? 1 : 0))
-        .frame(minWidth: nonEmptyViewExpanded ? iconSize * 2 : nil)
+        .frame(
+            width: nonEmptyViewExpanded && !headerOptions.contains(.hideHeader) ? nil : iconSize,
+            height: headerHeight
+        )
+        .frame(minWidth: nonEmptyViewExpanded && !headerOptions.contains(.hideHeader) ? iconSize * 2 : nil)
+    }
+
+    var headerHeight: CGFloat {
+        if nonEmptyViewExpanded {
+            if headerOptions.contains(.hideHeader) {
+                return 0
+            }
+
+            return iconSize + (headerOptions.contains(.hideSeparator) ? 0 : 1)
+        }
+
+        return iconSize
     }
 
     public var body: some View {
@@ -295,13 +316,14 @@ public extension CUIExpandableButton where Content == EmptyView {
 }
 
 public extension CUIExpandableButton where Icon == SFSymbolIcon {
+    // TODO: Document param
     /// Creates an expandable button, using a SF Symbol as the icon.
     /// - Parameters:
     ///   - expanded: Bool binding that tracks the button's expanded state.
     ///   - sfSymbolName: The name of the SF Symbol to use as the icon.
     ///   - title: String displayed in the header when expanded.
-    ///   - hiddenCloseButton: When `true`, the close button will be
-    ///   hidden in the header.
+    ///   - headerOptions: Define the bahavior of the header. See
+    ///   ``CUIHeaderOptions`` for more info.
     ///   - content: The content that will be displayed when the button is expanded.
     ///   - action: Action that will be performed when the button is
     ///   collapsed or expanded using the built in controls.
@@ -309,14 +331,14 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
         expanded: Binding<Bool>,
         sfSymbolName: String,
         title: String? = nil,
-        hiddenCloseButton: Bool = false,
+        headerOptions: CUIHeaderOptions = .none,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
     ) {
         self.init(
             expanded: expanded,
             title: title,
-            hiddenCloseButton: hiddenCloseButton,
+            headerOptions: headerOptions,
             icon: { SFSymbolIcon(iconName: sfSymbolName) },
             content: content,
             action: action
@@ -343,19 +365,199 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == Empt
 }
 
 struct CUIExpandableButton_PreviewWrapper: View {
-    @State var expanded: Bool
-    var title: String?
+    @State var collapsed0: Bool = false
+    @State var expanded0: Bool = true
+
+    @State var collapsed1: Bool = false
+    @State var expanded1: Bool = true
+
+    @State var collapsed2: Bool = false
+    @State var expanded2: Bool = true
+
+    @State var collapsed3: Bool = false
+    @State var expanded3: Bool = true
+
+    @State var collapsed4: Bool = false
+    @State var expanded4: Bool = true
+
+    @State var collapsed5: Bool = false
+    @State var expanded5: Bool = true
 
     var body: some View {
-        CUIExpandableButton(
-            expanded: $expanded,
-            sfSymbolName: "questionmark",
-            title: title
-        ) {
-            Text(LoremIpsum.words(8))
-                .font(.body)
-                .padding(.standardSpacing)
-                .frame(width: 200)
+        VStack {
+            HStack {
+                CUIExpandableButton(
+                    expanded: $collapsed0,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!"
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    expanded0 = !collapsed0
+                }
+                .foregroundColor(.yellow)
+                CUIExpandableButton(
+                    expanded: $expanded0,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!"
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    collapsed0 = !expanded0
+                }
+                .foregroundColor(.yellow)
+            }
+
+            HStack {
+                CUIExpandableButton(
+                    expanded: $collapsed1,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!",
+                    headerOptions: .hideIcon
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    expanded1 = !collapsed1
+                }
+                CUIExpandableButton(
+                    expanded: $expanded1,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!",
+                    headerOptions: .hideIcon
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    collapsed1 = !expanded1
+                }
+            }
+
+            HStack {
+                CUIExpandableButton(
+                    expanded: $collapsed2,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!",
+                    headerOptions: .hideSeparator
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    expanded2 = !collapsed2
+                }
+                CUIExpandableButton(
+                    expanded: $expanded2,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!",
+                    headerOptions: .hideSeparator
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    collapsed2 = !expanded2
+                }
+            }
+
+            HStack {
+                CUIExpandableButton(
+                    expanded: $collapsed3,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!",
+                    headerOptions: .hideCloseButton
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    expanded3 = !collapsed3
+                }
+                CUIExpandableButton(
+                    expanded: $expanded3,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!",
+                    headerOptions: .hideCloseButton
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    collapsed3 = !expanded3
+                }
+            }
+
+            HStack {
+                CUIExpandableButton(
+                    expanded: $collapsed4,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!",
+                    headerOptions: .hideTitle
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    expanded4 = !collapsed4
+                }
+                CUIExpandableButton(
+                    expanded: $expanded4,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!",
+                    headerOptions: .hideTitle
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    collapsed4 = !expanded4
+                }
+            }
+
+            HStack {
+                CUIExpandableButton(
+                    expanded: $collapsed5,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!",
+                    headerOptions: .hideHeader
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    expanded5 = !collapsed5
+                }
+                CUIExpandableButton(
+                    expanded: $expanded5,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty!",
+                    headerOptions: .hideHeader
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                } action: {
+                    collapsed5 = !expanded5
+                }
+            }
         }
     }
 }
@@ -364,15 +566,14 @@ struct CUIExpandableButton_Previews: PreviewProvider {
     static var previews: some View {
         CenteredPreview {
             HStack {
-                CUIExpandableButton_PreviewWrapper(expanded: false, title: "Some Title")
-                CUIExpandableButton_PreviewWrapper(expanded: true, title: nil)
+                CUIExpandableButton_PreviewWrapper()
             }
         }
     }
 }
 
 // From: https://stackoverflow.com/a/33194122/898984
-fileprivate func isRunningUnitTests() -> Bool {
+private func isRunningUnitTests() -> Bool {
     if let _ = NSClassFromString("XCTest") {
         return true
     }
