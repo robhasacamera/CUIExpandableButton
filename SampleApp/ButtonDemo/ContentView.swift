@@ -164,10 +164,10 @@ struct ContentView: View {
             CUIExpandableButton(
                 expanded: $expanded7,
                 sfSymbolName: "flame.fill",
-                title: "Hidden Close Button",
-                hiddenCloseButton: true
+                title: "Hide Header Elements",
+                headerOptions: [.hideCloseButton, .hideIcon]
             ) {
-                Text("You can hide the close button and define your own close behavior.")
+                Text("You can hide header elements, like the close button & the icon, and define your own close behavior.")
                     .frame(width: 200)
                     .padding(8)
                 Button {

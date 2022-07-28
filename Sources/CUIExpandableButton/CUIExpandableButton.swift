@@ -233,6 +233,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                             Text(title)
                                 .font(.headline)
                                 .padding(.leading, headerOptions.contains(.hideIcon) ? .standardSpacing : 0)
+                                .padding(.trailing, headerOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
+                                .padding(.bottom, headerOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
                         }
 
                         Spacer(minLength: 0)

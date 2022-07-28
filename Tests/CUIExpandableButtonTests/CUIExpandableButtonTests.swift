@@ -46,6 +46,8 @@ final class CUIExpandableButtonTests: XCTestCase {
         try await super.tearDown()
     }
 
+    // MARK: - SF Symbol Tests
+
     func testButtonWithSFSymbolCollpased() throws {
         let button = CUIExpandableButton(
             expanded: .constant(false),
@@ -126,6 +128,18 @@ final class CUIExpandableButtonTests: XCTestCase {
         assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
     }
 
+    func testButtonWithSFSymbolAndLongTitleExpandedWithHiddenIconAndCloseButton() throws {
+        let button = CUIExpandableButton(
+            expanded: .constant(true),
+            sfSymbolName: "gearshape.fill",
+            title: "Did you get that Marty?",
+            headerOptions: [.hideIcon, .hideCloseButton]) {
+                mockContent
+        }
+
+        assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
+    }
+
     func testButtonWithSFSymbolExpandedWithTitle() throws {
         let button = CUIExpandableButton(
             expanded: .constant(true),
@@ -148,6 +162,8 @@ final class CUIExpandableButtonTests: XCTestCase {
 
         assertSnapshot(matching: button.viewController, as: .image(on: .iPhoneX))
     }
+
+    // MARK: - Custom Icon Tests
 
     func testButtonWithCustomIconCollapsed() throws {
         let button = CUIExpandableButton(expanded: .constant(false)) {
@@ -226,6 +242,19 @@ final class CUIExpandableButtonTests: XCTestCase {
             expanded: .constant(true),
             title: "Marty",
             headerOptions: .hideHeader) {
+                mockCustomIcon
+        } content: {
+            mockContent
+        }
+
+        assertSnapshot(matching: button.prepForTest.viewController, as: .image(on: .iPhoneX))
+    }
+
+    func testButtonWithCustomIconAndLongTitleExpandedWithHiddenIconAndCloseButton() throws {
+        let button = CUIExpandableButton(
+            expanded: .constant(true),
+            title: "Did you get that Marty?",
+            headerOptions: [.hideIcon, .hideCloseButton]) {
                 mockCustomIcon
         } content: {
             mockContent
