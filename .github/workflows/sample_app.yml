@@ -1,0 +1,21 @@
+name: Package
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Clean Build Test
+      run: xcodebuild  -project "$PROJECT" -scheme $SCHEME clean build -destination "$DESTINATION"
+      env:
+          PROJECT: SampleApp/ButtonDemo.xcodeproj/
+          SCHEME: CUIExpandableButton
+          DESTINATION: platform=iOS Simulator,name=iPhone 13 Pro
