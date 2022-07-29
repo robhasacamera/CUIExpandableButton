@@ -17,5 +17,5 @@ jobs:
       run: xcodebuild  -project "$PROJECT" -scheme $SCHEME clean build -destination "$DESTINATION"
       env:
           PROJECT: SampleApp/ButtonDemo.xcodeproj/
-          SCHEME: CUIExpandableButton
+          SCHEME: ButtonDemo
           DESTINATION: platform=iOS Simulator,name=iPhone 13 Pro

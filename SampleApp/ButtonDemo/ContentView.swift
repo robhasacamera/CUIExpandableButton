@@ -144,24 +144,24 @@ struct ContentView: View {
             .foregroundColor(.yellow)
 
             // Need the swift check, otherwise it fails to build on older versions of Xcode.
-#if swift(>=5.7)
-            if #available(iOS 16.0, *) {
-                CUIExpandableButton(
-                    expanded: $expanded6,
-                    sfSymbolName: "exclamationmark.triangle.fill",
-                    title: "Bolded"
-                ) {
-                    Text("`fontWeight()` can be used to change the entire view.")
-                        .frame(width: 200)
-                        .padding(8)
-                } action: {
-                    expanded1 = false
-                    expanded2 = false
-                    expanded3 = false
+            #if swift(>=5.7)
+                if #available(iOS 16.0, *) {
+                    CUIExpandableButton(
+                        expanded: $expanded6,
+                        sfSymbolName: "exclamationmark.triangle.fill",
+                        title: "Bolded"
+                    ) {
+                        Text("`fontWeight()` can be used to change the entire view.")
+                            .frame(width: 200)
+                            .padding(8)
+                    } action: {
+                        expanded1 = false
+                        expanded2 = false
+                        expanded3 = false
+                    }
+                    .fontWeight(.bold)
                 }
-                .fontWeight(.bold)
-            }
-#endif
+            #endif
 
             // Not having this one close the others as a demo of content that doesn't need an action
             CUIExpandableButton(
