@@ -143,6 +143,8 @@ struct ContentView: View {
             }
             .foregroundColor(.yellow)
 
+            // Need the swift check, otherwise it fails to build on older versions of Xcode.
+#if swift(>=5.7)
             if #available(iOS 16.0, *) {
                 CUIExpandableButton(
                     expanded: $expanded6,
@@ -159,6 +161,7 @@ struct ContentView: View {
                 }
                 .fontWeight(.bold)
             }
+#endif
 
             // Not having this one close the others as a demo of content that doesn't need an action
             CUIExpandableButton(
@@ -216,9 +219,9 @@ extension Image {
     func centered() -> some View {
         GeometryReader { geo in
             self
-            .resizable()
-            .scaledToFill()
-            .frame(width: geo.size.width, height: geo.size.height)
+                .resizable()
+                .scaledToFill()
+                .frame(width: geo.size.width, height: geo.size.height)
         }
     }
 }
