@@ -1,0 +1,13 @@
+version: "Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)"
+options: "6c6d733b3092de335bd20f37aa92f41f4e21a475cbf4523fff511f1db9e42e48"
+build_start_time: [1658989480, 462134838]
+build_end_time: [1658989481, 143265008]
+inputs:
+  "/Users/robertcole/Dev/CUIExpandableButton/Sources/CUIExpandableButton/CGFloat_Extension.swift": [1658702428, 659865617]
+  "/Users/robertcole/Dev/CUIExpandableButton/Sources/CUIExpandableButton/CUIExpandableButton.swift": [1658984992, 122636556]
+  "/Users/robertcole/Dev/CUIExpandableButton/Sources/CUIExpandableButton/CUIHeaderOptions.swift": [1658904434, 847345829]
+  "/Users/robertcole/Dev/CUIExpandableButton/Sources/CUIExpandableButton/CenteredPreview.swift": [1658702428, 672536611]
+  "/Users/robertcole/Dev/CUIExpandableButton/Sources/CUIExpandableButton/CloseButton.swift": [1658702428, 647853612]
+  "/Users/robertcole/Dev/CUIExpandableButton/Sources/CUIExpandableButton/LoremIpsum.swift": [1658702428, 687923431]
+  "/Users/robertcole/Dev/CUIExpandableButton/Sources/CUIExpandableButton/SFSymbolIcon.swift": [1658702386, 60489654]
+  "/Users/robertcole/Dev/CUIExpandableButton/Sources/CUIExpandableButton/Separator.swift": [1658702428, 636842727]

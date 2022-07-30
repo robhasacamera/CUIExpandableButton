@@ -48,6 +48,22 @@ final class CUIExpandableButtonTests: XCTestCase {
 
     // MARK: - SF Symbol Tests
 
+    func captureDynamicSizeSnapshots<Content>(
+        file: StaticString = #file,
+        testName: String = #function,
+        line: UInt = #line,
+        @ViewBuilder content: () -> Content) where Content: View {
+        for size in ContentSizeCategory.allCases {
+            assertSnapshot(
+                matching: content().environment(\.sizeCategory, size),
+                as: .image,
+                file: file,
+                testName: testName,
+                line: line
+            )
+        }
+    }
+
     func testButtonWithSFSymbolCollpased() throws {
         let button = CUIExpandableButton(
             expanded: .constant(false),
@@ -55,7 +71,9 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithSFSymbolExpanded() throws {
@@ -65,7 +83,9 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithSFSymbolExpandedHiddenIcon() throws {
@@ -77,7 +97,9 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithSFSymbolExpandedHiddenTitle() throws {
@@ -89,7 +111,9 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithSFSymbolExpandedHiddenCloseButton() throws {
@@ -101,7 +125,9 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithSFSymbolExpandedHiddenSeparator() throws {
@@ -113,7 +139,9 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithSFSymbolExpandedHiddenHeader() throws {
@@ -125,7 +153,9 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithSFSymbolAndLongTitleExpandedWithHiddenIconAndCloseButton() throws {
@@ -137,7 +167,9 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithSFSymbolExpandedWithTitle() throws {
@@ -148,7 +180,9 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithSFSymbolExpandedWithForegroundColor() throws {
@@ -160,7 +194,9 @@ final class CUIExpandableButtonTests: XCTestCase {
         }
         .foregroundColor(.yellow)
 
-        assertSnapshot(matching: button, as: .image)
+        captureDynamicSizeSnapshots {
+            button
+        }
     }
 
     // MARK: - Custom Icon Tests
@@ -172,7 +208,9 @@ final class CUIExpandableButtonTests: XCTestCase {
             mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithCustomIconExpanded() throws {
@@ -182,7 +220,9 @@ final class CUIExpandableButtonTests: XCTestCase {
             mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithCustomIconExpandedWithHiddenIcon() throws {
@@ -195,7 +235,9 @@ final class CUIExpandableButtonTests: XCTestCase {
             mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithCustomIconExpandedWithHiddenTitle() throws {
@@ -208,7 +250,9 @@ final class CUIExpandableButtonTests: XCTestCase {
             mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithCustomIconExpandedWithHiddenCloseButton() throws {
@@ -221,7 +265,9 @@ final class CUIExpandableButtonTests: XCTestCase {
             mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithCustomIconExpandedWithHiddenSeparator() throws {
@@ -234,7 +280,9 @@ final class CUIExpandableButtonTests: XCTestCase {
             mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithCustomIconExpandedWithHiddenHeader() throws {
@@ -247,7 +295,9 @@ final class CUIExpandableButtonTests: XCTestCase {
             mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithCustomIconAndLongTitleExpandedWithHiddenIconAndCloseButton() throws {
@@ -260,7 +310,9 @@ final class CUIExpandableButtonTests: XCTestCase {
             mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithCustomIconExpandedWithTitle() throws {
@@ -272,7 +324,9 @@ final class CUIExpandableButtonTests: XCTestCase {
             mockContent
         }
 
-        assertSnapshot(matching: button.prepForTest, as: .image)
+        captureDynamicSizeSnapshots {
+            button.prepForTest
+        }
     }
 
     func testButtonWithCustomIconExpandedWithForegroundColor() throws {
@@ -285,7 +339,9 @@ final class CUIExpandableButtonTests: XCTestCase {
         }
         .foregroundColor(.yellow)
 
-        assertSnapshot(matching: button, as: .image)
+        captureDynamicSizeSnapshots {
+            button
+        }
     }
 }
 

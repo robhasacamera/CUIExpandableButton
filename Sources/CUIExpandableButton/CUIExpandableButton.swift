@@ -292,7 +292,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         // FIXME: Material doesn't render in snapshot tests for some reason
         .background(isRunningUnitTests() ? .gray : .clear)
         .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : .infinity))
+        .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : iconSize / 2))
         .animation(.spring(), value: expanded)
         .fixedSize()
     }

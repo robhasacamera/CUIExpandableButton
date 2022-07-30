@@ -1,0 +1,1482 @@
+{
+  "kind": "Root",
+  "name": "TopLevel",
+  "printedName": "TopLevel",
+  "children": [
+    {
+      "kind": "Import",
+      "name": "UIKit",
+      "printedName": "UIKit",
+      "declKind": "Import",
+      "moduleName": "CUIExpandableButton",
+      "declAttributes": [
+        "RawDocComment"
+      ]
+    },
+    {
+      "kind": "Import",
+      "name": "SwiftUI",
+      "printedName": "SwiftUI",
+      "declKind": "Import",
+      "moduleName": "CUIExpandableButton",
+      "declAttributes": [
+        "RawDocComment"
+      ]
+    },
+    {
+      "kind": "TypeDecl",
+      "name": "CUIExpandableButton",
+      "printedName": "CUIExpandableButton",
+      "children": [
+        {
+          "kind": "Var",
+          "name": "_animation",
+          "printedName": "_animation",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Namespace",
+              "printedName": "SwiftUI.Namespace",
+              "usr": "s:7SwiftUI9NamespaceV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButtonAAV10_animation33_A483945A1BCC453CC13363CE7F2C96DBLL7SwiftUI9NamespaceVvp",
+          "mangledName": "$s19CUIExpandableButtonAAV10_animation33_A483945A1BCC453CC13363CE7F2C96DBLL7SwiftUI9NamespaceVvp",
+          "moduleName": "CUIExpandableButton",
+          "implicit": true,
+          "isInternal": true,
+          "declAttributes": [
+            "HasInitialValue",
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 0,
+          "hasStorage": true
+        },
+        {
+          "kind": "Var",
+          "name": "_iconSize",
+          "printedName": "_iconSize",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "ScaledMetric",
+              "printedName": "SwiftUI.ScaledMetric<CoreGraphics.CGFloat>",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CGFloat",
+                  "printedName": "CoreGraphics.CGFloat",
+                  "usr": "s:12CoreGraphics7CGFloatV"
+                }
+              ],
+              "usr": "s:7SwiftUI12ScaledMetricV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButtonAAV9_iconSize33_A483945A1BCC453CC13363CE7F2C96DBLL7SwiftUI12ScaledMetricVy12CoreGraphics7CGFloatVGvp",
+          "mangledName": "$s19CUIExpandableButtonAAV9_iconSize33_A483945A1BCC453CC13363CE7F2C96DBLL7SwiftUI12ScaledMetricVy12CoreGraphics7CGFloatVGvp",
+          "moduleName": "CUIExpandableButton",
+          "implicit": true,
+          "isInternal": true,
+          "declAttributes": [
+            "HasInitialValue",
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 1,
+          "hasStorage": true
+        },
+        {
+          "kind": "Var",
+          "name": "_menuCornerRadius",
+          "printedName": "_menuCornerRadius",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "ScaledMetric",
+              "printedName": "SwiftUI.ScaledMetric<CoreGraphics.CGFloat>",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CGFloat",
+                  "printedName": "CoreGraphics.CGFloat",
+                  "usr": "s:12CoreGraphics7CGFloatV"
+                }
+              ],
+              "usr": "s:7SwiftUI12ScaledMetricV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButtonAAV17_menuCornerRadius33_A483945A1BCC453CC13363CE7F2C96DBLL7SwiftUI12ScaledMetricVy12CoreGraphics7CGFloatVGvp",
+          "mangledName": "$s19CUIExpandableButtonAAV17_menuCornerRadius33_A483945A1BCC453CC13363CE7F2C96DBLL7SwiftUI12ScaledMetricVy12CoreGraphics7CGFloatVGvp",
+          "moduleName": "CUIExpandableButton",
+          "implicit": true,
+          "isInternal": true,
+          "declAttributes": [
+            "HasInitialValue",
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 2,
+          "hasStorage": true
+        },
+        {
+          "kind": "Var",
+          "name": "_expanded",
+          "printedName": "_expanded",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Binding",
+              "printedName": "SwiftUI.Binding<Swift.Bool>",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Bool",
+                  "printedName": "Swift.Bool",
+                  "usr": "s:Sb"
+                }
+              ],
+              "usr": "s:7SwiftUI7BindingV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButtonAAV9_expanded33_A483945A1BCC453CC13363CE7F2C96DBLL7SwiftUI7BindingVySbGvp",
+          "mangledName": "$s19CUIExpandableButtonAAV9_expanded33_A483945A1BCC453CC13363CE7F2C96DBLL7SwiftUI7BindingVySbGvp",
+          "moduleName": "CUIExpandableButton",
+          "implicit": true,
+          "isInternal": true,
+          "declAttributes": [
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 3,
+          "hasStorage": true
+        },
+        {
+          "kind": "Var",
+          "name": "title",
+          "printedName": "title",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Optional",
+              "printedName": "Swift.String?",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "String",
+                  "printedName": "Swift.String",
+                  "usr": "s:SS"
+                }
+              ],
+              "usr": "s:Sq"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButtonAAV5titleSSSgvp",
+          "mangledName": "$s19CUIExpandableButtonAAV5titleSSSgvp",
+          "moduleName": "CUIExpandableButton",
+          "isInternal": true,
+          "declAttributes": [
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 4,
+          "isLet": true,
+          "hasStorage": true
+        },
+        {
+          "kind": "Var",
+          "name": "headerOptions",
+          "printedName": "headerOptions",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIHeaderOptions",
+              "printedName": "CUIExpandableButton.CUIHeaderOptions",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButtonAAV13headerOptionsAA09CUIHeaderD0Vvp",
+          "mangledName": "$s19CUIExpandableButtonAAV13headerOptionsAA09CUIHeaderD0Vvp",
+          "moduleName": "CUIExpandableButton",
+          "isInternal": true,
+          "declAttributes": [
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 5,
+          "isLet": true,
+          "hasStorage": true
+        },
+        {
+          "kind": "Var",
+          "name": "icon",
+          "printedName": "icon",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "GenericTypeParam",
+              "printedName": "τ_0_0"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButtonAAV4iconxvp",
+          "mangledName": "$s19CUIExpandableButtonAAV4iconxvp",
+          "moduleName": "CUIExpandableButton",
+          "isInternal": true,
+          "declAttributes": [
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 6,
+          "isLet": true,
+          "hasStorage": true
+        },
+        {
+          "kind": "Var",
+          "name": "content",
+          "printedName": "content",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "GenericTypeParam",
+              "printedName": "τ_0_1"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButtonAAV7contentq_vp",
+          "mangledName": "$s19CUIExpandableButtonAAV7contentq_vp",
+          "moduleName": "CUIExpandableButton",
+          "isInternal": true,
+          "declAttributes": [
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 7,
+          "isLet": true,
+          "hasStorage": true
+        },
+        {
+          "kind": "Var",
+          "name": "action",
+          "printedName": "action",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Optional",
+              "printedName": "(() -> ())?",
+              "children": [
+                {
+                  "kind": "TypeFunc",
+                  "name": "Function",
+                  "printedName": "() -> ()",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "Void",
+                      "printedName": "()"
+                    },
+                    {
+                      "kind": "TypeNominal",
+                      "name": "Void",
+                      "printedName": "()"
+                    }
+                  ]
+                }
+              ],
+              "usr": "s:Sq"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButtonAAV6actionyycSgvp",
+          "mangledName": "$s19CUIExpandableButtonAAV6actionyycSgvp",
+          "moduleName": "CUIExpandableButton",
+          "isInternal": true,
+          "declAttributes": [
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 8,
+          "isLet": true,
+          "hasStorage": true
+        },
+        {
+          "kind": "Constructor",
+          "name": "init",
+          "printedName": "init(expanded:title:hiddenCloseButton:headerOptions:icon:content:action:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIExpandableButton",
+              "printedName": "CUIExpandableButton.CUIExpandableButton<τ_0_0, τ_0_1>",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_0"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_1"
+                }
+              ],
+              "usr": "s:19CUIExpandableButtonAAV"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Binding",
+              "printedName": "SwiftUI.Binding<Swift.Bool>",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Bool",
+                  "printedName": "Swift.Bool",
+                  "usr": "s:Sb"
+                }
+              ],
+              "usr": "s:7SwiftUI7BindingV"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Optional",
+              "printedName": "Swift.String?",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "String",
+                  "printedName": "Swift.String",
+                  "usr": "s:SS"
+                }
+              ],
+              "hasDefaultArg": true,
+              "usr": "s:Sq"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Bool",
+              "printedName": "Swift.Bool",
+              "hasDefaultArg": true,
+              "usr": "s:Sb"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "CUIHeaderOptions",
+              "printedName": "CUIExpandableButton.CUIHeaderOptions",
+              "hasDefaultArg": true,
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+            },
+            {
+              "kind": "TypeFunc",
+              "name": "Function",
+              "printedName": "() -> τ_0_0",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_0"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                }
+              ],
+              "typeAttributes": [
+                "noescape"
+              ]
+            },
+            {
+              "kind": "TypeFunc",
+              "name": "Function",
+              "printedName": "() -> τ_0_1",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_1"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                }
+              ],
+              "typeAttributes": [
+                "noescape"
+              ]
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Optional",
+              "printedName": "(() -> ())?",
+              "children": [
+                {
+                  "kind": "TypeFunc",
+                  "name": "Function",
+                  "printedName": "() -> ()",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "Void",
+                      "printedName": "()"
+                    },
+                    {
+                      "kind": "TypeNominal",
+                      "name": "Void",
+                      "printedName": "()"
+                    }
+                  ]
+                }
+              ],
+              "hasDefaultArg": true,
+              "usr": "s:Sq"
+            }
+          ],
+          "declKind": "Constructor",
+          "usr": "s:19CUIExpandableButtonAAV8expanded5title011hiddenCloseB013headerOptions4icon7content6actionAByxq_G7SwiftUI7BindingVySbG_SSSgSbAA09CUIHeaderH0VxyXEq_yXEyycSgtcfc",
+          "mangledName": "$s19CUIExpandableButtonAAV8expanded5title011hiddenCloseB013headerOptions4icon7content6actionAByxq_G7SwiftUI7BindingVySbG_SSSgSbAA09CUIHeaderH0VxyXEq_yXEyycSgtcfc",
+          "moduleName": "CUIExpandableButton",
+          "genericSig": "<τ_0_0, τ_0_1 where τ_0_0 : SwiftUI.View, τ_0_1 : SwiftUI.View>",
+          "sugared_genericSig": "<Icon, Content where Icon : SwiftUI.View, Content : SwiftUI.View>",
+          "declAttributes": [
+            "AccessControl",
+            "RawDocComment"
+          ],
+          "init_kind": "Designated"
+        },
+        {
+          "kind": "Var",
+          "name": "body",
+          "printedName": "body",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "OpaqueTypeArchetype",
+              "printedName": "some SwiftUI.View",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "View",
+                  "printedName": "SwiftUI.View",
+                  "usr": "s:7SwiftUI4ViewP"
+                }
+              ]
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButtonAAV4bodyQrvp",
+          "mangledName": "$s19CUIExpandableButtonAAV4bodyQrvp",
+          "moduleName": "CUIExpandableButton",
+          "declAttributes": [
+            "Custom",
+            "AccessControl"
+          ],
+          "accessors": [
+            {
+              "kind": "Accessor",
+              "name": "Get",
+              "printedName": "Get()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "OpaqueTypeArchetype",
+                  "printedName": "some SwiftUI.View",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "View",
+                      "printedName": "SwiftUI.View",
+                      "usr": "s:7SwiftUI4ViewP"
+                    }
+                  ]
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "s:19CUIExpandableButtonAAV4bodyQrvg",
+              "mangledName": "$s19CUIExpandableButtonAAV4bodyQrvg",
+              "moduleName": "CUIExpandableButton",
+              "genericSig": "<τ_0_0, τ_0_1 where τ_0_0 : SwiftUI.View, τ_0_1 : SwiftUI.View>",
+              "sugared_genericSig": "<Icon, Content where Icon : SwiftUI.View, Content : SwiftUI.View>",
+              "accessorKind": "get"
+            }
+          ]
+        },
+        {
+          "kind": "Constructor",
+          "name": "init",
+          "printedName": "init(icon:action:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIExpandableButton",
+              "printedName": "CUIExpandableButton.CUIExpandableButton<τ_0_0, τ_0_1>",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_0"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_1"
+                }
+              ],
+              "usr": "s:19CUIExpandableButtonAAV"
+            },
+            {
+              "kind": "TypeFunc",
+              "name": "Function",
+              "printedName": "() -> τ_0_0",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_0"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                }
+              ],
+              "typeAttributes": [
+                "noescape"
+              ]
+            },
+            {
+              "kind": "TypeFunc",
+              "name": "Function",
+              "printedName": "() -> ()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                }
+              ]
+            }
+          ],
+          "declKind": "Constructor",
+          "usr": "s:19CUIExpandableButtonAAVAA7SwiftUI9EmptyViewVRs_rlE4icon6actionAByxAEGxyXE_yyctcfc",
+          "mangledName": "$s19CUIExpandableButtonAAVAA7SwiftUI9EmptyViewVRs_rlE4icon6actionAByxAEGxyXE_yyctcfc",
+          "moduleName": "CUIExpandableButton",
+          "genericSig": "<τ_0_0, τ_0_1 where τ_0_0 : SwiftUI.View, τ_0_1 == SwiftUI.EmptyView>",
+          "sugared_genericSig": "<Icon, Content where Icon : SwiftUI.View, Content == SwiftUI.EmptyView>",
+          "declAttributes": [
+            "RawDocComment"
+          ],
+          "init_kind": "Designated"
+        },
+        {
+          "kind": "Constructor",
+          "name": "init",
+          "printedName": "init(expanded:sfSymbolName:title:headerOptions:content:action:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIExpandableButton",
+              "printedName": "CUIExpandableButton.CUIExpandableButton<τ_0_0, τ_0_1>",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_0"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_1"
+                }
+              ],
+              "usr": "s:19CUIExpandableButtonAAV"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Binding",
+              "printedName": "SwiftUI.Binding<Swift.Bool>",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Bool",
+                  "printedName": "Swift.Bool",
+                  "usr": "s:Sb"
+                }
+              ],
+              "usr": "s:7SwiftUI7BindingV"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "String",
+              "printedName": "Swift.String",
+              "usr": "s:SS"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Optional",
+              "printedName": "Swift.String?",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "String",
+                  "printedName": "Swift.String",
+                  "usr": "s:SS"
+                }
+              ],
+              "hasDefaultArg": true,
+              "usr": "s:Sq"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "CUIHeaderOptions",
+              "printedName": "CUIExpandableButton.CUIHeaderOptions",
+              "hasDefaultArg": true,
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+            },
+            {
+              "kind": "TypeFunc",
+              "name": "Function",
+              "printedName": "() -> τ_0_1",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_1"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                }
+              ],
+              "typeAttributes": [
+                "noescape"
+              ]
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Optional",
+              "printedName": "(() -> ())?",
+              "children": [
+                {
+                  "kind": "TypeFunc",
+                  "name": "Function",
+                  "printedName": "() -> ()",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "Void",
+                      "printedName": "()"
+                    },
+                    {
+                      "kind": "TypeNominal",
+                      "name": "Void",
+                      "printedName": "()"
+                    }
+                  ]
+                }
+              ],
+              "hasDefaultArg": true,
+              "usr": "s:Sq"
+            }
+          ],
+          "declKind": "Constructor",
+          "usr": "s:19CUIExpandableButtonAAVA2A12SFSymbolIconVRszrlE8expanded12sfSymbolName5title13headerOptions7content6actionAByADq_G7SwiftUI7BindingVySbG_S2SSgAA09CUIHeaderK0Vq_yXEyycSgtcfc",
+          "mangledName": "$s19CUIExpandableButtonAAVA2A12SFSymbolIconVRszrlE8expanded12sfSymbolName5title13headerOptions7content6actionAByADq_G7SwiftUI7BindingVySbG_S2SSgAA09CUIHeaderK0Vq_yXEyycSgtcfc",
+          "moduleName": "CUIExpandableButton",
+          "genericSig": "<τ_0_0, τ_0_1 where τ_0_0 == CUIExpandableButton.SFSymbolIcon, τ_0_1 : SwiftUI.View>",
+          "sugared_genericSig": "<Icon, Content where Icon == CUIExpandableButton.SFSymbolIcon, Content : SwiftUI.View>",
+          "declAttributes": [
+            "RawDocComment"
+          ],
+          "init_kind": "Designated"
+        },
+        {
+          "kind": "Constructor",
+          "name": "init",
+          "printedName": "init(sfSymbolName:action:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIExpandableButton",
+              "printedName": "CUIExpandableButton.CUIExpandableButton<τ_0_0, τ_0_1>",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_0"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "GenericTypeParam",
+                  "printedName": "τ_0_1"
+                }
+              ],
+              "usr": "s:19CUIExpandableButtonAAV"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "String",
+              "printedName": "Swift.String",
+              "usr": "s:SS"
+            },
+            {
+              "kind": "TypeFunc",
+              "name": "Function",
+              "printedName": "() -> ()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                },
+                {
+                  "kind": "TypeNominal",
+                  "name": "Void",
+                  "printedName": "()"
+                }
+              ]
+            }
+          ],
+          "declKind": "Constructor",
+          "usr": "s:19CUIExpandableButtonAAVA2A12SFSymbolIconVRsz7SwiftUI9EmptyViewVRs_rlE12sfSymbolName6actionAByAdGGSS_yyctcfc",
+          "mangledName": "$s19CUIExpandableButtonAAVA2A12SFSymbolIconVRsz7SwiftUI9EmptyViewVRs_rlE12sfSymbolName6actionAByAdGGSS_yyctcfc",
+          "moduleName": "CUIExpandableButton",
+          "genericSig": "<τ_0_0, τ_0_1 where τ_0_0 == CUIExpandableButton.SFSymbolIcon, τ_0_1 == SwiftUI.EmptyView>",
+          "sugared_genericSig": "<Icon, Content where Icon == CUIExpandableButton.SFSymbolIcon, Content == SwiftUI.EmptyView>",
+          "declAttributes": [
+            "RawDocComment"
+          ],
+          "init_kind": "Designated"
+        }
+      ],
+      "declKind": "Struct",
+      "usr": "s:19CUIExpandableButtonAAV",
+      "mangledName": "$s19CUIExpandableButtonAAV",
+      "moduleName": "CUIExpandableButton",
+      "genericSig": "<τ_0_0, τ_0_1 where τ_0_0 : SwiftUI.View, τ_0_1 : SwiftUI.View>",
+      "sugared_genericSig": "<Icon, Content where Icon : SwiftUI.View, Content : SwiftUI.View>",
+      "declAttributes": [
+        "AccessControl",
+        "RawDocComment"
+      ],
+      "conformances": [
+        {
+          "kind": "Conformance",
+          "name": "View",
+          "printedName": "View",
+          "children": [
+            {
+              "kind": "TypeWitness",
+              "name": "Body",
+              "printedName": "Body",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "OpaqueTypeArchetype",
+                  "printedName": "some SwiftUI.View",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "View",
+                      "printedName": "SwiftUI.View",
+                      "usr": "s:7SwiftUI4ViewP"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "usr": "s:7SwiftUI4ViewP",
+          "mangledName": "$s7SwiftUI4ViewP"
+        }
+      ]
+    },
+    {
+      "kind": "Import",
+      "name": "Foundation",
+      "printedName": "Foundation",
+      "declKind": "Import",
+      "moduleName": "CUIExpandableButton",
+      "declAttributes": [
+        "RawDocComment"
+      ]
+    },
+    {
+      "kind": "TypeDecl",
+      "name": "CUIHeaderOptions",
+      "printedName": "CUIHeaderOptions",
+      "children": [
+        {
+          "kind": "Var",
+          "name": "rawValue",
+          "printedName": "rawValue",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Int",
+              "printedName": "Swift.Int",
+              "usr": "s:Si"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV8rawValueSivp",
+          "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV8rawValueSivp",
+          "moduleName": "CUIExpandableButton",
+          "declAttributes": [
+            "HasStorage",
+            "AccessControl"
+          ],
+          "fixedbinaryorder": 0,
+          "isLet": true,
+          "hasStorage": true,
+          "accessors": [
+            {
+              "kind": "Accessor",
+              "name": "Get",
+              "printedName": "Get()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Int",
+                  "printedName": "Swift.Int",
+                  "usr": "s:Si"
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV8rawValueSivg",
+              "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV8rawValueSivg",
+              "moduleName": "CUIExpandableButton",
+              "implicit": true,
+              "declAttributes": [
+                "Transparent"
+              ],
+              "accessorKind": "get"
+            }
+          ]
+        },
+        {
+          "kind": "Constructor",
+          "name": "init",
+          "printedName": "init(rawValue:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIHeaderOptions",
+              "printedName": "CUIExpandableButton.CUIHeaderOptions",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Int",
+              "printedName": "Swift.Int",
+              "usr": "s:Si"
+            }
+          ],
+          "declKind": "Constructor",
+          "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV8rawValueACSi_tcfc",
+          "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV8rawValueACSi_tcfc",
+          "moduleName": "CUIExpandableButton",
+          "declAttributes": [
+            "AccessControl"
+          ],
+          "init_kind": "Designated"
+        },
+        {
+          "kind": "Var",
+          "name": "hideIcon",
+          "printedName": "hideIcon",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIHeaderOptions",
+              "printedName": "CUIExpandableButton.CUIHeaderOptions",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV8hideIconACvpZ",
+          "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV8hideIconACvpZ",
+          "moduleName": "CUIExpandableButton",
+          "static": true,
+          "declAttributes": [
+            "HasInitialValue",
+            "HasStorage",
+            "AccessControl",
+            "RawDocComment"
+          ],
+          "isLet": true,
+          "hasStorage": true,
+          "accessors": [
+            {
+              "kind": "Accessor",
+              "name": "Get",
+              "printedName": "Get()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CUIHeaderOptions",
+                  "printedName": "CUIExpandableButton.CUIHeaderOptions",
+                  "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV8hideIconACvgZ",
+              "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV8hideIconACvgZ",
+              "moduleName": "CUIExpandableButton",
+              "static": true,
+              "implicit": true,
+              "declAttributes": [
+                "Transparent"
+              ],
+              "accessorKind": "get"
+            }
+          ]
+        },
+        {
+          "kind": "Var",
+          "name": "hideTitle",
+          "printedName": "hideTitle",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIHeaderOptions",
+              "printedName": "CUIExpandableButton.CUIHeaderOptions",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV9hideTitleACvpZ",
+          "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV9hideTitleACvpZ",
+          "moduleName": "CUIExpandableButton",
+          "static": true,
+          "declAttributes": [
+            "HasInitialValue",
+            "HasStorage",
+            "AccessControl",
+            "RawDocComment"
+          ],
+          "isLet": true,
+          "hasStorage": true,
+          "accessors": [
+            {
+              "kind": "Accessor",
+              "name": "Get",
+              "printedName": "Get()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CUIHeaderOptions",
+                  "printedName": "CUIExpandableButton.CUIHeaderOptions",
+                  "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV9hideTitleACvgZ",
+              "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV9hideTitleACvgZ",
+              "moduleName": "CUIExpandableButton",
+              "static": true,
+              "implicit": true,
+              "declAttributes": [
+                "Transparent"
+              ],
+              "accessorKind": "get"
+            }
+          ]
+        },
+        {
+          "kind": "Var",
+          "name": "hideCloseButton",
+          "printedName": "hideCloseButton",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIHeaderOptions",
+              "printedName": "CUIExpandableButton.CUIHeaderOptions",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV09hideCloseB0ACvpZ",
+          "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV09hideCloseB0ACvpZ",
+          "moduleName": "CUIExpandableButton",
+          "static": true,
+          "declAttributes": [
+            "HasInitialValue",
+            "HasStorage",
+            "AccessControl",
+            "RawDocComment"
+          ],
+          "isLet": true,
+          "hasStorage": true,
+          "accessors": [
+            {
+              "kind": "Accessor",
+              "name": "Get",
+              "printedName": "Get()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CUIHeaderOptions",
+                  "printedName": "CUIExpandableButton.CUIHeaderOptions",
+                  "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV09hideCloseB0ACvgZ",
+              "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV09hideCloseB0ACvgZ",
+              "moduleName": "CUIExpandableButton",
+              "static": true,
+              "implicit": true,
+              "declAttributes": [
+                "Transparent"
+              ],
+              "accessorKind": "get"
+            }
+          ]
+        },
+        {
+          "kind": "Var",
+          "name": "hideSeparator",
+          "printedName": "hideSeparator",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIHeaderOptions",
+              "printedName": "CUIExpandableButton.CUIHeaderOptions",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV13hideSeparatorACvpZ",
+          "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV13hideSeparatorACvpZ",
+          "moduleName": "CUIExpandableButton",
+          "static": true,
+          "declAttributes": [
+            "HasInitialValue",
+            "HasStorage",
+            "AccessControl",
+            "RawDocComment"
+          ],
+          "isLet": true,
+          "hasStorage": true,
+          "accessors": [
+            {
+              "kind": "Accessor",
+              "name": "Get",
+              "printedName": "Get()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CUIHeaderOptions",
+                  "printedName": "CUIExpandableButton.CUIHeaderOptions",
+                  "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV13hideSeparatorACvgZ",
+              "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV13hideSeparatorACvgZ",
+              "moduleName": "CUIExpandableButton",
+              "static": true,
+              "implicit": true,
+              "declAttributes": [
+                "Transparent"
+              ],
+              "accessorKind": "get"
+            }
+          ]
+        },
+        {
+          "kind": "Var",
+          "name": "none",
+          "printedName": "none",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIHeaderOptions",
+              "printedName": "CUIExpandableButton.CUIHeaderOptions",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV4noneACvpZ",
+          "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV4noneACvpZ",
+          "moduleName": "CUIExpandableButton",
+          "static": true,
+          "declAttributes": [
+            "HasInitialValue",
+            "HasStorage",
+            "AccessControl",
+            "RawDocComment"
+          ],
+          "isLet": true,
+          "hasStorage": true,
+          "accessors": [
+            {
+              "kind": "Accessor",
+              "name": "Get",
+              "printedName": "Get()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CUIHeaderOptions",
+                  "printedName": "CUIExpandableButton.CUIHeaderOptions",
+                  "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV4noneACvgZ",
+              "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV4noneACvgZ",
+              "moduleName": "CUIExpandableButton",
+              "static": true,
+              "implicit": true,
+              "declAttributes": [
+                "Transparent"
+              ],
+              "accessorKind": "get"
+            }
+          ]
+        },
+        {
+          "kind": "Var",
+          "name": "hideHeader",
+          "printedName": "hideHeader",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "CUIHeaderOptions",
+              "printedName": "CUIExpandableButton.CUIHeaderOptions",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV10hideHeaderACvpZ",
+          "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV10hideHeaderACvpZ",
+          "moduleName": "CUIExpandableButton",
+          "static": true,
+          "declAttributes": [
+            "HasInitialValue",
+            "HasStorage",
+            "AccessControl",
+            "RawDocComment"
+          ],
+          "isLet": true,
+          "hasStorage": true,
+          "accessors": [
+            {
+              "kind": "Accessor",
+              "name": "Get",
+              "printedName": "Get()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CUIHeaderOptions",
+                  "printedName": "CUIExpandableButton.CUIHeaderOptions",
+                  "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV10hideHeaderACvgZ",
+              "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV10hideHeaderACvgZ",
+              "moduleName": "CUIExpandableButton",
+              "static": true,
+              "implicit": true,
+              "declAttributes": [
+                "Transparent"
+              ],
+              "accessorKind": "get"
+            }
+          ]
+        }
+      ],
+      "declKind": "Struct",
+      "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV",
+      "mangledName": "$s19CUIExpandableButton16CUIHeaderOptionsV",
+      "moduleName": "CUIExpandableButton",
+      "declAttributes": [
+        "AccessControl",
+        "RawDocComment"
+      ],
+      "conformances": [
+        {
+          "kind": "Conformance",
+          "name": "OptionSet",
+          "printedName": "OptionSet",
+          "children": [
+            {
+              "kind": "TypeWitness",
+              "name": "Element",
+              "printedName": "Element",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CUIHeaderOptions",
+                  "printedName": "CUIExpandableButton.CUIHeaderOptions",
+                  "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+                }
+              ]
+            }
+          ],
+          "usr": "s:s9OptionSetP",
+          "mangledName": "$ss9OptionSetP"
+        },
+        {
+          "kind": "Conformance",
+          "name": "RawRepresentable",
+          "printedName": "RawRepresentable",
+          "children": [
+            {
+              "kind": "TypeWitness",
+              "name": "RawValue",
+              "printedName": "RawValue",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "Int",
+                  "printedName": "Swift.Int",
+                  "usr": "s:Si"
+                }
+              ]
+            }
+          ],
+          "usr": "s:SY",
+          "mangledName": "$sSY"
+        },
+        {
+          "kind": "Conformance",
+          "name": "SetAlgebra",
+          "printedName": "SetAlgebra",
+          "children": [
+            {
+              "kind": "TypeWitness",
+              "name": "Element",
+              "printedName": "Element",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CUIHeaderOptions",
+                  "printedName": "CUIExpandableButton.CUIHeaderOptions",
+                  "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+                }
+              ]
+            }
+          ],
+          "usr": "s:s10SetAlgebraP",
+          "mangledName": "$ss10SetAlgebraP"
+        },
+        {
+          "kind": "Conformance",
+          "name": "Equatable",
+          "printedName": "Equatable",
+          "usr": "s:SQ",
+          "mangledName": "$sSQ"
+        },
+        {
+          "kind": "Conformance",
+          "name": "ExpressibleByArrayLiteral",
+          "printedName": "ExpressibleByArrayLiteral",
+          "children": [
+            {
+              "kind": "TypeWitness",
+              "name": "ArrayLiteralElement",
+              "printedName": "ArrayLiteralElement",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "CUIHeaderOptions",
+                  "printedName": "CUIExpandableButton.CUIHeaderOptions",
+                  "usr": "s:19CUIExpandableButton16CUIHeaderOptionsV"
+                }
+              ]
+            }
+          ],
+          "usr": "s:s25ExpressibleByArrayLiteralP",
+          "mangledName": "$ss25ExpressibleByArrayLiteralP"
+        }
+      ]
+    },
+    {
+      "kind": "Import",
+      "name": "SwiftUI",
+      "printedName": "SwiftUI",
+      "declKind": "Import",
+      "moduleName": "CUIExpandableButton",
+      "declAttributes": [
+        "RawDocComment"
+      ]
+    },
+    {
+      "kind": "Import",
+      "name": "SwiftUI",
+      "printedName": "SwiftUI",
+      "declKind": "Import",
+      "moduleName": "CUIExpandableButton",
+      "declAttributes": [
+        "RawDocComment"
+      ]
+    },
+    {
+      "kind": "Import",
+      "name": "Foundation",
+      "printedName": "Foundation",
+      "declKind": "Import",
+      "moduleName": "CUIExpandableButton",
+      "declAttributes": [
+        "RawDocComment"
+      ]
+    },
+    {
+      "kind": "Import",
+      "name": "SwiftUI",
+      "printedName": "SwiftUI",
+      "declKind": "Import",
+      "moduleName": "CUIExpandableButton",
+      "declAttributes": [
+        "RawDocComment"
+      ]
+    },
+    {
+      "kind": "Import",
+      "name": "SwiftUI",
+      "printedName": "SwiftUI",
+      "declKind": "Import",
+      "moduleName": "CUIExpandableButton"
+    },
+    {
+      "kind": "TypeDecl",
+      "name": "SFSymbolIcon",
+      "printedName": "SFSymbolIcon",
+      "children": [
+        {
+          "kind": "Var",
+          "name": "iconName",
+          "printedName": "iconName",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "String",
+              "printedName": "Swift.String",
+              "usr": "s:SS"
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButton12SFSymbolIconV8iconNameSSvp",
+          "mangledName": "$s19CUIExpandableButton12SFSymbolIconV8iconNameSSvp",
+          "moduleName": "CUIExpandableButton",
+          "isInternal": true,
+          "declAttributes": [
+            "HasStorage"
+          ],
+          "fixedbinaryorder": 0,
+          "hasStorage": true
+        },
+        {
+          "kind": "Var",
+          "name": "body",
+          "printedName": "body",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "OpaqueTypeArchetype",
+              "printedName": "some SwiftUI.View",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "View",
+                  "printedName": "SwiftUI.View",
+                  "usr": "s:7SwiftUI4ViewP"
+                }
+              ]
+            }
+          ],
+          "declKind": "Var",
+          "usr": "s:19CUIExpandableButton12SFSymbolIconV4bodyQrvp",
+          "mangledName": "$s19CUIExpandableButton12SFSymbolIconV4bodyQrvp",
+          "moduleName": "CUIExpandableButton",
+          "declAttributes": [
+            "Custom",
+            "AccessControl"
+          ],
+          "accessors": [
+            {
+              "kind": "Accessor",
+              "name": "Get",
+              "printedName": "Get()",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "OpaqueTypeArchetype",
+                  "printedName": "some SwiftUI.View",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "View",
+                      "printedName": "SwiftUI.View",
+                      "usr": "s:7SwiftUI4ViewP"
+                    }
+                  ]
+                }
+              ],
+              "declKind": "Accessor",
+              "usr": "s:19CUIExpandableButton12SFSymbolIconV4bodyQrvg",
+              "mangledName": "$s19CUIExpandableButton12SFSymbolIconV4bodyQrvg",
+              "moduleName": "CUIExpandableButton",
+              "accessorKind": "get"
+            }
+          ]
+        }
+      ],
+      "declKind": "Struct",
+      "usr": "s:19CUIExpandableButton12SFSymbolIconV",
+      "mangledName": "$s19CUIExpandableButton12SFSymbolIconV",
+      "moduleName": "CUIExpandableButton",
+      "declAttributes": [
+        "AccessControl"
+      ],
+      "conformances": [
+        {
+          "kind": "Conformance",
+          "name": "View",
+          "printedName": "View",
+          "children": [
+            {
+              "kind": "TypeWitness",
+              "name": "Body",
+              "printedName": "Body",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "OpaqueTypeArchetype",
+                  "printedName": "some SwiftUI.View",
+                  "children": [
+                    {
+                      "kind": "TypeNominal",
+                      "name": "View",
+                      "printedName": "SwiftUI.View",
+                      "usr": "s:7SwiftUI4ViewP"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "usr": "s:7SwiftUI4ViewP",
+          "mangledName": "$s7SwiftUI4ViewP"
+        }
+      ]
+    },
+    {
+      "kind": "Import",
+      "name": "SwiftUI",
+      "printedName": "SwiftUI",
+      "declKind": "Import",
+      "moduleName": "CUIExpandableButton",
+      "declAttributes": [
+        "RawDocComment"
+      ]
+    }
+  ],
+  "json_format_version": 6
+}

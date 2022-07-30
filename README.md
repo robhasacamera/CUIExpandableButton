@@ -104,7 +104,7 @@ CUIExpandableButton supports Swift Package Manager. To use it the following to y
 
 ```
 dependencies: [
-    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.2.4")
+    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.2.5")
 ],
 ```
 
