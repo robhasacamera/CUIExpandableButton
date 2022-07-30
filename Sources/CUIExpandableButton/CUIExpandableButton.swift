@@ -204,7 +204,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var iconView: some View {
         icon
-            .frame(maxWidth: iconSize, maxHeight: iconSize)
+            .fixedSize()
+            .frame(minWidth: iconSize, minHeight: iconSize)
             .matchedGeometryEffect(id: "icon", in: animation)
     }
 
@@ -228,28 +229,25 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 }
 
                 if nonEmptyViewExpanded {
-                    HStack(spacing: 0) {
-                        if let title = title, !headerOptions.contains(.hideTitle) {
-                            Text(title)
-                                .font(.headline)
-                                .padding(.leading, headerOptions.contains(.hideIcon) ? .standardSpacing : 0)
-                                .padding(.trailing, headerOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
-                                .padding(.bottom, headerOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
-                        }
-
-                        Spacer(minLength: 0)
-
-                        if !headerOptions.contains(.hideCloseButton) {
-                            CloseButton {
-                                self.expanded.toggle()
-                                self.action?()
-                            }
-                        }
+                    if let title = title, !headerOptions.contains(.hideTitle) {
+                        Text(title)
+                            .font(.headline)
+                            .padding(.leading, headerOptions.contains(.hideIcon) ? .standardSpacing : 0)
+                            .padding(.trailing, headerOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
+                            .padding(.bottom, headerOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
+                            .transition(.opacity)
                     }
-                    .transition(.opacity)
-                }
 
-                Spacer(minLength: 0)
+                    Spacer(minLength: 0)
+
+                    if !headerOptions.contains(.hideCloseButton) {
+                        CloseButton {
+                            self.expanded.toggle()
+                            self.action?()
+                        }
+                        .transition(.opacity)
+                    }
+                }
             }
 
             if nonEmptyViewExpanded && !headerOptions.contains(.hideSeparator) {
@@ -257,8 +255,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             }
         }
         .frame(
-            width: nonEmptyViewExpanded && !headerOptions.contains(.hideHeader) ? nil : iconSize,
-            height: headerHeight
+            minHeight: headerHeight
         )
         .frame(minWidth: nonEmptyViewExpanded && !headerOptions.contains(.hideHeader) ? iconSize * 2 : nil)
     }
@@ -504,12 +501,40 @@ struct CUIExpandableButton_PreviewWrapper: View {
             }
 
             HStack {
+//                CUIExpandableButton(
+//                    expanded: $collapsed4,
+//                    sfSymbolName: "gearshape.fill",
+//                    title: "Marty!",
+//                    headerOptions: .hideTitle
+//                ) {
+//                    Text(LoremIpsum.words(8))
+//                        .font(.body)
+//                        .padding(.standardSpacing)
+//                        .frame(width: 200)
+//                } action: {
+//                    expanded4 = !collapsed4
+//                }
+//                CUIExpandableButton(
+//                    expanded: $expanded4,
+//                    sfSymbolName: "gearshape.fill",
+//                    title: "Marty!",
+//                    headerOptions: .hideTitle
+//                ) {
+//                    Text(LoremIpsum.words(8))
+//                        .font(.body)
+//                        .padding(.standardSpacing)
+//                        .frame(width: 200)
+//                } action: {
+//                    collapsed4 = !expanded4
+//                }
+
                 CUIExpandableButton(
-                    expanded: $collapsed4,
-                    sfSymbolName: "gearshape.fill",
-                    title: "Marty!",
-                    headerOptions: .hideTitle
+                    expanded: $collapsed4
                 ) {
+                    Text("Longer Icon that gets ridiculusly tall and keeps going")
+                        .frame(width: 150)
+                        .padding(8)
+                } content: {
                     Text(LoremIpsum.words(8))
                         .font(.body)
                         .padding(.standardSpacing)
@@ -517,12 +542,14 @@ struct CUIExpandableButton_PreviewWrapper: View {
                 } action: {
                     expanded4 = !collapsed4
                 }
+
                 CUIExpandableButton(
-                    expanded: $expanded4,
-                    sfSymbolName: "gearshape.fill",
-                    title: "Marty!",
-                    headerOptions: .hideTitle
+                    expanded: $expanded4
                 ) {
+                    Text("Longer Icon that gets ridiculusly tall and keeps going")
+                        .frame(width: 150)
+                        .padding(8)
+                } content: {
                     Text(LoremIpsum.words(8))
                         .font(.body)
                         .padding(.standardSpacing)
