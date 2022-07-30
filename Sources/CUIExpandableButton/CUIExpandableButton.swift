@@ -152,14 +152,33 @@ import SwiftUI
 public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content: View {
     @Namespace private var animation
 
+    /// An action is a closure with no return type
+    public typealias Action = () -> Void
+
     @ScaledMetric(relativeTo: .title)
-    var iconSize: CGFloat = .icon
+    var minIconSize: CGFloat = .icon
+
+    @State
+    var iconSize = CGSize.zero
+
+    var iconMinLength: CGFloat {
+        min(iconSize.width, iconSize.height)
+    }
+
+    var headerHeight: CGFloat {
+        if nonEmptyViewExpanded {
+            if headerOptions.contains(.hideHeader) {
+                return 0
+            }
+
+            return minIconSize + (headerOptions.contains(.hideSeparator) ? 0 : 1)
+        }
+
+        return iconMinLength
+    }
 
     @ScaledMetric(relativeTo: .title)
     var menuCornerRadius: CGFloat = .menuCornerRadius
-
-    /// An action is a closure with no return type
-    public typealias Action = () -> Void
 
     @Binding var expanded: Bool
 
@@ -203,10 +222,10 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var iconView: some View {
-        icon
-            .fixedSize()
-            .frame(minWidth: iconSize, minHeight: iconSize)
-            .matchedGeometryEffect(id: "icon", in: animation)
+            icon
+                .fixedSize()
+                .frame(minWidth: minIconSize, minHeight: minIconSize)
+        .matchedGeometryEffect(id: "icon", in: animation)
     }
 
     var header: some View {
@@ -215,17 +234,21 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 // This animation looks delayed in previews, but works fine in the simulator
                 if expanded {
                     if !headerOptions.contains(.hideIcon) {
-                        iconView
+                        ChildSizeReader(size: $iconSize) {
+                            iconView
+                        }
                     }
                 } else {
-                    Button {
-                        // add action and pass in expansion state to it.
-                        expanded.toggle()
-                        action?()
-                    } label: {
-                        iconView
+                    ChildSizeReader(size: $iconSize) {
+                        Button {
+                            // add action and pass in expansion state to it.
+                            expanded.toggle()
+                            action?()
+                        } label: {
+                            iconView
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
 
                 if nonEmptyViewExpanded {
@@ -257,19 +280,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         .frame(
             minHeight: headerHeight
         )
-        .frame(minWidth: nonEmptyViewExpanded && !headerOptions.contains(.hideHeader) ? iconSize * 2 : nil)
-    }
-
-    var headerHeight: CGFloat {
-        if nonEmptyViewExpanded {
-            if headerOptions.contains(.hideHeader) {
-                return 0
-            }
-
-            return iconSize + (headerOptions.contains(.hideSeparator) ? 0 : 1)
-        }
-
-        return iconSize
+        .frame(minWidth: nonEmptyViewExpanded && !headerOptions.contains(.hideHeader) ? minIconSize * 2 : nil)
     }
 
     public var body: some View {
@@ -289,7 +300,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         // FIXME: Material doesn't render in snapshot tests for some reason
         .background(isRunningUnitTests() ? .gray : .clear)
         .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : iconSize / 2))
+        .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : iconMinLength))
         .animation(.spring(), value: expanded)
         .fixedSize()
     }
@@ -531,8 +542,8 @@ struct CUIExpandableButton_PreviewWrapper: View {
                 CUIExpandableButton(
                     expanded: $collapsed4
                 ) {
-                    Text("Longer Icon that gets ridiculusly tall and keeps going")
-                        .frame(width: 150)
+                    Text("L\nL\nL\nL\nL\nL\nL\nL\nL\nL")
+                        .frame(maxWidth: 150)
                         .padding(8)
                 } content: {
                     Text(LoremIpsum.words(8))
