@@ -222,10 +222,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var iconView: some View {
-            icon
-                .fixedSize()
-                .frame(minWidth: minIconSize, minHeight: minIconSize)
-        .matchedGeometryEffect(id: "icon", in: animation)
+        icon
+            .frame(minWidth: minIconSize, minHeight: minIconSize)
+            .fixedSize()
+            .background(DEBUG_LAYOUT ? .green : .clear)
+            .matchedGeometryEffect(id: "icon", in: animation)
     }
 
     var header: some View {
@@ -241,7 +242,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 } else {
                     ChildSizeReader(size: $iconSize) {
                         Button {
-                            // add action and pass in expansion state to it.
                             expanded.toggle()
                             action?()
                         } label: {
@@ -258,6 +258,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                             .padding(.leading, headerOptions.contains(.hideIcon) ? .standardSpacing : 0)
                             .padding(.trailing, headerOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
                             .padding(.bottom, headerOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
+                            .background(DEBUG_LAYOUT ? .red : .clear)
                             .transition(.opacity)
                     }
 
@@ -268,6 +269,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                             self.expanded.toggle()
                             self.action?()
                         }
+                        .frame(
+                            height:
+                            headerOptions.contains(.hideIcon)
+                                ? nil :
+                                iconSize.height,
+                            alignment: .top
+                        )
                         .transition(.opacity)
                     }
                 }
@@ -295,6 +303,12 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                     content
                         .transition(.opacity)
                 }
+            }
+
+            if DEBUG_LAYOUT {
+                Text(String(format: "%.1f", iconSize.width))
+                    .foregroundColor(.green)
+                    .background(.gray)
             }
         }
         // FIXME: Material doesn't render in snapshot tests for some reason
@@ -373,6 +387,8 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == Empt
         )
     }
 }
+
+private let DEBUG_LAYOUT = false
 
 struct CUIExpandableButton_PreviewWrapper: View {
     @State var collapsed0: Bool = false
@@ -458,7 +474,7 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     expanded: $collapsed2,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
-                    headerOptions: .hideSeparator
+                    headerOptions: [.hideSeparator, .hideTitle]
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -471,7 +487,7 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     expanded: $expanded2,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
-                    headerOptions: .hideSeparator
+                    headerOptions: [.hideSeparator, .hideTitle]
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -512,38 +528,13 @@ struct CUIExpandableButton_PreviewWrapper: View {
             }
 
             HStack {
-//                CUIExpandableButton(
-//                    expanded: $collapsed4,
-//                    sfSymbolName: "gearshape.fill",
-//                    title: "Marty!",
-//                    headerOptions: .hideTitle
-//                ) {
-//                    Text(LoremIpsum.words(8))
-//                        .font(.body)
-//                        .padding(.standardSpacing)
-//                        .frame(width: 200)
-//                } action: {
-//                    expanded4 = !collapsed4
-//                }
-//                CUIExpandableButton(
-//                    expanded: $expanded4,
-//                    sfSymbolName: "gearshape.fill",
-//                    title: "Marty!",
-//                    headerOptions: .hideTitle
-//                ) {
-//                    Text(LoremIpsum.words(8))
-//                        .font(.body)
-//                        .padding(.standardSpacing)
-//                        .frame(width: 200)
-//                } action: {
-//                    collapsed4 = !expanded4
-//                }
-
                 CUIExpandableButton(
-                    expanded: $collapsed4
+                    expanded: $collapsed4,
+                    title: "Marty"
                 ) {
-                    Text("L\nL\nL\nL\nL\nL\nL\nL\nL\nL")
-                        .frame(maxWidth: 150)
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(.black)
+                        .frame(width: 20, height: 100)
                         .padding(8)
                 } content: {
                     Text(LoremIpsum.words(8))
@@ -555,10 +546,12 @@ struct CUIExpandableButton_PreviewWrapper: View {
                 }
 
                 CUIExpandableButton(
-                    expanded: $expanded4
+                    expanded: $expanded4,
+                    title: "Marty"
                 ) {
-                    Text("Longer Icon that gets ridiculusly tall and keeps going")
-                        .frame(width: 150)
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(.black)
+                        .frame(width: 100, height: 20)
                         .padding(8)
                 } content: {
                     Text(LoremIpsum.words(8))
@@ -599,6 +592,18 @@ struct CUIExpandableButton_PreviewWrapper: View {
                 }
             }
         }
+        .animation(.default, value: expanded0)
+        .animation(.default, value: collapsed0)
+        .animation(.default, value: expanded1)
+        .animation(.default, value: collapsed1)
+        .animation(.default, value: expanded2)
+        .animation(.default, value: collapsed2)
+        .animation(.default, value: expanded3)
+        .animation(.default, value: collapsed3)
+        .animation(.default, value: expanded4)
+        .animation(.default, value: collapsed4)
+        .animation(.default, value: expanded5)
+        .animation(.default, value: collapsed5)
     }
 }
 
