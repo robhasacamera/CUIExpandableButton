@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// This provides a series of options for customizing the header.
+/// A set of options for customizing the header.
 public struct CUIHeaderOptions: OptionSet {
     public let rawValue: Int
 
@@ -19,12 +19,14 @@ public struct CUIHeaderOptions: OptionSet {
     public static let hideIcon    = CUIHeaderOptions(rawValue: 1 << 0)
     /// Hides the title in the header.
     public static let hideTitle  = CUIHeaderOptions(rawValue: 1 << 1)
+    /// Hides the title in the header.
+    public static let hideSubtitle = CUIHeaderOptions(rawValue: 1 << 2)
     /// Hides the close button in the header.
     ///
     /// It's worth noting that close functionality will need to be provided by other means when this is active.
-    public static let hideCloseButton   = CUIHeaderOptions(rawValue: 1 << 2)
+    public static let hideCloseButton   = CUIHeaderOptions(rawValue: 1 << 3)
     /// Hides the separator between the header and the content area.
-    public static let hideSeparator   = CUIHeaderOptions(rawValue: 1 << 3)
+    public static let hideSeparator   = CUIHeaderOptions(rawValue: 1 << 4)
 
     /// Emptyset of header options
     public static let none: CUIHeaderOptions = []
@@ -34,5 +36,5 @@ public struct CUIHeaderOptions: OptionSet {
     /// when expanded and the content will fill the entire expanded area.
     ///
     /// It's worth noting that close functionality will need to be provided by other means when this is active.
-    public static let hideHeader: CUIHeaderOptions = [.hideIcon, .hideTitle, .hideCloseButton, .hideSeparator]
+    public static let hideHeader: CUIHeaderOptions = [.hideIcon, .hideTitle, .hideSubtitle, .hideCloseButton, .hideSeparator]
 }

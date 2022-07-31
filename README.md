@@ -51,6 +51,7 @@ import CUIExpandableButton
 
 There are several ways to customize CUIExpandableButton, including:
 - Adding a title (when expanded).
+- Adding a subtitle (when expanded). *not show in screenshot*
 - Hiding different header elements or the header as a whole.
 - Using `foregroundColor(_:)` to customize color.
 - Applying `fontWeight(_:)` to the icon and header elements. (>=iOS 16.0)
@@ -60,6 +61,7 @@ CUIExpandableButton(
     expanded: $expanded,
     sfSymbolName: "flame.fill",
     title: "Customization Example",
+    subtitle: "There's a lot of options"
     headerOptions: .hideCloseButton
 ) {
     Text("You can customize the title, color, fontweight, and even hide the close button.")
@@ -104,7 +106,7 @@ CUIExpandableButton supports Swift Package Manager. To use it the following to y
 
 ```
 dependencies: [
-    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.3.0")
+    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.4.0")
 ],
 ```
 
@@ -122,3 +124,4 @@ Below are some of the current limitations for CUIExpandableButton. These are bei
 - Background corner radius customization when expanded
 - Other backgrounds styles or materials
 - Displaying a title/subtitle with the icon while collapsed
+- Customizing the title/subtitle font
