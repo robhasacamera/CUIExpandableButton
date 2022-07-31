@@ -104,7 +104,7 @@ CUIExpandableButton supports Swift Package Manager. To use it the following to y
 
 ```
 dependencies: [
-    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.2.5")
+    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.3.0")
 ],
 ```
 
@@ -119,10 +119,6 @@ It is worth noting that CUIExpandableButton fully supports dynamic type variants
 ## Future Plans
 
 Below are some of the current limitations for CUIExpandableButton. These are being considered for future releases.
-- Collapsed button sizes other then 44 x 44
 - Background corner radius customization when expanded
-- Other button shapes
 - Other backgrounds styles or materials
 - Displaying a title/subtitle with the icon while collapsed
-
-

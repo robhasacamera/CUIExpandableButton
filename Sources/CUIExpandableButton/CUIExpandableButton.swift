@@ -38,10 +38,12 @@ import SwiftUI
 /// There are two options available for the buttons icon, a custom icon and a SF
 /// Symbol icon.
 ///
-/// The custom option allows any view to be used for the icon. The frame of a
-/// custom icon will be limited to a max width and height of 44 x 44. When using a
-/// custom icon, it is recommended to keep the main body of the icon within a
-/// size 26 x 26, to avoid extending outside the button's background.
+/// The custom option allows any view to be used for the icon. The icon can be any
+/// size, but care should be given to ensure the icon isn't clipped by the rounded
+/// corners of the button in collapsed or expanded more. The minimum size for the
+/// button and icon area in the header will be maintained at 44x44. Icons that have
+/// non-equal height and width, will transform the button into a pill shape instead of
+/// a circle.
 ///
 /// ```
 /// CUIExpandableButton(
@@ -200,7 +202,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     ///   - headerOptions: Define the bahavior of the header. See
     ///   ``CUIHeaderOptions`` for more info.
     ///   - icon: View that is displayed as an icon. This view will be
-    ///   constrained to a max width and height of 44 x 44.
+    ///   constrained to a min width and height of 44 x 44.
     ///   - content: The content that will be displayed when the button is expanded.
     ///   - action: Action that will be performed when the button is
     ///   collapsed or expanded using the built in controls.
@@ -324,7 +326,7 @@ public extension CUIExpandableButton where Content == EmptyView {
     /// Creates a nonexpandabled button that iniates an action.
     /// - Parameters:
     ///   - icon: View that is displayed as an icon. This view will be
-    ///   constrained to a max width and height of 44 x 44.
+    ///   constrained to a min width and height of 44 x 44.
     ///   - action: Action that will be performed when tapping the button.
     init(
         @ViewBuilder icon: () -> Icon,
