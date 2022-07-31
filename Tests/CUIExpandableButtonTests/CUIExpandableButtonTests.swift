@@ -31,6 +31,7 @@ import XCTest
 
 final class CUIExpandableButtonTests: XCTestCase {
     var mockTitle = "Marty"
+    var mockSubtitle = "McFly"
 
     var mockCustomIcon: some View {
         Text("M")
@@ -410,6 +411,87 @@ final class CUIExpandableButtonTests: XCTestCase {
                 expanded: .constant(true),
                 title: mockTitle) {
                     mockCustomSizeIcon(width: 100, height: 100)
+            } content: {
+                mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithSFIconTitleAndSubtitleExpanded() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                sfSymbolName: "gearshape.fill",
+                title: mockTitle,
+                subtitle: mockSubtitle) {
+                    mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithSFIconAndSubtitleExpanded() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                sfSymbolName: "gearshape.fill",
+                subtitle: mockSubtitle) {
+                    mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithCustomIconTitleAndSubtitleExpanded() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                title: mockTitle,
+                subtitle: mockSubtitle) {
+                    mockCustomIcon
+            } content: {
+                mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithCustomIconAndSubtitleExpanded() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                subtitle: mockSubtitle) {
+                    mockCustomIcon
+            } content: {
+                mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithNoIconTitleAndSubtitleExpanded() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                title: mockTitle,
+                subtitle: mockSubtitle,
+                headerOptions: .hideIcon) {
+                    mockCustomIcon
+            } content: {
+                mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithNoIconAndSubtitleExpanded() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                subtitle: mockSubtitle,
+                headerOptions: .hideIcon) {
+                    mockCustomIcon
             } content: {
                 mockContent
             }.prepForTest
