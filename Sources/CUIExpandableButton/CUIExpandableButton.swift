@@ -180,6 +180,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         return iconMinLength
     }
 
+    var showTitleSubtitleStack: Bool {
+        (title != nil && !headerOptions.contains(.hideTitle))
+        || (subtitle != nil && !headerOptions.contains(.hideSubtitle))
+    }
+
     @ScaledMetric(relativeTo: .title)
     var menuCornerRadius: CGFloat = .menuCornerRadius
 
@@ -236,6 +241,25 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             .matchedGeometryEffect(id: "icon", in: animation)
     }
 
+    var titleAndSubtitle: some View {
+        VStack(alignment: .leading) {
+            if let title = title, !headerOptions.contains(.hideTitle) {
+                Text(title)
+                    .font(.headline)
+                    .background(DEBUG_LAYOUT ? .red : .clear)
+            }
+            if let subtitle = subtitle, !headerOptions.contains(.hideSubtitle) {
+                Text(subtitle)
+                    .font(.subheadline)
+                    .background(DEBUG_LAYOUT ? .orange : .clear)
+            }
+        }
+        .padding(.leading, headerOptions.contains(.hideIcon) ? .standardSpacing : 0)
+        .padding(.trailing, headerOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
+        .padding(.bottom, headerOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
+        .matchedGeometryEffect(id: "titleAndSubtitle", in: animation)
+    }
+
     var header: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 0) {
@@ -252,31 +276,21 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                             expanded.toggle()
                             action?()
                         } label: {
-                            iconView
+                            HStack(spacing: 0) {
+                                iconView
+                                if showTitleSubtitleStack {
+                                    titleAndSubtitle
+                                        .padding(.trailing, iconMinLength / 2)
+                                }
+                            }
                         }
                         .buttonStyle(.plain)
                     }
                 }
 
                 if nonEmptyViewExpanded {
-                    if (title != nil && !headerOptions.contains(.hideTitle))
-                        || (subtitle != nil && !headerOptions.contains(.hideSubtitle)) {
-                        VStack(alignment: .leading) {
-                            if let title = title, !headerOptions.contains(.hideTitle) {
-                                Text(title)
-                                    .font(.headline)
-                                    .background(DEBUG_LAYOUT ? .red : .clear)
-                            }
-                            if let subtitle = subtitle, !headerOptions.contains(.hideSubtitle) {
-                                Text(subtitle)
-                                    .font(.subheadline)
-                                    .background(DEBUG_LAYOUT ? .orange : .clear)
-                            }
-                        }
-                        .padding(.leading, headerOptions.contains(.hideIcon) ? .standardSpacing : 0)
-                        .padding(.trailing, headerOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
-                        .padding(.bottom, headerOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
-                        .transition(.opacity)
+                    if showTitleSubtitleStack {
+                        titleAndSubtitle
                     }
 
                     Spacer(minLength: 0)
@@ -331,7 +345,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         // FIXME: Material doesn't render in snapshot tests for some reason
         .background(isRunningUnitTests() ? .gray : .clear)
         .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : iconMinLength))
+        .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : iconMinLength / 2))
         .animation(.spring(), value: expanded)
         .fixedSize()
     }

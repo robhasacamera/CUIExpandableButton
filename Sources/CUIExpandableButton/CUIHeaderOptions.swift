@@ -27,7 +27,13 @@ public struct CUIHeaderOptions: OptionSet {
     public static let hideCloseButton   = CUIHeaderOptions(rawValue: 1 << 3)
     /// Hides the separator between the header and the content area.
     public static let hideSeparator   = CUIHeaderOptions(rawValue: 1 << 4)
+    // Shows the title when the button is collapsed.
+    public static let showTitleWhenCollapsed = CUIHeaderOptions(rawValue: 1 << 5)
+    // Shows the subtitle when the button is collapsed.
+    public static let showSubtitleWhenCollapsed = CUIHeaderOptions(rawValue: 1 << 6)
 
+    // Shows the title and subtitle when the button is collapsed.
+    public static let showTitleAndSubtitleWhenCollapsed: CUIHeaderOptions = [.showTitleWhenCollapsed, .showSubtitleWhenCollapsed]
     /// Emptyset of header options
     public static let none: CUIHeaderOptions = []
     /// Hide the entire header.
