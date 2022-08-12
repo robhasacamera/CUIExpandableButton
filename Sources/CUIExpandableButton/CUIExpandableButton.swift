@@ -155,6 +155,10 @@ import SwiftUI
 public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content: View {
     @Namespace private var animation
 
+    // Needs to be a state so it will be preserved throughout the button's lifecycle
+    @State
+    var id = UUID()
+
     /// An action is a closure with no return type
     public typealias Action = () -> Void
 
@@ -182,7 +186,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var showTitleSubtitleStack: Bool {
         (title != nil && !headerOptions.contains(.hideTitle))
-        || (subtitle != nil && !headerOptions.contains(.hideSubtitle))
+            || (subtitle != nil && !headerOptions.contains(.hideSubtitle))
     }
 
     @ScaledMetric(relativeTo: .title)
@@ -201,7 +205,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         !(content is EmptyView) && expanded
     }
 
-    // TODO: Document new param
     /// Creates an expandable button, using a custom icon.
     /// - Parameters:
     ///   - expanded: Bool binding that tracks the button's expanded state.
@@ -218,8 +221,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         expanded: Binding<Bool>,
         title: String? = nil,
         subtitle: String? = nil,
-        hiddenCloseButton: Bool = false,
-        headerOptions: CUIHeaderOptions = .none,
+        headerOptions: CUIHeaderOptions = .none, // TODO: Change into options
         @ViewBuilder icon: () -> Icon,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
@@ -257,6 +259,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         .padding(.leading, headerOptions.contains(.hideIcon) ? .standardSpacing : 0)
         .padding(.trailing, headerOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
         .padding(.bottom, headerOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
+        .fixedSize()
         .matchedGeometryEffect(id: "titleAndSubtitle", in: animation)
     }
 
@@ -266,25 +269,31 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 // This animation looks delayed in previews, but works fine in the simulator
                 if expanded {
                     if !headerOptions.contains(.hideIcon) {
-                        ChildSizeReader(size: $iconSize) {
+                        ChildSizeReader(
+                            size: $iconSize,
+                            id: id
+                        ) {
                             iconView
                         }
                     }
                 } else {
-                    ChildSizeReader(size: $iconSize) {
+                    ChildSizeReader(
+                        size: $iconSize,
+                        id: id
+                    ) {
                         Button {
                             expanded.toggle()
                             action?()
                         } label: {
                             HStack(spacing: 0) {
                                 iconView
-                                if showTitleSubtitleStack {
+
+                                if showTitleSubtitleStack, headerOptions.contains(.showTitleAndSubtitleWhenCollapsed) {
                                     titleAndSubtitle
-                                        .padding(.trailing, iconMinLength / 2)
+                                        .padding(.trailing)
                                 }
                             }
-                        }
-                        .buttonStyle(.plain)
+                        }.buttonStyle(.plain)
                     }
                 }
 
@@ -450,7 +459,8 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     expanded: $collapsed0,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
-                    subtitle: "McFly"
+                    subtitle: "McFly",
+                    headerOptions: [.showTitleAndSubtitleWhenCollapsed]
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -464,7 +474,8 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     expanded: $expanded0,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
-                    subtitle: "McFly"
+                    subtitle: "McFly",
+                    headerOptions: [.showTitleAndSubtitleWhenCollapsed]
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -482,7 +493,7 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
                     subtitle: "McFly",
-                    headerOptions: .hideIcon
+                    headerOptions: [.hideIcon, .showTitleAndSubtitleWhenCollapsed]
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -645,6 +656,7 @@ struct CUIExpandableButton_PreviewWrapper: View {
     }
 }
 
+// TODO: Add multiple preview sets that are organized
 struct CUIExpandableButton_Previews: PreviewProvider {
     static var previews: some View {
         CenteredPreview {
@@ -662,4 +674,36 @@ private func isRunningUnitTests() -> Bool {
     }
 
     return false
+}
+
+// Original article here: https://fivestars.blog/articles/swiftui-share-layout-information/
+
+/*
+
+ Example:
+
+ var body: some View {
+   childView
+     .readSize { newSize in
+       print("The new child size is: \(newSize)")
+     }
+ }
+
+ */
+
+extension View {
+    func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
+        background(
+            GeometryReader { geometryProxy in
+                Color.clear
+                    .preference(key: CGSizePreferenceKey.self, value: geometryProxy.size)
+            }
+        )
+        .onPreferenceChange(CGSizePreferenceKey.self, perform: onChange)
+    }
+}
+
+private struct CGSizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }
