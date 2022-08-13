@@ -565,7 +565,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 title: mockTitle,
                 subtitle: mockSubtitle,
                 options: CUIExpandableButtonOptions(
-                    collapsedOptions: .showTitleAndSubtitleWhenCollapsed
+                    collapsedOptions: .showTitleAndSubtitle
                 )
             ) {
                 mockCustomIcon
@@ -583,7 +583,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 title: mockTitle,
                 subtitle: mockSubtitle,
                 options: CUIExpandableButtonOptions(
-                    collapsedOptions: .showTitleWhenCollapsed
+                    collapsedOptions: .showTitle
                 )
             ) {
                 mockCustomIcon
@@ -601,7 +601,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 title: mockTitle,
                 subtitle: mockSubtitle,
                 options: CUIExpandableButtonOptions(
-                    collapsedOptions: .showSubtitleWhenCollapsed
+                    collapsedOptions: .showSubtitle
                 )
             ) {
                 mockCustomIcon

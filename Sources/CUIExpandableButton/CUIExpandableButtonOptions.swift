@@ -49,14 +49,14 @@ public struct CUIExpandableButtonOptions {
         }
 
         /// Shows the title when the button is collapsed.
-        public static let showTitleWhenCollapsed = Collapsed(rawValue: 1 << 0)
+        public static let showTitle = Collapsed(rawValue: 1 << 0)
         /// Shows the subtitle when the button is collapsed.
-        public static let showSubtitleWhenCollapsed = Collapsed(rawValue: 1 << 1)
+        public static let showSubtitle = Collapsed(rawValue: 1 << 1)
 
         /// Emptyset of  options
         public static let none: Collapsed = []
         /// Shows the title and subtitle when the button is collapsed.
-        public static let showTitleAndSubtitleWhenCollapsed: Collapsed = [.showTitleWhenCollapsed, .showSubtitleWhenCollapsed]
+        public static let showTitleAndSubtitle: Collapsed = [.showTitle, .showSubtitle]
     }
 
     /// Options that customize the button when in the expanded state
@@ -99,7 +99,7 @@ public struct CUIExpandableButtonOptions {
     }
     /// Show the title and subtitle when collapsed and expanded. If the title or the subtitle is nil, it will not be displayed.
     public static var alwaysShowTitleAndSubtitle: CUIExpandableButtonOptions {
-        CUIExpandableButtonOptions(collapsedOptions: .showTitleAndSubtitleWhenCollapsed)
+        CUIExpandableButtonOptions(collapsedOptions: .showTitleAndSubtitle)
     }
     /// Hide the header hen fully expanded.
     public static var hideHeader: CUIExpandableButtonOptions {

@@ -96,17 +96,20 @@ import SwiftUI
 /// is no native control for hiding the content of the button once expanded.
 ///
 /// ```
-/// // TODO: Update example with new options
+///
 /// CUIExpandableButton(
 ///     expanded: $expanded,
 ///     sfSymbolName: "flame.fill",
 ///     title: "Hidden Close Button",
 ///     subtitle: "With custom color and fontweight"
-///     headerOptions: .hideCloseButton
+///     options: CUIExpandeableButtonOptions(
+///     expanded: .hideCloseButton,
+///     collapsed: .showTitle
+///     )
 /// ) {
 ///     Text("You can customize the title, color, fontweight, and even hide the close button or other header elements.")
-///        .frame(width: 200)
-///        .padding(8)
+///     .frame(width: 200)
+///     .padding(8)
 /// }
 /// .foregroundColor(.yellow)
 /// .fontWeight(.bold)
@@ -188,12 +191,12 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var showTitle: Bool {
         (expanded && !options.expandedOptions.contains(.hideTitle))
-            || (!expanded && options.collapsedOptions.contains(.showTitleWhenCollapsed))
+            || (!expanded && options.collapsedOptions.contains(.showTitle))
     }
 
     var showSubtitle: Bool {
         (expanded && !options.expandedOptions.contains(.hideSubtitle))
-            || (!expanded && options.collapsedOptions.contains(.showSubtitleWhenCollapsed))
+            || (!expanded && options.collapsedOptions.contains(.showSubtitle))
     }
 
     @ScaledMetric(relativeTo: .title)
@@ -471,7 +474,7 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     title: "Marty!",
                     subtitle: "McFly",
                     options: CUIExpandableButtonOptions(
-                        collapsedOptions: .showTitleWhenCollapsed
+                        collapsedOptions: .showTitle
                     )
                 ) {
                     Text(LoremIpsum.words(8))
@@ -488,7 +491,7 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     title: "Marty!",
                     subtitle: "McFly",
                     options: CUIExpandableButtonOptions(
-                        collapsedOptions: .showSubtitleWhenCollapsed
+                        collapsedOptions: .showSubtitle
                     )
                 ) {
                     Text(LoremIpsum.words(8))
@@ -508,7 +511,7 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     title: "Marty!",
                     subtitle: "McFly",
                     options: CUIExpandableButtonOptions(
-                        collapsedOptions: .showTitleAndSubtitleWhenCollapsed,
+                        collapsedOptions: .showTitleAndSubtitle,
                         expandedOptions: .hideIcon
                     )
                 ) {
