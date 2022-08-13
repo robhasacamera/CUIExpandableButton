@@ -73,6 +73,8 @@ public struct CUIExpandableButtonOptions {
         public static let hideTitle = Expanded(rawValue: 1 << 1)
         /// Hides the title in the header.
         public static let hideSubtitle = Expanded(rawValue: 1 << 2)
+        /// Hides the title and the subtitle in the header
+        public static let hideTitleAndSubtitle: Expanded = [.hideTitle, .hideSubtitle]
         /// Hides the close button in the header.
         ///
         /// It's worth noting that close functionality will need to be provided by other means when this is active.
