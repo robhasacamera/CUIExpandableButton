@@ -43,7 +43,6 @@ struct ChildSizeReader<Content: View>: View {
                                             print("proxy.size=\(proxy.size)")
                                         }
                                         return proxy.size
-
                                     }()])
                 }
             )
