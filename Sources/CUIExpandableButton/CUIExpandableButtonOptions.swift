@@ -90,4 +90,19 @@ public struct CUIExpandableButtonOptions {
         /// It's worth noting that close functionality will need to be provided by other means when this is active.
         public static let hideHeader: Expanded = [.hideIcon, .hideTitle, .hideSubtitle, .hideCloseButton, .hideSeparator]
     }
+
+    // MARK: - Recipes
+
+    /// Standard configuration for the button.
+    public static var standard: CUIExpandableButtonOptions {
+        CUIExpandableButtonOptions()
+    }
+    /// Show the title and subtitle when collapsed and expanded. If the title or the subtitle is nil, it will not be displayed.
+    public static var alwaysShowTitleAndSubtitle: CUIExpandableButtonOptions {
+        CUIExpandableButtonOptions(collapsedOptions: .showTitleAndSubtitleWhenCollapsed)
+    }
+    /// Hide the header hen fully expanded.
+    public static var hideHeader: CUIExpandableButtonOptions {
+        CUIExpandableButtonOptions(expandedOptions: .hideHeader)
+    }
 }

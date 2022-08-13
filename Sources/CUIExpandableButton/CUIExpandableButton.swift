@@ -96,6 +96,7 @@ import SwiftUI
 /// is no native control for hiding the content of the button once expanded.
 ///
 /// ```
+/// // TODO: Update example with new options
 /// CUIExpandableButton(
 ///     expanded: $expanded,
 ///     sfSymbolName: "flame.fill",
@@ -143,12 +144,9 @@ import SwiftUI
 ///
 /// Below are the items that are not currently supported. Support maybe added in
 /// the future.
-/// - Hiding the header, separator, or the icon when expanded
-/// - Collapsed button sizes other then 44 x 44
 /// - Background corner radius customization when expanded
 /// - Other button shapes
 /// - Other backgrounds styles or materials
-/// - Displaying a title/subtitle with the icon while collapsed
 ///
 /// When expanded, the minimum width the button is 88. Any content displayed
 /// smaller then this will be centered. in the content area.
@@ -230,7 +228,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         expanded: Binding<Bool>,
         title: String? = nil,
         subtitle: String? = nil,
-        options: CUIExpandableButtonOptions = CUIExpandableButtonOptions(),
+        options: CUIExpandableButtonOptions = .standard,
         @ViewBuilder icon: () -> Icon,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
@@ -409,7 +407,7 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
         sfSymbolName: String,
         title: String? = nil,
         subtitle: String? = nil,
-        options: CUIExpandableButtonOptions = CUIExpandableButtonOptions(),
+        options: CUIExpandableButtonOptions = .standard,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
     ) {
