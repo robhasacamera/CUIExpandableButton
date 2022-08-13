@@ -291,6 +291,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                                 if showTitleSubtitleStack, headerOptions.contains(.showTitleAndSubtitleWhenCollapsed) {
                                     titleAndSubtitle
                                         .padding(.trailing)
+                                        .background(DEBUG_LAYOUT ? .purple : .clear)
                                 }
                             }
                         }.buttonStyle(.plain)
@@ -300,6 +301,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 if nonEmptyViewExpanded {
                     if showTitleSubtitleStack {
                         titleAndSubtitle
+                            .background(DEBUG_LAYOUT ? .purple : .clear)
                     }
 
                     Spacer(minLength: 0)
