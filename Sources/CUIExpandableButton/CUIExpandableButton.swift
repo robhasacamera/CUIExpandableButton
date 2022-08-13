@@ -185,8 +185,17 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var showTitleSubtitleStack: Bool {
-        (title != nil && !headerOptions.contains(.hideTitle))
-            || (subtitle != nil && !headerOptions.contains(.hideSubtitle))
+        showTitle || showSubtitle
+    }
+
+    var showTitle: Bool {
+        (expanded && !headerOptions.contains(.hideTitle))
+            || (!expanded && headerOptions.contains(.showTitleWhenCollapsed))
+    }
+
+    var showSubtitle: Bool {
+        (expanded && !headerOptions.contains(.hideSubtitle))
+            || (!expanded && headerOptions.contains(.showSubtitleWhenCollapsed))
     }
 
     @ScaledMetric(relativeTo: .title)
@@ -245,22 +254,23 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var titleAndSubtitle: some View {
         VStack(alignment: .leading) {
-            if let title = title, !headerOptions.contains(.hideTitle) {
+            if let title = title, showTitle {
                 Text(title)
                     .font(.headline)
                     .background(DEBUG_LAYOUT ? .red : .clear)
+                    .matchedGeometryEffect(id: "title", in: animation)
             }
-            if let subtitle = subtitle, !headerOptions.contains(.hideSubtitle) {
+            if let subtitle = subtitle, showSubtitle {
                 Text(subtitle)
                     .font(.subheadline)
                     .background(DEBUG_LAYOUT ? .orange : .clear)
+                    .matchedGeometryEffect(id: "subtitle", in: animation)
             }
         }
         .padding(.leading, headerOptions.contains(.hideIcon) ? .standardSpacing : 0)
         .padding(.trailing, headerOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
         .padding(.bottom, headerOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
         .fixedSize()
-        .matchedGeometryEffect(id: "titleAndSubtitle", in: animation)
     }
 
     var header: some View {
@@ -288,7 +298,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                             HStack(spacing: 0) {
                                 iconView
 
-                                if showTitleSubtitleStack, headerOptions.contains(.showTitleAndSubtitleWhenCollapsed) {
+                                if showTitleSubtitleStack {
                                     titleAndSubtitle
                                         .padding(.trailing)
                                         .background(DEBUG_LAYOUT ? .purple : .clear)
@@ -462,7 +472,7 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
                     subtitle: "McFly",
-                    headerOptions: [.showTitleAndSubtitleWhenCollapsed]
+                    headerOptions: [.showTitleWhenCollapsed]
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -477,7 +487,7 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
                     subtitle: "McFly",
-                    headerOptions: [.showTitleAndSubtitleWhenCollapsed]
+                    headerOptions: [.showSubtitleWhenCollapsed]
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)

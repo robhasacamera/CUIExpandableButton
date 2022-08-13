@@ -497,6 +497,51 @@ final class CUIExpandableButtonTests: XCTestCase {
             }.prepForTest
         }
     }
+
+    func testButtonWithTitleAndSubtitleDisplayedWhenCollapsed() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(false),
+                title: mockTitle,
+                subtitle: mockSubtitle,
+                headerOptions: .showTitleAndSubtitleWhenCollapsed) {
+                    mockCustomIcon
+            } content: {
+                mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithTitleDisplayedWhenCollapsed() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(false),
+                title: mockTitle,
+                subtitle: mockSubtitle,
+                headerOptions: .showTitleWhenCollapsed) {
+                    mockCustomIcon
+            } content: {
+                mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithSubtitleDisplayedWhenCollapsed() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(false),
+                title: mockTitle,
+                subtitle: mockSubtitle,
+                headerOptions: .showSubtitleWhenCollapsed) {
+                    mockCustomIcon
+            } content: {
+                mockContent
+            }.prepForTest
+        }
+    }
 }
 
 extension CUIExpandableButton {
