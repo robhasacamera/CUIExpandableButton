@@ -174,11 +174,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var headerHeight: CGFloat {
         if nonEmptyViewExpanded {
-            if headerOptions.contains(.hideHeader) {
+            if options.expandedOptions.contains(.hideHeader) {
                 return 0
             }
 
-            return minIconSize + (headerOptions.contains(.hideSeparator) ? 0 : 1)
+            return minIconSize + (options.expandedOptions.contains(.hideSeparator) ? 0 : 1)
         }
 
         return iconMinLength
@@ -189,13 +189,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var showTitle: Bool {
-        (expanded && !headerOptions.contains(.hideTitle))
-            || (!expanded && headerOptions.contains(.showTitleWhenCollapsed))
+        (expanded && !options.expandedOptions.contains(.hideTitle))
+            || (!expanded && options.collapsedOptions.contains(.showTitleWhenCollapsed))
     }
 
     var showSubtitle: Bool {
-        (expanded && !headerOptions.contains(.hideSubtitle))
-            || (!expanded && headerOptions.contains(.showSubtitleWhenCollapsed))
+        (expanded && !options.expandedOptions.contains(.hideSubtitle))
+            || (!expanded && options.collapsedOptions.contains(.showSubtitleWhenCollapsed))
     }
 
     @ScaledMetric(relativeTo: .title)
@@ -205,7 +205,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     let title: String?
     let subtitle: String?
-    let headerOptions: CUIHeaderOptions
+    let options: CUIExpandableButtonOptions
     let icon: Icon
     let content: Content
     let action: Action?
@@ -219,8 +219,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     ///   - expanded: Bool binding that tracks the button's expanded state.
     ///   - title: String displayed in the header when expanded.
     ///   - subtitle: String displayed beneath the title in the header when expanded.
-    ///   - headerOptions: Define the bahavior of the header. See
-    ///   ``CUIHeaderOptions`` for more info.
+    ///   - options: Options that customize the expandable button. See
+    ///   ``CUIExpandableButtonOptions`` for details.
     ///   - icon: View that is displayed as an icon. This view will be
     ///   constrained to a min width and height of 44 x 44.
     ///   - content: The content that will be displayed when the button is expanded.
@@ -230,7 +230,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         expanded: Binding<Bool>,
         title: String? = nil,
         subtitle: String? = nil,
-        headerOptions: CUIHeaderOptions = .none, // TODO: Change into options
+        options: CUIExpandableButtonOptions = CUIExpandableButtonOptions(),
         @ViewBuilder icon: () -> Icon,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
@@ -238,7 +238,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         _expanded = expanded
         self.title = title
         self.subtitle = subtitle
-        self.headerOptions = headerOptions
+        self.options = options
         self.icon = icon()
         self.content = content()
         self.action = action
@@ -267,9 +267,9 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                     .matchedGeometryEffect(id: "subtitle", in: animation)
             }
         }
-        .padding(.leading, headerOptions.contains(.hideIcon) ? .standardSpacing : 0)
-        .padding(.trailing, headerOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
-        .padding(.bottom, headerOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
+        .padding(.leading, options.expandedOptions.contains(.hideIcon) ? .standardSpacing : 0)
+        .padding(.trailing, options.expandedOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
+        .padding(.bottom, options.expandedOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
         .fixedSize()
     }
 
@@ -278,7 +278,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             HStack(spacing: 0) {
                 // This animation looks delayed in previews, but works fine in the simulator
                 if expanded {
-                    if !headerOptions.contains(.hideIcon) {
+                    if !options.expandedOptions.contains(.hideIcon) {
                         ChildSizeReader(
                             size: $iconSize,
                             id: id
@@ -316,14 +316,14 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
                     Spacer(minLength: 0)
 
-                    if !headerOptions.contains(.hideCloseButton) {
+                    if !options.expandedOptions.contains(.hideCloseButton) {
                         CloseButton {
                             self.expanded.toggle()
                             self.action?()
                         }
                         .frame(
                             height:
-                            headerOptions.contains(.hideIcon)
+                            options.expandedOptions.contains(.hideIcon)
                                 ? nil :
                                 iconSize.height,
                             alignment: .top
@@ -333,14 +333,14 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 }
             }
 
-            if nonEmptyViewExpanded && !headerOptions.contains(.hideSeparator) {
+            if nonEmptyViewExpanded && !options.expandedOptions.contains(.hideSeparator) {
                 Separator(style: .horizontal)
             }
         }
         .frame(
             minHeight: headerHeight
         )
-        .frame(minWidth: nonEmptyViewExpanded && !headerOptions.contains(.hideHeader) ? minIconSize * 2 : nil)
+        .frame(minWidth: nonEmptyViewExpanded && !options.expandedOptions.contains(.hideHeader) ? minIconSize * 2 : nil)
     }
 
     public var body: some View {
@@ -399,8 +399,8 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
     ///   - sfSymbolName: The name of the SF Symbol to use as the icon.
     ///   - title: String displayed in the header when expanded.
     ///   - subtitle: String displayed beneath the title in the header when expanded.
-    ///   - headerOptions: Define the bahavior of the header. See
-    ///   ``CUIHeaderOptions`` for more info.
+    ///   - options: Options that customize the expandable button. See
+    ///   ``CUIExpandableButtonOptions`` for details.
     ///   - content: The content that will be displayed when the button is expanded.
     ///   - action: Action that will be performed when the button is
     ///   collapsed or expanded using the built in controls.
@@ -409,7 +409,7 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
         sfSymbolName: String,
         title: String? = nil,
         subtitle: String? = nil,
-        headerOptions: CUIHeaderOptions = .none,
+        options: CUIExpandableButtonOptions = CUIExpandableButtonOptions(),
         @ViewBuilder content: () -> Content,
         action: Action? = nil
     ) {
@@ -417,7 +417,7 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
             expanded: expanded,
             title: title,
             subtitle: subtitle,
-            headerOptions: headerOptions,
+            options: options,
             icon: { SFSymbolIcon(iconName: sfSymbolName) },
             content: content,
             action: action
@@ -472,7 +472,9 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
                     subtitle: "McFly",
-                    headerOptions: [.showTitleWhenCollapsed]
+                    options: CUIExpandableButtonOptions(
+                        collapsedOptions: .showTitleWhenCollapsed
+                    )
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -487,7 +489,9 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
                     subtitle: "McFly",
-                    headerOptions: [.showSubtitleWhenCollapsed]
+                    options: CUIExpandableButtonOptions(
+                        collapsedOptions: .showSubtitleWhenCollapsed
+                    )
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -505,7 +509,10 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
                     subtitle: "McFly",
-                    headerOptions: [.hideIcon, .showTitleAndSubtitleWhenCollapsed]
+                    options: CUIExpandableButtonOptions(
+                        collapsedOptions: .showTitleAndSubtitleWhenCollapsed,
+                        expandedOptions: .hideIcon
+                    )
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -519,7 +526,9 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
                     subtitle: "McFly",
-                    headerOptions: .hideIcon
+                    options: CUIExpandableButtonOptions(
+                        expandedOptions: .hideIcon
+                    )
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -535,7 +544,9 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     expanded: $collapsed2,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
-                    headerOptions: [.hideSeparator, .hideTitle]
+                    options: CUIExpandableButtonOptions(
+                        expandedOptions: [.hideSeparator, .hideTitle]
+                    )
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -548,7 +559,9 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     expanded: $expanded2,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
-                    headerOptions: [.hideSeparator, .hideTitle]
+                    options: CUIExpandableButtonOptions(
+                        expandedOptions: [.hideSeparator, .hideTitle]
+                    )
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -564,7 +577,9 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     expanded: $collapsed3,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
-                    headerOptions: .hideCloseButton
+                    options: CUIExpandableButtonOptions(
+                        expandedOptions: .hideCloseButton
+                    )
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -577,7 +592,9 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     expanded: $expanded3,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
-                    headerOptions: .hideCloseButton
+                    options: CUIExpandableButtonOptions(
+                        expandedOptions: .hideCloseButton
+                    )
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -629,7 +646,9 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     expanded: $collapsed5,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
-                    headerOptions: .hideHeader
+                    options: CUIExpandableButtonOptions(
+                        expandedOptions: .hideHeader
+                    )
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -642,7 +661,9 @@ struct CUIExpandableButton_PreviewWrapper: View {
                     expanded: $expanded5,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty!",
-                    headerOptions: .hideHeader
+                    options: CUIExpandableButtonOptions(
+                        expandedOptions: .hideHeader
+                    )
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
