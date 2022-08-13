@@ -444,7 +444,7 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == Empt
     }
 }
 
-private let DEBUG_LAYOUT = false
+internal let DEBUG_LAYOUT = false
 
 struct CUIExpandableButton_PreviewWrapper: View {
     @State var collapsed0: Bool = false

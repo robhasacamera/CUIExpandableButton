@@ -39,7 +39,9 @@ struct ChildSizeReader<Content: View>: View {
                     Color.clear
                         .preference(key: SizePreferenceKey.self,
                                     value: [id: {
-                                        print("proxy.size=\(proxy.size)")
+                                        if DEBUG_LAYOUT {
+                                            print("proxy.size=\(proxy.size)")
+                                        }
                                         return proxy.size
 
                                     }()])
@@ -48,7 +50,9 @@ struct ChildSizeReader<Content: View>: View {
             .onPreferenceChange(SizePreferenceKey.self) { preferences in
                 self.size = preferences[id] ?? .zero
 
-                print("onPreferenceChange self.size=\(self.size), id=\(id) preferences=\(preferences)")
+                if DEBUG_LAYOUT {
+                    print("onPreferenceChange self.size=\(self.size), id=\(id) preferences=\(preferences)")
+                }
             }
     }
 }
@@ -64,6 +68,8 @@ struct SizePreferenceKey: PreferenceKey {
             value[key] = size
         }
 
-        print("reduce newValue=\(newValue), value=\(value)")
+        if DEBUG_LAYOUT {
+            print("reduce newValue=\(newValue), value=\(value)")
+        }
     }
 }
