@@ -56,6 +56,7 @@ There are several ways to customize CUIExpandableButton, including:
 - Using `foregroundColor(_:)` to customize color.
 - Applying `fontWeight(_:)` to the icon and header elements. (>=iOS 16.0)
 
+// TODO: Update example with new options
 ```swift
 CUIExpandableButton(
     expanded: $expanded,
@@ -123,5 +124,4 @@ It is worth noting that CUIExpandableButton fully supports dynamic type variants
 Below are some of the current limitations for CUIExpandableButton. These are being considered for future releases.
 - Background corner radius customization when expanded
 - Other backgrounds styles or materials
-- Displaying a title/subtitle with the icon while collapsed
 - Customizing the title/subtitle font
