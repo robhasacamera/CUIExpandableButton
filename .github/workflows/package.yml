@@ -9,15 +9,15 @@ on:
 jobs:
   clean:
 
-  runs-on: macos-12
+    runs-on: macos-12
 
-  steps:
-  - uses: actions/checkout@v3
-  - name: Clean
-    run: xcodebuild clean -scheme $SCHEME -destination "$DESTINATION"
-    env:
-        SCHEME: CUIExpandableButton
-        DESTINATION: platform=iOS Simulator,name=iPhone 13 Pro
+    steps:
+    - uses: actions/checkout@v3
+    - name: Clean
+      run: xcodebuild clean -scheme $SCHEME -destination "$DESTINATION"
+      env:
+          SCHEME: CUIExpandableButton
+          DESTINATION: platform=iOS Simulator,name=iPhone 13 Pro
 
   build:
     needs: clean

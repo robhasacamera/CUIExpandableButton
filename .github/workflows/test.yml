@@ -9,11 +9,11 @@ on:
 jobs:
   clean:
 
-  runs-on: macos-12
+    runs-on: macos-12
 
-  steps:
-  - uses: actions/checkout@v3
-  - name: Clean
+    steps:
+    - uses: actions/checkout@v3
+    - name: Clean
     run: xcodebuild clean -scheme $SCHEME -destination "$DESTINATION"
     env:
         SCHEME: CUIExpandableButton
