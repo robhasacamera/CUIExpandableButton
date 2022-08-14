@@ -1,10 +1,10 @@
-name: Package
+name: Test
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: [Package]
+    types:
+      - completed
 
 jobs:
   clean:
@@ -19,6 +19,7 @@ jobs:
         SCHEME: CUIExpandableButton
         DESTINATION: platform=iOS Simulator,name=iPhone 13 Pro
 
+
   build:
     needs: clean
 
@@ -27,7 +28,20 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Clean Build
-      run: xcodebuild clean build -scheme $SCHEME -destination "$DESTINATION"
+      run: xcodebuild build -scheme $SCHEME -destination "$DESTINATION"
+      env:
+          SCHEME: CUIExpandableButton
+          DESTINATION: platform=iOS Simulator,name=iPhone 13 Pro
+          
+  test:
+    needs: build
+    
+    runs-on: macos-12
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test
+      run: xcodebuild clean build test -scheme $SCHEME -destination "$DESTINATION"
       env:
           SCHEME: CUIExpandableButton
           DESTINATION: platform=iOS Simulator,name=iPhone 13 Pro
