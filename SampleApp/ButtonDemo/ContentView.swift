@@ -55,11 +55,17 @@ struct ContentView: View {
     @State
     var subtitle = "Subtitle"
     @State
-    var foregroundColor = Color.primary
+    var foregroundColor: Color? = nil
     @State
     var expandedOptions = CUIExpandableButtonOptions.Expanded.none
     @State
     var collapsedOptions = CUIExpandableButtonOptions.Collapsed.none
+    @State
+    var titleFont: Font? = nil
+    @State
+    var subtitleFont: Font? = nil
+    @State
+    var backgroundColor: Color? = nil
 
     var body: some View {
         VStack(spacing: 8.0) {
@@ -123,7 +129,10 @@ struct ContentView: View {
                 subtitle: subtitle,
                 options: CUIExpandableButtonOptions(
                     collapsedOptions: collapsedOptions,
-                    expandedOptions: expandedOptions
+                    expandedOptions: expandedOptions,
+                    titleFont: titleFont,
+                    subtitleFont: subtitleFont,
+                    backgroundColor: backgroundColor
                 )
             ) {
                 Text("Customize this using the controls below.")
@@ -157,15 +166,15 @@ struct ContentView: View {
                         "Please choose a color",
                         selection: $foregroundColor
                     ) {
-                        Text("Default").tag(Color.primary)
-                        Text("Black").tag(Color.black)
-                        Text("White").tag(Color.white)
-                        Text("Red").tag(Color.red)
-                        Text("Green").tag(Color.green)
-                        Text("Cyan").tag(Color.cyan)
-                        Text("Yellow").tag(Color.yellow)
-                        Text("Purple").tag(Color.purple)
-                        Text("Orange").tag(Color.orange)
+                        Text("Default").tag(nil as Color?)
+                        Text("Black").tag(Color.black as Color?)
+                        Text("White").tag(Color.white as Color?)
+                        Text("Red").tag(Color.red as Color?)
+                        Text("Green").tag(Color.green as Color?)
+                        Text("Cyan").tag(Color.cyan as Color?)
+                        Text("Yellow").tag(Color.yellow as Color?)
+                        Text("Purple").tag(Color.purple as Color?)
+                        Text("Orange").tag(Color.orange as Color?)
                     }
                 }
                 HStack {
@@ -200,6 +209,75 @@ struct ContentView: View {
                         Text(".showTitle").tag(CUIExpandableButtonOptions.Collapsed.showTitle)
                         Text(".showSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showSubtitle)
                         Text(".showTitleAndSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showTitleAndSubtitle)
+                    }
+                }
+
+                HStack {
+                    Text("Title Font")
+
+                    Spacer()
+                    Picker(
+                        "Title Font",
+                        selection: $titleFont
+                    ) {
+                        Group {
+                        Text("Default").tag(nil as Font?)
+                        Text(".largeTitle").tag(Font.largeTitle as Font?)
+                        Text(".title").tag(Font.title as Font?)
+                        Text(".title2").tag(Font.title2 as Font?)
+                        Text(".title3").tag(Font.title3 as Font?)
+                        Text(".caption").tag(Font.caption as Font?)
+                        }
+                        Text(".caption2").tag(Font.caption2 as Font?)
+                        Text(".callout").tag(Font.callout as Font?)
+                        Text(".footnote").tag(Font.footnote as Font?)
+                        Text(".body").tag(Font.body as Font?)
+                        Text(".headline").tag(Font.headline as Font?)
+                        Text(".subheadline").tag(Font.subheadline as Font?)
+                    }
+                }
+
+                HStack {
+                    Text("Subtitle Font")
+
+                    Spacer()
+                    Picker(
+                        "Subtitle Font",
+                        selection: $subtitleFont
+                    ) {
+                        Group {
+                        Text("Default").tag(nil as Font?)
+                        Text(".largeTitle").tag(Font.largeTitle as Font?)
+                        Text(".title").tag(Font.title as Font?)
+                        Text(".title2").tag(Font.title2 as Font?)
+                        Text(".title3").tag(Font.title3 as Font?)
+                        Text(".caption").tag(Font.caption as Font?)
+                        }
+                        Text(".caption2").tag(Font.caption2 as Font?)
+                        Text(".callout").tag(Font.callout as Font?)
+                        Text(".footnote").tag(Font.footnote as Font?)
+                        Text(".body").tag(Font.body as Font?)
+                        Text(".headline").tag(Font.headline as Font?)
+                        Text(".subheadline").tag(Font.subheadline as Font?)
+                    }
+                }
+                HStack {
+                    Text("Background Color")
+
+                    Spacer()
+                    Picker(
+                        "Background Color",
+                        selection: $backgroundColor
+                    ) {
+                        Text("Default").tag(nil as Color?)
+                        Text("Black").tag(Color.black as Color?)
+                        Text("White").tag(Color.white as Color?)
+                        Text("Red").tag(Color.red as Color?)
+                        Text("Green").tag(Color.green as Color?)
+                        Text("Cyan").tag(Color.cyan as Color?)
+                        Text("Yellow").tag(Color.yellow as Color?)
+                        Text("Purple").tag(Color.purple as Color?)
+                        Text("Orange").tag(Color.orange as Color?)
                     }
                 }
             }
@@ -241,6 +319,8 @@ struct ContentView: View {
         .animation(.easeInOut, value: subtitle)
         .animation(.easeInOut, value: expandedOptions)
         .animation(.easeInOut, value: collapsedOptions)
+        .animation(.easeInOut, value: titleFont)
+        .animation(.easeInOut, value: subtitleFont)
     }
 }
 
@@ -256,8 +336,8 @@ extension Image {
 }
 
 // FIXME: Have to comment these out these previews when I have just the package open, otherwise it breaks the package previews
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}

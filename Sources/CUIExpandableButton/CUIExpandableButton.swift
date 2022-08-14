@@ -265,13 +265,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         VStack(alignment: .leading) {
             if let title = title, showTitle {
                 Text(title)
-                    .font(.headline)
+                    .font(options.titleFont ?? .headline)
                     .background(DEBUG_LAYOUT ? .red : .clear)
                     .matchedGeometryEffect(id: "title", in: animation)
             }
             if let subtitle = subtitle, showSubtitle {
                 Text(subtitle)
-                    .font(.subheadline)
+                    .font(options.subtitleFont ?? .subheadline)
                     .background(DEBUG_LAYOUT ? .orange : .clear)
                     .matchedGeometryEffect(id: "subtitle", in: animation)
             }
@@ -388,7 +388,10 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             }
         }
         // FIXME: Material doesn't render in snapshot tests for some reason
-        .background(isRunningUnitTests() ? .gray : .clear)
+        .background(
+            isRunningUnitTests()
+                ? .gray
+                : (options.backgroundColor ?? .clear))
         .background(.ultraThinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : iconMinLength / 2))
         .animation(.spring(), value: expanded)
@@ -468,6 +471,7 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == Empt
 }
 
 // MARK: DEBUG_LAYOUT
+
 internal let DEBUG_LAYOUT = false
 
 private struct Caption: View {
@@ -759,6 +763,69 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
     }
 }
 
+struct CUIExpandableButtonPreview_OtherOptions: View {
+    @State var expanded0: Bool = true
+    @State var expanded1: Bool = true
+    @State var expanded2: Bool = true
+
+    var body: some View {
+        CenteredPreview(title: "Other Options") {
+            VStack {
+                CUIExpandableButton(
+                    expanded: $expanded0,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty",
+                    subtitle: "McFly",
+                    options: CUIExpandableButtonOptions(
+                        titleFont: .title
+                    )
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                }
+                Caption(text: "titleFont: .title")
+
+                CUIExpandableButton(
+                    expanded: $expanded1,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty",
+                    subtitle: "McFly",
+                    options: CUIExpandableButtonOptions(
+                        subtitleFont: .caption
+                    )
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                }
+                Caption(text: "subtitleFont: .caption")
+
+                CUIExpandableButton(
+                    expanded: $expanded2,
+                    sfSymbolName: "gearshape.fill",
+                    title: "Marty",
+                    subtitle: "McFly",
+                    options: CUIExpandableButtonOptions(
+                        backgroundColor: .cyan.opacity(0.5)
+                    )
+                ) {
+                    Text(LoremIpsum.words(8))
+                        .font(.body)
+                        .padding(.standardSpacing)
+                        .frame(width: 200)
+                }
+                Caption(text: "backgroundColor: .cyan.opacity(0.5)")
+            }
+            .animation(.default, value: expanded0)
+            .animation(.default, value: expanded1)
+            .animation(.default, value: expanded2)
+        }
+    }
+}
+
 struct CUIExpandableButtonPreview_CustomIcons: View {
     @State var collapsed0: Bool = false
     @State var expanded0: Bool = true
@@ -1043,6 +1110,8 @@ struct CUIExpandableButton_Previews: PreviewProvider {
         CUIExpandableButtonPreview_CollapsedOptions()
 
         CUIExpandableButtonPreview_ExpandedOptions()
+
+        CUIExpandableButtonPreview_OtherOptions()
 
         CUIExpandableButtonPreview_CustomIcons()
 

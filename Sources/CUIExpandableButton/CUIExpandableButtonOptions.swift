@@ -24,20 +24,38 @@
 // SOFTWARE.
 //
 
-import Foundation
+import SwiftUI
 
-// TODO: Create some standard recipes that can be used.
 /// A set of options for customizing ``CUIExpandableButton``
 public struct CUIExpandableButtonOptions {
-    public let collapsedOptions: Collapsed
-    public let expandedOptions: Expanded
+    /// Options that customize the button while collapsed.
+    public var collapsedOptions: Collapsed = .none
+    /// Options that customize the button while expanded.
+    public var expandedOptions: Expanded = .none
+    /// The font to use for the title
+    public var titleFont: Font? = nil
+    /// The font to use for the subtitle
+    public var subtitleFont: Font? = nil
+    /// The color to use for the background.
+    ///
+    /// Providing a custom color does not prevent the material background from
+    /// rendering. Instead the material background is rendered behind the color
+    /// background. This means that a transparent background will show the
+    /// material background behind it.
+    public var backgroundColor: Color? = nil
 
     public init(
         collapsedOptions: CUIExpandableButtonOptions.Collapsed = .none,
-        expandedOptions: CUIExpandableButtonOptions.Expanded = .none
+        expandedOptions: CUIExpandableButtonOptions.Expanded = .none,
+        titleFont: Font? = nil,
+        subtitleFont: Font? = nil,
+        backgroundColor: Color? = nil
     ) {
         self.collapsedOptions = collapsedOptions
         self.expandedOptions = expandedOptions
+        self.titleFont = titleFont
+        self.subtitleFont = subtitleFont
+        self.backgroundColor = backgroundColor
     }
 
     /// Options that customize the button when in the collapsed state
