@@ -126,7 +126,7 @@ struct ContentView: View {
                     expandedOptions: expandedOptions
                 )
             ) {
-                Text("Customize this using the controls below.")
+                Text("Use the controls below to customize this.")
                     .frame(width: 200)
                     .padding(8)
                     .foregroundColor(nil)
