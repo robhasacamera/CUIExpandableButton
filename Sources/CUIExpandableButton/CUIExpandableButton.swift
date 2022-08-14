@@ -333,7 +333,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                                     && !options.collapsedOptions.contains(.showTitle)
                                     && !options.collapsedOptions.contains(.showSubtitle)
                                 {
-                                    Color.white.opacity(0.01)
+                                    // Tests on the github process transparency differently
+                                    Color.white.opacity(isRunningUnitTests() ? 1.0 : 0.01)
                                 }
 
                                 if showTitleSubtitleStack {

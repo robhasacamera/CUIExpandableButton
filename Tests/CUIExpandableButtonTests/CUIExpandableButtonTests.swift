@@ -655,7 +655,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 title: mockTitle,
                 subtitle: mockSubtitle,
                 options: CUIExpandableButtonOptions(
-                    backgroundColor: .cyan.opacity(0.2)
+                    backgroundColor: .cyan
                 )
             ) {
                 mockCustomIcon
