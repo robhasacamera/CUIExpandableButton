@@ -80,39 +80,32 @@ import SwiftUI
 ///
 /// ```
 ///
-/// ### Styling the button
+/// ### Customizing the button
 ///
-/// There are several options for styling the button, which include, it's color, font
-/// weight, title, and header options (See ``CUIHeaderOptions``.
+/// There are several options for styling and customizing the button, which include,
+/// it's color, font, title, and showing/hiding various element.
+/// *(See ``CUIExpandableButtonOptions`` for a full list of options)*
 ///
 /// The color of the button's foreground elements can be changed using the
 /// ``foregroundColor(_:)`` modifier. Similarly, the
 /// ``fontWeight(_:)`` can be used to adjust the fontweight of the button's
-/// icon and header elements.
-///
-/// The button provides an optional title that will be displayed next to the icon
-/// when expanded and an otional subtitle that will be displayed below the title.
-/// The close button can also be hidden. Hiding the close button means there
-/// is no native control for hiding the content of the button once expanded.
+/// icon and header elements (iOS >= 16.0 only).
 ///
 /// ```
 ///
 /// CUIExpandableButton(
 ///     expanded: $expanded,
 ///     sfSymbolName: "flame.fill",
-///     title: "Hidden Close Button",
-///     subtitle: "With custom color and fontweight"
-///     options: CUIExpandeableButtonOptions(
-///     expanded: .hideCloseButton,
-///     collapsed: .showTitle
-///     )
+///     title: "Customize",
+///     subtitle: "Lots of options"
 /// ) {
-///     Text("You can customize the title, color, fontweight, and even hide the close button or other header elements.")
+///     Text("You can customize the title/subtitle, header, color, and more!")
 ///     .frame(width: 200)
 ///     .padding(8)
 /// }
+/// .collapsedOptions(.showTitle)
+/// .expandedOptions(.hideIcon)
 /// .foregroundColor(.yellow)
-/// .fontWeight(.bold)
 ///
 /// ```
 ///
@@ -529,10 +522,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         expanded: $collapsed0,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            collapsedOptions: .none
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -545,6 +535,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed4 = false
                         collapsed5 = false
                     }
+                    .collapsedOptions(.none)
                     Caption(text: ".none")
                 }
 
@@ -553,10 +544,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         expanded: $collapsed1,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            collapsedOptions: .showTitleAndSubtitle
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -569,6 +557,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed4 = false
                         collapsed5 = false
                     }
+                    .collapsedOptions(.showTitleAndSubtitle)
                     Caption(text: ".showTitleAndSubtitle")
                 }
 
@@ -577,10 +566,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         expanded: $collapsed2,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            collapsedOptions: .showTitle
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -593,6 +579,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed4 = false
                         collapsed5 = false
                     }
+                    .collapsedOptions(.showTitle)
                     Caption(text: ".showTitle")
                 }
 
@@ -601,10 +588,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         expanded: $collapsed3,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            collapsedOptions: .showSubtitle
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -617,6 +601,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed4 = false
                         collapsed5 = false
                     }
+                    .collapsedOptions(.showSubtitle)
                     Caption(text: ".showSubtitle")
                 }
 
@@ -625,10 +610,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         expanded: $collapsed4,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            collapsedOptions: .hideIcon
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -641,6 +623,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed3 = false
                         collapsed5 = false
                     }
+                    .collapsedOptions(.hideIcon)
                     Caption(text: ".hideIcon")
                 }
 
@@ -649,10 +632,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         expanded: $collapsed5,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            collapsedOptions: .showTitleAndSubtitleOnly
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -665,6 +645,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed3 = false
                         collapsed4 = false
                     }
+                    .collapsedOptions(.showTitleAndSubtitleOnly)
                     Caption(text: ".showTitleAndSubtitleOnly")
                 }
             }
@@ -695,10 +676,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded: $expanded0,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            expandedOptions: .none
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -712,6 +690,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded5 = false
                         expanded6 = false
                     }
+                    .expandedOptions(.none)
                     Caption(text: ".none")
                 }
 
@@ -720,10 +699,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded: $expanded1,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            expandedOptions: .hideIcon
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -737,6 +713,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded5 = false
                         expanded6 = false
                     }
+                    .expandedOptions(.hideIcon)
                     Caption(text: ".hideIcon")
                 }
 
@@ -745,10 +722,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded: $expanded2,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            expandedOptions: .hideTitle
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -762,6 +736,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded5 = false
                         expanded6 = false
                     }
+                    .expandedOptions(.hideTitle)
                     Caption(text: ".hideTitle")
                 }
 
@@ -770,10 +745,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded: $expanded3,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            expandedOptions: .hideSubtitle
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -787,6 +759,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded5 = false
                         expanded6 = false
                     }
+                    .expandedOptions(.hideSubtitle)
                     Caption(text: ".hideSubtitle")
                 }
 
@@ -795,10 +768,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded: $expanded4,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            expandedOptions: .hideTitleAndSubtitle
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -812,6 +782,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded5 = false
                         expanded6 = false
                     }
+                    .expandedOptions(.hideTitleAndSubtitle)
                     Caption(text: ".hideTitleAndSubtitle")
                 }
 
@@ -820,10 +791,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded: $expanded5,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            expandedOptions: .hideCloseButton
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -837,6 +805,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded4 = false
                         expanded6 = false
                     }
+                    .expandedOptions(.hideCloseButton)
                     Caption(text: ".hideCloseButton")
                 }
 
@@ -845,10 +814,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded: $expanded6,
                         sfSymbolName: "gearshape.fill",
                         title: "Marty",
-                        subtitle: "McFly",
-                        options: CUIExpandableButtonOptions(
-                            expandedOptions: .hideHeader
-                        )
+                        subtitle: "McFly"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -862,6 +828,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded4 = false
                         expanded5 = false
                     }
+                    .expandedOptions(.hideHeader)
                     Caption(text: ".hideHeader")
                 }
             }
@@ -888,48 +855,42 @@ struct CUIExpandableButtonPreview_OtherOptions: View {
                     expanded: $expanded0,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty",
-                    subtitle: "McFly",
-                    options: CUIExpandableButtonOptions(
-                        titleFont: .title
-                    )
+                    subtitle: "McFly"
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
                         .padding(.standardSpacing)
                         .frame(width: 200)
                 }
+                .titleFont(.title)
                 Caption(text: "titleFont: .title")
 
                 CUIExpandableButton(
                     expanded: $expanded1,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty",
-                    subtitle: "McFly",
-                    options: CUIExpandableButtonOptions(
-                        subtitleFont: .caption
-                    )
+                    subtitle: "McFly"
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
                         .padding(.standardSpacing)
                         .frame(width: 200)
                 }
+                .subtitleFont(.caption)
                 Caption(text: "subtitleFont: .caption")
 
                 CUIExpandableButton(
                     expanded: $expanded2,
                     sfSymbolName: "gearshape.fill",
                     title: "Marty",
-                    subtitle: "McFly",
-                    options: CUIExpandableButtonOptions(
-                        backgroundColor: .cyan.opacity(0.5)
-                    )
+                    subtitle: "McFly"
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
                         .padding(.standardSpacing)
                         .frame(width: 200)
                 }
+                .backgroundColor(.cyan.opacity(0.5))
                 Caption(text: "backgroundColor: .cyan.opacity(0.5)")
             }
             .animation(.default, value: expanded0)

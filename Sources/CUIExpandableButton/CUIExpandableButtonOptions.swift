@@ -32,9 +32,9 @@ public struct CUIExpandableButtonOptions {
     public var collapsedOptions: Collapsed = .none
     /// Options that customize the button while expanded.
     public var expandedOptions: Expanded = .none
-    /// The font to use for the title
+    /// The font to use for the title.
     public var titleFont: Font? = nil
-    /// The font to use for the subtitle
+    /// The font to use for the subtitle.
     public var subtitleFont: Font? = nil
     /// The color to use for the background.
     ///
