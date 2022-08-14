@@ -276,9 +276,24 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                     .matchedGeometryEffect(id: "subtitle", in: animation)
             }
         }
-        .padding(.leading, options.expandedOptions.contains(.hideIcon) ? .standardSpacing : 0)
-        .padding(.trailing, options.expandedOptions.contains(.hideCloseButton) ? .standardSpacing : 0)
-        .padding(.bottom, options.expandedOptions.contains([.hideIcon, .hideCloseButton]) ? .standardSpacing : 0)
+        .padding(
+            .leading,
+            options.expandedOptions.contains(.hideIcon)
+                && expanded
+                ? .standardSpacing : 0
+        )
+        .padding(
+            .trailing,
+            options.expandedOptions.contains(.hideCloseButton)
+                && expanded
+                ? .standardSpacing : 0
+        )
+        .padding(
+            .bottom,
+            options.expandedOptions.contains([.hideIcon, .hideCloseButton])
+                && expanded
+                ? .standardSpacing : 0
+        )
         .fixedSize()
     }
 
@@ -452,6 +467,7 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == Empt
     }
 }
 
+// MARK: DEBUG_LAYOUT
 internal let DEBUG_LAYOUT = false
 
 private struct Caption: View {
