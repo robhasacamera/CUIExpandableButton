@@ -82,6 +82,8 @@ public struct CUIExpandableButtonOptions {
         public static let none: Collapsed = []
         /// Shows the title and subtitle when the button is collapsed.
         public static let showTitleAndSubtitle: Collapsed = [.showTitle, .showSubtitle]
+        /// Hides the icon and only shows the title and subtitle when the button is collapsed.
+        public static let showTitleAndSubtitleOnly: Collapsed = [.hideIcon, .showTitle, .showSubtitle]
     }
 
     /// Options that customize the button when in the expanded state

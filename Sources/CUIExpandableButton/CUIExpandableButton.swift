@@ -650,7 +650,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         title: "Marty",
                         subtitle: "McFly",
                         options: CUIExpandableButtonOptions(
-                            collapsedOptions: [.hideIcon, .showTitleAndSubtitle]
+                            collapsedOptions: .showTitleAndSubtitleOnly
                         )
                     ) {
                         Text(LoremIpsum.words(8))
@@ -664,7 +664,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed3 = false
                         collapsed4 = false
                     }
-                    Caption(text: "[.hideIcon, .showTitleAndSubtitle]")
+                    Caption(text: ".showTitleAndSubtitleOnly")
                 }
             }
             .animation(.default, value: collapsed0)
