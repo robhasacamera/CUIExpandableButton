@@ -193,6 +193,7 @@ struct ContentView: View {
                         Text(".hideCloseButton").tag(CUIExpandableButtonOptions.Expanded.hideCloseButton)
                         Text(".hideSeparator").tag(CUIExpandableButtonOptions.Expanded.hideSeparator)
                         Text(".hideHeader").tag(CUIExpandableButtonOptions.Expanded.hideHeader)
+                        Text(".hideBackground").tag(CUIExpandableButtonOptions.Expanded.hideBackground)
                     }
                 }
 
@@ -210,6 +211,7 @@ struct ContentView: View {
                         Text(".showTitleAndSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showTitleAndSubtitle)
                         Text(".hideIcon").tag(CUIExpandableButtonOptions.Collapsed.hideIcon)
                         Text(".showTitleAndSubtitleOnly").tag(CUIExpandableButtonOptions.Collapsed.showTitleAndSubtitleOnly)
+                        Text(".hideBackground").tag(CUIExpandableButtonOptions.Collapsed.hideBackground)
                     }
                 }
 
@@ -349,8 +351,8 @@ extension Image {
 }
 
 // FIXME: Have to comment these out these previews when I have just the package open, otherwise it breaks the package previews
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

@@ -77,6 +77,8 @@ public struct CUIExpandableButtonOptions {
         ///
         /// Warning: when hiding the icon, a title or subtitle should be displayed.
         public static let hideIcon = Collapsed(rawValue: 1 << 3)
+        /// Hides the background when collapsed.
+        public static let hideBackground = Collapsed(rawValue: 1 << 4)
 
         /// Emptyset of  options
         public static let none: Collapsed = []
@@ -111,6 +113,8 @@ public struct CUIExpandableButtonOptions {
         public static let hideCloseButton = Expanded(rawValue: 1 << 3)
         /// Hides the separator between the header and the content area.
         public static let hideSeparator = Expanded(rawValue: 1 << 4)
+        /// Hides the background when expanded.
+        public static let hideBackground = Expanded(rawValue: 1 << 5)
 
         /// Emptyset of  options
         public static let none: Expanded = []

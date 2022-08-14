@@ -200,6 +200,16 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             || (!expanded && options.collapsedOptions.contains(.showSubtitle))
     }
 
+    var hideBackground: Bool {
+        (
+            options.collapsedOptions.contains(.hideBackground)
+                && !expanded
+        ) || (
+            options.expandedOptions.contains(.hideBackground)
+                && expanded
+        )
+    }
+
     @ScaledMetric(relativeTo: .title)
     var menuCornerRadius: CGFloat = .menuCornerRadius
 
@@ -401,14 +411,22 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             }
         }
         // FIXME: Material doesn't render in snapshot tests for some reason
-        .background(
-            options.backgroundColor ?? (
-                isRunningUnitTests()
-                    ? .gray
-                    : .clear
-            )
+        .optionalBackground(
+            hideBackground
+                ? nil as Color?
+                : (
+                    options.backgroundColor ?? (
+                        isRunningUnitTests()
+                            ? .gray
+                            : .clear
+                    )
+                )
         )
-        .background(.ultraThinMaterial)
+        .optionalBackground(
+            hideBackground
+                ? nil as Material?
+                : .ultraThinMaterial
+        )
         .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : iconMinLength / 2))
         .animation(.spring(), value: expanded)
         .fixedSize()
@@ -513,6 +531,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
     @State var collapsed3: Bool = false
     @State var collapsed4: Bool = false
     @State var collapsed5: Bool = false
+    @State var collapsed6: Bool = false
 
     var body: some View {
         CenteredPreview(title: "Collapsed Options") {
@@ -534,6 +553,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed3 = false
                         collapsed4 = false
                         collapsed5 = false
+                        collapsed6 = false
                     }
                     .collapsedOptions(.none)
                     Caption(text: ".none")
@@ -556,6 +576,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed3 = false
                         collapsed4 = false
                         collapsed5 = false
+                        collapsed6 = false
                     }
                     .collapsedOptions(.showTitleAndSubtitle)
                     Caption(text: ".showTitleAndSubtitle")
@@ -578,6 +599,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed3 = false
                         collapsed4 = false
                         collapsed5 = false
+                        collapsed6 = false
                     }
                     .collapsedOptions(.showTitle)
                     Caption(text: ".showTitle")
@@ -600,6 +622,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed2 = false
                         collapsed4 = false
                         collapsed5 = false
+                        collapsed6 = false
                     }
                     .collapsedOptions(.showSubtitle)
                     Caption(text: ".showSubtitle")
@@ -622,6 +645,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed2 = false
                         collapsed3 = false
                         collapsed5 = false
+                        collapsed6 = false
                     }
                     .collapsedOptions(.hideIcon)
                     Caption(text: ".hideIcon")
@@ -644,9 +668,33 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed2 = false
                         collapsed3 = false
                         collapsed4 = false
+                        collapsed6 = false
                     }
                     .collapsedOptions(.showTitleAndSubtitleOnly)
                     Caption(text: ".showTitleAndSubtitleOnly")
+                }
+                
+                Group {
+                    CUIExpandableButton(
+                        expanded: $collapsed6,
+                        sfSymbolName: "gearshape.fill",
+                        title: "Marty",
+                        subtitle: "McFly"
+                    ) {
+                        Text(LoremIpsum.words(8))
+                            .font(.body)
+                            .padding(.standardSpacing)
+                            .frame(width: 200)
+                    } action: {
+                        collapsed0 = false
+                        collapsed1 = false
+                        collapsed2 = false
+                        collapsed3 = false
+                        collapsed4 = false
+                        collapsed5 = false
+                    }
+                    .collapsedOptions(.hideBackground)
+                    Caption(text: ".hideBackground")
                 }
             }
             .animation(.default, value: collapsed0)
@@ -655,18 +703,20 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
             .animation(.default, value: collapsed3)
             .animation(.default, value: collapsed4)
             .animation(.default, value: collapsed5)
+            .animation(.default, value: collapsed6)
         }
     }
 }
 
 struct CUIExpandableButtonPreview_ExpandedOptions: View {
-    @State var expanded0: Bool = false
-    @State var expanded1: Bool = true
-    @State var expanded2: Bool = true
-    @State var expanded3: Bool = true
-    @State var expanded4: Bool = true
-    @State var expanded5: Bool = true
-    @State var expanded6: Bool = true
+    @State var expanded0: Bool = true
+    @State var expanded1: Bool = false
+    @State var expanded2: Bool = false
+    @State var expanded3: Bool = false
+    @State var expanded4: Bool = false
+    @State var expanded5: Bool = false
+    @State var expanded6: Bool = false
+    @State var expanded7: Bool = false
 
     var body: some View {
         CenteredPreview(title: "Expanded Options") {
@@ -689,6 +739,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded4 = false
                         expanded5 = false
                         expanded6 = false
+                        expanded7 = false
                     }
                     .expandedOptions(.none)
                     Caption(text: ".none")
@@ -712,6 +763,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded4 = false
                         expanded5 = false
                         expanded6 = false
+                        expanded7 = false
                     }
                     .expandedOptions(.hideIcon)
                     Caption(text: ".hideIcon")
@@ -735,6 +787,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded4 = false
                         expanded5 = false
                         expanded6 = false
+                        expanded7 = false
                     }
                     .expandedOptions(.hideTitle)
                     Caption(text: ".hideTitle")
@@ -758,6 +811,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded4 = false
                         expanded5 = false
                         expanded6 = false
+                        expanded7 = false
                     }
                     .expandedOptions(.hideSubtitle)
                     Caption(text: ".hideSubtitle")
@@ -781,6 +835,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded3 = false
                         expanded5 = false
                         expanded6 = false
+                        expanded7 = false
                     }
                     .expandedOptions(.hideTitleAndSubtitle)
                     Caption(text: ".hideTitleAndSubtitle")
@@ -804,6 +859,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded3 = false
                         expanded4 = false
                         expanded6 = false
+                        expanded7 = false
                     }
                     .expandedOptions(.hideCloseButton)
                     Caption(text: ".hideCloseButton")
@@ -827,9 +883,34 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded3 = false
                         expanded4 = false
                         expanded5 = false
+                        expanded7 = false
                     }
                     .expandedOptions(.hideHeader)
                     Caption(text: ".hideHeader")
+                }
+
+                Group {
+                    CUIExpandableButton(
+                        expanded: $expanded7,
+                        sfSymbolName: "gearshape.fill",
+                        title: "Marty",
+                        subtitle: "McFly"
+                    ) {
+                        Text(LoremIpsum.words(2))
+                            .font(.body)
+                            .padding(.standardSpacing)
+                            .frame(width: 200)
+                    } action: {
+                        expanded0 = false
+                        expanded1 = false
+                        expanded2 = false
+                        expanded3 = false
+                        expanded4 = false
+                        expanded5 = false
+                        expanded6 = false
+                    }
+                    .expandedOptions(.hideBackground)
+                    Caption(text: ".hideBackground")
                 }
             }
             .animation(.default, value: expanded0)
@@ -839,6 +920,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
             .animation(.default, value: expanded4)
             .animation(.default, value: expanded5)
             .animation(.default, value: expanded6)
+            .animation(.default, value: expanded7)
         }
     }
 }
