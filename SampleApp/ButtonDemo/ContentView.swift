@@ -193,7 +193,6 @@ struct ContentView: View {
                         Text(".hideCloseButton").tag(CUIExpandableButtonOptions.Expanded.hideCloseButton)
                         Text(".hideSeparator").tag(CUIExpandableButtonOptions.Expanded.hideSeparator)
                         Text(".hideHeader").tag(CUIExpandableButtonOptions.Expanded.hideHeader)
-                        
                     }
                 }
 
@@ -221,12 +220,12 @@ struct ContentView: View {
                         selection: $titleFont
                     ) {
                         Group {
-                        Text("Default").tag(nil as Font?)
-                        Text(".largeTitle").tag(Font.largeTitle as Font?)
-                        Text(".title").tag(Font.title as Font?)
-                        Text(".title2").tag(Font.title2 as Font?)
-                        Text(".title3").tag(Font.title3 as Font?)
-                        Text(".caption").tag(Font.caption as Font?)
+                            Text("Default").tag(nil as Font?)
+                            Text(".largeTitle").tag(Font.largeTitle as Font?)
+                            Text(".title").tag(Font.title as Font?)
+                            Text(".title2").tag(Font.title2 as Font?)
+                            Text(".title3").tag(Font.title3 as Font?)
+                            Text(".caption").tag(Font.caption as Font?)
                         }
                         Text(".caption2").tag(Font.caption2 as Font?)
                         Text(".callout").tag(Font.callout as Font?)
@@ -246,12 +245,12 @@ struct ContentView: View {
                         selection: $subtitleFont
                     ) {
                         Group {
-                        Text("Default").tag(nil as Font?)
-                        Text(".largeTitle").tag(Font.largeTitle as Font?)
-                        Text(".title").tag(Font.title as Font?)
-                        Text(".title2").tag(Font.title2 as Font?)
-                        Text(".title3").tag(Font.title3 as Font?)
-                        Text(".caption").tag(Font.caption as Font?)
+                            Text("Default").tag(nil as Font?)
+                            Text(".largeTitle").tag(Font.largeTitle as Font?)
+                            Text(".title").tag(Font.title as Font?)
+                            Text(".title2").tag(Font.title2 as Font?)
+                            Text(".title3").tag(Font.title3 as Font?)
+                            Text(".caption").tag(Font.caption as Font?)
                         }
                         Text(".caption2").tag(Font.caption2 as Font?)
                         Text(".callout").tag(Font.callout as Font?)
@@ -269,15 +268,27 @@ struct ContentView: View {
                         "Background Color",
                         selection: $backgroundColor
                     ) {
-                        Text("Default").tag(nil as Color?)
-                        Text("Black").tag(Color.black as Color?)
-                        Text("White").tag(Color.white as Color?)
-                        Text("Red").tag(Color.red as Color?)
-                        Text("Green").tag(Color.green as Color?)
-                        Text("Cyan").tag(Color.cyan as Color?)
-                        Text("Yellow").tag(Color.yellow as Color?)
-                        Text("Purple").tag(Color.purple as Color?)
-                        Text("Orange").tag(Color.orange as Color?)
+                        Group {
+                            Text("Default").tag(nil as Color?)
+                            Text("Black").tag(Color.black as Color?)
+                            Text("White").tag(Color.white as Color?)
+                            Text("Red").tag(Color.red as Color?)
+                            Text("Green").tag(Color.green as Color?)
+                            Text("Cyan").tag(Color.cyan as Color?)
+                            Text("Yellow").tag(Color.yellow as Color?)
+                            Text("Purple").tag(Color.purple as Color?)
+                            Text("Orange").tag(Color.orange as Color?)
+                        }
+                        Group {
+                            Text("Black Tint").tag(Color.black.opacity(0.3) as Color?)
+                            Text("White Tint").tag(Color.white.opacity(0.3) as Color?)
+                            Text("Red Tint").tag(Color.red.opacity(0.2) as Color?)
+                            Text("Green Tint").tag(Color.green.opacity(0.2) as Color?)
+                            Text("Cyan Tint").tag(Color.cyan.opacity(0.2) as Color?)
+                            Text("Yellow Tint").tag(Color.yellow.opacity(0.2) as Color?)
+                            Text("Purple Tint").tag(Color.purple.opacity(0.2) as Color?)
+                            Text("Orange Tint").tag(Color.orange.opacity(0.2) as Color?)
+                        }
                     }
                 }
             }
@@ -291,7 +302,7 @@ struct ContentView: View {
                 ) {
                     showAlert = true
                 }.alert("This button only has an action, no expandable content", isPresented: $showAlert) {
-                    Button("OK", role: .cancel) { }
+                    Button("OK", role: .cancel) {}
                 }
 
                 CUIExpandableButton {
@@ -302,7 +313,7 @@ struct ContentView: View {
                 } action: {
                     showAlert = true
                 }.alert("This button only has an action, no expandable content", isPresented: $showAlert) {
-                    Button("OK", role: .cancel) { }
+                    Button("OK", role: .cancel) {}
                 }
             }
         }
