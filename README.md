@@ -4,12 +4,12 @@ A SwiftUI button that expands to reveal more content.
 
 ![CUIExpandableButton Demo](Assets/demo.gif)
 
-[![example workflow](https://github.com/robhasacamera/CUIExpandableButton/actions/workflows/package.yml/badge.svg)](https://github.com/robhasacamera/CUIExpandableButton/actions/workflows/package.yml)
-[![example workflow](https://github.com/robhasacamera/CUIExpandableButton/actions/workflows/sample_app.yml/badge.svg)](https://github.com/robhasacamera/CUIExpandableButton/actions/workflows/sample_app.yml)
+[![package build workflow](https://github.com/robhasacamera/CUIExpandableButton/actions/workflows/package.yml/badge.svg)](https://github.com/robhasacamera/CUIExpandableButton/actions/workflows/package.yml)
+[![sample app build workflow](https://github.com/robhasacamera/CUIExpandableButton/actions/workflows/sample_app.yml/badge.svg)](https://github.com/robhasacamera/CUIExpandableButton/actions/workflows/sample_app.yml)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Frobhasacamera%2FCUIExpandableButton%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/robhasacamera/CUIExpandableButton)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Frobhasacamera%2FCUIExpandableButton%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/robhasacamera/CUIExpandableButton)
 
-CUIExpandableButton is part of the Crystal UI framework (under developement). This framework is working to bring a suite of UI components that utilize [SwiftUI Material](https://developer.apple.com/documentation/swiftui/material) for it's background element. 
+*CUIExpandableButton is part of the Crystal UI framework (under developement). This framework is working to bring a suite of UI components that utilize [SwiftUI Material](https://developer.apple.com/documentation/swiftui/material) for it's background element.* 
 
 ## Usage
 
@@ -47,12 +47,11 @@ import CUIExpandableButton
 
 ## Customization
 
-![CUIExpandableButton Style Options](Assets/styles.png)
+![CUIExpandableButton Style Options](Assets/customize.gif)
 
 There are several ways to customize CUIExpandableButton, including:
-- Adding a title (when expanded).
-- Adding a subtitle (when expanded). *not show in screenshot*
-- Hiding different header elements or the header as a whole.
+- Adding a title and\or subtitle subtitle.
+- Hiding different header elements or the header as a whole when expanded.
 - Using `foregroundColor(_:)` to customize color.
 - Applying `fontWeight(_:)` to the icon and header elements. (>=iOS 16.0)
 
@@ -60,16 +59,18 @@ There are several ways to customize CUIExpandableButton, including:
 CUIExpandableButton(
     expanded: $expanded,
     sfSymbolName: "flame.fill",
-    title: "Customization Example",
-    subtitle: "There's a lot of options"
-    headerOptions: .hideCloseButton
+    title: "Customize",
+    subtitle: "Lots of options"
+    options: CUIExpandeableButtonOptions(
+        expanded: .hideIcon,
+        collapsed: .showTitle
+    )
 ) {
-    Text("You can customize the title, color, fontweight, and even hide the close button.")
+    Text("You can customize the title/subtitle, header, and color!")
        .frame(width: 200)
        .padding(8)
 }
 .foregroundColor(.yellow)
-.fontWeight(.bold) // fontWeight is available starting in iOS 16
 ```
 
 ## Actions
@@ -106,7 +107,7 @@ CUIExpandableButton supports Swift Package Manager. To use it the following to y
 
 ```
 dependencies: [
-    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.4.1")
+    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.5.0")
 ],
 ```
 
@@ -123,5 +124,4 @@ It is worth noting that CUIExpandableButton fully supports dynamic type variants
 Below are some of the current limitations for CUIExpandableButton. These are being considered for future releases.
 - Background corner radius customization when expanded
 - Other backgrounds styles or materials
-- Displaying a title/subtitle with the icon while collapsed
 - Customizing the title/subtitle font

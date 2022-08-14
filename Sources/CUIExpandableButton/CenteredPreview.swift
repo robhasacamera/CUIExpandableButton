@@ -28,13 +28,23 @@ import SwiftUI
 
 struct CenteredPreview<Content>: View where Content: View {
     let content: Content
+    var title: String?
 
-    init(@ViewBuilder content: () -> Content) {
+    init(
+        title: String? = nil,
+        @ViewBuilder content: () -> Content
+    ) {
         self.content = content()
+        self.title = title
     }
 
     var body: some View {
         VStack {
+            if let title = title {
+                Text(title)
+                    .font(.title)
+            }
+
             Spacer()
 
             HStack {

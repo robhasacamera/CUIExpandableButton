@@ -37,12 +37,6 @@ struct ContentView: View {
 
     @State
     var expanded4: Bool = true
-    @State
-    var expanded5: Bool = true
-    @State
-    var expanded6: Bool = true
-    @State
-    var expanded7: Bool = true
 
     @State
     var textFieldString: String = "Compose here"
@@ -52,6 +46,20 @@ struct ContentView: View {
     var toggleBool2: Bool = true
     @State
     var toggleBool3: Bool = true
+
+    @State
+    var showAlert = false
+
+    @State
+    var title = "Title"
+    @State
+    var subtitle = "Subtitle"
+    @State
+    var foregroundColor = Color.primary
+    @State
+    var expandedOptions = CUIExpandableButtonOptions.Expanded.none
+    @State
+    var collapsedOptions = CUIExpandableButtonOptions.Collapsed.none
 
     var body: some View {
         VStack(spacing: 8.0) {
@@ -66,8 +74,6 @@ struct ContentView: View {
                     expanded2 = false
                     expanded3 = false
                     expanded4 = false
-                    expanded5 = false
-                    expanded6 = false
                 }
 
                 CUIExpandableButton(
@@ -86,8 +92,6 @@ struct ContentView: View {
                     expanded1 = false
                     expanded3 = false
                     expanded4 = false
-                    expanded5 = false
-                    expanded6 = false
                 }
 
                 CUIExpandableButton(
@@ -107,8 +111,6 @@ struct ContentView: View {
                     expanded1 = false
                     expanded2 = false
                     expanded4 = false
-                    expanded5 = false
-                    expanded6 = false
                 }
             }
 
@@ -117,77 +119,101 @@ struct ContentView: View {
             CUIExpandableButton(
                 expanded: $expanded4,
                 sfSymbolName: "tag.fill",
-                title: "Regular"
+                title: title,
+                subtitle: subtitle,
+                options: CUIExpandableButtonOptions(
+                    collapsedOptions: collapsedOptions,
+                    expandedOptions: expandedOptions
+                )
             ) {
-                Text("This is the default style.")
+                Text("Customize this using the controls below.")
                     .frame(width: 200)
                     .padding(8)
+                    .foregroundColor(nil)
             } action: {
                 expanded1 = false
                 expanded2 = false
                 expanded3 = false
             }
-
-            CUIExpandableButton(
-                expanded: $expanded5,
-                sfSymbolName: "bell.fill",
-                title: "Custom Color"
-            ) {
-                Text("The color can be customized using `foregroundColor()`.")
-                    .frame(width: 200)
-                    .padding(8)
-            } action: {
-                expanded1 = false
-                expanded2 = false
-                expanded3 = false
-            }
-            .foregroundColor(.yellow)
-
-            // Need the swift check, otherwise it fails to build on older versions of Xcode.
-            #if swift(>=5.7)
-                if #available(iOS 16.0, *) {
-                    CUIExpandableButton(
-                        expanded: $expanded6,
-                        sfSymbolName: "exclamationmark.triangle.fill",
-                        title: "Bolded"
-                    ) {
-                        Text("`fontWeight()` can be used to change the entire view.")
-                            .frame(width: 200)
-                            .padding(8)
-                    } action: {
-                        expanded1 = false
-                        expanded2 = false
-                        expanded3 = false
-                    }
-                    .fontWeight(.bold)
-                }
-            #endif
-
-            // Not having this one close the others as a demo of content that doesn't need an action
-            CUIExpandableButton(
-                expanded: $expanded7,
-                sfSymbolName: "flame.fill",
-                title: "Hide Header Elements",
-                headerOptions: [.hideCloseButton, .hideIcon]
-            ) {
-                Text("You can hide header elements, like the close button & the icon, and define your own close behavior.")
-                    .frame(width: 200)
-                    .padding(8)
-                Button {
-                    expanded7.toggle()
-                } label: {
-                    Text("Close")
-                        .padding(8)
-                }
-            }
+            .foregroundColor(foregroundColor)
 
             Spacer()
+
+            VStack {
+                Toggle("Expanded", isOn: $expanded4)
+
+                TextField("Title", text: $title)
+                    .padding(4)
+                    .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
+                TextField("Subtitle", text: $subtitle)
+                    .padding(4)
+                    .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
+
+                HStack {
+                    Text("Foreground Color")
+
+                    Spacer()
+                    Picker(
+                        "Please choose a color",
+                        selection: $foregroundColor
+                    ) {
+                        Text("Default").tag(Color.primary)
+                        Text("Black").tag(Color.black)
+                        Text("White").tag(Color.white)
+                        Text("Red").tag(Color.red)
+                        Text("Green").tag(Color.green)
+                        Text("Cyan").tag(Color.cyan)
+                        Text("Yellow").tag(Color.yellow)
+                        Text("Purple").tag(Color.purple)
+                        Text("Orange").tag(Color.orange)
+                    }
+                }
+                HStack {
+                    Text("Expanded Options")
+
+                    Spacer()
+                    Picker(
+                        "Expanded Options",
+                        selection: $expandedOptions
+                    ) {
+                        Text(".none").tag(CUIExpandableButtonOptions.Expanded.none)
+                        Text(".hideIcon").tag(CUIExpandableButtonOptions.Expanded.hideIcon)
+                        Text(".hideTitle").tag(CUIExpandableButtonOptions.Expanded.hideTitle)
+                        Text(".hideSubtitle").tag(CUIExpandableButtonOptions.Expanded.hideSubtitle)
+                        Text(".hideTitleAndSubtitle").tag(CUIExpandableButtonOptions.Expanded.hideTitleAndSubtitle)
+                        Text(".hideCloseButton").tag(CUIExpandableButtonOptions.Expanded.hideCloseButton)
+                        Text(".hideSeparator").tag(CUIExpandableButtonOptions.Expanded.hideSeparator)
+                        Text(".hideHeader").tag(CUIExpandableButtonOptions.Expanded.hideHeader)
+                        
+                    }
+                }
+
+                HStack {
+                    Text("Collapsed Options")
+
+                    Spacer()
+                    Picker(
+                        "Please choose a color",
+                        selection: $collapsedOptions
+                    ) {
+                        Text(".none").tag(CUIExpandableButtonOptions.Collapsed.none)
+                        Text(".showTitle").tag(CUIExpandableButtonOptions.Collapsed.showTitle)
+                        Text(".showSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showSubtitle)
+                        Text(".showTitleAndSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showTitleAndSubtitle)
+                    }
+                }
+            }
+            .padding()
+
+            .background(.thinMaterial)
 
             HStack {
                 CUIExpandableButton(
                     sfSymbolName: "square.and.arrow.up"
                 ) {
-                    print("tapped action only")
+                    showAlert = true
+                }.alert("This button only has an action, no expandable content", isPresented: $showAlert) {
+                    Button("OK", role: .cancel) { }
                 }
 
                 CUIExpandableButton {
@@ -196,7 +222,9 @@ struct ContentView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 26, height: 26)
                 } action: {
-                    print("tapped action only")
+                    showAlert = true
+                }.alert("This button only has an action, no expandable content", isPresented: $showAlert) {
+                    Button("OK", role: .cancel) { }
                 }
             }
         }
@@ -209,9 +237,10 @@ struct ContentView: View {
         .animation(.easeInOut, value: expanded2)
         .animation(.easeInOut, value: expanded3)
         .animation(.easeInOut, value: expanded4)
-        .animation(.easeInOut, value: expanded5)
-        .animation(.easeInOut, value: expanded6)
-        .animation(.easeInOut, value: expanded7)
+        .animation(.easeInOut, value: title)
+        .animation(.easeInOut, value: subtitle)
+        .animation(.easeInOut, value: expandedOptions)
+        .animation(.easeInOut, value: collapsedOptions)
     }
 }
 
@@ -226,8 +255,9 @@ extension Image {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+// FIXME: Have to comment these out these previews when I have just the package open, otherwise it breaks the package previews
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
