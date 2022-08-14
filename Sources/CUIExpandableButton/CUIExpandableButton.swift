@@ -452,6 +452,8 @@ public extension CUIExpandableButton where Content == EmptyView {
     }
 }
 
+// MARK: - SFSymbol Initializers
+
 public extension CUIExpandableButton where Icon == SFSymbolIcon {
     // TODO: Document param
     /// Creates an expandable button, using a SF Symbol as the icon.
@@ -504,7 +506,7 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == Empt
     }
 }
 
-// MARK: DEBUG_LAYOUT
+// MARK: - DEBUG_LAYOUT
 
 internal let DEBUG_LAYOUT = false
 
@@ -513,6 +515,8 @@ private extension Color {
         opacity(0.5)
     }
 }
+
+// MARK: - Preview Sets
 
 private struct Caption: View {
     let text: String
@@ -523,6 +527,8 @@ private struct Caption: View {
             .padding(.bottom)
     }
 }
+
+// MARK: collapsedOptions
 
 struct CUIExpandableButtonPreview_CollapsedOptions: View {
     @State var collapsed0: Bool = false
@@ -707,6 +713,8 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
         }
     }
 }
+
+// MARK: expandedOptions
 
 struct CUIExpandableButtonPreview_ExpandedOptions: View {
     @State var expanded0: Bool = true
@@ -925,6 +933,8 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
     }
 }
 
+// MARK: Other Options
+
 struct CUIExpandableButtonPreview_OtherOptions: View {
     @State var expanded0: Bool = true
     @State var expanded1: Bool = true
@@ -981,6 +991,8 @@ struct CUIExpandableButtonPreview_OtherOptions: View {
         }
     }
 }
+
+// MARK: Custom Icons
 
 struct CUIExpandableButtonPreview_CustomIcons: View {
     @State var collapsed0: Bool = false
@@ -1170,6 +1182,8 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
     }
 }
 
+// MARK: Modifiers
+
 struct CUIExpandableButtonPreview_Modifiers: View {
     @State var collapsed0: Bool = false
     @State var expanded0: Bool = true
@@ -1260,6 +1274,8 @@ struct CUIExpandableButtonPreview_Modifiers: View {
         }
     }
 }
+
+// MARK: PreviewProvider
 
 struct CUIExpandableButton_Previews: PreviewProvider {
     static var previews: some View {

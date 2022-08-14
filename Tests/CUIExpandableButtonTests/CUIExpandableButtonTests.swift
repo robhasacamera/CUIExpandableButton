@@ -698,6 +698,40 @@ final class CUIExpandableButtonTests: XCTestCase {
             }.prepForTest
         }
     }
+
+    func testButtonWithHiddenBackgroundCollapsed() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(false),
+                sfSymbolName: "gearshape.fill",
+                title: mockTitle,
+                subtitle: mockSubtitle,
+                options: CUIExpandableButtonOptions(
+                    collapsedOptions: .hideBackground
+                )
+            ) {
+                mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithHiddenBackgroundExpanded() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                sfSymbolName: "gearshape.fill",
+                title: mockTitle,
+                subtitle: mockSubtitle,
+                options: CUIExpandableButtonOptions(
+                    expandedOptions: .hideBackground
+                )
+            ) {
+                mockContent
+            }.prepForTest
+        }
+    }
 }
 
 extension CUIExpandableButton {
