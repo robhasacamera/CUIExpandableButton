@@ -123,5 +123,4 @@ It is worth noting that CUIExpandableButton fully supports dynamic type variants
 
 Below are some of the current limitations for CUIExpandableButton. These are being considered for future releases.
 - Background corner radius customization when expanded
-- Other backgrounds styles or materials
-- Customizing the title/subtitle font
+- Other backgrounds materials

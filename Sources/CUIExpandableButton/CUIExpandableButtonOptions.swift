@@ -73,6 +73,10 @@ public struct CUIExpandableButtonOptions {
         public static let showTitle = Collapsed(rawValue: 1 << 0)
         /// Shows the subtitle when the button is collapsed.
         public static let showSubtitle = Collapsed(rawValue: 1 << 1)
+        /// Hides the icon when the button is collapsed.
+        ///
+        /// Warning: when hiding the icon, a title or subtitle should be displayed.
+        public static let hideIcon = Collapsed(rawValue: 1 << 3)
 
         /// Emptyset of  options
         public static let none: Collapsed = []

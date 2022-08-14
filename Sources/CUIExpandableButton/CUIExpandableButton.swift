@@ -257,7 +257,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         icon
             .frame(minWidth: minIconSize, minHeight: minIconSize)
             .fixedSize()
-            .background(DEBUG_LAYOUT ? .green : .clear)
+            .background(DEBUG_LAYOUT ? .green.tint : .clear)
             .matchedGeometryEffect(id: "icon", in: animation)
     }
 
@@ -266,13 +266,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             if let title = title, showTitle {
                 Text(title)
                     .font(options.titleFont ?? .headline)
-                    .background(DEBUG_LAYOUT ? .red : .clear)
+                    .background(DEBUG_LAYOUT ? .red.tint : .clear)
                     .matchedGeometryEffect(id: "title", in: animation)
             }
             if let subtitle = subtitle, showSubtitle {
                 Text(subtitle)
                     .font(options.subtitleFont ?? .subheadline)
-                    .background(DEBUG_LAYOUT ? .orange : .clear)
+                    .background(DEBUG_LAYOUT ? .orange.tint : .clear)
                     .matchedGeometryEffect(id: "subtitle", in: animation)
             }
         }
@@ -320,14 +320,33 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                             action?()
                         } label: {
                             HStack(spacing: 0) {
-                                iconView
+                                if !options.collapsedOptions.contains(.hideIcon) {
+                                    iconView
+                                }
+
+                                /*
+                                 * This is to make sure the button is still clickable
+                                 * when the icon is hidden and neither the title or
+                                 * the subtitle is being shown.
+                                 */
+                                if options.collapsedOptions.contains(.hideIcon)
+                                    && !options.collapsedOptions.contains(.showTitle)
+                                    && !options.collapsedOptions.contains(.showSubtitle)
+                                {
+                                    Color.white.opacity(0.01)
+                                }
 
                                 if showTitleSubtitleStack {
                                     titleAndSubtitle
-                                        .padding(.trailing)
-                                        .background(DEBUG_LAYOUT ? .purple : .clear)
+                                        .padding(
+                                            options.collapsedOptions.contains(.hideIcon)
+                                                ? .horizontal
+                                                : .trailing
+                                        )
+                                        .background(DEBUG_LAYOUT ? .purple.tint : .clear)
                                 }
                             }
+                            .frame(minWidth: minIconSize, minHeight: minIconSize)
                         }.buttonStyle(.plain)
                     }
                 }
@@ -335,7 +354,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 if nonEmptyViewExpanded {
                     if showTitleSubtitleStack {
                         titleAndSubtitle
-                            .background(DEBUG_LAYOUT ? .purple : .clear)
+                            .background(DEBUG_LAYOUT ? .purple.tint : .clear)
                     }
 
                     Spacer(minLength: 0)
@@ -384,7 +403,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             if DEBUG_LAYOUT {
                 Text(String(format: "%.1f", iconSize.width))
                     .foregroundColor(.green)
-                    .background(.gray)
+                    .background(.black.tint)
             }
         }
         // FIXME: Material doesn't render in snapshot tests for some reason
@@ -477,6 +496,12 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == Empt
 
 internal let DEBUG_LAYOUT = false
 
+private extension Color {
+    var tint: Color {
+        opacity(0.5)
+    }
+}
+
 private struct Caption: View {
     let text: String
 
@@ -492,78 +517,162 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
     @State var collapsed1: Bool = false
     @State var collapsed2: Bool = false
     @State var collapsed3: Bool = false
+    @State var collapsed4: Bool = false
+    @State var collapsed5: Bool = false
 
     var body: some View {
         CenteredPreview(title: "Collapsed Options") {
             VStack {
-                CUIExpandableButton(
-                    expanded: $collapsed0,
-                    sfSymbolName: "gearshape.fill",
-                    title: "Marty",
-                    subtitle: "McFly",
-                    options: CUIExpandableButtonOptions(
-                        collapsedOptions: .none
-                    )
-                ) {
-                    Text(LoremIpsum.words(8))
-                        .font(.body)
-                        .padding(.standardSpacing)
-                        .frame(width: 200)
+                Group {
+                    CUIExpandableButton(
+                        expanded: $collapsed0,
+                        sfSymbolName: "gearshape.fill",
+                        title: "Marty",
+                        subtitle: "McFly",
+                        options: CUIExpandableButtonOptions(
+                            collapsedOptions: .none
+                        )
+                    ) {
+                        Text(LoremIpsum.words(8))
+                            .font(.body)
+                            .padding(.standardSpacing)
+                            .frame(width: 200)
+                    } action: {
+                        collapsed1 = false
+                        collapsed2 = false
+                        collapsed3 = false
+                        collapsed4 = false
+                        collapsed5 = false
+                    }
+                    Caption(text: ".none")
                 }
-                Caption(text: ".none")
 
-                CUIExpandableButton(
-                    expanded: $collapsed1,
-                    sfSymbolName: "gearshape.fill",
-                    title: "Marty",
-                    subtitle: "McFly",
-                    options: CUIExpandableButtonOptions(
-                        collapsedOptions: .showTitleAndSubtitle
-                    )
-                ) {
-                    Text(LoremIpsum.words(8))
-                        .font(.body)
-                        .padding(.standardSpacing)
-                        .frame(width: 200)
+                Group {
+                    CUIExpandableButton(
+                        expanded: $collapsed1,
+                        sfSymbolName: "gearshape.fill",
+                        title: "Marty",
+                        subtitle: "McFly",
+                        options: CUIExpandableButtonOptions(
+                            collapsedOptions: .showTitleAndSubtitle
+                        )
+                    ) {
+                        Text(LoremIpsum.words(8))
+                            .font(.body)
+                            .padding(.standardSpacing)
+                            .frame(width: 200)
+                    } action: {
+                        collapsed0 = false
+                        collapsed2 = false
+                        collapsed3 = false
+                        collapsed4 = false
+                        collapsed5 = false
+                    }
+                    Caption(text: ".showTitleAndSubtitle")
                 }
-                Caption(text: ".showTitleAndSubtitle")
 
-                CUIExpandableButton(
-                    expanded: $collapsed2,
-                    sfSymbolName: "gearshape.fill",
-                    title: "Marty",
-                    subtitle: "McFly",
-                    options: CUIExpandableButtonOptions(
-                        collapsedOptions: .showTitle
-                    )
-                ) {
-                    Text(LoremIpsum.words(8))
-                        .font(.body)
-                        .padding(.standardSpacing)
-                        .frame(width: 200)
+                Group {
+                    CUIExpandableButton(
+                        expanded: $collapsed2,
+                        sfSymbolName: "gearshape.fill",
+                        title: "Marty",
+                        subtitle: "McFly",
+                        options: CUIExpandableButtonOptions(
+                            collapsedOptions: .showTitle
+                        )
+                    ) {
+                        Text(LoremIpsum.words(8))
+                            .font(.body)
+                            .padding(.standardSpacing)
+                            .frame(width: 200)
+                    } action: {
+                        collapsed0 = false
+                        collapsed1 = false
+                        collapsed3 = false
+                        collapsed4 = false
+                        collapsed5 = false
+                    }
+                    Caption(text: ".showTitle")
                 }
-                Caption(text: ".showTitle")
 
-                CUIExpandableButton(
-                    expanded: $collapsed3,
-                    sfSymbolName: "gearshape.fill",
-                    title: "Marty",
-                    subtitle: "McFly",
-                    options: CUIExpandableButtonOptions(
-                        collapsedOptions: .showSubtitle
-                    )
-                ) {
-                    Text(LoremIpsum.words(8))
-                        .font(.body)
-                        .padding(.standardSpacing)
-                        .frame(width: 200)
+                Group {
+                    CUIExpandableButton(
+                        expanded: $collapsed3,
+                        sfSymbolName: "gearshape.fill",
+                        title: "Marty",
+                        subtitle: "McFly",
+                        options: CUIExpandableButtonOptions(
+                            collapsedOptions: .showSubtitle
+                        )
+                    ) {
+                        Text(LoremIpsum.words(8))
+                            .font(.body)
+                            .padding(.standardSpacing)
+                            .frame(width: 200)
+                    } action: {
+                        collapsed0 = false
+                        collapsed1 = false
+                        collapsed2 = false
+                        collapsed4 = false
+                        collapsed5 = false
+                    }
+                    Caption(text: ".showSubtitle")
                 }
-                Caption(text: ".showSubtitle")
+
+                Group {
+                    CUIExpandableButton(
+                        expanded: $collapsed4,
+                        sfSymbolName: "gearshape.fill",
+                        title: "Marty",
+                        subtitle: "McFly",
+                        options: CUIExpandableButtonOptions(
+                            collapsedOptions: .hideIcon
+                        )
+                    ) {
+                        Text(LoremIpsum.words(8))
+                            .font(.body)
+                            .padding(.standardSpacing)
+                            .frame(width: 200)
+                    } action: {
+                        collapsed0 = false
+                        collapsed1 = false
+                        collapsed2 = false
+                        collapsed3 = false
+                        collapsed5 = false
+                    }
+                    Caption(text: ".hideIcon")
+                }
+
+                Group {
+                    CUIExpandableButton(
+                        expanded: $collapsed5,
+                        sfSymbolName: "gearshape.fill",
+                        title: "Marty",
+                        subtitle: "McFly",
+                        options: CUIExpandableButtonOptions(
+                            collapsedOptions: [.hideIcon, .showTitleAndSubtitle]
+                        )
+                    ) {
+                        Text(LoremIpsum.words(8))
+                            .font(.body)
+                            .padding(.standardSpacing)
+                            .frame(width: 200)
+                    } action: {
+                        collapsed0 = false
+                        collapsed1 = false
+                        collapsed2 = false
+                        collapsed3 = false
+                        collapsed4 = false
+                    }
+                    Caption(text: "[.hideIcon, .showTitleAndSubtitle]")
+                }
             }
             .animation(.default, value: collapsed0)
             .animation(.default, value: collapsed1)
             .animation(.default, value: collapsed2)
             .animation(.default, value: collapsed3)
+            .animation(.default, value: collapsed4)
+            .animation(.default, value: collapsed5)
         }
     }
 }
