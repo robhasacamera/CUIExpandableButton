@@ -190,12 +190,20 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var showTitle: Bool {
-        (expanded && !options.expandedOptions.contains(.hideTitle))
+        guard let title = title, !title.isEmpty else {
+            return false
+        }
+
+        return (expanded && !options.expandedOptions.contains(.hideTitle))
             || (!expanded && options.collapsedOptions.contains(.showTitle))
     }
 
     var showSubtitle: Bool {
-        (expanded && !options.expandedOptions.contains(.hideSubtitle))
+        guard let subtitle = subtitle, !subtitle.isEmpty else {
+            return false
+        }
+
+        return (expanded && !options.expandedOptions.contains(.hideSubtitle))
             || (!expanded && options.collapsedOptions.contains(.showSubtitle))
     }
 
@@ -923,7 +931,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
     }
 }
 
- struct CUIExpandableButtonPreview_Modifiers: View {
+struct CUIExpandableButtonPreview_Modifiers: View {
     @State var collapsed0: Bool = false
     @State var expanded0: Bool = true
 
@@ -1012,7 +1020,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
             .animation(.default, value: collapsed1)
         }
     }
- }
+}
 
 struct CUIExpandableButton_Previews: PreviewProvider {
     static var previews: some View {

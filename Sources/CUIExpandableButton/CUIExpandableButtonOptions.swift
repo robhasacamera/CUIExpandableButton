@@ -41,8 +41,11 @@ public struct CUIExpandableButtonOptions {
     }
 
     /// Options that customize the button when in the collapsed state
-    public struct Collapsed: OptionSet {
+    public struct Collapsed: OptionSet, Identifiable, Hashable {
         public let rawValue: Int
+        public var id: Int {
+            rawValue
+        }
 
         public init(rawValue: Int) {
             self.rawValue = rawValue
@@ -60,8 +63,11 @@ public struct CUIExpandableButtonOptions {
     }
 
     /// Options that customize the button when in the expanded state
-    public struct Expanded: OptionSet {
+    public struct Expanded: OptionSet, Identifiable, Hashable {
         public let rawValue: Int
+        public var id: Int {
+            rawValue
+        }
 
         public init(rawValue: Int) {
             self.rawValue = rawValue
