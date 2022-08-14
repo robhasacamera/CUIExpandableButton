@@ -610,6 +610,60 @@ final class CUIExpandableButtonTests: XCTestCase {
             }.prepForTest
         }
     }
+
+    func testButtonWithCustomTitleFont() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                title: mockTitle,
+                subtitle: mockSubtitle,
+                options: CUIExpandableButtonOptions(
+                    titleFont: .largeTitle
+                )
+            ) {
+                mockCustomIcon
+            } content: {
+                mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithCustomSubTitleFont() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                title: mockTitle,
+                subtitle: mockSubtitle,
+                options: CUIExpandableButtonOptions(
+                    subtitleFont: .caption2
+                )
+            ) {
+                mockCustomIcon
+            } content: {
+                mockContent
+            }.prepForTest
+        }
+    }
+
+    func testButtonWithCustomBackgroundColor() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                title: mockTitle,
+                subtitle: mockSubtitle,
+                options: CUIExpandableButtonOptions(
+                    backgroundColor: .cyan.opacity(0.2)
+                )
+            ) {
+                mockCustomIcon
+            } content: {
+                mockContent
+            }.prepForTest
+        }
+    }
 }
 
 extension CUIExpandableButton {

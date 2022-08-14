@@ -389,9 +389,12 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         }
         // FIXME: Material doesn't render in snapshot tests for some reason
         .background(
-            isRunningUnitTests()
-                ? .gray
-                : (options.backgroundColor ?? .clear))
+            options.backgroundColor ?? (
+                isRunningUnitTests()
+                    ? .gray
+                    : .clear
+            )
+        )
         .background(.ultraThinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : iconMinLength / 2))
         .animation(.spring(), value: expanded)
