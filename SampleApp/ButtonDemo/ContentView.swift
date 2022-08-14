@@ -201,13 +201,15 @@ struct ContentView: View {
 
                     Spacer()
                     Picker(
-                        "Please choose a color",
+                        "Collapsed Options",
                         selection: $collapsedOptions
                     ) {
                         Text(".none").tag(CUIExpandableButtonOptions.Collapsed.none)
                         Text(".showTitle").tag(CUIExpandableButtonOptions.Collapsed.showTitle)
                         Text(".showSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showSubtitle)
                         Text(".showTitleAndSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showTitleAndSubtitle)
+                        Text(".hideIcon").tag(CUIExpandableButtonOptions.Collapsed.hideIcon)
+                        Text(".showTitleAndSubtitleOnly").tag(CUIExpandableButtonOptions.Collapsed.showTitleAndSubtitleOnly)
                     }
                 }
 
