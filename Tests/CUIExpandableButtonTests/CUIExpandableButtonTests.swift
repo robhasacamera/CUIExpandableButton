@@ -677,16 +677,14 @@ final class CUIExpandableButtonTests: XCTestCase {
         // isRecording = true
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
-                expanded: .constant(true),
-                options: CUIExpandableButtonOptions(
-                    backgroundColor: .cyan
-                )
+                expanded: .constant(true)
             ) {
                 mockCustomIcon
             } content: {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
+            .backgroundColor(.cyan)
             .prepForTest
         }
     }

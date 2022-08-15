@@ -28,11 +28,13 @@ import SwiftUI
 
 // TODO: Finish implementing new modifiers
 public extension CUIExpandableButton {
+    /// Warning! This will reset other modifiers.
     func standardLayout(title: String?, subtitle: String?) -> CUIExpandableButton {
         // TODO: Explicitly set the other states in here.
         self
             .title(title, forState: .expanded)
             .subtitle(subtitle, forState: .expanded)
+            .backgroundColor(nil)
     }
 
     func title(
@@ -53,6 +55,17 @@ public extension CUIExpandableButton {
         var newSelf = self
 
         newSelf._subtitle.setValue(subtitle, forState: state)
+
+        return newSelf
+    }
+
+    func backgroundColor(
+        _ color: Color?,
+        forState state: CUIExpandableButtonState = .any
+    ) -> CUIExpandableButton {
+        var newSelf = self
+
+        newSelf._backgroundColor.setValue(color, forState: state)
 
         return newSelf
     }
@@ -114,17 +127,6 @@ public extension CUIExpandableButton {
         self.options({
             var newOptions = self.options
             newOptions.subtitleFont = subtitleFont
-            return newOptions
-        }())
-    }
-
-    /// Sets the color for the background of the button.
-    ///
-    /// Refer to ``CUIExpandableButtonOptions.backgroundColor``.
-    func backgroundColor(_ backgroundColor: Color) -> CUIExpandableButton {
-        self.options({
-            var newOptions = self.options
-            newOptions.backgroundColor = backgroundColor
             return newOptions
         }())
     }

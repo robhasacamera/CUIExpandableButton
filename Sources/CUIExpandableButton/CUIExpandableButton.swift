@@ -174,6 +174,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var _title: SplitVar<String>
     var _subtitle: SplitVar<String>
+    var _backgroundColor: SplitVar<Color>
 
     // MARK: Scaled Metrics
 
@@ -231,6 +232,18 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         )
     }
 
+    var backgroundColor: Color? {
+        hideBackground
+            ? nil
+            : (
+                _backgroundColor.value ?? (
+                    isRunningUnitTests()
+                        ? .gray
+                        : .clear
+                )
+            )
+    }
+
     private var nonEmptyViewExpanded: Bool {
         !(content is EmptyView) && expanded
     }
@@ -259,6 +272,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         self.action = action
         self._title = SplitVar(expanded: _expanded, nil as String?)
         self._subtitle = SplitVar(expanded: _expanded, nil as String?)
+        self._backgroundColor = SplitVar(expanded: _expanded, nil as Color?)
     }
 
     var iconView: some View {
@@ -416,17 +430,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             }
         }
         // FIXME: Material doesn't render in snapshot tests for some reason
-        .optionalBackground(
-            hideBackground
-                ? nil as Color?
-                : (
-                    options.backgroundColor ?? (
-                        isRunningUnitTests()
-                            ? .gray
-                            : .clear
-                    )
-                )
-        )
+        .optionalBackground(backgroundColor)
         .optionalBackground(
             hideBackground
                 ? nil as Material?
