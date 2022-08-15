@@ -149,18 +149,40 @@ import SwiftUI
 public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content: View {
     @Namespace private var animation
 
+    /// An action is a closure with no return type
+    public typealias Action = () -> Void
+
+    // MARK: State
+
     // Needs to be a state so it will be preserved throughout the button's lifecycle
     @State
     var id = UUID()
 
-    /// An action is a closure with no return type
-    public typealias Action = () -> Void
+    @State
+    var iconSize = CGSize.zero
+
+    // MARK: Binding
+
+    @Binding var expanded: Bool
+
+    // MARK: Constant Props
+
+    let title: String?
+    let subtitle: String?
+    let options: CUIExpandableButtonOptions
+    let icon: Icon
+    let content: Content
+    let action: Action?
+
+    // MARK: Scaled Metrics
 
     @ScaledMetric(relativeTo: .title)
     var minIconSize: CGFloat = .icon
 
-    @State
-    var iconSize = CGSize.zero
+    @ScaledMetric(relativeTo: .title)
+    var menuCornerRadius: CGFloat = .menuCornerRadius
+
+    // MARK: Calculated Vars
 
     var iconMinLength: CGFloat {
         min(iconSize.width, iconSize.height)
@@ -209,18 +231,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 && expanded
         )
     }
-
-    @ScaledMetric(relativeTo: .title)
-    var menuCornerRadius: CGFloat = .menuCornerRadius
-
-    @Binding var expanded: Bool
-
-    let title: String?
-    let subtitle: String?
-    let options: CUIExpandableButtonOptions
-    let icon: Icon
-    let content: Content
-    let action: Action?
 
     private var nonEmptyViewExpanded: Bool {
         !(content is EmptyView) && expanded

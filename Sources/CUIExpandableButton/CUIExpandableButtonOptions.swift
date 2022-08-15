@@ -26,12 +26,31 @@
 
 import SwiftUI
 
+// TODO: Move this to it's own file.
+public struct CUIExpandableButtonState: OptionSet, Identifiable, Hashable {
+    public let rawValue: Int
+    public var id: Int {
+        rawValue
+    }
+
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+
+    public static let collapsed = CUIExpandableButtonState(rawValue: 1 << 0)
+    public static let expanded = CUIExpandableButtonState(rawValue: 1 << 2)
+    public static let any = [collapsed, expanded]
+}
+
+// TODO: Define a State/OptionSet (collapsed, expanded, any) and make this a lot more flexible.
 /// A set of options for customizing ``CUIExpandableButton``
 public struct CUIExpandableButtonOptions {
     /// Options that customize the button while collapsed.
     public var collapsedOptions: Collapsed = .none
     /// Options that customize the button while expanded.
     public var expandedOptions: Expanded = .none
+
+    // TODO: Just realized I should make these all properties of the view itself. This would make it so much easier to manage.
     /// The font to use for the title.
     public var titleFont: Font? = nil
     /// The font to use for the subtitle.
@@ -58,6 +77,7 @@ public struct CUIExpandableButtonOptions {
         self.backgroundColor = backgroundColor
     }
 
+    // TODO: I should make one option set and use collapsed, expanded, any optionset to decide when to use them. The standard recipe will have What is being used right now.
     /// Options that customize the button when in the collapsed state
     public struct Collapsed: OptionSet, Identifiable, Hashable {
         public let rawValue: Int
