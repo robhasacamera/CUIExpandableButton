@@ -641,16 +641,14 @@ final class CUIExpandableButtonTests: XCTestCase {
         // isRecording = true
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
-                expanded: .constant(true),
-                options: CUIExpandableButtonOptions(
-                    titleFont: .largeTitle
-                )
+                expanded: .constant(true)
             ) {
                 mockCustomIcon
             } content: {
                 mockContent
             }
-            .standardLayout(title: mockTitle, subtitle: mockSubtitle)
+            .title(mockTitle, font: .largeTitle)
+            .subtitle(mockSubtitle)
             .prepForTest
         }
     }
@@ -659,16 +657,14 @@ final class CUIExpandableButtonTests: XCTestCase {
         // isRecording = true
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
-                expanded: .constant(true),
-                options: CUIExpandableButtonOptions(
-                    subtitleFont: .caption2
-                )
+                expanded: .constant(true)
             ) {
                 mockCustomIcon
             } content: {
                 mockContent
             }
-            .standardLayout(title: mockTitle, subtitle: mockSubtitle)
+            .title(mockTitle)
+            .subtitle(mockSubtitle, font: .caption2)
             .prepForTest
         }
     }

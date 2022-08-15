@@ -173,7 +173,9 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     let action: Action?
 
     var _title: SplitVar<String>
+    var _titleFont: SplitVar<Font>
     var _subtitle: SplitVar<String>
+    var _subtitleFont: SplitVar<Font>
     var _backgroundColor: SplitVar<Color>
 
     // MARK: Scaled Metrics
@@ -271,7 +273,9 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         self.content = content()
         self.action = action
         self._title = SplitVar(expanded: _expanded, nil as String?)
+        self._titleFont = SplitVar(expanded: _expanded, nil as Font?)
         self._subtitle = SplitVar(expanded: _expanded, nil as String?)
+        self._subtitleFont = SplitVar(expanded: _expanded, nil as Font?)
         self._backgroundColor = SplitVar(expanded: _expanded, nil as Color?)
     }
 
@@ -287,13 +291,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         VStack(alignment: .leading) {
             if let title = _title.value {
                 Text(title)
-                    .font(options.titleFont ?? .headline)
+                    .font(_titleFont.value ?? .headline)
                     .background(DEBUG_LAYOUT ? .red.tint : .clear)
                     .matchedGeometryEffect(id: "title", in: animation)
             }
             if let subtitle = _subtitle.value {
                 Text(subtitle)
-                    .font(options.subtitleFont ?? .subheadline)
+                    .font(_subtitleFont.value ?? .subheadline)
                     .background(DEBUG_LAYOUT ? .orange.tint : .clear)
                     .matchedGeometryEffect(id: "subtitle", in: animation)
             }
@@ -938,7 +942,6 @@ struct CUIExpandableButtonPreview_OtherOptions: View {
                         .padding(.standardSpacing)
                         .frame(width: 200)
                 }
-                .titleFont(.title)
                 Caption(text: "titleFont: .title")
 
                 CUIExpandableButton(
@@ -950,7 +953,6 @@ struct CUIExpandableButtonPreview_OtherOptions: View {
                         .padding(.standardSpacing)
                         .frame(width: 200)
                 }
-                .subtitleFont(.caption)
                 Caption(text: "subtitleFont: .caption")
 
                 CUIExpandableButton(

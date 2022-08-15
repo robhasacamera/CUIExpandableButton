@@ -39,22 +39,26 @@ public extension CUIExpandableButton {
 
     func title(
         _ title: String?,
+        font: Font? = nil,
         forState state: CUIExpandableButtonState = .any
     ) -> CUIExpandableButton {
         var newSelf = self
 
         newSelf._title.setValue(title, forState: state)
+        newSelf._titleFont.setValue(font, forState: state)
 
         return newSelf
     }
 
     func subtitle(
         _ subtitle: String?,
+        font: Font? = nil,
         forState state: CUIExpandableButtonState = .any
     ) -> CUIExpandableButton {
         var newSelf = self
 
         newSelf._subtitle.setValue(subtitle, forState: state)
+        newSelf._subtitleFont.setValue(font, forState: state)
 
         return newSelf
     }
@@ -105,28 +109,6 @@ public extension CUIExpandableButton {
         self.options({
             var newOptions = self.options
             newOptions.expandedOptions = expandedOptions
-            return newOptions
-        }())
-    }
-
-    /// Sets the font for the title of the button.
-    ///
-    /// Refer to ``CUIExpandableButtonOptions.titleFont``.
-    func titleFont(_ titleFont: Font) -> CUIExpandableButton {
-        self.options({
-            var newOptions = self.options
-            newOptions.titleFont = titleFont
-            return newOptions
-        }())
-    }
-
-    /// Sets the font for the subtitle of the button.
-    ///
-    /// Refer to ``CUIExpandableButtonOptions.subtitleFont``.
-    func subtitleFont(_ subtitleFont: Font) -> CUIExpandableButton {
-        self.options({
-            var newOptions = self.options
-            newOptions.subtitleFont = subtitleFont
             return newOptions
         }())
     }
