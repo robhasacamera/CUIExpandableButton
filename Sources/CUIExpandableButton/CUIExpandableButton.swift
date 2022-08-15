@@ -167,12 +167,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     // MARK: Constant Props
 
-    let title: String?
-    let subtitle: String?
     let options: CUIExpandableButtonOptions
     let icon: Icon
     let content: Content
     let action: Action?
+
+    var _title: SplitVar<String>
+    var _subtitle: SplitVar<String>
 
     // MARK: Scaled Metrics
 
@@ -205,21 +206,19 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var showTitle: Bool {
-        guard let title = title, !title.isEmpty else {
+        guard let title = _title.value, !title.isEmpty else {
             return false
         }
 
-        return (expanded && !options.expandedOptions.contains(.hideTitle))
-            || (!expanded && options.collapsedOptions.contains(.showTitle))
+        return true
     }
 
     var showSubtitle: Bool {
-        guard let subtitle = subtitle, !subtitle.isEmpty else {
+        guard let subtitle = _subtitle.value, !subtitle.isEmpty else {
             return false
         }
 
-        return (expanded && !options.expandedOptions.contains(.hideSubtitle))
-            || (!expanded && options.collapsedOptions.contains(.showSubtitle))
+        return true
     }
 
     var hideBackground: Bool {
@@ -258,12 +257,12 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         action: Action? = nil
     ) {
         _expanded = expanded
-        self.title = title
-        self.subtitle = subtitle
         self.options = options
         self.icon = icon()
         self.content = content()
         self.action = action
+        self._title = SplitVar(expanded: _expanded, nil as String?)
+        self._subtitle = SplitVar(expanded: _expanded, nil as String?)
     }
 
     var iconView: some View {
@@ -276,13 +275,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var titleAndSubtitle: some View {
         VStack(alignment: .leading) {
-            if let title = title, showTitle {
+            if let title = _title.value {
                 Text(title)
                     .font(options.titleFont ?? .headline)
                     .background(DEBUG_LAYOUT ? .red.tint : .clear)
                     .matchedGeometryEffect(id: "title", in: animation)
             }
-            if let subtitle = subtitle, showSubtitle {
+            if let subtitle = _subtitle.value {
                 Text(subtitle)
                     .font(options.subtitleFont ?? .subheadline)
                     .background(DEBUG_LAYOUT ? .orange.tint : .clear)
@@ -343,8 +342,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                                  * the subtitle is being shown.
                                  */
                                 if options.collapsedOptions.contains(.hideIcon)
-                                    && !options.collapsedOptions.contains(.showTitle)
-                                    && !options.collapsedOptions.contains(.showSubtitle)
+                                    && _title.value == nil
+                                    && _subtitle.value == nil
                                 {
                                     // Tests on the github process transparency differently
                                     Color.white.opacity(isRunningUnitTests() ? 1.0 : 0.01)
@@ -538,7 +537,20 @@ private struct Caption: View {
     }
 }
 
-// MARK: collapsedOptions
+enum Mock {
+    static let title = "Marty"
+    static let subtitle = "McFly"
+    static let sfSymbolName = "gearshape.fill"
+
+    static var content: some View {
+        Text(LoremIpsum.words(8))
+            .font(.body)
+            .padding(.standardSpacing)
+            .frame(width: 200)
+    }
+}
+
+// MARK: Collapsed Options
 
 struct CUIExpandableButtonPreview_CollapsedOptions: View {
     @State var collapsed0: Bool = false
@@ -550,19 +562,14 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
     @State var collapsed6: Bool = false
 
     var body: some View {
-        CenteredPreview(title: "Collapsed Options") {
+        CenteredPreview(title: "Collapsed State") {
             VStack {
                 Group {
                     CUIExpandableButton(
                         expanded: $collapsed0,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: Mock.sfSymbolName
                     ) {
-                        Text(LoremIpsum.words(8))
-                            .font(.body)
-                            .padding(.standardSpacing)
-                            .frame(width: 200)
+                        Mock.content
                     } action: {
                         collapsed1 = false
                         collapsed2 = false
@@ -571,6 +578,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed5 = false
                         collapsed6 = false
                     }
+                    .title(Mock.title, forState: .expanded)
                     .collapsedOptions(.none)
                     Caption(text: ".none")
                 }
@@ -578,9 +586,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $collapsed1,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -601,9 +607,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $collapsed2,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -617,6 +621,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed5 = false
                         collapsed6 = false
                     }
+                    .title(Mock.title)
                     .collapsedOptions(.showTitle)
                     Caption(text: ".showTitle")
                 }
@@ -624,9 +629,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $collapsed3,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -640,6 +643,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed5 = false
                         collapsed6 = false
                     }
+
                     .collapsedOptions(.showSubtitle)
                     Caption(text: ".showSubtitle")
                 }
@@ -647,9 +651,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $collapsed4,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -670,9 +672,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $collapsed5,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -689,13 +689,11 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                     .collapsedOptions(.showTitleAndSubtitleOnly)
                     Caption(text: ".showTitleAndSubtitleOnly")
                 }
-                
+
                 Group {
                     CUIExpandableButton(
                         expanded: $collapsed6,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(8))
                             .font(.body)
@@ -724,7 +722,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
     }
 }
 
-// MARK: expandedOptions
+// MARK: Expanded Options
 
 struct CUIExpandableButtonPreview_ExpandedOptions: View {
     @State var expanded0: Bool = true
@@ -742,9 +740,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $expanded0,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -766,9 +762,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $expanded1,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -790,9 +784,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $expanded2,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -814,9 +806,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $expanded3,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -838,9 +828,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $expanded4,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -862,9 +850,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $expanded5,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -886,9 +872,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $expanded6,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)

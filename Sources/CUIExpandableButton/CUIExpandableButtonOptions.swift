@@ -26,6 +26,49 @@
 
 import SwiftUI
 
+struct SplitVar<T> {
+    @Binding
+    var expanded: Bool
+
+    var collapsedValue: T? = nil
+    var expandedValue: T? = nil
+
+    init(
+        expanded: Binding<Bool>,
+        _ value: T?,
+        forState state: CUIExpandableButtonState = .any
+    ) {
+        _expanded = expanded
+        setValue(value, forState: state)
+    }
+
+    var value: T? {
+        if expanded {
+            return expandedValue
+        } else {
+            return collapsedValue
+        }
+    }
+
+    func withValue(_ value: T?, forState state: CUIExpandableButtonState) -> SplitVar<T> {
+        var newVar = self
+
+        newVar.setValue(value, forState: state)
+
+        return newVar
+    }
+
+    mutating func setValue(_ value: T?, forState state: CUIExpandableButtonState) {
+        if state.contains(.collapsed) {
+            collapsedValue = value
+        }
+
+        if state.contains(.expanded) {
+            expandedValue = value
+        }
+    }
+}
+
 // TODO: Move this to it's own file.
 public struct CUIExpandableButtonState: OptionSet, Identifiable, Hashable {
     public let rawValue: Int
@@ -39,7 +82,7 @@ public struct CUIExpandableButtonState: OptionSet, Identifiable, Hashable {
 
     public static let collapsed = CUIExpandableButtonState(rawValue: 1 << 0)
     public static let expanded = CUIExpandableButtonState(rawValue: 1 << 2)
-    public static let any = [collapsed, expanded]
+    public static let any: CUIExpandableButtonState = [collapsed, expanded]
 }
 
 // TODO: Define a State/OptionSet (collapsed, expanded, any) and make this a lot more flexible.

@@ -26,37 +26,33 @@
 
 import SwiftUI
 
-/// Convenience methods to modifer the Expandeble Button.
+// TODO: Finish implementing new modifiers
 public extension CUIExpandableButton {
-    /// Sets the title of the button.
-    ///
-    /// Refer to ``CUIExpandableButton``.
-    func title(_ title: String) -> CUIExpandableButton {
-        CUIExpandableButton(
-            expanded: self.$expanded,
-            title: title,
-            subtitle: self.subtitle,
-            options: self.options,
-            icon: { self.icon },
-            content: { self.content },
-            action: self.action
-        )
+    func title(
+        _ title: String?,
+        forState state: CUIExpandableButtonState = .any
+    ) -> CUIExpandableButton {
+        var newSelf = self
+
+        newSelf._title.setValue(title, forState: state)
+
+        return newSelf
     }
 
-    /// Sets the subtitle of the button.
-    ///
-    /// Refer to ``CUIExpandableButton``.
-    func subtitle(_ subtitle: String) -> CUIExpandableButton {
-        CUIExpandableButton(
-            expanded: self.$expanded,
-            title: self.title,
-            subtitle: subtitle,
-            options: self.options,
-            icon: { self.icon },
-            content: { self.content },
-            action: self.action
-        )
+    func subtitle(
+        _ subtitle: String?,
+        forState state: CUIExpandableButtonState = .any
+    ) -> CUIExpandableButton {
+        var newSelf = self
+
+        newSelf._subtitle.setValue(subtitle, forState: state)
+
+        return newSelf
     }
+}
+
+/// Convenience methods to modifer the Expandeble Button.
+public extension CUIExpandableButton {
 
     /// Sets the options of the button.
     ///
@@ -64,8 +60,8 @@ public extension CUIExpandableButton {
     func options(_ options: CUIExpandableButtonOptions) -> CUIExpandableButton {
         CUIExpandableButton(
             expanded: self.$expanded,
-            title: self.title,
-            subtitle: self.subtitle,
+            title: self._title.value,
+            subtitle: self._subtitle.value,
             options: options,
             icon: { self.icon },
             content: { self.content },
