@@ -238,8 +238,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     /// Creates an expandable button, using a custom icon.
     /// - Parameters:
     ///   - expanded: Bool binding that tracks the button's expanded state.
-    ///   - title: String displayed in the header when expanded.
-    ///   - subtitle: String displayed beneath the title in the header when expanded.
     ///   - options: Options that customize the expandable button. See
     ///   ``CUIExpandableButtonOptions`` for details.
     ///   - icon: View that is displayed as an icon. This view will be
@@ -249,8 +247,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     ///   collapsed or expanded using the built in controls.
     public init(
         expanded: Binding<Bool>,
-        title: String? = nil,
-        subtitle: String? = nil,
         options: CUIExpandableButtonOptions = .standard,
         @ViewBuilder icon: () -> Icon,
         @ViewBuilder content: () -> Content,
@@ -469,8 +465,6 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
     /// - Parameters:
     ///   - expanded: Bool binding that tracks the button's expanded state.
     ///   - sfSymbolName: The name of the SF Symbol to use as the icon.
-    ///   - title: String displayed in the header when expanded.
-    ///   - subtitle: String displayed beneath the title in the header when expanded.
     ///   - options: Options that customize the expandable button. See
     ///   ``CUIExpandableButtonOptions`` for details.
     ///   - content: The content that will be displayed when the button is expanded.
@@ -479,16 +473,12 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
     init(
         expanded: Binding<Bool>,
         sfSymbolName: String,
-        title: String? = nil,
-        subtitle: String? = nil,
         options: CUIExpandableButtonOptions = .standard,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
     ) {
         self.init(
             expanded: expanded,
-            title: title,
-            subtitle: subtitle,
             options: options,
             icon: { SFSymbolIcon(iconName: sfSymbolName) },
             content: content,
@@ -894,9 +884,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                 Group {
                     CUIExpandableButton(
                         expanded: $expanded7,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -939,9 +927,7 @@ struct CUIExpandableButtonPreview_OtherOptions: View {
             VStack {
                 CUIExpandableButton(
                     expanded: $expanded0,
-                    sfSymbolName: "gearshape.fill",
-                    title: "Marty",
-                    subtitle: "McFly"
+                    sfSymbolName: "gearshape.fill"
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -953,9 +939,7 @@ struct CUIExpandableButtonPreview_OtherOptions: View {
 
                 CUIExpandableButton(
                     expanded: $expanded1,
-                    sfSymbolName: "gearshape.fill",
-                    title: "Marty",
-                    subtitle: "McFly"
+                    sfSymbolName: "gearshape.fill"
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -967,9 +951,7 @@ struct CUIExpandableButtonPreview_OtherOptions: View {
 
                 CUIExpandableButton(
                     expanded: $expanded2,
-                    sfSymbolName: "gearshape.fill",
-                    title: "Marty",
-                    subtitle: "McFly"
+                    sfSymbolName: "gearshape.fill"
                 ) {
                     Text(LoremIpsum.words(8))
                         .font(.body)
@@ -1034,9 +1016,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
             VStack {
                 HStack {
                     CUIExpandableButton(
-                        expanded: $collapsed0,
-                        title: "Marty",
-                        subtitle: "McFly"
+                        expanded: $collapsed0
                     ) {
                         smallIcon
                     } content: {
@@ -1049,9 +1029,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
                     }
 
                     CUIExpandableButton(
-                        expanded: $expanded0,
-                        title: "Marty",
-                        subtitle: "McFly"
+                        expanded: $expanded0
                     ) {
                         smallIcon
                     } content: {
@@ -1067,9 +1045,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
 
                 HStack {
                     CUIExpandableButton(
-                        expanded: $collapsed1,
-                        title: "Marty",
-                        subtitle: "McFly"
+                        expanded: $collapsed1
                     ) {
                         wideIcon
                     } content: {
@@ -1082,9 +1058,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
                     }
 
                     CUIExpandableButton(
-                        expanded: $expanded1,
-                        title: "Marty",
-                        subtitle: "McFly"
+                        expanded: $expanded1
                     ) {
                         wideIcon
                     } content: {
@@ -1100,9 +1074,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
 
                 HStack {
                     CUIExpandableButton(
-                        expanded: $collapsed2,
-                        title: "Marty",
-                        subtitle: "McFly"
+                        expanded: $collapsed2
                     ) {
                         tallIcon
                     } content: {
@@ -1115,9 +1087,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
                     }
 
                     CUIExpandableButton(
-                        expanded: $expanded2,
-                        title: "Marty",
-                        subtitle: "McFly"
+                        expanded: $expanded2
                     ) {
                         tallIcon
                     } content: {
@@ -1133,9 +1103,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
 
                 HStack {
                     CUIExpandableButton(
-                        expanded: $collapsed3,
-                        title: "Marty",
-                        subtitle: "McFly"
+                        expanded: $collapsed3
                     ) {
                         largeIcon
                     } content: {
@@ -1148,9 +1116,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
                     }
 
                     CUIExpandableButton(
-                        expanded: $expanded3,
-                        title: "Marty",
-                        subtitle: "McFly"
+                        expanded: $expanded3
                     ) {
                         largeIcon
                     } content: {
@@ -1191,9 +1157,7 @@ struct CUIExpandableButtonPreview_Modifiers: View {
                 HStack {
                     CUIExpandableButton(
                         expanded: $collapsed0,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -1207,9 +1171,7 @@ struct CUIExpandableButtonPreview_Modifiers: View {
 
                     CUIExpandableButton(
                         expanded: $expanded0,
-                        sfSymbolName: "gearshape.fill",
-                        title: "Marty",
-                        subtitle: "McFly"
+                        sfSymbolName: "gearshape.fill"
                     ) {
                         Text(LoremIpsum.words(2))
                             .font(.body)
@@ -1228,9 +1190,7 @@ struct CUIExpandableButtonPreview_Modifiers: View {
                         HStack {
                             CUIExpandableButton(
                                 expanded: $collapsed1,
-                                sfSymbolName: "gearshape.fill",
-                                title: "Marty",
-                                subtitle: "McFly"
+                                sfSymbolName: "gearshape.fill"
                             ) {
                                 Text(LoremIpsum.words(2))
                                     .font(.body)
@@ -1244,9 +1204,7 @@ struct CUIExpandableButtonPreview_Modifiers: View {
 
                             CUIExpandableButton(
                                 expanded: $expanded1,
-                                sfSymbolName: "gearshape.fill",
-                                title: "Marty",
-                                subtitle: "McFly"
+                                sfSymbolName: "gearshape.fill"
                             ) {
                                 Text(LoremIpsum.words(2))
                                     .font(.body)

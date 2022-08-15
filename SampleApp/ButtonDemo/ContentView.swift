@@ -125,8 +125,6 @@ struct ContentView: View {
             CUIExpandableButton(
                 expanded: $expanded4,
                 sfSymbolName: "tag.fill",
-                title: title,
-                subtitle: subtitle,
                 options: CUIExpandableButtonOptions(
                     collapsedOptions: collapsedOptions,
                     expandedOptions: expandedOptions,
@@ -144,6 +142,7 @@ struct ContentView: View {
                 expanded2 = false
                 expanded3 = false
             }
+            .standardLayout(title: title, subtitle: subtitle)
             .foregroundColor(foregroundColor)
 
             Spacer()

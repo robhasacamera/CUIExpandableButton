@@ -28,6 +28,13 @@ import SwiftUI
 
 // TODO: Finish implementing new modifiers
 public extension CUIExpandableButton {
+    func standardLayout(title: String?, subtitle: String?) -> CUIExpandableButton {
+        // TODO: Explicitly set the other states in here.
+        self
+            .title(title, forState: .expanded)
+            .subtitle(subtitle, forState: .expanded)
+    }
+
     func title(
         _ title: String?,
         forState state: CUIExpandableButtonState = .any
@@ -60,8 +67,6 @@ public extension CUIExpandableButton {
     func options(_ options: CUIExpandableButtonOptions) -> CUIExpandableButton {
         CUIExpandableButton(
             expanded: self.$expanded,
-            title: self._title.value,
-            subtitle: self._subtitle.value,
             options: options,
             icon: { self.icon },
             content: { self.content },
