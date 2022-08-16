@@ -73,6 +73,47 @@ public extension CUIExpandableButton {
 
         return newSelf
     }
+
+    // TODO: Add option for which background to hide? Color, material, all?
+    func hideBackground(_ hideBackground: Bool = true, forState state: CUIExpandableButtonState = .any) -> CUIExpandableButton {
+        var newSelf = self
+
+        newSelf._hideBackground.setValue(hideBackground, forState: state)
+
+        return newSelf
+    }
+
+    func hideIcon(_ hideIcon: Bool = true, forState state: CUIExpandableButtonState = .any) -> CUIExpandableButton {
+        var newSelf = self
+
+        newSelf._hideIcon.setValue(hideIcon, forState: state)
+
+        return newSelf
+    }
+
+    func hideSeparator(_ hideSeparator: Bool = true) -> CUIExpandableButton {
+        var newSelf = self
+
+        newSelf._hideSeparator = hideSeparator
+
+        return newSelf
+    }
+
+    func hideCloseButton(_ hideCloseButton: Bool = true) -> CUIExpandableButton {
+        var newSelf = self
+
+        newSelf._hideCloseButton = hideCloseButton
+
+        return newSelf
+    }
+
+    func hideHeader(_ hideHeader: Bool = true) -> CUIExpandableButton {
+        var newSelf = self
+
+        newSelf._hideHeader = hideHeader
+
+        return newSelf
+    }
 }
 
 /// Convenience methods to modifer the Expandeble Button.

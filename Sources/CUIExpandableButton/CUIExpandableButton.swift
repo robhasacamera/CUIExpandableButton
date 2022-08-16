@@ -177,6 +177,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     var _subtitle: SplitVar<String>
     var _subtitleFont: SplitVar<Font>
     var _backgroundColor: SplitVar<Color>
+    var _hideBackground: SplitVar<Bool>
+    var _hideIcon: SplitVar<Bool>
+    // These are only displayed when expanded, so we only need to set one value
+    var _hideSeparator = false
+    var _hideCloseButton = false
+    var _hideHeader = false
+
 
     // MARK: Scaled Metrics
 
@@ -194,11 +201,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var headerHeight: CGFloat {
         if nonEmptyViewExpanded {
-            if options.expandedOptions.contains(.hideHeader) {
+            if _hideHeader {
                 return 0
             }
 
-            return minIconSize + (options.expandedOptions.contains(.hideSeparator) ? 0 : 1)
+            return minIconSize + (hideSeparator ? 0 : 1)
         }
 
         return iconMinLength
@@ -209,6 +216,10 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var showTitle: Bool {
+        guard !_hideHeader || !expanded else {
+            return false
+        }
+
         guard let title = _title.value, !title.isEmpty else {
             return false
         }
@@ -217,6 +228,10 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var showSubtitle: Bool {
+        guard !_hideHeader || !expanded else {
+            return false
+        }
+
         guard let subtitle = _subtitle.value, !subtitle.isEmpty else {
             return false
         }
@@ -225,13 +240,39 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var hideBackground: Bool {
-        (
-            options.collapsedOptions.contains(.hideBackground)
-                && !expanded
-        ) || (
-            options.expandedOptions.contains(.hideBackground)
-                && expanded
-        )
+        guard let hideBackground = _hideBackground.value else {
+            return false
+        }
+
+        return hideBackground
+    }
+
+    var hideIcon: Bool {
+        guard !_hideHeader || !expanded else {
+            return true
+        }
+
+        guard let hideIcon = _hideIcon.value else {
+            return false
+        }
+
+        return hideIcon
+    }
+
+    var hideSeparator: Bool {
+        guard !_hideHeader else {
+            return true
+        }
+
+        return _hideSeparator
+    }
+
+    var hideCloseButton: Bool {
+        guard !_hideHeader else {
+            return true
+        }
+
+        return _hideCloseButton
     }
 
     var backgroundColor: Color? {
@@ -277,6 +318,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         self._subtitle = SplitVar(expanded: _expanded, nil as String?)
         self._subtitleFont = SplitVar(expanded: _expanded, nil as Font?)
         self._backgroundColor = SplitVar(expanded: _expanded, nil as Color?)
+        self._hideBackground = SplitVar(expanded: _expanded, false)
+        self._hideIcon = SplitVar(expanded: _expanded, false)
     }
 
     var iconView: some View {
@@ -303,20 +346,14 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             }
         }
         .padding(
-            .leading,
-            options.expandedOptions.contains(.hideIcon)
-                && expanded
-                ? .standardSpacing : 0
+            .leading, hideIcon && expanded ? .standardSpacing : 0
         )
         .padding(
-            .trailing,
-            options.expandedOptions.contains(.hideCloseButton)
-                && expanded
-                ? .standardSpacing : 0
+            .trailing, hideCloseButton && expanded ? .standardSpacing : 0
         )
         .padding(
             .bottom,
-            options.expandedOptions.contains([.hideIcon, .hideCloseButton])
+            hideIcon && hideCloseButton
                 && expanded
                 ? .standardSpacing : 0
         )
@@ -328,7 +365,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             HStack(spacing: 0) {
                 // This animation looks delayed in previews, but works fine in the simulator
                 if expanded {
-                    if !options.expandedOptions.contains(.hideIcon) {
+                    if !hideIcon {
                         ChildSizeReader(
                             size: $iconSize,
                             id: id
@@ -346,7 +383,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                             action?()
                         } label: {
                             HStack(spacing: 0) {
-                                if !options.collapsedOptions.contains(.hideIcon) {
+                                if !hideIcon {
                                     iconView
                                 }
 
@@ -355,7 +392,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                                  * when the icon is hidden and neither the title or
                                  * the subtitle is being shown.
                                  */
-                                if options.collapsedOptions.contains(.hideIcon)
+                                if hideIcon
                                     && _title.value == nil
                                     && _subtitle.value == nil
                                 {
@@ -366,7 +403,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                                 if showTitleSubtitleStack {
                                     titleAndSubtitle
                                         .padding(
-                                            options.collapsedOptions.contains(.hideIcon)
+                                            hideIcon
                                                 ? .horizontal
                                                 : .trailing
                                         )
@@ -386,14 +423,14 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
                     Spacer(minLength: 0)
 
-                    if !options.expandedOptions.contains(.hideCloseButton) {
+                    if !hideCloseButton {
                         CloseButton {
                             self.expanded.toggle()
                             self.action?()
                         }
                         .frame(
                             height:
-                            options.expandedOptions.contains(.hideIcon)
+                            hideIcon
                                 ? nil :
                                 iconSize.height,
                             alignment: .top
@@ -403,14 +440,14 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 }
             }
 
-            if nonEmptyViewExpanded && !options.expandedOptions.contains(.hideSeparator) {
+            if nonEmptyViewExpanded && !hideSeparator{
                 Separator(style: .horizontal)
             }
         }
         .frame(
             minHeight: headerHeight
         )
-        .frame(minWidth: nonEmptyViewExpanded && !options.expandedOptions.contains(.hideHeader) ? minIconSize * 2 : nil)
+        .frame(minWidth: nonEmptyViewExpanded && !_hideHeader ? minIconSize * 2 : nil)
     }
 
     public var body: some View {
@@ -515,7 +552,7 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == Empt
 
 // MARK: - DEBUG_LAYOUT
 
-internal let DEBUG_LAYOUT = false
+internal var DEBUG_LAYOUT = false
 
 private extension Color {
     var tint: Color {

@@ -26,6 +26,35 @@
 
 import SwiftUI
 
+public struct _CUIExpandedButtonOptions: OptionSet, Identifiable, Hashable {
+    public let rawValue: Int
+    public var id: Int {
+        rawValue
+    }
+
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+
+    /// Shows the title when the button is collapsed.
+    public static let showTitle = _CUIExpandedButtonOptions(rawValue: 1 << 0)
+    /// Shows the subtitle when the button is collapsed.
+    public static let showSubtitle = _CUIExpandedButtonOptions(rawValue: 1 << 1)
+    /// Hides the icon when the button is collapsed.
+    ///
+    /// Warning: when hiding the icon, a title or subtitle should be displayed.
+    public static let hideIcon = _CUIExpandedButtonOptions(rawValue: 1 << 3)
+    /// Hides the background when collapsed.
+    public static let hideBackground = _CUIExpandedButtonOptions(rawValue: 1 << 4)
+
+    /// Emptyset of  options
+    public static let none: _CUIExpandedButtonOptions = []
+    /// Shows the title and subtitle when the button is collapsed.
+    public static let showTitleAndSubtitle: _CUIExpandedButtonOptions = [.showTitle, .showSubtitle]
+    /// Hides the icon and only shows the title and subtitle when the button is collapsed.
+    public static let showTitleAndSubtitleOnly: _CUIExpandedButtonOptions = [.hideIcon, .showTitle, .showSubtitle]
+}
+
 struct SplitVar<T> {
     @Binding
     var expanded: Bool

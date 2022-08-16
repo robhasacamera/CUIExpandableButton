@@ -110,14 +110,12 @@ final class CUIExpandableButtonTests: XCTestCase {
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
                 expanded: .constant(true),
-                sfSymbolName: "gearshape.fill",
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideIcon
-                )
+                sfSymbolName: "gearshape.fill"
             ) {
                 mockContent
             }
             .title(mockTitle)
+            .hideIcon(forState: .expanded)
             .prepForTest
         }
     }
@@ -141,14 +139,12 @@ final class CUIExpandableButtonTests: XCTestCase {
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
                 expanded: .constant(true),
-                sfSymbolName: "gearshape.fill",
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideCloseButton
-                )
+                sfSymbolName: "gearshape.fill"
             ) {
                 mockContent
             }
             .title(mockTitle)
+            .hideCloseButton()
             .prepForTest
         }
     }
@@ -158,14 +154,12 @@ final class CUIExpandableButtonTests: XCTestCase {
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
                 expanded: .constant(true),
-                sfSymbolName: "gearshape.fill",
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideSeparator
-                )
+                sfSymbolName: "gearshape.fill"
             ) {
                 mockContent
             }
             .title(mockTitle)
+            .hideSeparator()
             .prepForTest
         }
     }
@@ -175,13 +169,11 @@ final class CUIExpandableButtonTests: XCTestCase {
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
                 expanded: .constant(true),
-                sfSymbolName: "gearshape.fill",
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideHeader
-                )
+                sfSymbolName: "gearshape.fill"
             ) {
                 mockContent
             }
+            .hideHeader()
             .prepForTest
         }
     }
@@ -191,14 +183,13 @@ final class CUIExpandableButtonTests: XCTestCase {
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
                 expanded: .constant(true),
-                sfSymbolName: "gearshape.fill",
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: [.hideIcon, .hideCloseButton]
-                )
+                sfSymbolName: "gearshape.fill"
             ) {
                 mockContent
             }
             .title("Did you get that Marty?")
+            .hideIcon(forState: .expanded)
+            .hideCloseButton()
             .prepForTest
         }
     }
@@ -262,16 +253,14 @@ final class CUIExpandableButtonTests: XCTestCase {
         // isRecording = true
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
-                expanded: .constant(true),
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideIcon
-                )
+                expanded: .constant(true)
             ) {
                 mockCustomIcon
             } content: {
                 mockContent
             }
             .title(mockTitle)
+            .hideIcon(forState: .expanded)
             .prepForTest
         }
     }
@@ -298,16 +287,14 @@ final class CUIExpandableButtonTests: XCTestCase {
         // isRecording = true
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
-                expanded: .constant(true),
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideCloseButton
-                )
+                expanded: .constant(true)
             ) {
                 mockCustomIcon
             } content: {
                 mockContent
             }
             .title(mockTitle)
+            .hideCloseButton()
             .prepForTest
         }
     }
@@ -316,16 +303,14 @@ final class CUIExpandableButtonTests: XCTestCase {
         // isRecording = true
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
-                expanded: .constant(true),
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideSeparator
-                )
+                expanded: .constant(true)
             ) {
                 mockCustomIcon
             } content: {
                 mockContent
             }
             .title(mockTitle)
+            .hideSeparator()
             .prepForTest
         }
     }
@@ -334,15 +319,13 @@ final class CUIExpandableButtonTests: XCTestCase {
         // isRecording = true
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
-                expanded: .constant(true),
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideHeader
-                )
+                expanded: .constant(true)
             ) {
                 mockCustomIcon
             } content: {
                 mockContent
             }
+            .hideHeader()
             .prepForTest
         }
     }
@@ -351,15 +334,14 @@ final class CUIExpandableButtonTests: XCTestCase {
         // isRecording = true
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
-                expanded: .constant(true),
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: [.hideIcon, .hideCloseButton]
-                )
+                expanded: .constant(true)
             ) {
                 mockCustomIcon
             } content: {
                 mockContent
             }
+            .hideIcon(forState: .expanded)
+            .hideCloseButton()
             .title("Did you get that Marty?")
             .prepForTest
         }
@@ -548,16 +530,14 @@ final class CUIExpandableButtonTests: XCTestCase {
         // isRecording = true
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
-                expanded: .constant(true),
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideIcon
-                )
+                expanded: .constant(true)
             ) {
                 mockCustomIcon
             } content: {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
+            .hideIcon(forState: .expanded)
             .prepForTest
         }
     }
@@ -566,16 +546,14 @@ final class CUIExpandableButtonTests: XCTestCase {
         // isRecording = true
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
-                expanded: .constant(true),
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideIcon
-                )
+                expanded: .constant(true)
             ) {
                 mockCustomIcon
             } content: {
                 mockContent
             }
             .subtitle(mockSubtitle)
+            .hideIcon(forState: .expanded)
             .prepForTest
         }
     }
@@ -690,14 +668,12 @@ final class CUIExpandableButtonTests: XCTestCase {
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
                 expanded: .constant(false),
-                sfSymbolName: "gearshape.fill",
-                options: CUIExpandableButtonOptions(
-                    collapsedOptions: .hideIcon
-                )
+                sfSymbolName: "gearshape.fill"
             ) {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
+            .hideIcon(forState: .collapsed)
             .prepForTest
         }
     }
@@ -707,15 +683,13 @@ final class CUIExpandableButtonTests: XCTestCase {
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
                 expanded: .constant(false),
-                sfSymbolName: "gearshape.fill",
-                options: CUIExpandableButtonOptions(
-                    collapsedOptions: [.hideIcon, .showTitleAndSubtitle]
-                )
+                sfSymbolName: "gearshape.fill"
             ) {
                 mockContent
             }
             .title(mockTitle)
             .subtitle(mockSubtitle)
+            .hideIcon(forState: .collapsed)
             .prepForTest
         }
     }
@@ -725,14 +699,12 @@ final class CUIExpandableButtonTests: XCTestCase {
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
                 expanded: .constant(false),
-                sfSymbolName: "gearshape.fill",
-                options: CUIExpandableButtonOptions(
-                    collapsedOptions: .hideBackground
-                )
+                sfSymbolName: "gearshape.fill"
             ) {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
+            .hideBackground(true, forState: .collapsed)
             .prepForTest
         }
     }
@@ -742,14 +714,12 @@ final class CUIExpandableButtonTests: XCTestCase {
         captureDynamicSizeSnapshots {
             CUIExpandableButton(
                 expanded: .constant(true),
-                sfSymbolName: "gearshape.fill",
-                options: CUIExpandableButtonOptions(
-                    expandedOptions: .hideBackground
-                )
+                sfSymbolName: "gearshape.fill"
             ) {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
+            .hideBackground(true, forState: .expanded)
             .prepForTest
         }
     }
