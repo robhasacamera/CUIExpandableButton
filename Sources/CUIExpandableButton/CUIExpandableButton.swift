@@ -167,7 +167,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     // MARK: Constant Props
 
-    let options: CUIExpandableButtonOptions
     let icon: Icon
     let content: Content
     let action: Action?
@@ -294,8 +293,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     /// Creates an expandable button, using a custom icon.
     /// - Parameters:
     ///   - expanded: Bool binding that tracks the button's expanded state.
-    ///   - options: Options that customize the expandable button. See
-    ///   ``CUIExpandableButtonOptions`` for details.
     ///   - icon: View that is displayed as an icon. This view will be
     ///   constrained to a min width and height of 44 x 44.
     ///   - content: The content that will be displayed when the button is expanded.
@@ -303,13 +300,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     ///   collapsed or expanded using the built in controls.
     public init(
         expanded: Binding<Bool>,
-        options: CUIExpandableButtonOptions = .standard,
         @ViewBuilder icon: () -> Icon,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
     ) {
         _expanded = expanded
-        self.options = options
         self.icon = icon()
         self.content = content()
         self.action = action
@@ -510,21 +505,17 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
     /// - Parameters:
     ///   - expanded: Bool binding that tracks the button's expanded state.
     ///   - sfSymbolName: The name of the SF Symbol to use as the icon.
-    ///   - options: Options that customize the expandable button. See
-    ///   ``CUIExpandableButtonOptions`` for details.
     ///   - content: The content that will be displayed when the button is expanded.
     ///   - action: Action that will be performed when the button is
     ///   collapsed or expanded using the built in controls.
     init(
         expanded: Binding<Bool>,
         sfSymbolName: String,
-        options: CUIExpandableButtonOptions = .standard,
         @ViewBuilder content: () -> Content,
         action: Action? = nil
     ) {
         self.init(
             expanded: expanded,
-            options: options,
             icon: { SFSymbolIcon(iconName: sfSymbolName) },
             content: content,
             action: action
@@ -614,7 +605,6 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed6 = false
                     }
                     .title(Mock.title, forState: .expanded)
-                    .collapsedOptions(.none)
                     Caption(text: ".none")
                 }
 
@@ -635,7 +625,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed5 = false
                         collapsed6 = false
                     }
-                    .collapsedOptions(.showTitleAndSubtitle)
+
                     Caption(text: ".showTitleAndSubtitle")
                 }
 
@@ -657,7 +647,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed6 = false
                     }
                     .title(Mock.title)
-                    .collapsedOptions(.showTitle)
+
                     Caption(text: ".showTitle")
                 }
 
@@ -679,7 +669,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed6 = false
                     }
 
-                    .collapsedOptions(.showSubtitle)
+
                     Caption(text: ".showSubtitle")
                 }
 
@@ -700,7 +690,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed5 = false
                         collapsed6 = false
                     }
-                    .collapsedOptions(.hideIcon)
+
                     Caption(text: ".hideIcon")
                 }
 
@@ -721,7 +711,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed4 = false
                         collapsed6 = false
                     }
-                    .collapsedOptions(.showTitleAndSubtitleOnly)
+
                     Caption(text: ".showTitleAndSubtitleOnly")
                 }
 
@@ -742,7 +732,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed4 = false
                         collapsed5 = false
                     }
-                    .collapsedOptions(.hideBackground)
+
                     Caption(text: ".hideBackground")
                 }
             }
@@ -790,7 +780,6 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                         expanded7 = false
                     }
-                    .expandedOptions(.none)
                     Caption(text: ".none")
                 }
 
@@ -812,7 +801,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                         expanded7 = false
                     }
-                    .expandedOptions(.hideIcon)
+
                     Caption(text: ".hideIcon")
                 }
 
@@ -834,7 +823,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                         expanded7 = false
                     }
-                    .expandedOptions(.hideTitle)
+
                     Caption(text: ".hideTitle")
                 }
 
@@ -856,7 +845,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                         expanded7 = false
                     }
-                    .expandedOptions(.hideSubtitle)
+
                     Caption(text: ".hideSubtitle")
                 }
 
@@ -878,7 +867,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                         expanded7 = false
                     }
-                    .expandedOptions(.hideTitleAndSubtitle)
+
                     Caption(text: ".hideTitleAndSubtitle")
                 }
 
@@ -900,7 +889,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                         expanded7 = false
                     }
-                    .expandedOptions(.hideCloseButton)
+
                     Caption(text: ".hideCloseButton")
                 }
 
@@ -922,7 +911,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded5 = false
                         expanded7 = false
                     }
-                    .expandedOptions(.hideHeader)
+
                     Caption(text: ".hideHeader")
                 }
 
@@ -944,7 +933,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded5 = false
                         expanded6 = false
                     }
-                    .expandedOptions(.hideBackground)
+                    
                     Caption(text: ".hideBackground")
                 }
             }
