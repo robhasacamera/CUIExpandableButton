@@ -26,6 +26,7 @@
 
 import SwiftUI
 
+/// Used to set properties for different states for ``CUIExpandableButton``.
 public struct CUIExpandableButtonState: OptionSet, Identifiable, Hashable {
     public let rawValue: Int
     public var id: Int {
@@ -36,7 +37,10 @@ public struct CUIExpandableButtonState: OptionSet, Identifiable, Hashable {
         self.rawValue = rawValue
     }
 
+    /// Descibes the button when it's collapsed.
     public static let collapsed = CUIExpandableButtonState(rawValue: 1 << 0)
+    /// Describes the button when it's expanded.
     public static let expanded = CUIExpandableButtonState(rawValue: 1 << 2)
+    /// Describes both states of the button (expanded & collapsed).
     public static let any: CUIExpandableButtonState = [collapsed, expanded]
 }

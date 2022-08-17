@@ -28,10 +28,23 @@ import SwiftUI
 
 /// A control that expands to display additional content and/or initiate an action.
 ///
-/// The `CUIExpandableButton` is a prestyled button that when tapped, will
-/// expand to display additional content. When collapsed, it is displayed as a 44 x
-/// 44 tappable button. The button uses the `utlraThinMaterial`
-/// background [defined by Apple](https://tinyurl.com/hbzvf74y ).
+/// `CUIExpandableButton`'s main goal is to provide a convenient/floating
+/// control that can expand to show additional content.
+///
+/// Example use cases include:
+/// - A settings button that expands and displays a list of settings that can be
+/// adjusted.
+/// - A composer button that expands to show a composer.
+/// - A notification indicator that expands to show recent activity.
+/// - A friend icon that expands to show friends to message.
+///
+/// The secondary goal is to provide a control that provides a consistent style
+/// accross an app. Because the button can be customized and doesn't require
+/// content to display, it can be used as a regular button as well to interact with.
+///
+/// The ``CUIExpandableButton`` is  prestyled  uses the `utlraThinMaterial`
+/// as it's background [defined by Apple](https://tinyurl.com/hbzvf74y ).
+/// But provides a suite of customization features.
 ///
 /// ### Icon options
 ///
@@ -82,30 +95,47 @@ import SwiftUI
 ///
 /// ### Customizing the button
 ///
-/// There are several options for styling and customizing the button, which include,
-/// it's color, font, title, and showing/hiding various element.
-/// *(See ``CUIExpandableButtonOptions`` for a full list of options)*
+/// There are several modifiers for customizing the button. These include:
+/// - Adding a title/subtitle.
+/// - Adding a color to the background.
+/// - Hiding various elements of the button like the icon, close button or the
+/// entire header.
 ///
-/// The color of the button's foreground elements can be changed using the
-/// ``foregroundColor(_:)`` modifier. Similarly, the
-/// ``fontWeight(_:)`` can be used to adjust the fontweight of the button's
-/// icon and header elements (iOS >= 16.0 only).
+/// Some modifiers provide the ability to customize content based on the state
+/// of the button. For example, you can use `setTitle(_:forState:)`
+/// to add a title that is only shown when the button is expanded.
 ///
 /// ```
 ///
 /// CUIExpandableButton(
 ///     expanded: $expanded,
-///     sfSymbolName: "flame.fill",
-///     title: "Customize",
-///     subtitle: "Lots of options"
+///     sfSymbolName: "flame.fill"
 /// ) {
-///     Text("You can customize the title/subtitle, header, color, and more!")
-///     .frame(width: 200)
-///     .padding(8)
+///     ExampleSettingsView()
 /// }
-/// .collapsedOptions(.showTitle)
-/// .expandedOptions(.hideIcon)
+/// .title("Settings", forState: .expanded)
+///
+/// ```
+/// Other modifiers only affect the display of the button in a specific state, such as ``hideHeader(_:)``, which only affect the button when expanded.
+///
+/// ``CUIExpandableButton`` also supports some of the standard modifiers.
+/// This includes  ``foregroundColor(_:)`` and  `fontWeight(_:)`. When
+/// using standard modifiers, it's important to use the modifiers specific to ``CUIExpandableButton`` first.
+///
+/// *(`fontWeight(_:)` available beginning in iOS 16).*
+///
+/// ```
+///
+/// CUIExpandableButton(
+///     expanded: $expanded,
+///     sfSymbolName: "flame.fill"
+/// ) {
+///     ExampleContentView()
+/// }
+/// .title("Customize")
+/// .subtitle("Lots of options", forState: .expanded)
 /// .foregroundColor(.yellow)
+/// .fontWeight(.bold)
 ///
 /// ```
 ///
@@ -113,9 +143,7 @@ import SwiftUI
 ///
 /// The button provides access to an additional action when tapped. This can be
 /// used to perform another action when expanding or collapsing the button's
-/// content. The button also supports not displaying content at all. This is provided
-/// a consistent set of buttons when using expanding and non-expanding buttons
-/// in the same UI.
+/// content.
 ///
 /// ```
 /// CUIExpandableButton(
@@ -131,21 +159,38 @@ import SwiftUI
 ///
 /// ```
 ///
+/// The button also supports not displaying content at all. This is to provide
+/// a consistent set of controls when using expanding and non-expanding buttons
+/// in the same UI. When not adding expandable content, an action is required.
+///
+/// ```
+/// CUIExpandableButton(
+///     expanded: $expanded,
+///     sfSymbolName: "bell.fill",
+/// ) {
+///     print("Button was pressed")
+/// }
+///
+/// ```
+/// ### Minimum sizes
+/// - When collapsed, the button maintains a minimum size of 44x44pt
+/// - When expanded, if both the icon and close button are show, the
+/// minimum width is 88
+///
 /// ### Additional support
 ///
-/// It is worth noting that this button fully supports dynamic type variants, dark
-/// mode, and the right to left layout direction.
+/// It is worth noting that this button fully supports dynamic type size, dark mode,
+/// and the right to left layout direction.
 ///
 /// ### Other limitations
 ///
 /// Below are the items that are not currently supported. Support maybe added in
 /// the future.
 /// - Background corner radius customization when expanded
-/// - Other button shapes
-/// - Other backgrounds styles or materials
-///
-/// When expanded, the minimum width the button is 88. Any content displayed
-/// smaller then this will be centered. in the content area.
+/// - Other button shapes/styles
+/// - Backgound material other then `utlraThinMaterial`
+/// - Other background style.
+/// - Other placement for expandable content.
 public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content: View {
     @Namespace private var animation
 
@@ -293,8 +338,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     /// Creates an expandable button, using a custom icon.
     /// - Parameters:
     ///   - expanded: Bool binding that tracks the button's expanded state.
-    ///   - icon: View that is displayed as an icon. This view will be
-    ///   constrained to a min width and height of 44 x 44.
+    ///   - icon: View that is displayed as an icon.
     ///   - content: The content that will be displayed when the button is expanded.
     ///   - action: Action that will be performed when the button is
     ///   collapsed or expanded using the built in controls.
@@ -481,8 +525,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 public extension CUIExpandableButton where Content == EmptyView {
     /// Creates a nonexpandabled button that iniates an action.
     /// - Parameters:
-    ///   - icon: View that is displayed as an icon. This view will be
-    ///   constrained to a min width and height of 44 x 44.
+    ///   - icon: View that is displayed as an icon.
     ///   - action: Action that will be performed when tapping the button.
     init(
         @ViewBuilder icon: () -> Icon,
