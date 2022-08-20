@@ -188,6 +188,7 @@ CUIExpandableButton(
 
 </td>
 </tr>
+</table>
 
 ## Other Features
 
