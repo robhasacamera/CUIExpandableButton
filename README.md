@@ -138,7 +138,9 @@ CUIExpandableButton(
 
 There are additional customization options for customizing the header when the button is expanded. 
 
+|---------------------------------------|---------------------------------------|---------------------------------------|
 |Hide Close Button                      |Hide Seperator                         |Hide Header                            |
+|---------------------------------------|---------------------------------------|---------------------------------------|
 |<!-- Add Screenshot-->                 |<!-- Add Screenshot-->                 |<!-- Add Screenshot-->                 |
 |---------------------------------------|---------------------------------------|---------------------------------------|
 |`CUIExpandableButton(`                 |`CUIExpandableButton(`                 |`CUIExpandableButton(`                 |
@@ -148,6 +150,7 @@ There are additional customization options for customizing the header when the b
 |`    Text("My content")`               |`    Text("My content")`               |`    Text("My content")`               |
 |`}`                                    |`}`                                    |`}`                                    |
 |`.hideCloseButton()`                   |`.hideSeperator()                      |.hideHeader()                          |
+|---------------------------------------|---------------------------------------|---------------------------------------|
 
 ## Other Features
 
