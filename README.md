@@ -138,19 +138,56 @@ CUIExpandableButton(
 
 There are additional customization options for customizing the header when the button is expanded. 
 
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| Hide Close Button                       | Hide Seperator                          | Hide Header                             |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| <!-- Add Screenshot-->                  | <!-- Add Screenshot-->                  | <!-- Add Screenshot-->                  |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| `CUIExpandableButton(`                  | `CUIExpandableButton(`                  | `CUIExpandableButton(`                  |
-| `    expanded: $expanded,`              | `    expanded: $expanded,`              | `    expanded: $expanded,`              |
-| `    sfSymbolName: "envelope.fill",`    | `    sfSymbolName: "envelope.fill",`    | `    sfSymbolName: "envelope.fill",`    |
-| `) {`                                   | `) {`                                   | `) {`                                   |
-| `    Text("My content")`                | `    Text("My content")`                | `    Text("My content")`                |
-| `}`                                     | `}`                                     | `}`                                     |
-| `.hideCloseButton()`                    | `.hideSeperator()                       | .hideHeader()                           |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+<table>
+<tr>
+<td> Hide Close Button </td> <td> Hide Seperator </td> <td> Hide Header </td>
+</tr>
+
+<tr>
+<td> <!-- Add Screenshot--> </td> <td> <!-- Add Screenshot--> </td> <td> <!-- Add Screenshot--> </td>
+</tr>
+
+<tr>
+<td>
+
+```swift
+CUIExpandableButton(
+    expanded: $expanded,
+    sfSymbolName: "envelope.fill",
+) {
+    Text("My content")
+)
+.hideCloseButton()
+```
+
+</td>
+<td>
+
+```swift
+CUIExpandableButton(
+    expanded: $expanded,
+    sfSymbolName: "envelope.fill",
+) {
+    Text("My content")
+)
+.hideSeperator()
+```
+
+</td>
+<td>
+
+```swift
+CUIExpandableButton(
+    expanded: $expanded,
+    sfSymbolName: "envelope.fill",
+) {
+    Text("My content")
+)
+.hideHeader()
+```
+
+</td>
+</tr>
 
 ## Other Features
 
