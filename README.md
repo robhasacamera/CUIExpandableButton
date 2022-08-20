@@ -138,19 +138,19 @@ CUIExpandableButton(
 
 There are additional customization options for customizing the header when the button is expanded. 
 
-|---------------------------------------|---------------------------------------|---------------------------------------|
-|Hide Close Button                      |Hide Seperator                         |Hide Header                            |
-|---------------------------------------|---------------------------------------|---------------------------------------|
-|<!-- Add Screenshot-->                 |<!-- Add Screenshot-->                 |<!-- Add Screenshot-->                 |
-|---------------------------------------|---------------------------------------|---------------------------------------|
-|`CUIExpandableButton(`                 |`CUIExpandableButton(`                 |`CUIExpandableButton(`                 |
-|`    expanded: $expanded,`             |`    expanded: $expanded,`             |`    expanded: $expanded,`             |
-|`    sfSymbolName: "envelope.fill",`   |`    sfSymbolName: "envelope.fill",`   |`    sfSymbolName: "envelope.fill",`   |
-|`) {`                                  |`) {`                                  |`) {`                                  |
-|`    Text("My content")`               |`    Text("My content")`               |`    Text("My content")`               |
-|`}`                                    |`}`                                    |`}`                                    |
-|`.hideCloseButton()`                   |`.hideSeperator()                      |.hideHeader()                          |
-|---------------------------------------|---------------------------------------|---------------------------------------|
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| Hide Close Button                       | Hide Seperator                          | Hide Header                             |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| <!-- Add Screenshot-->                  | <!-- Add Screenshot-->                  | <!-- Add Screenshot-->                  |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| `CUIExpandableButton(`                  | `CUIExpandableButton(`                  | `CUIExpandableButton(`                  |
+| `    expanded: $expanded,`              | `    expanded: $expanded,`              | `    expanded: $expanded,`              |
+| `    sfSymbolName: "envelope.fill",`    | `    sfSymbolName: "envelope.fill",`    | `    sfSymbolName: "envelope.fill",`    |
+| `) {`                                   | `) {`                                   | `) {`                                   |
+| `    Text("My content")`                | `    Text("My content")`                | `    Text("My content")`                |
+| `}`                                     | `}`                                     | `}`                                     |
+| `.hideCloseButton()`                    | `.hideSeperator()                       | .hideHeader()                           |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
 
 ## Other Features
 
