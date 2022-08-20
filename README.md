@@ -140,7 +140,7 @@ There are additional customization options for customizing the header when the b
 
 <table>
 <tr>
-<td> Hide Close Button </td> <td> Hide Seperator </td> <td> Hide Header </td>
+<td> Hide Header </td> <td> Hide Seperator </td> <td> Hide Close Button </td>
 </tr>
 
 <tr>
@@ -157,7 +157,7 @@ CUIExpandableButton(
 ) {
     Text("My content")
 )
-.hideCloseButton()
+.hideHeader()
 ```
 
 </td>
@@ -183,7 +183,7 @@ CUIExpandableButton(
 ) {
     Text("My content")
 )
-.hideHeader()
+.hideCloseButton()
 ```
 
 </td>
