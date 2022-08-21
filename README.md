@@ -64,6 +64,8 @@ CUIExpandableButton(
     sfSymbolName: "bell.fill",
 ) {
     Text("Button with hidden icon")
+        .frame(width: 200)
+        .padding(8)
 }
 .hideIcon(true)
 .title("More Info")
@@ -72,9 +74,12 @@ CUIExpandableButton(
     expanded: $expanded,
     sfSymbolName: "bell.fill",
 ) {
-    Text("Button that hides icon only when expanded.")
+    Text("Button that hides icon when expanded.")
+        .frame(width: 200)
+        .padding(8)
 }
 .hideIcon(forState: .expanded)
+.title("New Message")
 ```
 
 ### Actions
@@ -117,6 +122,8 @@ CUIExpandableButton(
     sfSymbolName: "envelope.fill",
 ) {
     Text("My content")
+        .frame(width: 200)
+        .padding(8)
 }
 .title("Inbox")
 .subtitle("5 unread messages")
@@ -126,6 +133,8 @@ CUIExpandableButton(
     sfSymbolName: "mappin",
 ) {
     Text("My content")
+        .frame(width: 200)
+        .padding(8)
 }
 .title("Visit San Francisco", forState: .collapsed)
 .title("San Francisco", forState: .expanded)
@@ -138,7 +147,7 @@ There are additional customization options for customizing the header when the b
 
 <table>
 <tr>
-<td> Hide Header </td> <td> Hide Seperator </td> <td> Hide Close Button </td>
+<td> Hide Header </td> <td> Hide Close Button </td> <td> Hide Seperator </td>
 </tr>
 
 <tr>
@@ -151,9 +160,11 @@ There are additional customization options for customizing the header when the b
 ```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "envelope.fill",
+    sfSymbolName: "exclamationmark.triangle.fill",
 ) {
-    Text("My content")
+    Text("Take up the full space when expanded.")
+        .frame(width: 200)
+        .padding(8)
 )
 .hideHeader()
 ```
@@ -164,11 +175,14 @@ CUIExpandableButton(
 ```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "envelope.fill",
+    sfSymbolName: "exclamationmark.triangle.fill",
 ) {
-    Text("My content")
+    Text("Hide the separator.")
+        .frame(width: 200)
+        .padding(8)
 )
 .hideSeperator()
+.title("Alert!", forState: .expanded)
 ```
 
 </td>
@@ -177,11 +191,15 @@ CUIExpandableButton(
 ```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "envelope.fill",
+    sfSymbolName: "exclamationmark.triangle.fill",
 ) {
-    Text("My content")
+    Text("Hide the close button to control how it's dismissed yourself.")
+        .frame(width: 200)
+        .padding(8)
 )
 .hideCloseButton()
+.title("Alert!", forState: .expanded)
+.subtitle("You need to take action!")
 ```
 
 </td>
@@ -190,9 +208,37 @@ CUIExpandableButton(
 
 ### Custom Color
 
-<!--TODO: Add quip about background color-->
+<!--TODO: Add Screenshot-->
+You can opt to add a color background instead of the default material background. However, the material is also rendered beneath. This allows a transparent background to be added that results in a tinted effect.
 
-<!--TODO: Foreground color, rewrite sentance below, maybe make a list-->
+```swift
+CUIExpandableButton(
+    expanded: $expanded,
+    sfSymbolName: "doc.fill",
+) {
+    Text("Tinting the background can help the button fit into your UX design.")
+        .frame(width: 200)
+        .padding(8)
+)
+.backgroundColor(.blue.opacity(0.15))
+```
+
+<!--TODO: Add screenshot-->
+The standard foreground color modifier can be applied as well to color the elements of the button.
+
+```swift
+CUIExpandableButton(
+    expanded: $expanded,
+    sfSymbolName: "doc.fill",
+) {
+    Text("You can use other standard modifiers too!")
+        .frame(width: 200)
+        .padding(8)
+        .foregroundColor(nil)
+)
+.standardLayout(title: "Color", subtitle: "Customization")
+.foregroundColor(.yellow)
+```
 
 ### Other Feature
 
@@ -216,6 +262,7 @@ A sample project, `ButtonDemo.xcodeproj`, can be found in the `SampleApp` folder
 
 ## Future Plans
 
-Below are some of the current limitations for CUIExpandableButton. These are being considered for future releases.
-- Background corner radius customization when expanded
+Below are some of the current limitations for CUIExpandableButton. These are being considered for future releases:
+- Background corner radius customization
 - Other backgrounds materials
+- Hiding the Material background
