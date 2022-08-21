@@ -5,6 +5,8 @@ on:
     workflows: [Package]
     types:
       - completed
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   clean:
