@@ -51,21 +51,41 @@ struct ContentView: View {
     var showAlert = false
 
     @State
+    var hideIcon = false
+    @State
+    var hideIconState = CUIExpandableButtonState.any
+
+    @State
     var title = "Title"
+    @State
+    var titleState = CUIExpandableButtonState.any
+    @State
+    var titleFont: Font? = nil
+
     @State
     var subtitle = "Subtitle"
     @State
-    var foregroundColor: Color? = nil
-    @State
-    var expandedOptions = CUIExpandableButtonOptions.Expanded.none
-    @State
-    var collapsedOptions = CUIExpandableButtonOptions.Collapsed.none
-    @State
-    var titleFont: Font? = nil
+    var subtitleState = CUIExpandableButtonState.any
     @State
     var subtitleFont: Font? = nil
+
+    @State
+    var hideCloseButton = false
+    @State
+    var hideSeparator = false
+    @State
+    var hideHeader = false
+
+    @State
+    var hideBackground: Bool = false
+    @State
+    var hideBackgroundState = CUIExpandableButtonState.any
+
     @State
     var backgroundColor: Color? = nil
+
+    @State
+    var foregroundColor: Color? = nil
 
     var body: some View {
         VStack(spacing: 8.0) {
@@ -124,14 +144,7 @@ struct ContentView: View {
 
             CUIExpandableButton(
                 expanded: $expanded4,
-                sfSymbolName: "tag.fill",
-                options: CUIExpandableButtonOptions(
-                    collapsedOptions: collapsedOptions,
-                    expandedOptions: expandedOptions,
-                    titleFont: titleFont,
-                    subtitleFont: subtitleFont,
-                    backgroundColor: backgroundColor
-                )
+                sfSymbolName: "tag.fill"
             ) {
                 Text("Customize this using the controls below.")
                     .frame(width: 200)
@@ -142,7 +155,14 @@ struct ContentView: View {
                 expanded2 = false
                 expanded3 = false
             }
-            .standardLayout(title: title, subtitle: subtitle)
+            .hideIcon(hideIcon, forState: hideIconState)
+            .title(title, font: titleFont, forState: titleState)
+            .subtitle(subtitle, font: subtitleFont, forState: subtitleState)
+            .hideCloseButton(hideCloseButton)
+            .hideSeparator(hideSeparator)
+            .hideHeader(hideHeader)
+            .hideBackground(hideBackground, forState: hideBackgroundState)
+            .backgroundColor(backgroundColor)
             .foregroundColor(foregroundColor)
 
             Spacer()
@@ -157,64 +177,23 @@ struct ContentView: View {
                     .padding(4)
                     .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
 
+
                 HStack {
-                    Text("Foreground Color")
+                    HStack {
+                    Text("Title State")
 
                     Spacer()
                     Picker(
-                        "Please choose a color",
-                        selection: $foregroundColor
+                        "Title State",
+                        selection: $titleState
                     ) {
-                        Text("Default").tag(nil as Color?)
-                        Text("Black").tag(Color.black as Color?)
-                        Text("White").tag(Color.white as Color?)
-                        Text("Red").tag(Color.red as Color?)
-                        Text("Green").tag(Color.green as Color?)
-                        Text("Cyan").tag(Color.cyan as Color?)
-                        Text("Yellow").tag(Color.yellow as Color?)
-                        Text("Purple").tag(Color.purple as Color?)
-                        Text("Orange").tag(Color.orange as Color?)
+                        Text(".any").tag(CUIExpandableButtonState.any)
+                        Text(".collapsed").tag(CUIExpandableButtonState.collapsed)
+                        Text(".expanded").tag(CUIExpandableButtonState.expanded)
                     }
-                }
-                HStack {
-                    Text("Expanded Options")
-
-                    Spacer()
-                    Picker(
-                        "Expanded Options",
-                        selection: $expandedOptions
-                    ) {
-                        Text(".none").tag(CUIExpandableButtonOptions.Expanded.none)
-                        Text(".hideIcon").tag(CUIExpandableButtonOptions.Expanded.hideIcon)
-                        Text(".hideTitle").tag(CUIExpandableButtonOptions.Expanded.hideTitle)
-                        Text(".hideSubtitle").tag(CUIExpandableButtonOptions.Expanded.hideSubtitle)
-                        Text(".hideTitleAndSubtitle").tag(CUIExpandableButtonOptions.Expanded.hideTitleAndSubtitle)
-                        Text(".hideCloseButton").tag(CUIExpandableButtonOptions.Expanded.hideCloseButton)
-                        Text(".hideSeparator").tag(CUIExpandableButtonOptions.Expanded.hideSeparator)
-                        Text(".hideHeader").tag(CUIExpandableButtonOptions.Expanded.hideHeader)
-                        Text(".hideBackground").tag(CUIExpandableButtonOptions.Expanded.hideBackground)
                     }
-                }
 
-                HStack {
-                    Text("Collapsed Options")
-
-                    Spacer()
-                    Picker(
-                        "Collapsed Options",
-                        selection: $collapsedOptions
-                    ) {
-                        Text(".none").tag(CUIExpandableButtonOptions.Collapsed.none)
-                        Text(".showTitle").tag(CUIExpandableButtonOptions.Collapsed.showTitle)
-                        Text(".showSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showSubtitle)
-                        Text(".showTitleAndSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showTitleAndSubtitle)
-                        Text(".hideIcon").tag(CUIExpandableButtonOptions.Collapsed.hideIcon)
-                        Text(".showTitleAndSubtitleOnly").tag(CUIExpandableButtonOptions.Collapsed.showTitleAndSubtitleOnly)
-                        Text(".hideBackground").tag(CUIExpandableButtonOptions.Collapsed.hideBackground)
-                    }
-                }
-
-                HStack {
+                    HStack {
                     Text("Title Font")
 
                     Spacer()
@@ -237,6 +216,11 @@ struct ContentView: View {
                         Text(".headline").tag(Font.headline as Font?)
                         Text(".subheadline").tag(Font.subheadline as Font?)
                     }
+                    }
+                }
+
+                HStack {
+
                 }
 
                 HStack {
@@ -263,6 +247,7 @@ struct ContentView: View {
                         Text(".subheadline").tag(Font.subheadline as Font?)
                     }
                 }
+
                 HStack {
                     Text("Background Color")
 
@@ -292,6 +277,26 @@ struct ContentView: View {
                             Text("Purple Tint").tag(Color.purple.opacity(0.2) as Color?)
                             Text("Orange Tint").tag(Color.orange.opacity(0.2) as Color?)
                         }
+                    }
+                }
+
+                HStack {
+                    Text("Foreground Color")
+
+                    Spacer()
+                    Picker(
+                        "Please choose a color",
+                        selection: $foregroundColor
+                    ) {
+                        Text("Default").tag(nil as Color?)
+                        Text("Black").tag(Color.black as Color?)
+                        Text("White").tag(Color.white as Color?)
+                        Text("Red").tag(Color.red as Color?)
+                        Text("Green").tag(Color.green as Color?)
+                        Text("Cyan").tag(Color.cyan as Color?)
+                        Text("Yellow").tag(Color.yellow as Color?)
+                        Text("Purple").tag(Color.purple as Color?)
+                        Text("Orange").tag(Color.orange as Color?)
                     }
                 }
             }
@@ -329,12 +334,19 @@ struct ContentView: View {
         .animation(.easeInOut, value: expanded2)
         .animation(.easeInOut, value: expanded3)
         .animation(.easeInOut, value: expanded4)
+        .animation(.easeInOut, value: hideIcon)
+        .animation(.easeInOut, value: hideIconState)
         .animation(.easeInOut, value: title)
-        .animation(.easeInOut, value: subtitle)
-        .animation(.easeInOut, value: expandedOptions)
-        .animation(.easeInOut, value: collapsedOptions)
+        .animation(.easeInOut, value: titleState)
         .animation(.easeInOut, value: titleFont)
+        .animation(.easeInOut, value: subtitle)
+        .animation(.easeInOut, value: subtitleState)
         .animation(.easeInOut, value: subtitleFont)
+        .animation(.easeInOut, value: hideCloseButton)
+        .animation(.easeInOut, value: hideSeparator)
+        .animation(.easeInOut, value: hideHeader)
+        .animation(.easeInOut, value: backgroundColor)
+        .animation(.easeInOut, value: foregroundColor)
     }
 }
 
@@ -350,8 +362,8 @@ extension Image {
 }
 
 // FIXME: Have to comment these out these previews when I have just the package open, otherwise it breaks the package previews
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}

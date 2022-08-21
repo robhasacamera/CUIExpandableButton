@@ -134,7 +134,7 @@ CUIExpandableButton(
 .subtitle("Top attractions", forState: .expanded)
 ```
 
-## Header Only Options
+### Header Only Options
 
 There are additional customization options for customizing the header when the button is expanded. 
 
@@ -190,9 +190,13 @@ CUIExpandableButton(
 </tr>
 </table>
 
-## Other Features
+### Custom Color
+
+<!--TODO: Add quip about background color-->
 
 <!--TODO: Foreground color, rewrite sentance below, maybe make a list-->
+
+### Other Feature
 
 It is worth noting that CUIExpandableButton fully supports dynamic type variants, dark mode, and the right to left layout direction.
 
