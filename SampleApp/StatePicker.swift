@@ -24,36 +24,27 @@
 // SOFTWARE.
 //
 
+import CUIExpandableButton
 import SwiftUI
 
-struct Separator: View {
-    enum Style: Identifiable, CaseIterable {
-        case horizontal
-        case vertical
-
-        var id: Style { self }
-    }
-
-    var style: Style = .horizontal
+struct StatePicker: View {
+    var label: String
+    @Binding
+    var state: CUIExpandableButtonState
 
     var body: some View {
-        Rectangle()
-            .frame(width: style == .vertical ? 1 : nil,
-                   height: style == .horizontal ? 1 : nil)
-    }
-}
+        HStack {
+            Text(label)
 
-struct Separator_Previews: PreviewProvider {
-    static var previews: some View {
-        ForEach(Separator.Style.allCases) { style in
-            CenteredPreview {
-                Separator(style: style)
-            }
-        }
-        ForEach(Separator.Style.allCases) { style in
-            CenteredPreview {
-                Separator(style: style)
-                    .foregroundColor(.yellow)
+            Spacer()
+
+            Picker(
+                label,
+                selection: $state
+            ) {
+                Text(".any").tag(CUIExpandableButtonState.any)
+                Text(".collapsed").tag(CUIExpandableButtonState.collapsed)
+                Text(".expanded").tag(CUIExpandableButtonState.expanded)
             }
         }
     }

@@ -51,21 +51,48 @@ struct ContentView: View {
     var showAlert = false
 
     @State
+    var sfSymbolName = "gearshape.fill"
+    @State
+    var hideIcon = false
+    @State
+    var hideIconState = CUIExpandableButtonState.any
+
+    @State
     var title = "Title"
+    @State
+    var titleState = CUIExpandableButtonState.any
+    @State
+    var titleFont: Font? = nil
+
     @State
     var subtitle = "Subtitle"
     @State
-    var foregroundColor: Color? = nil
-    @State
-    var expandedOptions = CUIExpandableButtonOptions.Expanded.none
-    @State
-    var collapsedOptions = CUIExpandableButtonOptions.Collapsed.none
-    @State
-    var titleFont: Font? = nil
+    var subtitleState = CUIExpandableButtonState.any
     @State
     var subtitleFont: Font? = nil
+
     @State
-    var backgroundColor: Color? = nil
+    var content = "Customizing this using the controls below."
+
+    @State
+    var hideCloseButton = false
+    @State
+    var hideSeparator = false
+    @State
+    var hideHeader = false
+
+    @State
+    var hideBackground: Bool = false
+    @State
+    var hideBackgroundState = CUIExpandableButtonState.any
+
+    @State
+    var backgroundColor: Color = .clear
+    @State
+    var backgroundColorState = CUIExpandableButtonState.any
+
+    @State
+    var foregroundColor = Color(uiColor: .label)
 
     var body: some View {
         VStack(spacing: 8.0) {
@@ -124,18 +151,9 @@ struct ContentView: View {
 
             CUIExpandableButton(
                 expanded: $expanded4,
-                sfSymbolName: "tag.fill",
-                title: title,
-                subtitle: subtitle,
-                options: CUIExpandableButtonOptions(
-                    collapsedOptions: collapsedOptions,
-                    expandedOptions: expandedOptions,
-                    titleFont: titleFont,
-                    subtitleFont: subtitleFont,
-                    backgroundColor: backgroundColor
-                )
+                sfSymbolName: sfSymbolName
             ) {
-                Text("Customize this using the controls below.")
+                Text(content)
                     .frame(width: 200)
                     .padding(8)
                     .foregroundColor(nil)
@@ -144,161 +162,149 @@ struct ContentView: View {
                 expanded2 = false
                 expanded3 = false
             }
+            .hideIcon(hideIcon, forState: hideIconState)
+            .title(
+                title.count > 0 ? title : nil,
+                font: titleFont,
+                forState: title.count > 0 ? titleState : .any
+            )
+            .subtitle(
+                subtitle.count > 0 ? subtitle : nil,
+                font: subtitleFont,
+                forState: subtitle.count > 0 ?  subtitleState : .any
+            )
+            .hideCloseButton(hideCloseButton)
+            .hideSeparator(hideSeparator)
+            .hideHeader(hideHeader)
+            .hideBackground(hideBackground, forState: hideBackgroundState)
+            .backgroundColor(backgroundColor, forState: backgroundColorState)
             .foregroundColor(foregroundColor)
 
             Spacer()
 
-            VStack {
-                Toggle("Expanded", isOn: $expanded4)
-
-                TextField("Title", text: $title)
-                    .padding(4)
-                    .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
-                TextField("Subtitle", text: $subtitle)
-                    .padding(4)
-                    .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
-
-                HStack {
-                    Text("Foreground Color")
-
-                    Spacer()
-                    Picker(
-                        "Please choose a color",
-                        selection: $foregroundColor
-                    ) {
-                        Text("Default").tag(nil as Color?)
-                        Text("Black").tag(Color.black as Color?)
-                        Text("White").tag(Color.white as Color?)
-                        Text("Red").tag(Color.red as Color?)
-                        Text("Green").tag(Color.green as Color?)
-                        Text("Cyan").tag(Color.cyan as Color?)
-                        Text("Yellow").tag(Color.yellow as Color?)
-                        Text("Purple").tag(Color.purple as Color?)
-                        Text("Orange").tag(Color.orange as Color?)
+            ScrollView {
+                VStack {
+                    TitledGroup("Settings") {
+                        Toggle("Expanded", isOn: $expanded4)
                     }
-                }
-                HStack {
-                    Text("Expanded Options")
 
-                    Spacer()
-                    Picker(
-                        "Expanded Options",
-                        selection: $expandedOptions
-                    ) {
-                        Text(".none").tag(CUIExpandableButtonOptions.Expanded.none)
-                        Text(".hideIcon").tag(CUIExpandableButtonOptions.Expanded.hideIcon)
-                        Text(".hideTitle").tag(CUIExpandableButtonOptions.Expanded.hideTitle)
-                        Text(".hideSubtitle").tag(CUIExpandableButtonOptions.Expanded.hideSubtitle)
-                        Text(".hideTitleAndSubtitle").tag(CUIExpandableButtonOptions.Expanded.hideTitleAndSubtitle)
-                        Text(".hideCloseButton").tag(CUIExpandableButtonOptions.Expanded.hideCloseButton)
-                        Text(".hideSeparator").tag(CUIExpandableButtonOptions.Expanded.hideSeparator)
-                        Text(".hideHeader").tag(CUIExpandableButtonOptions.Expanded.hideHeader)
-                        Text(".hideBackground").tag(CUIExpandableButtonOptions.Expanded.hideBackground)
-                    }
-                }
+                    TitledGroup("Title") {
+                        VStack {
+                            TextField("Title", text: $title)
+                                .padding(4)
+                                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
 
-                HStack {
-                    Text("Collapsed Options")
+                            HStack {
+                                FontPicker(label: "Title Font", font: $titleFont)
 
-                    Spacer()
-                    Picker(
-                        "Collapsed Options",
-                        selection: $collapsedOptions
-                    ) {
-                        Text(".none").tag(CUIExpandableButtonOptions.Collapsed.none)
-                        Text(".showTitle").tag(CUIExpandableButtonOptions.Collapsed.showTitle)
-                        Text(".showSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showSubtitle)
-                        Text(".showTitleAndSubtitle").tag(CUIExpandableButtonOptions.Collapsed.showTitleAndSubtitle)
-                        Text(".hideIcon").tag(CUIExpandableButtonOptions.Collapsed.hideIcon)
-                        Text(".showTitleAndSubtitleOnly").tag(CUIExpandableButtonOptions.Collapsed.showTitleAndSubtitleOnly)
-                        Text(".hideBackground").tag(CUIExpandableButtonOptions.Collapsed.hideBackground)
-                    }
-                }
-
-                HStack {
-                    Text("Title Font")
-
-                    Spacer()
-                    Picker(
-                        "Title Font",
-                        selection: $titleFont
-                    ) {
-                        Group {
-                            Text("Default").tag(nil as Font?)
-                            Text(".largeTitle").tag(Font.largeTitle as Font?)
-                            Text(".title").tag(Font.title as Font?)
-                            Text(".title2").tag(Font.title2 as Font?)
-                            Text(".title3").tag(Font.title3 as Font?)
-                            Text(".caption").tag(Font.caption as Font?)
-                        }
-                        Text(".caption2").tag(Font.caption2 as Font?)
-                        Text(".callout").tag(Font.callout as Font?)
-                        Text(".footnote").tag(Font.footnote as Font?)
-                        Text(".body").tag(Font.body as Font?)
-                        Text(".headline").tag(Font.headline as Font?)
-                        Text(".subheadline").tag(Font.subheadline as Font?)
-                    }
-                }
-
-                HStack {
-                    Text("Subtitle Font")
-
-                    Spacer()
-                    Picker(
-                        "Subtitle Font",
-                        selection: $subtitleFont
-                    ) {
-                        Group {
-                            Text("Default").tag(nil as Font?)
-                            Text(".largeTitle").tag(Font.largeTitle as Font?)
-                            Text(".title").tag(Font.title as Font?)
-                            Text(".title2").tag(Font.title2 as Font?)
-                            Text(".title3").tag(Font.title3 as Font?)
-                            Text(".caption").tag(Font.caption as Font?)
-                        }
-                        Text(".caption2").tag(Font.caption2 as Font?)
-                        Text(".callout").tag(Font.callout as Font?)
-                        Text(".footnote").tag(Font.footnote as Font?)
-                        Text(".body").tag(Font.body as Font?)
-                        Text(".headline").tag(Font.headline as Font?)
-                        Text(".subheadline").tag(Font.subheadline as Font?)
-                    }
-                }
-                HStack {
-                    Text("Background Color")
-
-                    Spacer()
-                    Picker(
-                        "Background Color",
-                        selection: $backgroundColor
-                    ) {
-                        Group {
-                            Text("Default").tag(nil as Color?)
-                            Text("Black").tag(Color.black as Color?)
-                            Text("White").tag(Color.white as Color?)
-                            Text("Red").tag(Color.red as Color?)
-                            Text("Green").tag(Color.green as Color?)
-                            Text("Cyan").tag(Color.cyan as Color?)
-                            Text("Yellow").tag(Color.yellow as Color?)
-                            Text("Purple").tag(Color.purple as Color?)
-                            Text("Orange").tag(Color.orange as Color?)
-                        }
-                        Group {
-                            Text("Black Tint").tag(Color.black.opacity(0.3) as Color?)
-                            Text("White Tint").tag(Color.white.opacity(0.3) as Color?)
-                            Text("Red Tint").tag(Color.red.opacity(0.2) as Color?)
-                            Text("Green Tint").tag(Color.green.opacity(0.2) as Color?)
-                            Text("Cyan Tint").tag(Color.cyan.opacity(0.2) as Color?)
-                            Text("Yellow Tint").tag(Color.yellow.opacity(0.2) as Color?)
-                            Text("Purple Tint").tag(Color.purple.opacity(0.2) as Color?)
-                            Text("Orange Tint").tag(Color.orange.opacity(0.2) as Color?)
+                                StatePicker(label: "Title State", state: $titleState)
+                            }
                         }
                     }
+
+                    TitledGroup("Subtitle") {
+                        VStack {
+                            TextField("Subtitle", text: $subtitle)
+                                .padding(4)
+                                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
+
+                            HStack {
+                                FontPicker(label: "Subtitle Font", font: $subtitleFont)
+
+                                StatePicker(label: "Subtitle State", state: $subtitleState)
+                            }
+                        }
+                    }
+
+                    TitledGroup("Content") {
+                        TextField("Content", text: $content)
+                            .padding(4)
+                            .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
+                    }
+
+                    TitledGroup("Icon") {
+                        HStack {
+                            Text("Icon Symbol")
+
+                            Spacer()
+
+                            Picker(
+                                "Icon",
+                                selection: $sfSymbolName
+                            ) {
+                                Group {
+                                    Text("bag.fill").tag("bag.fill")
+                                    Text("bell.fill").tag("bell.fill")
+                                    Text("cart.fill").tag("cart.fill")
+                                    Text("bookmark.fill").tag("bookmark.fill")
+                                    Text("doc.fill").tag("doc.fill")
+                                    Text("envelope.fill").tag("envelope.fill")
+                                    Text("exclamationmark.triangle.fill").tag("exclamationmark.triangle.fill")
+                                    Text("gearshape.fill").tag("gearshape.fill")
+                                }
+
+                                Group {
+                                    Text("list.triangle").tag("list.triangle")
+                                    Text("mappin").tag("mappin")
+                                    Text("note.text").tag("note.text")
+                                    Text("paperclip").tag("paperclip")
+                                    Text("paintbrush.pointed.fill").tag("paintbrush.pointed.fill")
+                                    Text("person.fill").tag("person.fill")
+                                    Text("printer.fill").tag("printer.fill")
+                                    Text("square.and.arrow.up").tag("square.and.arrow.up")
+                                }
+
+                                Group {
+                                    Text("star.fill").tag("star.fill")
+                                    Text("sun.max.fill").tag("sun.max.fill")
+                                    Text("terminal.fill").tag("terminal.fill")
+                                    Text("text.bubble.fill").tag("text.bubble.fill")
+                                    Text("waveform.path.ecg").tag("waveform.path.ecg")
+                                }
+                            }
+                        }
+
+                        HStack {
+                            Toggle("Hide Icon", isOn: $hideIcon)
+
+                            StatePicker(label: "Icon State", state: $hideIconState)
+                        }
+                    }
+
+                    TitledGroup("Header Only Options") {
+                        VStack {
+                            Toggle("Hide Header", isOn: $hideHeader)
+
+                            Toggle("Hide Close Button", isOn: $hideCloseButton)
+
+                            Toggle("Hide Separator", isOn: $hideSeparator)
+                        }
+                    }
+
+                    TitledGroup("Show/Hide Background") {
+                        HStack {
+                            Toggle("Hide Background", isOn: $hideBackground)
+
+                            StatePicker(label: "Background State", state: $hideBackgroundState)
+                        }
+                    }
+
+                    TitledGroup("Background Color") {
+                        HStack {
+                            ColorPicker("Background Color", selection: $backgroundColor)
+
+                            StatePicker(label: "Background Color State", state: $backgroundColorState)
+                        }
+                    }
+
+                    TitledGroup("Foreground Color") {
+                        ColorPicker("Foreground Color", selection: $foregroundColor)
+                    }
                 }
+                .padding()
             }
-            .padding()
-
-            .background(.thinMaterial)
+            .background(.ultraThinMaterial)
+            .frame(height: 348)
 
             HStack {
                 CUIExpandableButton(
@@ -330,12 +336,21 @@ struct ContentView: View {
         .animation(.easeInOut, value: expanded2)
         .animation(.easeInOut, value: expanded3)
         .animation(.easeInOut, value: expanded4)
+        .animation(.easeInOut, value: sfSymbolName)
+        .animation(.easeInOut, value: hideIcon)
+        .animation(.easeInOut, value: hideIconState)
         .animation(.easeInOut, value: title)
-        .animation(.easeInOut, value: subtitle)
-        .animation(.easeInOut, value: expandedOptions)
-        .animation(.easeInOut, value: collapsedOptions)
+        .animation(.easeInOut, value: titleState)
         .animation(.easeInOut, value: titleFont)
+        .animation(.easeInOut, value: subtitle)
+        .animation(.easeInOut, value: subtitleState)
         .animation(.easeInOut, value: subtitleFont)
+        .animation(.easeInOut, value: content)
+        .animation(.easeInOut, value: hideCloseButton)
+        .animation(.easeInOut, value: hideSeparator)
+        .animation(.easeInOut, value: hideHeader)
+        .animation(.easeInOut, value: backgroundColor)
+        .animation(.easeInOut, value: foregroundColor)
     }
 }
 
@@ -351,8 +366,8 @@ extension Image {
 }
 
 // FIXME: Have to comment these out these previews when I have just the package open, otherwise it breaks the package previews
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
