@@ -163,13 +163,21 @@ struct ContentView: View {
                 expanded3 = false
             }
             .hideIcon(hideIcon, forState: hideIconState)
-            .title(title, font: titleFont, forState: titleState)
-            .subtitle(subtitle, font: subtitleFont, forState: subtitleState)
+            .title(
+                title.count > 0 ? title : nil,
+                font: titleFont,
+                forState: title.count > 0 ? titleState : .any
+            )
+            .subtitle(
+                subtitle.count > 0 ? subtitle : nil,
+                font: subtitleFont,
+                forState: subtitle.count > 0 ?  subtitleState : .any
+            )
             .hideCloseButton(hideCloseButton)
             .hideSeparator(hideSeparator)
             .hideHeader(hideHeader)
             .hideBackground(hideBackground, forState: hideBackgroundState)
-            .backgroundColor(backgroundColor)
+            .backgroundColor(backgroundColor, forState: backgroundColorState)
             .foregroundColor(foregroundColor)
 
             Spacer()
