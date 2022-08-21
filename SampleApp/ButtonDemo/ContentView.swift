@@ -51,6 +51,8 @@ struct ContentView: View {
     var showAlert = false
 
     @State
+    var sfSymbolName = "gearshape.fill"
+    @State
     var hideIcon = false
     @State
     var hideIconState = CUIExpandableButtonState.any
@@ -149,7 +151,7 @@ struct ContentView: View {
 
             CUIExpandableButton(
                 expanded: $expanded4,
-                sfSymbolName: "tag.fill"
+                sfSymbolName: sfSymbolName
             ) {
                 Text(content)
                     .frame(width: 200)
@@ -222,6 +224,47 @@ struct ContentView: View {
 
                     Group {
                         HStack {
+                            Text("Icon Symbol")
+
+                            Spacer()
+
+                            Picker(
+                                "Icon",
+                                selection: $sfSymbolName
+                            ) {
+                                Group {
+                                    Text("bag.fill").tag("bag.fill")
+                                    Text("bell.fill").tag("bell.fill")
+                                    Text("cart.fill").tag("cart.fill")
+                                    Text("bookmark.fill").tag("bookmark.fill")
+                                    Text("doc.fill").tag("doc.fill")
+                                    Text("envelope.fill").tag("envelope.fill")
+                                    Text("exclamationmark.triangle.fill").tag("exclamationmark.triangle.fill")
+                                    Text("gearshape.fill").tag("gearshape.fill")
+                                }
+
+                                Group {
+                                    Text("list.triangle").tag("list.triangle")
+                                    Text("mappin").tag("mappin")
+                                    Text("note.text").tag("note.text")
+                                    Text("paperclip").tag("paperclip")
+                                    Text("paintbrush.pointed.fill").tag("paintbrush.pointed.fill")
+                                    Text("person.fill").tag("person.fill")
+                                    Text("printer.fill").tag("printer.fill")
+                                    Text("square.and.arrow.up").tag("square.and.arrow.up")
+                                }
+
+                                Group {
+                                    Text("star.fill").tag("star.fill")
+                                    Text("sun.max.fill").tag("sun.max.fill")
+                                    Text("terminal.fill").tag("terminal.fill")
+                                    Text("text.bubble.fill").tag("text.bubble.fill")
+                                    Text("waveform.path.ecg").tag("waveform.path.ecg")
+                                }
+                            }
+                        }
+
+                        HStack {
                             Toggle("Hide Icon", isOn: $hideIcon)
 
                             StatePicker(label: "Icon State", state: $hideIconState)
@@ -265,7 +308,7 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            .background(.thinMaterial)
+            .background(.ultraThinMaterial)
             .frame(height: 308)
 
             HStack {
@@ -298,6 +341,7 @@ struct ContentView: View {
         .animation(.easeInOut, value: expanded2)
         .animation(.easeInOut, value: expanded3)
         .animation(.easeInOut, value: expanded4)
+        .animation(.easeInOut, value: sfSymbolName)
         .animation(.easeInOut, value: hideIcon)
         .animation(.easeInOut, value: hideIconState)
         .animation(.easeInOut, value: title)

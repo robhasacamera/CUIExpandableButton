@@ -35,41 +35,11 @@ struct ContentView: View {
 }
 ```
 
-## Actions
-
-You can add an action that's triggered when the button is expanded or collapsed using the built in controls.
-
-```swift
-CUIExpandableButton(
-    expanded: $expanded,
-    sfSymbolName: "bell.fill",
-) {
-    Text("Additional actions can be performed when expanding/collpasing")
-        .frame(width: 200)
-        .padding(8)
-} action: {
-    print("Button was pressed")
-}
-```
-
-When providing an action, you can choose not to provide content for the expanded state. This is useful if you want non-expanding buttons that match the style of expanding buttons.
-
-```swift
-CUIExpandableButton(
-    expanded: $expanded,
-    sfSymbolName: "bell.fill",
-) {
-    print("Button was pressed")
-}
-```
-
 ## Customization
 
 ### Icon
 
-<!--TODO: Add Screenshot/GIF-->
-
-If you'd like more control, you can provide a custom icon for the button instead.
+If you'd like more control over the look of the button, you can provide a custom icon for the button instead.
 
 ```swift
 CUIExpandableButton(
@@ -105,6 +75,34 @@ CUIExpandableButton(
     Text("Button that hides icon only when expanded.")
 }
 .hideIcon(forState: .expanded)
+```
+
+### Actions
+
+You can add an action that's triggered when the button is expanded or collapsed using the built in controls.
+
+```swift
+CUIExpandableButton(
+    expanded: $expanded,
+    sfSymbolName: "bell.fill",
+) {
+    Text("Additional actions can be performed when expanding/collpasing")
+        .frame(width: 200)
+        .padding(8)
+} action: {
+    print("Button was pressed")
+}
+```
+
+When providing an action, you can choose not to provide content for the expanded state. This is useful if you want non-expanding buttons that match the style of expanding buttons.
+
+```swift
+CUIExpandableButton(
+    expanded: $expanded,
+    sfSymbolName: "bell.fill",
+) {
+    print("Button was pressed")
+}
 ```
 
 ### Title & Subtitle
