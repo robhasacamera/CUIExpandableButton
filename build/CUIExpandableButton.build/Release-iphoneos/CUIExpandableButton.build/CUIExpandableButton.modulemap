@@ -1,4 +1,0 @@
-module CUIExpandableButton {
-header "CUIExpandableButton-Swift.h"
-export *
-}
