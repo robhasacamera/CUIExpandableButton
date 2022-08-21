@@ -176,13 +176,11 @@ struct ContentView: View {
 
             ScrollView {
                 VStack {
-                    Group {
+                    TitledGroup("Settings") {
                         Toggle("Expanded", isOn: $expanded4)
-
-                        CUISeparator()
                     }
 
-                    Group {
+                    TitledGroup("Title") {
                         VStack {
                             TextField("Title", text: $title)
                                 .padding(4)
@@ -194,11 +192,9 @@ struct ContentView: View {
                                 StatePicker(label: "Title State", state: $titleState)
                             }
                         }
-
-                        CUISeparator()
                     }
 
-                    Group {
+                    TitledGroup("Subtitle") {
                         VStack {
                             TextField("Subtitle", text: $subtitle)
                                 .padding(4)
@@ -210,19 +206,15 @@ struct ContentView: View {
                                 StatePicker(label: "Subtitle State", state: $subtitleState)
                             }
                         }
-
-                        CUISeparator()
                     }
 
-                    Group {
+                    TitledGroup("Content") {
                         TextField("Content", text: $content)
                             .padding(4)
                             .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
-
-                        CUISeparator()
                     }
 
-                    Group {
+                    TitledGroup("Icon") {
                         HStack {
                             Text("Icon Symbol")
 
@@ -271,45 +263,40 @@ struct ContentView: View {
                         }
                     }
 
-                    CUISeparator()
+                    TitledGroup("Header Only Options") {
+                        VStack {
+                            Toggle("Hide Header", isOn: $hideHeader)
 
-                    VStack {
-                        Toggle("Hide Header", isOn: $hideHeader)
-                        CUISeparator()
+                            Toggle("Hide Close Button", isOn: $hideCloseButton)
 
-                        Toggle("Hide Close Button", isOn: $hideCloseButton)
-                        CUISeparator()
-
-                        Toggle("Hide Separator", isOn: $hideSeparator)
-                        CUISeparator()
+                            Toggle("Hide Separator", isOn: $hideSeparator)
+                        }
                     }
 
-                    Group {
+                    TitledGroup("Show/Hide Background") {
                         HStack {
                             Toggle("Hide Background", isOn: $hideBackground)
 
                             StatePicker(label: "Background State", state: $hideBackgroundState)
                         }
-
-                        CUISeparator()
                     }
 
-                    Group {
+                    TitledGroup("Background Color") {
                         HStack {
                             ColorPicker("Background Color", selection: $backgroundColor)
 
                             StatePicker(label: "Background Color State", state: $backgroundColorState)
                         }
-
-                        CUISeparator()
                     }
 
-                    ColorPicker("Forground Color", selection: $foregroundColor)
+                    TitledGroup("Foreground Color") {
+                        ColorPicker("Foreground Color", selection: $foregroundColor)
+                    }
                 }
                 .padding()
             }
             .background(.ultraThinMaterial)
-            .frame(height: 308)
+            .frame(height: 348)
 
             HStack {
                 CUIExpandableButton(
