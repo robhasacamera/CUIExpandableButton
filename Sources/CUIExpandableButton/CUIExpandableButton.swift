@@ -480,7 +480,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             }
 
             if nonEmptyViewExpanded && !hideSeparator{
-                Separator(style: .horizontal)
+                CUISeparator(style: .horizontal)
             }
         }
         .frame(

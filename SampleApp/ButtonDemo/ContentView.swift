@@ -172,61 +172,93 @@ struct ContentView: View {
 
             Spacer()
 
-
             ScrollView {
                 VStack {
-                    Toggle("Expanded", isOn: $expanded4)
+                    Group {
+                        Toggle("Expanded", isOn: $expanded4)
 
-                    VStack {
-                        TextField("Title", text: $title)
+                        CUISeparator()
+                    }
+
+                    Group {
+                        VStack {
+                            TextField("Title", text: $title)
+                                .padding(4)
+                                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
+
+                            HStack {
+                                FontPicker(label: "Title Font", font: $titleFont)
+
+                                StatePicker(label: "Title State", state: $titleState)
+                            }
+                        }
+
+                        CUISeparator()
+                    }
+
+                    Group {
+                        VStack {
+                            TextField("Subtitle", text: $subtitle)
+                                .padding(4)
+                                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
+
+                            HStack {
+                                FontPicker(label: "Subtitle Font", font: $subtitleFont)
+
+                                StatePicker(label: "Subtitle State", state: $subtitleState)
+                            }
+                        }
+
+                        CUISeparator()
+                    }
+
+                    Group {
+                        TextField("Content", text: $content)
                             .padding(4)
                             .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
 
-                        HStack {
-                            FontPicker(label: "Title Font", font: $titleFont)
+                        CUISeparator()
+                    }
 
-                            StatePicker(label: "Title State", state: $titleState)
+                    Group {
+                        HStack {
+                            Toggle("Hide Icon", isOn: $hideIcon)
+
+                            StatePicker(label: "Icon State", state: $hideIconState)
                         }
                     }
 
-                    VStack {
-                        TextField("Subtitle", text: $subtitle)
-                            .padding(4)
-                            .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
-
-                        HStack {
-                            FontPicker(label: "Subtitle Font", font: $subtitleFont)
-
-                            StatePicker(label: "Subtitle State", state: $subtitleState)
-                        }
-                    }
-
-                    TextField("Content", text: $content)
-                        .padding(4)
-                        .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
-
-                    HStack {
-                        Toggle("Hide Icon", isOn: $hideIcon)
-
-                        StatePicker(label: "Icon State", state: $hideIconState)
-                    }
+                    CUISeparator()
 
                     VStack {
                         Toggle("Hide Header", isOn: $hideHeader)
+                        CUISeparator()
+
                         Toggle("Hide Close Button", isOn: $hideCloseButton)
+                        CUISeparator()
+
                         Toggle("Hide Separator", isOn: $hideSeparator)
+                        CUISeparator()
                     }
 
-                    HStack {
-                        Toggle("Hide Background", isOn: $hideBackground)
+                    Group {
+                        HStack {
+                            Toggle("Hide Background", isOn: $hideBackground)
 
-                        StatePicker(label: "Background State", state: $hideBackgroundState)
+                            StatePicker(label: "Background State", state: $hideBackgroundState)
+                        }
+
+                        CUISeparator()
                     }
 
-                    HStack {
-                        ColorPicker("Background Color", selection: $backgroundColor)
+                    Group {
+                        HStack {
+                            ColorPicker("Background Color", selection: $backgroundColor)
 
-                        StatePicker(label: "Background Color State", state: $backgroundColorState)
+                            StatePicker(label: "Background Color State", state: $backgroundColorState)
+                        }
+
+                        CUISeparator()
                     }
 
                     ColorPicker("Forground Color", selection: $foregroundColor)
@@ -234,7 +266,7 @@ struct ContentView: View {
                 .padding()
             }
             .background(.thinMaterial)
-            .frame(height: 275)
+            .frame(height: 308)
 
             HStack {
                 CUIExpandableButton(

@@ -26,17 +26,21 @@
 
 import SwiftUI
 
-struct Separator: View {
-    enum Style: Identifiable, CaseIterable {
+public struct CUISeparator: View {
+    public enum Style: Identifiable, CaseIterable {
         case horizontal
         case vertical
 
-        var id: Style { self }
+        public var id: Style { self }
     }
 
-    var style: Style = .horizontal
+    public var style: Style = .horizontal
 
-    var body: some View {
+    public init(style: CUISeparator.Style = .horizontal) {
+        self.style = style
+    }
+
+    public var body: some View {
         Rectangle()
             .frame(width: style == .vertical ? 1 : nil,
                    height: style == .horizontal ? 1 : nil)
@@ -45,14 +49,14 @@ struct Separator: View {
 
 struct Separator_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(Separator.Style.allCases) { style in
+        ForEach(CUISeparator.Style.allCases) { style in
             CenteredPreview {
-                Separator(style: style)
+                CUISeparator(style: style)
             }
         }
-        ForEach(Separator.Style.allCases) { style in
+        ForEach(CUISeparator.Style.allCases) { style in
             CenteredPreview {
-                Separator(style: style)
+                CUISeparator(style: style)
                     .foregroundColor(.yellow)
             }
         }
