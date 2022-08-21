@@ -29,6 +29,7 @@ import SnapshotTesting
 import SwiftUI
 import XCTest
 
+#if os(iOS)
 final class CUIExpandableButtonTests: XCTestCase {
     var mockTitle = "Marty"
     var mockSubtitle = "McFly"
@@ -719,3 +720,4 @@ extension CUIExpandableButton {
         self.foregroundColor(.black)
     }
 }
+#endif

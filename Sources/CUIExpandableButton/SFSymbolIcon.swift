@@ -28,7 +28,7 @@ import SwiftUI
 
 import SwiftUI
 
-public struct SFSymbolIcon: View {var iconName: String
+public struct SFSymbolIcon: View { var iconName: String
     public var body: some View {
         Image(systemName: iconName)
             .renderingMode(.template)
@@ -37,14 +37,22 @@ public struct SFSymbolIcon: View {var iconName: String
 }
 
 struct SFSymbolIcon_Previews: PreviewProvider {
+    static var color: Color {
+        #if os(iOS)
+        Color(.systemBackground)
+        #else
+        Color(.white)
+        #endif
+    }
+
     static var previews: some View {
-        CenteredPreview{
+        CenteredPreview {
             VStack {
                 SFSymbolIcon(iconName: "rectangle.and.pencil.and.ellipsis")
-                    .background(Color(.systemBackground))
+                    .background(color)
                 SFSymbolIcon(iconName: "gearshape.fill")
                     .foregroundColor(.yellow)
-                    .background(Color(.systemBackground))
+                    .background(color)
             }
         }
     }

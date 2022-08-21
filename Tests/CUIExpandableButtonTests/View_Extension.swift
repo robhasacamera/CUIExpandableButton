@@ -26,8 +26,10 @@
 
 import SwiftUI
 
+#if os(iOS)
 extension View {
     var viewController: UIViewController {
         return UIHostingController(rootView: self)
     }
 }
+#endif

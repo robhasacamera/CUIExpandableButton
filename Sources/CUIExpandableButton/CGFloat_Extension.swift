@@ -24,7 +24,7 @@
 // SOFTWARE.
 //
 
-import UIKit
+import CoreGraphics
 
 extension CGFloat {
     static let standardSpacing: CGFloat = 8
