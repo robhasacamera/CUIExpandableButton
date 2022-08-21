@@ -56,12 +56,10 @@ CUIExpandableButton(
 
 Additionally, you can hide the icon altogether, or choose to hide the icon only for a specific state. When hiding the icon for the collapsed state, it's a good idea to show a title to prevent an empty button in collapsed state, though it is possible for the button to empty.
 
-<!--TODO: Add side by side gifs here-->
-
 ```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "bell.fill",
+    sfSymbolName: "bell.fill"
 ) {
     Text("Button with hidden icon")
         .frame(width: 200)
@@ -72,7 +70,7 @@ CUIExpandableButton(
 
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "bell.fill",
+    sfSymbolName: "bell.fill"
 ) {
     Text("Button that hides icon when expanded.")
         .frame(width: 200)
@@ -89,7 +87,7 @@ You can add an action that's triggered when the button is expanded or collapsed 
 ```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "bell.fill",
+    sfSymbolName: "bell.fill"
 ) {
     Text("Additional actions can be performed when expanding/collpasing")
         .frame(width: 200)
@@ -104,7 +102,7 @@ When providing an action, you can choose not to provide content for the expanded
 ```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "bell.fill",
+    sfSymbolName: "bell.fill"
 ) {
     print("Button was pressed")
 }
@@ -112,14 +110,12 @@ CUIExpandableButton(
 
 ### Title & Subtitle
 
-The button provides options to show a title and subtitle. These can also be enabled only for specific states of the button.
-
-<!--TODO: Add side by side gifs here-->
+The button provides options to show a title and subtitle. 
 
 ```Swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "envelope.fill",
+    sfSymbolName: "envelope.fill"
 ) {
     Text("My content")
         .frame(width: 200)
@@ -127,17 +123,20 @@ CUIExpandableButton(
 }
 .title("Inbox")
 .subtitle("5 unread messages")
+```
 
+These can also be enabled only for specific states of the button.
+
+```swift
 CUIExpandableButton(
-    expanded: $expanded,
-    sfSymbolName: "mappin",
+    expanded: $expanded4,
+    sfSymbolName: "mappin"
 ) {
     Text("My content")
         .frame(width: 200)
         .padding(8)
 }
-.title("Visit San Francisco", forState: .collapsed)
-.title("San Francisco", forState: .expanded)
+.title("Visit SF!", forState: .collapsed)
 .subtitle("Top attractions", forState: .expanded)
 ```
 
@@ -145,37 +144,20 @@ CUIExpandableButton(
 
 There are additional customization options for customizing the header when the button is expanded. 
 
-<table>
-<tr>
-<td> Hide Header </td> <td> Hide Close Button </td> <td> Hide Seperator </td>
-</tr>
-
-<tr>
-<td> <!-- Add Screenshot--> </td> <td> <!-- Add Screenshot--> </td> <td> <!-- Add Screenshot--> </td>
-</tr>
-
-<tr>
-<td>
-
 ```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "exclamationmark.triangle.fill",
+    sfSymbolName: "exclamationmark.triangle.fill"
 ) {
     Text("Take up the full space when expanded.")
         .frame(width: 200)
         .padding(8)
 )
 .hideHeader()
-```
 
-</td>
-<td>
-
-```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "exclamationmark.triangle.fill",
+    sfSymbolName: "exclamationmark.triangle.fill"
 ) {
     Text("Hide the separator.")
         .frame(width: 200)
@@ -183,15 +165,10 @@ CUIExpandableButton(
 )
 .hideSeperator()
 .title("Alert!", forState: .expanded)
-```
 
-</td>
-<td>
-
-```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "exclamationmark.triangle.fill",
+    sfSymbolName: "exclamationmark.triangle.fill"
 ) {
     Text("Hide the close button to control how it's dismissed yourself.")
         .frame(width: 200)
@@ -202,19 +179,14 @@ CUIExpandableButton(
 .subtitle("You need to take action!")
 ```
 
-</td>
-</tr>
-</table>
-
 ### Custom Color
 
-<!--TODO: Add Screenshot-->
 You can opt to add a color background instead of the default material background. However, the material is also rendered beneath. This allows a transparent background to be added that results in a tinted effect.
 
 ```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "doc.fill",
+    sfSymbolName: "doc.fill"
 ) {
     Text("Tinting the background can help the button fit into your UX design.")
         .frame(width: 200)
@@ -223,13 +195,12 @@ CUIExpandableButton(
 .backgroundColor(.blue.opacity(0.15))
 ```
 
-<!--TODO: Add screenshot-->
 The standard foreground color modifier can be applied as well to color the elements of the button.
 
 ```swift
 CUIExpandableButton(
     expanded: $expanded,
-    sfSymbolName: "doc.fill",
+    sfSymbolName: "doc.fill"
 ) {
     Text("You can use other standard modifiers too!")
         .frame(width: 200)
