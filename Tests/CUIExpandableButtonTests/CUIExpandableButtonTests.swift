@@ -712,6 +712,36 @@ final class CUIExpandableButtonTests: XCTestCase {
             .prepForTest
         }
     }
+
+    func testButtonWithCustomCornerRadiusCollapsed() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(false),
+                sfSymbolName: "gearshape.fill"
+            ) {
+                mockContent
+            }
+            .standardLayout(title: mockTitle, subtitle: mockSubtitle)
+            .cornerRadius(2, forState: .collapsed)
+            .prepForTest
+        }
+    }
+
+    func testButtonWithCustomCornerRadiusExpanded() throws {
+        // isRecording = true
+        captureDynamicSizeSnapshots {
+            CUIExpandableButton(
+                expanded: .constant(true),
+                sfSymbolName: "gearshape.fill"
+            ) {
+                mockContent
+            }
+            .standardLayout(title: mockTitle, subtitle: mockSubtitle)
+            .cornerRadius(2, forState: .expanded)
+            .prepForTest
+        }
+    }
 }
 
 extension CUIExpandableButton {
