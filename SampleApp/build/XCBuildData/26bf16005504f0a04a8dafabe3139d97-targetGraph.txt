@@ -1,6 +1,0 @@
-Target dependency graph (3 targets)
-CUIExpandableButton in CUIExpandableButton, no dependencies
-CUIExpandableButton in CUIExpandableButton, depends on:
-CUIExpandableButton in CUIExpandableButton (explicit)
-ButtonDemo in ButtonDemo, depends on:
-CUIExpandableButton in CUIExpandableButton (explicit)

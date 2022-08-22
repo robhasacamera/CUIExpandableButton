@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)"
-options: "99844030ad3a4758f7399ffb7b111c5d72b2d9438296b4ba4b2f0a8039f93a2f"
-build_start_time: [1658989481, 185464859]
-build_end_time: [1658989481, 266974925]
-inputs:
-  "/Users/robertcole/Dev/CUIExpandableButton/SampleApp/ButtonDemo/ButtonDemoApp.swift": !dirty [1658702394, 34231901]
-  "/Users/robertcole/Dev/CUIExpandableButton/SampleApp/ButtonDemo/ContentView.swift": !dirty [1658988748, 478573560]
