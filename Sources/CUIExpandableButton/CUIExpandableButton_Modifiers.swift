@@ -158,6 +158,43 @@ public extension CUIExpandableButton {
         return newSelf
     }
 
+    /// Sets the corner radius of the button when collapsed/expanded.
+    ///
+    /// When collapsed, the max value is always capped at width / 2.0. Unless the height is less than
+    /// the width, in which case it's max value is height / 2.0. Any value greater than this will be ignored.
+    /// - Parameters:
+    ///   - radius: The radius for the corners of the button.
+    ///   - state: The state to use the provided corner radius.
+    /// - Returns: Button that has corners rounded at the provided radius.
+    func cornerRadius(
+        _ radius: CGFloat,
+        forState state: CUIExpandableButtonState = .any
+    ) -> CUIExpandableButton {
+        var newSelf = self
+
+        newSelf._cornerRadius.setValue(radius, forState: state)
+
+        return newSelf
+    }
+
+    /// Sets the material of the background of the button.
+    ///
+    /// A nil value will hide the material background altogether, however background color will still be applied.
+    /// - Parameters:
+    ///   - material: The material to use for the background
+    ///   - state: The state to use the provided material.
+    /// - Returns: Button that has a background using the material provided.
+    func backgroundMaterial(
+        _ material: Material,
+        forState state: CUIExpandableButtonState = .any
+    ) -> CUIExpandableButton {
+        var newSelf = self
+
+        newSelf._backgroundMaterial.setValue(material, forState: state)
+
+        return newSelf
+    }
+
     /// Hides the separator displayed in the header when the button is expanded.
     /// - Parameter hideSeparator: Indicates whether to hide the separator (`true`) or show the separator (`false`).
     /// - Returns: Button that hides/shows the separator.

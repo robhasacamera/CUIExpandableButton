@@ -223,11 +223,12 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     var _backgroundColor: SplitVar<Color>
     var _hideBackground: SplitVar<Bool>
     var _hideIcon: SplitVar<Bool>
+    var _cornerRadius: SplitVar<CGFloat>
+    var _backgroundMaterial: SplitVar<Material>
     // These are only displayed when expanded, so we only need to set one value
     var _hideSeparator = false
     var _hideCloseButton = false
     var _hideHeader = false
-
 
     // MARK: Scaled Metrics
 
@@ -359,6 +360,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         self._backgroundColor = SplitVar(expanded: _expanded, nil as Color?)
         self._hideBackground = SplitVar(expanded: _expanded, false)
         self._hideIcon = SplitVar(expanded: _expanded, false)
+        self._cornerRadius = SplitVar(expanded: _expanded, nil as CGFloat?)
+        self._backgroundMaterial = SplitVar(expanded: _expanded, .ultraThinMaterial)
     }
 
     var iconView: some View {
@@ -479,7 +482,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 }
             }
 
-            if nonEmptyViewExpanded && !hideSeparator{
+            if nonEmptyViewExpanded && !hideSeparator {
                 CUISeparator(style: .horizontal)
             }
         }
@@ -514,11 +517,25 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         .optionalBackground(
             hideBackground
                 ? nil as Material?
-                : .ultraThinMaterial
+                : _backgroundMaterial.value as Material?
         )
-        .clipShape(RoundedRectangle(cornerRadius: nonEmptyViewExpanded ? menuCornerRadius : iconMinLength / 2))
+        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
         .animation(.spring(), value: expanded)
         .fixedSize()
+    }
+
+    var cornerRadius: CGFloat {
+        if let radius = _cornerRadius.value  {
+            if !nonEmptyViewExpanded {
+                return min(iconMinLength / 2, radius)
+            }
+
+            return radius
+        }
+
+        return nonEmptyViewExpanded
+            ? menuCornerRadius
+            : iconMinLength / 2
     }
 }
 
