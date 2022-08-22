@@ -221,11 +221,9 @@ CUIExpandableButton supports Swift Package Manager. To use it the following to y
 
 ```
 dependencies: [
-    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.11.1")
+    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.12.0")
 ],
 ```
-
-Support for CocoaPods and Carthage are being considered for future releases.
 
 ## Sample Project
 
@@ -233,7 +231,7 @@ A sample project, `ButtonDemo.xcodeproj`, can be found in the `SampleApp` folder
 
 ## Future Plans
 
-Below are some of the current limitations for CUIExpandableButton. These are being considered for future releases:
-- Background corner radius customization
-- Other backgrounds materials
-- Hiding the Material background
+1. Support for CocoaPods and Carthage are being considered for future releases.
+2. More test coverage and test types.
+3. Customizations specific for Mac and Catalyst.
+4. Extracting some other useful views into their own packages.
