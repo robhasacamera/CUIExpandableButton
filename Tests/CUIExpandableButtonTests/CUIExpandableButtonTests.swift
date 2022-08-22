@@ -723,7 +723,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
-            .cornerRadius(2, forState: .collapsed)
+            .buttonCornerRadius(2, forState: .collapsed)
             .prepForTest
         }
     }
@@ -738,7 +738,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
-            .cornerRadius(2, forState: .expanded)
+            .buttonCornerRadius(2, forState: .expanded)
             .prepForTest
         }
     }

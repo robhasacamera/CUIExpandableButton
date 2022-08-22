@@ -53,6 +53,8 @@ public extension CUIExpandableButton {
             .hideSeparator(false)
             .hideCloseButton(false)
             .hideHeader(false)
+            .backgroundMaterial(.ultraThinMaterial)
+            .buttonCornerRadius(nil)
     }
 
     /// Sets the title to display for the button.
@@ -163,11 +165,11 @@ public extension CUIExpandableButton {
     /// When collapsed, the max value is always capped at width / 2.0. Unless the height is less than
     /// the width, in which case it's max value is height / 2.0. Any value greater than this will be ignored.
     /// - Parameters:
-    ///   - radius: The radius for the corners of the button.
+    ///   - radius: The radius for the corners of the button. A value of `nil` will use the default value instead.
     ///   - state: The state to use the provided corner radius.
     /// - Returns: Button that has corners rounded at the provided radius.
-    func cornerRadius(
-        _ radius: CGFloat,
+    func buttonCornerRadius(
+        _ radius: CGFloat?,
         forState state: CUIExpandableButtonState = .any
     ) -> CUIExpandableButton {
         var newSelf = self
@@ -185,7 +187,7 @@ public extension CUIExpandableButton {
     ///   - state: The state to use the provided material.
     /// - Returns: Button that has a background using the material provided.
     func backgroundMaterial(
-        _ material: Material,
+        _ material: Material?,
         forState state: CUIExpandableButtonState = .any
     ) -> CUIExpandableButton {
         var newSelf = self
