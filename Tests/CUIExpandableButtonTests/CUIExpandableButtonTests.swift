@@ -116,11 +116,12 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .title(mockTitle)
-            .hideIcon(forState: .expanded)
+            .hideIcon()
             .prepForTest
         }
     }
 
+    // FIXME: Think it's time to remove this test
     func testButtonWithSFSymbolExpandedHiddenTitle() throws {
         // isRecording = true
         captureDynamicSizeSnapshots {
@@ -130,7 +131,6 @@ final class CUIExpandableButtonTests: XCTestCase {
             ) {
                 mockContent
             }
-            .title(mockTitle, forState: .collapsed)
             .prepForTest
         }
     }
@@ -189,7 +189,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .title("Did you get that Marty?")
-            .hideIcon(forState: .expanded)
+            .hideIcon()
             .hideCloseButton()
             .prepForTest
         }
@@ -261,11 +261,12 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .title(mockTitle)
-            .hideIcon(forState: .expanded)
+            .hideIcon()
             .prepForTest
         }
     }
 
+    // FIXME: Remove
     func testButtonWithCustomIconExpandedWithHiddenTitle() throws {
         // isRecording = true
         captureDynamicSizeSnapshots {
@@ -276,7 +277,6 @@ final class CUIExpandableButtonTests: XCTestCase {
             } content: {
                 mockContent
             }
-            .title(mockTitle, forState: .collapsed)
             .prepForTest
         }
     }
@@ -338,7 +338,7 @@ final class CUIExpandableButtonTests: XCTestCase {
             } content: {
                 mockContent
             }
-            .hideIcon(forState: .expanded)
+            .hideIcon()
             .hideCloseButton()
             .title("Did you get that Marty?")
             .prepForTest
@@ -385,7 +385,6 @@ final class CUIExpandableButtonTests: XCTestCase {
             } content: {
                 mockContent
             }
-            .title(mockTitle, forState: .expanded)
             .prepForTest
         }
     }
@@ -415,7 +414,6 @@ final class CUIExpandableButtonTests: XCTestCase {
             } content: {
                 mockContent
             }
-            .title(mockTitle, forState: .expanded)
             .prepForTest
         }
     }
@@ -445,7 +443,6 @@ final class CUIExpandableButtonTests: XCTestCase {
             } content: {
                 mockContent
             }
-            .title(mockTitle, forState: .expanded)
             .prepForTest
         }
     }
@@ -535,7 +532,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
-            .hideIcon(forState: .expanded)
+            .hideIcon()
             .prepForTest
         }
     }
@@ -551,7 +548,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .subtitle(mockSubtitle)
-            .hideIcon(forState: .expanded)
+            .hideIcon()
             .prepForTest
         }
     }
@@ -583,7 +580,6 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .title(mockTitle)
-            .subtitle(mockSubtitle, forState: .expanded)
             .prepForTest
         }
     }
@@ -598,7 +594,6 @@ final class CUIExpandableButtonTests: XCTestCase {
             } content: {
                 mockContent
             }
-            .title(mockTitle, forState: .expanded)
             .subtitle(mockSubtitle)
             .prepForTest
         }
@@ -662,7 +657,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
-            .hideIcon(forState: .collapsed)
+            .hideIcon()
             .prepForTest
         }
     }
@@ -678,7 +673,7 @@ final class CUIExpandableButtonTests: XCTestCase {
             }
             .title(mockTitle)
             .subtitle(mockSubtitle)
-            .hideIcon(forState: .collapsed)
+            .hideIcon()
             .prepForTest
         }
     }
@@ -693,7 +688,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
-            .hideBackground(true, forState: .collapsed)
+            .hideBackground(true)
             .prepForTest
         }
     }
@@ -708,7 +703,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
-            .hideBackground(true, forState: .expanded)
+            .hideBackground(true)
             .prepForTest
         }
     }
@@ -723,7 +718,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
-            .buttonCornerRadius(2, forState: .collapsed)
+            .buttonCornerRadius(2)
             .prepForTest
         }
     }
@@ -738,7 +733,7 @@ final class CUIExpandableButtonTests: XCTestCase {
                 mockContent
             }
             .standardLayout(title: mockTitle, subtitle: mockSubtitle)
-            .buttonCornerRadius(2, forState: .expanded)
+            .buttonCornerRadius(2)
             .prepForTest
         }
     }

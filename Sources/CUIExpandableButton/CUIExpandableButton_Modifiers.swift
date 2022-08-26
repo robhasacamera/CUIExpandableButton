@@ -43,17 +43,15 @@ public extension CUIExpandableButton {
         subtitle: String?
     ) -> CUIExpandableButton {
         self
-            .title(title, forState: .expanded)
-            .title(nil, forState: .collapsed)
-            .subtitle(subtitle, forState: .expanded)
-            .subtitle(nil, forState: .collapsed)
+            .title(expanded ? title : nil)
+            .subtitle(expanded ? subtitle : nil)
             .backgroundColor(nil)
             .hideBackground(false)
             .hideIcon(false)
             .hideSeparator(false)
             .hideCloseButton(false)
             .hideHeader(false)
-            .backgroundMaterial(.ultraThinMaterial)
+            .backgroundMaterial(nil)
             .buttonCornerRadius(nil)
     }
 
@@ -73,8 +71,8 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._title.setValue(title, forState: state)
-        newSelf._titleFont.setValue(font, forState: state)
+        newSelf._title = title
+        newSelf._titleFont = font
 
         return newSelf
     }
@@ -95,8 +93,8 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._subtitle.setValue(subtitle, forState: state)
-        newSelf._subtitleFont.setValue(font, forState: state)
+        newSelf._subtitle = subtitle
+        newSelf._subtitleFont = font
 
         return newSelf
     }
@@ -116,7 +114,7 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._backgroundColor.setValue(color, forState: state)
+        newSelf._backgroundColor = color
 
         return newSelf
     }
@@ -137,7 +135,7 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._hideBackground.setValue(hideBackground, forState: state)
+        newSelf._hideBackground = hideBackground
 
         return newSelf
     }
@@ -155,7 +153,7 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._hideIcon.setValue(hideIcon, forState: state)
+        newSelf._hideIcon = hideIcon
 
         return newSelf
     }
@@ -174,7 +172,7 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._cornerRadius.setValue(radius, forState: state)
+        newSelf._cornerRadius = radius
 
         return newSelf
     }
@@ -192,7 +190,7 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._backgroundMaterial.setValue(material, forState: state)
+        newSelf._backgroundMaterial = material
 
         return newSelf
     }

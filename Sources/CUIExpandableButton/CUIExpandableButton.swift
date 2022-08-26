@@ -217,16 +217,16 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     let content: Content
     let action: Action?
 
-    var _title: SplitVar<String>
-    var _titleFont: SplitVar<Font>
-    var _subtitle: SplitVar<String>
-    var _subtitleFont: SplitVar<Font>
-    var _backgroundColor: SplitVar<Color>
-    var _hideBackground: SplitVar<Bool>
-    var _hideIcon: SplitVar<Bool>
-    var _cornerRadius: SplitVar<CGFloat>
-    var _backgroundMaterial: SplitVar<Material>
-    // These are only displayed when expanded, so we only need to set one value
+    var _title: String? = nil
+    var _titleFont: Font? = nil
+    var _subtitle: String? = nil
+    var _subtitleFont: Font? = nil
+    var _backgroundColor: Color? = nil
+    var _cornerRadius: CGFloat? = nil
+    var _backgroundMaterial: Material? = nil
+    var _hideBackground: Bool = false
+    var _hideIcon: Bool = false
+    // These are only displayed when expanded
     var _hideSeparator = false
     var _hideCloseButton = false
     var _hideHeader = false
@@ -266,7 +266,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             return false
         }
 
-        guard let title = _title.value, !title.isEmpty else {
+        guard let title = _title, !title.isEmpty else {
             return false
         }
 
@@ -278,19 +278,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             return false
         }
 
-        guard let subtitle = _subtitle.value, !subtitle.isEmpty else {
+        guard let subtitle = _subtitle, !subtitle.isEmpty else {
             return false
         }
 
         return true
-    }
-
-    var hideBackground: Bool {
-        guard let hideBackground = _hideBackground.value else {
-            return false
-        }
-
-        return hideBackground
     }
 
     var hideIcon: Bool {
@@ -298,11 +290,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
             return true
         }
 
-        guard let hideIcon = _hideIcon.value else {
-            return false
-        }
-
-        return hideIcon
+        return _hideIcon
     }
 
     var hideSeparator: Bool {
@@ -322,10 +310,10 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var backgroundColor: Color? {
-        hideBackground
+        _hideBackground
             ? nil
             : (
-                _backgroundColor.value ?? (
+                _backgroundColor ?? (
                     isRunningUnitTests()
                         ? .gray
                         : .clear
@@ -354,15 +342,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         self.icon = icon()
         self.content = content()
         self.action = action
-        self._title = SplitVar(expanded: _expanded, nil as String?)
-        self._titleFont = SplitVar(expanded: _expanded, nil as Font?)
-        self._subtitle = SplitVar(expanded: _expanded, nil as String?)
-        self._subtitleFont = SplitVar(expanded: _expanded, nil as Font?)
-        self._backgroundColor = SplitVar(expanded: _expanded, nil as Color?)
-        self._hideBackground = SplitVar(expanded: _expanded, false)
-        self._hideIcon = SplitVar(expanded: _expanded, false)
-        self._cornerRadius = SplitVar(expanded: _expanded, nil as CGFloat?)
-        self._backgroundMaterial = SplitVar(expanded: _expanded, .ultraThinMaterial)
     }
 
     var iconView: some View {
@@ -375,15 +354,15 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var titleAndSubtitle: some View {
         VStack(alignment: .leading) {
-            if let title = _title.value {
+            if let title = _title {
                 Text(title)
-                    .font(_titleFont.value ?? .headline)
+                    .font(_titleFont ?? .headline)
                     .background(DEBUG_LAYOUT ? .red.tint : .clear)
                     .matchedGeometryEffect(id: "title", in: animation)
             }
-            if let subtitle = _subtitle.value {
+            if let subtitle = _subtitle {
                 Text(subtitle)
-                    .font(_subtitleFont.value ?? .subheadline)
+                    .font(_subtitleFont ?? .subheadline)
                     .background(DEBUG_LAYOUT ? .orange.tint : .clear)
                     .matchedGeometryEffect(id: "subtitle", in: animation)
             }
@@ -436,8 +415,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                                  * the subtitle is being shown.
                                  */
                                 if hideIcon
-                                    && _title.value == nil
-                                    && _subtitle.value == nil
+                                    && _title == nil
+                                    && _subtitle == nil
                                 {
                                     // Tests on the github process transparency differently
                                     Color.white.opacity(isRunningUnitTests() ? 1.0 : 0.01)
@@ -516,9 +495,9 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         // FIXME: Material doesn't render in snapshot tests for some reason
         .optionalBackground(backgroundColor)
         .optionalBackground(
-            hideBackground
+            _hideBackground
                 ? nil as Material?
-                : _backgroundMaterial.value as Material?
+                : _backgroundMaterial as Material?
         )
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
         .animation(.spring(), value: expanded)
@@ -526,7 +505,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var cornerRadius: CGFloat {
-        if let radius = _cornerRadius.value  {
+        if let radius = _cornerRadius  {
             if !nonEmptyViewExpanded {
                 return min(iconMinLength / 2, radius)
             }
