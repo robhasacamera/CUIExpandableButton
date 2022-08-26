@@ -24,6 +24,7 @@
 // SOFTWARE.
 //
 
+import CUISeparator
 import SwiftUI
 
 /// A control that expands to display additional content and/or initiate an action.

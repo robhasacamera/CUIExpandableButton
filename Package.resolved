@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "CUIPreviewKit",
+        "repositoryURL": "https://github.com/robhasacamera/CUIPreviewKit.git",
+        "state": {
+          "branch": null,
+          "revision": "29e38bf9008919c63e15c84637612e80a47bd62a",
+          "version": "0.1.2"
+        }
+      },
+      {
+        "package": "CUISeparator",
+        "repositoryURL": "https://github.com/robhasacamera/CUISeparator.git",
+        "state": {
+          "branch": null,
+          "revision": "5af62fa9f77a6520c971d56c96895cc16c951699",
+          "version": "0.1.2"
+        }
+      },
+      {
         "package": "SnapshotTesting",
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {

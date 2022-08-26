@@ -171,7 +171,7 @@ struct ContentView: View {
             .subtitle(
                 subtitle.count > 0 ? subtitle : nil,
                 font: subtitleFont,
-                forState: subtitle.count > 0 ?  subtitleState : .any
+                forState: subtitle.count > 0 ? subtitleState : .any
             )
             .hideCloseButton(hideCloseButton)
             .hideSeparator(hideSeparator)

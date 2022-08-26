@@ -6,6 +6,7 @@
 //
 
 import CUIExpandableButton
+import CUISeparator
 import SwiftUI
 
 struct TitledGroup<Content>: View where Content: View {

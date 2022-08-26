@@ -24,8 +24,7 @@
 // SOFTWARE.
 //
 
-import SwiftUI
-
+import CUIPreviewKit
 import SwiftUI
 
 public struct SFSymbolIcon: View { var iconName: String
@@ -46,7 +45,7 @@ struct SFSymbolIcon_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        CenteredPreview {
+        CUICenteredPreview {
             VStack {
                 SFSymbolIcon(iconName: "rectangle.and.pencil.and.ellipsis")
                     .background(color)

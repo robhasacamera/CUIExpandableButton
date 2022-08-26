@@ -24,19 +24,10 @@
 // SOFTWARE.
 //
 
+import CUIPreviewKit
 import SwiftUI
 
 // MARK: - Preview Helpers
-
-private struct Caption: View {
-    let text: String
-
-    var body: some View {
-        Text(text)
-            .font(.caption)
-            .padding(.bottom)
-    }
-}
 
 enum Mock {
     static let title = "Marty"
@@ -65,9 +56,9 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
     @State var collapsed6: Bool = false
 
     var body: some View {
-        CenteredPreview(title: "Collapsed State") {
+        CUICenteredPreview(title: "Collapsed State") {
             VStack {
-                Group {
+                CUICaptionedView("No Modifiers") {
                     CUIExpandableButton(
                         expanded: $collapsed0,
                         sfSymbolName: Mock.sfSymbolName
@@ -81,11 +72,9 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed5 = false
                         collapsed6 = false
                     }
-
-                    Caption(text: "No Modifiers")
                 }
 
-                Group {
+                CUICaptionedView(".standardLayout(...)") {
                     CUIExpandableButton(
                         expanded: $collapsed1,
                         sfSymbolName: Mock.sfSymbolName
@@ -103,11 +92,9 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         title: Mock.title,
                         subtitle: Mock.subtitle
                     )
-
-                    Caption(text: ".standardLayout(...)")
                 }
 
-                Group {
+                CUICaptionedView(".title(...)") {
                     CUIExpandableButton(
                         expanded: $collapsed2,
                         sfSymbolName: Mock.sfSymbolName
@@ -122,11 +109,9 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed6 = false
                     }
                     .title(Mock.title, forState: .collapsed)
-
-                    Caption(text: ".title(...)")
                 }
 
-                Group {
+                CUICaptionedView(".subtitle(...)") {
                     CUIExpandableButton(
                         expanded: $collapsed3,
                         sfSymbolName: Mock.sfSymbolName
@@ -141,11 +126,9 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed6 = false
                     }
                     .subtitle(Mock.subtitle, forState: .collapsed)
-
-                    Caption(text: ".subtitle(...)")
                 }
 
-                Group {
+                CUICaptionedView(".hideIcon") {
                     CUIExpandableButton(
                         expanded: $collapsed4,
                         sfSymbolName: Mock.sfSymbolName
@@ -160,11 +143,9 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed6 = false
                     }
                     .hideIcon(forState: .collapsed)
-
-                    Caption(text: ".hideIcon")
                 }
 
-                Group {
+                CUICaptionedView(".title(...) & .subtitle(...)") {
                     CUIExpandableButton(
                         expanded: $collapsed5,
                         sfSymbolName: Mock.sfSymbolName
@@ -180,11 +161,9 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                     }
                     .title(Mock.title, forState: .collapsed)
                     .subtitle(Mock.title, forState: .collapsed)
-
-                    Caption(text: ".title(...) & .subtitle(...)")
                 }
 
-                Group {
+                CUICaptionedView(".hideBackground") {
                     CUIExpandableButton(
                         expanded: $collapsed6,
                         sfSymbolName: Mock.sfSymbolName
@@ -199,8 +178,6 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed5 = false
                     }
                     .hideBackground(forState: .collapsed)
-
-                    Caption(text: ".hideBackground")
                 }
             }
             .animation(.default, value: collapsed0)
@@ -227,9 +204,9 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
     @State var expanded7: Bool = false
 
     var body: some View {
-        CenteredPreview(title: "Expanded Options") {
+        CUICenteredPreview(title: "Expanded Options") {
             VStack {
-                Group {
+                CUICaptionedView("No Modifiers") {
                     CUIExpandableButton(
                         expanded: $expanded0,
                         sfSymbolName: Mock.sfSymbolName
@@ -244,11 +221,9 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                         expanded7 = false
                     }
-
-                    Caption(text: "No Modifiers")
                 }
 
-                Group {
+                CUICaptionedView(".standardLayout(...)") {
                     CUIExpandableButton(
                         expanded: $expanded1,
                         sfSymbolName: Mock.sfSymbolName
@@ -264,11 +239,9 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded7 = false
                     }
                     .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
-
-                    Caption(text: ".standardLayout(...)")
                 }
 
-                Group {
+                CUICaptionedView(".hideIcon(...)") {
                     CUIExpandableButton(
                         expanded: $expanded2,
                         sfSymbolName: Mock.sfSymbolName
@@ -284,11 +257,9 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded7 = false
                     }
                     .hideIcon(forState: .expanded)
-
-                    Caption(text: ".hideIcon(...)")
                 }
 
-                Group {
+                CUICaptionedView(".title(...)") {
                     CUIExpandableButton(
                         expanded: $expanded3,
                         sfSymbolName: Mock.sfSymbolName
@@ -304,11 +275,9 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded7 = false
                     }
                     .title(Mock.title, forState: .expanded)
-
-                    Caption(text: ".title(...)")
                 }
 
-                Group {
+                CUICaptionedView(".subtitle(...)") {
                     CUIExpandableButton(
                         expanded: $expanded4,
                         sfSymbolName: Mock.sfSymbolName
@@ -324,11 +293,9 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded7 = false
                     }
                     .subtitle(Mock.subtitle, forState: .expanded)
-
-                    Caption(text: ".subtitle(...)")
                 }
 
-                Group {
+                CUICaptionedView(".hideCloseButton()") {
                     CUIExpandableButton(
                         expanded: $expanded5,
                         sfSymbolName: Mock.sfSymbolName
@@ -344,11 +311,9 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded7 = false
                     }
                     .hideCloseButton()
-
-                    Caption(text: ".hideCloseButton()")
                 }
 
-                Group {
+                CUICaptionedView(".hideHeader()") {
                     CUIExpandableButton(
                         expanded: $expanded6,
                         sfSymbolName: Mock.sfSymbolName
@@ -364,11 +329,9 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded7 = false
                     }
                     .hideHeader()
-
-                    Caption(text: ".hideHeader()")
                 }
 
-                Group {
+                CUICaptionedView(".hideBackground(...)") {
                     CUIExpandableButton(
                         expanded: $expanded7,
                         sfSymbolName: Mock.sfSymbolName
@@ -384,8 +347,6 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                     }
                     .hideBackground(forState: .expanded)
-
-                    Caption(text: ".hideBackground(...)")
                 }
             }
             .animation(.default, value: expanded0)
@@ -408,37 +369,40 @@ struct CUIExpandableButtonPreview_OtherOptions: View {
     @State var expanded2: Bool = true
 
     var body: some View {
-        CenteredPreview(title: "Other Options") {
+        CUICenteredPreview(title: "Other Options") {
             VStack {
-                CUIExpandableButton(
-                    expanded: $expanded0,
-                    sfSymbolName: Mock.sfSymbolName
-                ) {
-                    Mock.content
+                CUICaptionedView(".title(Mock.title, font: .title)") {
+                    CUIExpandableButton(
+                        expanded: $expanded0,
+                        sfSymbolName: Mock.sfSymbolName
+                    ) {
+                        Mock.content
+                    }
+                    .title(Mock.title, font: .title)
                 }
-                .title(Mock.title, font: .title)
-                Caption(text: ".title(Mock.title, font: .title)")
 
-                CUIExpandableButton(
-                    expanded: $expanded1,
-                    sfSymbolName: Mock.sfSymbolName
-                ) {
-                    Text(LoremIpsum.words(8))
-                        .font(.body)
-                        .padding(.standardSpacing)
-                        .frame(width: 200)
+                CUICaptionedView(".subtitle(Mock.subtitle, font: .caption)") {
+                    CUIExpandableButton(
+                        expanded: $expanded1,
+                        sfSymbolName: Mock.sfSymbolName
+                    ) {
+                        Text(LoremIpsum.words(8))
+                            .font(.body)
+                            .padding(.standardSpacing)
+                            .frame(width: 200)
+                    }
+                    .subtitle(Mock.subtitle, font: .caption)
                 }
-                .subtitle(Mock.subtitle, font: .caption)
-                Caption(text: ".subtitle(Mock.subtitle, font: .caption)")
 
-                CUIExpandableButton(
-                    expanded: $expanded2,
-                    sfSymbolName: Mock.sfSymbolName
-                ) {
-                    Mock.content
+                CUICaptionedView("backgroundColor: .cyan.opacity(0.5)") {
+                    CUIExpandableButton(
+                        expanded: $expanded2,
+                        sfSymbolName: Mock.sfSymbolName
+                    ) {
+                        Mock.content
+                    }
+                    .backgroundColor(.cyan.opacity(0.5))
                 }
-                .backgroundColor(.cyan.opacity(0.5))
-                Caption(text: "backgroundColor: .cyan.opacity(0.5)")
             }
             .animation(.default, value: expanded0)
             .animation(.default, value: expanded1)
@@ -491,110 +455,114 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
     }
 
     var body: some View {
-        CenteredPreview(title: "Custom Icons") {
+        CUICenteredPreview(title: "Custom Icons") {
             VStack {
-                HStack {
-                    CUIExpandableButton(
-                        expanded: $collapsed0
-                    ) {
-                        smallIcon
-                    } content: {
-                        Mock.content
-                    } action: {
-                        expanded0 = !collapsed0
-                    }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                CUICaptionedView("smallIcon") {
+                    HStack {
+                        CUIExpandableButton(
+                            expanded: $collapsed0
+                        ) {
+                            smallIcon
+                        } content: {
+                            Mock.content
+                        } action: {
+                            expanded0 = !collapsed0
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
 
-                    CUIExpandableButton(
-                        expanded: $expanded0
-                    ) {
-                        smallIcon
-                    } content: {
-                        Mock.content
-                    } action: {
-                        collapsed0 = !expanded0
+                        CUIExpandableButton(
+                            expanded: $expanded0
+                        ) {
+                            smallIcon
+                        } content: {
+                            Mock.content
+                        } action: {
+                            collapsed0 = !expanded0
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                     }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                 }
-                Caption(text: "smallIcon")
 
-                HStack {
-                    CUIExpandableButton(
-                        expanded: $collapsed1
-                    ) {
-                        wideIcon
-                    } content: {
-                        Mock.content
-                    } action: {
-                        expanded1 = !collapsed1
-                    }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                CUICaptionedView("wideIcon") {
+                    HStack {
+                        CUIExpandableButton(
+                            expanded: $collapsed1
+                        ) {
+                            wideIcon
+                        } content: {
+                            Mock.content
+                        } action: {
+                            expanded1 = !collapsed1
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
 
-                    CUIExpandableButton(
-                        expanded: $expanded1
-                    ) {
-                        wideIcon
-                    } content: {
-                        Mock.content
-                    } action: {
-                        collapsed1 = !expanded1
+                        CUIExpandableButton(
+                            expanded: $expanded1
+                        ) {
+                            wideIcon
+                        } content: {
+                            Mock.content
+                        } action: {
+                            collapsed1 = !expanded1
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                     }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                 }
-                Caption(text: "wideIcon")
 
-                HStack {
-                    CUIExpandableButton(
-                        expanded: $collapsed2
-                    ) {
-                        tallIcon
-                    } content: {
-                        Mock.content
-                    } action: {
-                        expanded2 = !collapsed2
-                    }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                CUICaptionedView("tallIcon") {
+                    HStack {
+                        CUIExpandableButton(
+                            expanded: $collapsed2
+                        ) {
+                            tallIcon
+                        } content: {
+                            Mock.content
+                        } action: {
+                            expanded2 = !collapsed2
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
 
-                    CUIExpandableButton(
-                        expanded: $expanded2
-                    ) {
-                        tallIcon
-                    } content: {
-                        Text(LoremIpsum.words(2))
-                            .font(.body)
-                            .padding(.standardSpacing)
-                            .frame(width: 200)
-                    } action: {
-                        collapsed2 = !expanded2
+                        CUIExpandableButton(
+                            expanded: $expanded2
+                        ) {
+                            tallIcon
+                        } content: {
+                            Text(LoremIpsum.words(2))
+                                .font(.body)
+                                .padding(.standardSpacing)
+                                .frame(width: 200)
+                        } action: {
+                            collapsed2 = !expanded2
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                     }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                 }
-                Caption(text: "tallIcon")
 
-                HStack {
-                    CUIExpandableButton(
-                        expanded: $collapsed3
-                    ) {
-                        largeIcon
-                    } content: {
-                        Mock.content
-                    } action: {
-                        expanded3 = !collapsed3
-                    }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                CUICaptionedView("largeIcon") {
+                    HStack {
+                        CUIExpandableButton(
+                            expanded: $collapsed3
+                        ) {
+                            largeIcon
+                        } content: {
+                            Mock.content
+                        } action: {
+                            expanded3 = !collapsed3
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
 
-                    CUIExpandableButton(
-                        expanded: $expanded3
-                    ) {
-                        largeIcon
-                    } content: {
-                        Mock.content
-                    } action: {
-                        collapsed3 = !expanded3
+                        CUIExpandableButton(
+                            expanded: $expanded3
+                        ) {
+                            largeIcon
+                        } content: {
+                            Mock.content
+                        } action: {
+                            collapsed3 = !expanded3
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                     }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                 }
-                Caption(text: "largeIcon")
             }
             .animation(.default, value: expanded0)
             .animation(.default, value: collapsed0)
@@ -618,59 +586,61 @@ struct CUIExpandableButtonPreview_Modifiers: View {
     @State var expanded1: Bool = true
 
     var body: some View {
-        CenteredPreview(title: "Modifiers") {
+        CUICenteredPreview(title: "Modifiers") {
             VStack {
-                HStack {
-                    CUIExpandableButton(
-                        expanded: $collapsed0,
-                        sfSymbolName: Mock.sfSymbolName
-                    ) {
-                        Mock.content
-                    } action: {
-                        expanded0 = !collapsed0
-                    }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
-                    .foregroundColor(.yellow)
+                CUICaptionedView(".foregroundColor(.yellow)") {
+                    HStack {
+                        CUIExpandableButton(
+                            expanded: $collapsed0,
+                            sfSymbolName: Mock.sfSymbolName
+                        ) {
+                            Mock.content
+                        } action: {
+                            expanded0 = !collapsed0
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                        .foregroundColor(.yellow)
 
-                    CUIExpandableButton(
-                        expanded: $expanded0,
-                        sfSymbolName: Mock.sfSymbolName
-                    ) {
-                        Mock.content
-                    } action: {
-                        collapsed0 = !expanded0
+                        CUIExpandableButton(
+                            expanded: $expanded0,
+                            sfSymbolName: Mock.sfSymbolName
+                        ) {
+                            Mock.content
+                        } action: {
+                            collapsed0 = !expanded0
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                        .foregroundColor(.yellow)
                     }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
-                    .foregroundColor(.yellow)
                 }
-                Caption(text: ".foregroundColor(.yellow)")
 
                 #if swift(>=5.7)
                     if #available(iOS 16.0, *) {
-                        HStack {
-                            CUIExpandableButton(
-                                expanded: $collapsed1,
-                                sfSymbolName: Mock.sfSymbolName
-                            ) {
-                                Mock.content
-                            } action: {
-                                expanded1 = !collapsed1
-                            }
-                            .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
-                            .fontWeight(.bold)
+                        CUICaptionedView(".fontWeight(.bold)") {
+                            HStack {
+                                CUIExpandableButton(
+                                    expanded: $collapsed1,
+                                    sfSymbolName: Mock.sfSymbolName
+                                ) {
+                                    Mock.content
+                                } action: {
+                                    expanded1 = !collapsed1
+                                }
+                                .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                                .fontWeight(.bold)
 
-                            CUIExpandableButton(
-                                expanded: $expanded1,
-                                sfSymbolName: Mock.sfSymbolName
-                            ) {
-                                Mock.content
-                            } action: {
-                                collapsed1 = !expanded1
+                                CUIExpandableButton(
+                                    expanded: $expanded1,
+                                    sfSymbolName: Mock.sfSymbolName
+                                ) {
+                                    Mock.content
+                                } action: {
+                                    collapsed1 = !expanded1
+                                }
+                                .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                                .fontWeight(.bold)
                             }
-                            .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
-                            .fontWeight(.bold)
                         }
-                        Caption(text: ".fontWeight(.bold)")
                     }
                 #endif
             }
@@ -702,32 +672,33 @@ struct CUIExpandableButtonPreview_BackgroundMaterial: View {
     @State var expanded5: Bool = true
 
     var body: some View {
-        CenteredPreview(title: "Background Material") {
+        CUICenteredPreview(title: "Background Material") {
             VStack {
-                HStack {
-                    CUIExpandableButton(
-                        expanded: $collapsed0,
-                        sfSymbolName: Mock.sfSymbolName
-                    ) {
-                        Mock.content
-                    } action: {
-                        expanded0 = !collapsed0
-                    }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                CUICaptionedView("Default") {
+                    HStack {
+                        CUIExpandableButton(
+                            expanded: $collapsed0,
+                            sfSymbolName: Mock.sfSymbolName
+                        ) {
+                            Mock.content
+                        } action: {
+                            expanded0 = !collapsed0
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
 
-                    CUIExpandableButton(
-                        expanded: $expanded0,
-                        sfSymbolName: Mock.sfSymbolName
-                    ) {
-                        Mock.content
-                    } action: {
-                        collapsed0 = !expanded0
+                        CUIExpandableButton(
+                            expanded: $expanded0,
+                            sfSymbolName: Mock.sfSymbolName
+                        ) {
+                            Mock.content
+                        } action: {
+                            collapsed0 = !expanded0
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                     }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                 }
-                Caption(text: "Default")
 
-                VStack {
+                CUICaptionedView(".thinMaterial") {
                     HStack {
                         CUIExpandableButton(
                             expanded: $collapsed1,
@@ -751,10 +722,9 @@ struct CUIExpandableButtonPreview_BackgroundMaterial: View {
                         .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                         .backgroundMaterial(.thinMaterial)
                     }
-                    Caption(text: ".thinMaterial")
                 }
 
-                VStack {
+                CUICaptionedView(".regularMaterial") {
                     HStack {
                         CUIExpandableButton(
                             expanded: $collapsed2,
@@ -778,10 +748,9 @@ struct CUIExpandableButtonPreview_BackgroundMaterial: View {
                         .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                         .backgroundMaterial(.regularMaterial)
                     }
-                    Caption(text: ".regularMaterial")
                 }
 
-                VStack {
+                CUICaptionedView(".ultraThickMaterial") {
                     HStack {
                         CUIExpandableButton(
                             expanded: $collapsed3,
@@ -805,10 +774,9 @@ struct CUIExpandableButtonPreview_BackgroundMaterial: View {
                         .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                         .backgroundMaterial(.ultraThickMaterial)
                     }
-                    Caption(text: ".ultraThickMaterial")
                 }
 
-                VStack {
+                CUICaptionedView("nil") {
                     HStack {
                         CUIExpandableButton(
                             expanded: $collapsed4,
@@ -832,10 +800,9 @@ struct CUIExpandableButtonPreview_BackgroundMaterial: View {
                         .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                         .backgroundMaterial(nil)
                     }
-                    Caption(text: "nil")
                 }
 
-                VStack {
+                CUICaptionedView("nil with .backgroundColor(.blue.opacity(0.10))") {
                     HStack {
                         CUIExpandableButton(
                             expanded: $collapsed5,
@@ -861,7 +828,6 @@ struct CUIExpandableButtonPreview_BackgroundMaterial: View {
                         .backgroundMaterial(nil)
                         .backgroundColor(.blue.opacity(0.10))
                     }
-                    Caption(text: "nil with .backgroundColor(.blue.opacity(0.10))")
                 }
             }
             .animation(.default, value: expanded0)
@@ -888,55 +854,57 @@ struct CUIExpandableButtonPreview_CornerRadius: View {
     @State var expanded1: Bool = true
 
     var body: some View {
-        CenteredPreview(title: "Corner Radius") {
+        CUICenteredPreview(title: "Corner Radius") {
             VStack {
-                HStack {
-                    CUIExpandableButton(
-                        expanded: $collapsed0,
-                        sfSymbolName: Mock.sfSymbolName
-                    ) {
-                        Mock.content
-                    } action: {
-                        expanded0 = !collapsed0
-                    }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                CUICaptionedView("Default") {
+                    HStack {
+                        CUIExpandableButton(
+                            expanded: $collapsed0,
+                            sfSymbolName: Mock.sfSymbolName
+                        ) {
+                            Mock.content
+                        } action: {
+                            expanded0 = !collapsed0
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
 
-                    CUIExpandableButton(
-                        expanded: $expanded0,
-                        sfSymbolName: Mock.sfSymbolName
-                    ) {
-                        Mock.content
-                    } action: {
-                        collapsed0 = !expanded0
+                        CUIExpandableButton(
+                            expanded: $expanded0,
+                            sfSymbolName: Mock.sfSymbolName
+                        ) {
+                            Mock.content
+                        } action: {
+                            collapsed0 = !expanded0
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                     }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
                 }
-                Caption(text: "Default")
 
-                HStack {
-                    CUIExpandableButton(
-                        expanded: $collapsed0,
-                        sfSymbolName: Mock.sfSymbolName
-                    ) {
-                        Mock.content
-                    } action: {
-                        expanded0 = !collapsed0
-                    }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
-                    .buttonCornerRadius(5.0)
+                CUICaptionedView(".cornerRadius(5.0)") {
+                    HStack {
+                        CUIExpandableButton(
+                            expanded: $collapsed0,
+                            sfSymbolName: Mock.sfSymbolName
+                        ) {
+                            Mock.content
+                        } action: {
+                            expanded0 = !collapsed0
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                        .buttonCornerRadius(5.0)
 
-                    CUIExpandableButton(
-                        expanded: $expanded0,
-                        sfSymbolName: Mock.sfSymbolName
-                    ) {
-                        Mock.content
-                    } action: {
-                        collapsed0 = !expanded0
+                        CUIExpandableButton(
+                            expanded: $expanded0,
+                            sfSymbolName: Mock.sfSymbolName
+                        ) {
+                            Mock.content
+                        } action: {
+                            collapsed0 = !expanded0
+                        }
+                        .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
+                        .buttonCornerRadius(5.0)
                     }
-                    .standardLayout(title: Mock.title, subtitle: Mock.subtitle)
-                    .buttonCornerRadius(5.0)
                 }
-                Caption(text: ".cornerRadius(5.0)")
             }
             .animation(.default, value: expanded0)
             .animation(.default, value: collapsed0)

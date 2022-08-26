@@ -17,6 +17,11 @@ let package = Package(
         .package(
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
             from: "1.9.0"
+        ),
+        .package(
+            name: "CUISeparator",
+            url: "https://github.com/robhasacamera/CUISeparator.git",
+            from: "0.1.2"
         )
     ],
     targets: [
@@ -24,7 +29,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "CUIExpandableButton",
-            dependencies: []
+            dependencies: ["CUISeparator"]
         ),
         .testTarget(
             name: "CUIExpandableButtonTests",

@@ -24,6 +24,7 @@
 // SOFTWARE.
 //
 
+import CUIPreviewKit
 import SwiftUI
 
 struct CloseButton: View {
@@ -46,7 +47,7 @@ struct CloseButton: View {
 
 struct CloseButton_Previews: PreviewProvider {
     static var previews: some View {
-        CenteredPreview {
+        CUICenteredPreview {
             VStack {
                 CloseButton(action: {})
                 CloseButton(action: {})
