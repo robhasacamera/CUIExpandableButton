@@ -102,10 +102,6 @@ import SwiftUI
 /// - Hiding various elements of the button like the icon, close button or the
 /// entire header.
 ///
-/// Some modifiers provide the ability to customize content based on the state
-/// of the button. For example, you can use `setTitle(_:forState:)`
-/// to add a title that is only shown when the button is expanded.
-///
 /// ```
 ///
 /// CUIExpandableButton(
@@ -114,7 +110,8 @@ import SwiftUI
 /// ) {
 ///     ExampleSettingsView()
 /// }
-/// .title("Settings", forState: .expanded)
+/// .title("Settings")
+/// .subtitle(expanded ? "Customize things!" : nil)
 ///
 /// ```
 /// Other modifiers only affect the display of the button in a specific state, such as ``hideHeader(_:)``, which only affect the button when expanded.
@@ -134,7 +131,7 @@ import SwiftUI
 ///     ExampleContentView()
 /// }
 /// .title("Customize")
-/// .subtitle("Lots of options", forState: .expanded)
+/// .subtitle("Lots of options")
 /// .foregroundColor(.yellow)
 /// .fontWeight(.bold)
 ///
@@ -192,7 +189,10 @@ import SwiftUI
 /// - Backgound material other then `utlraThinMaterial`
 /// - Other background style.
 /// - Other placement for expandable content.
-public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content: View {
+public struct CUIExpandableButton<Icon, Content>: CUIStylizedWindow where Icon: View, Content: View {
+    public typealias Window = CUIExpandableButton
+    public typealias Control = CUIExpandableButton
+
     @Namespace private var animation
 
     /// An action is a closure with no return type
@@ -217,19 +217,98 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     let content: Content
     let action: Action?
 
-    var _title: SplitVar<String>
-    var _titleFont: SplitVar<Font>
-    var _subtitle: SplitVar<String>
-    var _subtitleFont: SplitVar<Font>
-    var _backgroundColor: SplitVar<Color>
-    var _hideBackground: SplitVar<Bool>
-    var _hideIcon: SplitVar<Bool>
-    var _cornerRadius: SplitVar<CGFloat>
-    var _backgroundMaterial: SplitVar<Material>
-    // These are only displayed when expanded, so we only need to set one value
-    var _hideSeparator = false
-    var _hideCloseButton = false
-    var _hideHeader = false
+    // MARK: Modifier Vars
+
+    public var title: String?
+    public var titleFont: Font?
+    public var subtitle: String?
+    public var subtitleFont: Font?
+
+    public var hideBackground: Bool = false
+    public var backgroundMaterial: Material? = .ultraThinMaterial
+
+    var _backgroundColor: Color?
+    public var backgroundColor: Color? {
+        get {
+            hideBackground
+                ? nil
+                : (
+                    _backgroundColor ?? (
+                        isRunningUnitTests()
+                            ? .gray
+                            : .clear
+                    )
+                )
+        }
+        set {
+            _backgroundColor = newValue
+        }
+    }
+
+    var _cornerRadius: CGFloat?
+    public var cornerRadius: CGFloat? {
+        get {
+            if let radius = _cornerRadius {
+                if !nonEmptyViewExpanded {
+                    return min(iconMinLength / 2, radius)
+                }
+
+                return radius
+            }
+
+            return nonEmptyViewExpanded
+                ? menuCornerRadius
+                : iconMinLength / 2
+        }
+        set {
+            _cornerRadius = newValue
+        }
+    }
+
+    var _hideIcon: Bool = false // TODO: Has Shadow
+    public var hideIcon: Bool {
+        get {
+            guard !hideHeader || !expanded else {
+                return true
+            }
+
+            return _hideIcon
+        }
+        set {
+            _hideIcon = newValue
+        }
+    }
+
+    // These are only displayed when expanded
+    public var hideHeader = false
+
+    var _hideSeparator = false // TODO: Has Shadow
+    public var hideSeparator: Bool {
+        get {
+            guard !hideHeader else {
+                return true
+            }
+
+            return _hideSeparator
+        }
+        set {
+            _hideSeparator = newValue
+        }
+    }
+
+    var _hideCloseButton = false // TODO: Has Shadow
+    public var hideCloseButton: Bool {
+        get {
+            guard !hideHeader else {
+                return true
+            }
+
+            return _hideCloseButton
+        }
+        set {
+            _hideCloseButton = newValue
+        }
+    }
 
     // MARK: Scaled Metrics
 
@@ -247,7 +326,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var headerHeight: CGFloat {
         if nonEmptyViewExpanded {
-            if _hideHeader {
+            if hideHeader {
                 return 0
             }
 
@@ -262,11 +341,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var showTitle: Bool {
-        guard !_hideHeader || !expanded else {
+        guard !hideHeader || !expanded else {
             return false
         }
 
-        guard let title = _title.value, !title.isEmpty else {
+        guard let title = title, !title.isEmpty else {
             return false
         }
 
@@ -274,63 +353,15 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var showSubtitle: Bool {
-        guard !_hideHeader || !expanded else {
+        guard !hideHeader || !expanded else {
             return false
         }
 
-        guard let subtitle = _subtitle.value, !subtitle.isEmpty else {
+        guard let subtitle = subtitle, !subtitle.isEmpty else {
             return false
         }
 
         return true
-    }
-
-    var hideBackground: Bool {
-        guard let hideBackground = _hideBackground.value else {
-            return false
-        }
-
-        return hideBackground
-    }
-
-    var hideIcon: Bool {
-        guard !_hideHeader || !expanded else {
-            return true
-        }
-
-        guard let hideIcon = _hideIcon.value else {
-            return false
-        }
-
-        return hideIcon
-    }
-
-    var hideSeparator: Bool {
-        guard !_hideHeader else {
-            return true
-        }
-
-        return _hideSeparator
-    }
-
-    var hideCloseButton: Bool {
-        guard !_hideHeader else {
-            return true
-        }
-
-        return _hideCloseButton
-    }
-
-    var backgroundColor: Color? {
-        hideBackground
-            ? nil
-            : (
-                _backgroundColor.value ?? (
-                    isRunningUnitTests()
-                        ? .gray
-                        : .clear
-                )
-            )
     }
 
     private var nonEmptyViewExpanded: Bool {
@@ -354,15 +385,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         self.icon = icon()
         self.content = content()
         self.action = action
-        self._title = SplitVar(expanded: _expanded, nil as String?)
-        self._titleFont = SplitVar(expanded: _expanded, nil as Font?)
-        self._subtitle = SplitVar(expanded: _expanded, nil as String?)
-        self._subtitleFont = SplitVar(expanded: _expanded, nil as Font?)
-        self._backgroundColor = SplitVar(expanded: _expanded, nil as Color?)
-        self._hideBackground = SplitVar(expanded: _expanded, false)
-        self._hideIcon = SplitVar(expanded: _expanded, false)
-        self._cornerRadius = SplitVar(expanded: _expanded, nil as CGFloat?)
-        self._backgroundMaterial = SplitVar(expanded: _expanded, .ultraThinMaterial)
     }
 
     var iconView: some View {
@@ -375,15 +397,15 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var titleAndSubtitle: some View {
         VStack(alignment: .leading) {
-            if let title = _title.value {
+            if let title = title {
                 Text(title)
-                    .font(_titleFont.value ?? .headline)
+                    .font(titleFont ?? .headline)
                     .background(DEBUG_LAYOUT ? .red.tint : .clear)
                     .matchedGeometryEffect(id: "title", in: animation)
             }
-            if let subtitle = _subtitle.value {
+            if let subtitle = subtitle {
                 Text(subtitle)
-                    .font(_subtitleFont.value ?? .subheadline)
+                    .font(subtitleFont ?? .subheadline)
                     .background(DEBUG_LAYOUT ? .orange.tint : .clear)
                     .matchedGeometryEffect(id: "subtitle", in: animation)
             }
@@ -436,8 +458,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                                  * the subtitle is being shown.
                                  */
                                 if hideIcon
-                                    && _title.value == nil
-                                    && _subtitle.value == nil
+                                    && title == nil
+                                    && subtitle == nil
                                 {
                                     // Tests on the github process transparency differently
                                     Color.white.opacity(isRunningUnitTests() ? 1.0 : 0.01)
@@ -490,7 +512,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         .frame(
             minHeight: headerHeight
         )
-        .frame(minWidth: nonEmptyViewExpanded && !_hideHeader ? minIconSize * 2 : nil)
+        .frame(minWidth: nonEmptyViewExpanded && !hideHeader ? minIconSize * 2 : nil)
     }
 
     public var body: some View {
@@ -518,25 +540,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         .optionalBackground(
             hideBackground
                 ? nil as Material?
-                : _backgroundMaterial.value as Material?
+                : backgroundMaterial as Material?
         )
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+        .clipShape(RoundedRectangle(cornerRadius: cornerRadius ?? 0))
         .animation(.spring(), value: expanded)
         .fixedSize()
-    }
-
-    var cornerRadius: CGFloat {
-        if let radius = _cornerRadius.value  {
-            if !nonEmptyViewExpanded {
-                return min(iconMinLength / 2, radius)
-            }
-
-            return radius
-        }
-
-        return nonEmptyViewExpanded
-            ? menuCornerRadius
-            : iconMinLength / 2
     }
 }
 

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A71B69728B1F006007A10FF /* StatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71B69628B1F006007A10FF /* StatePicker.swift */; };
 		9A71B69928B1F0E4007A10FF /* FontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71B69828B1F0E4007A10FF /* FontPicker.swift */; };
 		9A71B69B28B22A9B007A10FF /* TitledGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71B69A28B22A9B007A10FF /* TitledGroup.swift */; };
 		9A76EDC2288D21CA00F7C17B /* CUIExpandableButton in Frameworks */ = {isa = PBXBuildFile; productRef = 9A76EDC1288D21CA00F7C17B /* CUIExpandableButton */; };
@@ -35,9 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A71B69628B1F006007A10FF /* StatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatePicker.swift; sourceTree = "<group>"; };
 		9A71B69828B1F0E4007A10FF /* FontPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPicker.swift; sourceTree = "<group>"; };
-		9A71B69A28B22A9B007A10FF /* TitledGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TitledGroup.swift; path = ButtonDemo/TitledGroup.swift; sourceTree = "<group>"; };
+		9A71B69A28B22A9B007A10FF /* TitledGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledGroup.swift; sourceTree = "<group>"; };
 		9A9FA384288B6E2A00A4BC2C /* ButtonDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ButtonDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9FA387288B6E2A00A4BC2C /* ButtonDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDemoApp.swift; sourceTree = "<group>"; };
 		9A9FA389288B6E2A00A4BC2C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,9 +82,6 @@
 		9A9FA37B288B6E2A00A4BC2C = {
 			isa = PBXGroup;
 			children = (
-				9A71B69A28B22A9B007A10FF /* TitledGroup.swift */,
-				9A71B69628B1F006007A10FF /* StatePicker.swift */,
-				9A71B69828B1F0E4007A10FF /* FontPicker.swift */,
 				9A9FA3F7288D1EBC00A4BC2C /* Packages */,
 				9A9FA386288B6E2A00A4BC2C /* ButtonDemo */,
 				9A9FA385288B6E2A00A4BC2C /* Products */,
@@ -107,6 +102,8 @@
 		9A9FA386288B6E2A00A4BC2C /* ButtonDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9A71B69A28B22A9B007A10FF /* TitledGroup.swift */,
+				9A71B69828B1F0E4007A10FF /* FontPicker.swift */,
 				9A9FA387288B6E2A00A4BC2C /* ButtonDemoApp.swift */,
 				9A9FA389288B6E2A00A4BC2C /* ContentView.swift */,
 				9A9FA38B288B6E2D00A4BC2C /* Assets.xcassets */,
@@ -265,7 +262,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A71B69928B1F0E4007A10FF /* FontPicker.swift in Sources */,
-				9A71B69728B1F006007A10FF /* StatePicker.swift in Sources */,
 				9A9FA38A288B6E2A00A4BC2C /* ContentView.swift in Sources */,
 				9A9FA388288B6E2A00A4BC2C /* ButtonDemoApp.swift in Sources */,
 				9A71B69B28B22A9B007A10FF /* TitledGroup.swift in Sources */,

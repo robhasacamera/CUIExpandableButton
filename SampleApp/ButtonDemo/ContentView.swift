@@ -54,20 +54,14 @@ struct ContentView: View {
     var sfSymbolName = "gearshape.fill"
     @State
     var hideIcon = false
-    @State
-    var hideIconState = CUIExpandableButtonState.any
 
     @State
     var title = "Title"
-    @State
-    var titleState = CUIExpandableButtonState.any
     @State
     var titleFont: Font? = nil
 
     @State
     var subtitle = "Subtitle"
-    @State
-    var subtitleState = CUIExpandableButtonState.any
     @State
     var subtitleFont: Font? = nil
 
@@ -83,13 +77,9 @@ struct ContentView: View {
 
     @State
     var hideBackground: Bool = false
-    @State
-    var hideBackgroundState = CUIExpandableButtonState.any
 
     @State
     var backgroundColor: Color = .clear
-    @State
-    var backgroundColorState = CUIExpandableButtonState.any
 
     @State
     var foregroundColor = Color(uiColor: .label)
@@ -162,22 +152,20 @@ struct ContentView: View {
                 expanded2 = false
                 expanded3 = false
             }
-            .hideIcon(hideIcon, forState: hideIconState)
+            .hideIcon(hideIcon)
             .title(
                 title.count > 0 ? title : nil,
-                font: titleFont,
-                forState: title.count > 0 ? titleState : .any
+                font: titleFont
             )
             .subtitle(
                 subtitle.count > 0 ? subtitle : nil,
-                font: subtitleFont,
-                forState: subtitle.count > 0 ? subtitleState : .any
+                font: subtitleFont
             )
             .hideCloseButton(hideCloseButton)
             .hideSeparator(hideSeparator)
             .hideHeader(hideHeader)
-            .hideBackground(hideBackground, forState: hideBackgroundState)
-            .backgroundColor(backgroundColor, forState: backgroundColorState)
+            .hideBackground(hideBackground)
+            .backgroundColor(backgroundColor)
             .foregroundColor(foregroundColor)
 
             Spacer()
@@ -194,11 +182,7 @@ struct ContentView: View {
                                 .padding(4)
                                 .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
 
-                            HStack {
-                                FontPicker(label: "Title Font", font: $titleFont)
-
-                                StatePicker(label: "Title State", state: $titleState)
-                            }
+                            FontPicker(label: "Title Font", font: $titleFont)
                         }
                     }
 
@@ -208,11 +192,7 @@ struct ContentView: View {
                                 .padding(4)
                                 .background(RoundedRectangle(cornerRadius: 4).foregroundColor(.white.opacity(0.5)))
 
-                            HStack {
-                                FontPicker(label: "Subtitle Font", font: $subtitleFont)
-
-                                StatePicker(label: "Subtitle State", state: $subtitleState)
-                            }
+                            FontPicker(label: "Subtitle Font", font: $subtitleFont)
                         }
                     }
 
@@ -264,11 +244,7 @@ struct ContentView: View {
                             }
                         }
 
-                        HStack {
-                            Toggle("Hide Icon", isOn: $hideIcon)
-
-                            StatePicker(label: "Icon State", state: $hideIconState)
-                        }
+                        Toggle("Hide Icon", isOn: $hideIcon)
                     }
 
                     TitledGroup("Header Only Options") {
@@ -282,19 +258,11 @@ struct ContentView: View {
                     }
 
                     TitledGroup("Show/Hide Background") {
-                        HStack {
-                            Toggle("Hide Background", isOn: $hideBackground)
-
-                            StatePicker(label: "Background State", state: $hideBackgroundState)
-                        }
+                        Toggle("Hide Background", isOn: $hideBackground)
                     }
 
                     TitledGroup("Background Color") {
-                        HStack {
-                            ColorPicker("Background Color", selection: $backgroundColor)
-
-                            StatePicker(label: "Background Color State", state: $backgroundColorState)
-                        }
+                        ColorPicker("Background Color", selection: $backgroundColor)
                     }
 
                     TitledGroup("Foreground Color") {
@@ -338,12 +306,9 @@ struct ContentView: View {
         .animation(.easeInOut, value: expanded4)
         .animation(.easeInOut, value: sfSymbolName)
         .animation(.easeInOut, value: hideIcon)
-        .animation(.easeInOut, value: hideIconState)
         .animation(.easeInOut, value: title)
-        .animation(.easeInOut, value: titleState)
         .animation(.easeInOut, value: titleFont)
         .animation(.easeInOut, value: subtitle)
-        .animation(.easeInOut, value: subtitleState)
         .animation(.easeInOut, value: subtitleFont)
         .animation(.easeInOut, value: content)
         .animation(.easeInOut, value: hideCloseButton)
