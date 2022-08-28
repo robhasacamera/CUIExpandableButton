@@ -225,7 +225,7 @@ public struct CUIExpandableButton<Icon, Content>: CUIStylizedWindow where Icon: 
     public var subtitleFont: Font?
 
     public var hideBackground: Bool = false
-    public var backgroundMaterial: Material?
+    public var backgroundMaterial: Material? = .ultraThinMaterial
 
     var _backgroundColor: Color?
     public var backgroundColor: Color? {
