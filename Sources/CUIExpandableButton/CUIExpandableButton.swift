@@ -217,19 +217,97 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     let content: Content
     let action: Action?
 
-    var title: String? = nil
-    var titleFont: Font? = nil
-    var subtitle: String? = nil
-    var subtitleFont: Font? = nil
-    var _backgroundColor: Color? = nil // TODO: Has shadow
-    var _cornerRadius: CGFloat? = nil // TODO: Has Shadow
-    var backgroundMaterial: Material? = nil
+    // MARK: Modifier Vars
+    var title: String?
+    var titleFont: Font?
+    var subtitle: String?
+    var subtitleFont: Font?
+
     var hideBackground: Bool = false
+    var backgroundMaterial: Material?
+
+    var _backgroundColor: Color?
+    var backgroundColor: Color? {
+        get {
+            hideBackground
+                ? nil
+                : (
+                    _backgroundColor ?? (
+                        isRunningUnitTests()
+                            ? .gray
+                            : .clear
+                    )
+                )
+        }
+        set {
+            _backgroundColor = newValue
+        }
+    }
+
+    var _cornerRadius: CGFloat?
+    var cornerRadius: CGFloat {
+        get {
+            if let radius = _cornerRadius {
+                if !nonEmptyViewExpanded {
+                    return min(iconMinLength / 2, radius)
+                }
+
+                return radius
+            }
+
+            return nonEmptyViewExpanded
+                ? menuCornerRadius
+                : iconMinLength / 2
+        }
+        set {
+            _cornerRadius = newValue
+        }
+    }
+
     var _hideIcon: Bool = false // TODO: Has Shadow
+    var hideIcon: Bool {
+        get {
+        guard !hideHeader || !expanded else {
+            return true
+        }
+
+        return _hideIcon
+        }
+        set {
+            _hideIcon = newValue
+        }
+    }
+
     // These are only displayed when expanded
-    var _hideSeparator = false // TODO: Has Shadow
-    var _hideCloseButton = false // TODO: Has Shadow
     var hideHeader = false
+
+    var _hideSeparator = false // TODO: Has Shadow
+    var hideSeparator: Bool {
+        get {
+            guard !hideHeader else {
+                return true
+            }
+
+            return _hideSeparator
+        }
+        set {
+            _hideSeparator = newValue
+        }
+    }
+
+    var _hideCloseButton = false // TODO: Has Shadow
+    var hideCloseButton: Bool {
+        get {
+        guard !hideHeader else {
+            return true
+        }
+
+        return _hideCloseButton
+        }
+        set {
+            _hideCloseButton = newValue
+        }
+    }
 
     // MARK: Scaled Metrics
 
@@ -283,42 +361,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         }
 
         return true
-    }
-
-    var hideIcon: Bool {
-        guard !hideHeader || !expanded else {
-            return true
-        }
-
-        return _hideIcon
-    }
-
-    var hideSeparator: Bool {
-        guard !hideHeader else {
-            return true
-        }
-
-        return _hideSeparator
-    }
-
-    var hideCloseButton: Bool {
-        guard !hideHeader else {
-            return true
-        }
-
-        return _hideCloseButton
-    }
-
-    var backgroundColor: Color? {
-        hideBackground
-            ? nil
-            : (
-                _backgroundColor ?? (
-                    isRunningUnitTests()
-                        ? .gray
-                        : .clear
-                )
-            )
     }
 
     private var nonEmptyViewExpanded: Bool {
@@ -502,20 +544,6 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
         .animation(.spring(), value: expanded)
         .fixedSize()
-    }
-
-    var cornerRadius: CGFloat {
-        if let radius = _cornerRadius  {
-            if !nonEmptyViewExpanded {
-                return min(iconMinLength / 2, radius)
-            }
-
-            return radius
-        }
-
-        return nonEmptyViewExpanded
-            ? menuCornerRadius
-            : iconMinLength / 2
     }
 }
 
