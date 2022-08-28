@@ -27,6 +27,7 @@
 import SwiftUI
 
 public extension CUIExpandableButton {
+    // TODO: When moving methods to Style protocols, this stays as a specialize protocol for the expandable button
     /// Sets up the expandable button using the standard layout. This includes:
     /// - Showing the title/subtitle only when expanded.
     /// - Showing only the icon when collapsed.
@@ -71,8 +72,8 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._title = title
-        newSelf._titleFont = font
+        newSelf.title = title
+        newSelf.titleFont = font
 
         return newSelf
     }
@@ -93,8 +94,8 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._subtitle = subtitle
-        newSelf._subtitleFont = font
+        newSelf.subtitle = subtitle
+        newSelf.subtitleFont = font
 
         return newSelf
     }
@@ -135,7 +136,7 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._hideBackground = hideBackground
+        newSelf.hideBackground = hideBackground
 
         return newSelf
     }
@@ -190,7 +191,7 @@ public extension CUIExpandableButton {
     ) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._backgroundMaterial = material
+        newSelf.backgroundMaterial = material
 
         return newSelf
     }
@@ -226,7 +227,7 @@ public extension CUIExpandableButton {
     func hideHeader(_ hideHeader: Bool = true) -> CUIExpandableButton {
         var newSelf = self
 
-        newSelf._hideHeader = hideHeader
+        newSelf.hideHeader = hideHeader
 
         return newSelf
     }

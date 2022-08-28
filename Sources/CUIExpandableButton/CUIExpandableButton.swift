@@ -217,19 +217,19 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     let content: Content
     let action: Action?
 
-    var _title: String? = nil
-    var _titleFont: Font? = nil
-    var _subtitle: String? = nil
-    var _subtitleFont: Font? = nil
-    var _backgroundColor: Color? = nil
-    var _cornerRadius: CGFloat? = nil
-    var _backgroundMaterial: Material? = nil
-    var _hideBackground: Bool = false
-    var _hideIcon: Bool = false
+    var title: String? = nil
+    var titleFont: Font? = nil
+    var subtitle: String? = nil
+    var subtitleFont: Font? = nil
+    var _backgroundColor: Color? = nil // TODO: Has shadow
+    var _cornerRadius: CGFloat? = nil // TODO: Has Shadow
+    var backgroundMaterial: Material? = nil
+    var hideBackground: Bool = false
+    var _hideIcon: Bool = false // TODO: Has Shadow
     // These are only displayed when expanded
-    var _hideSeparator = false
-    var _hideCloseButton = false
-    var _hideHeader = false
+    var _hideSeparator = false // TODO: Has Shadow
+    var _hideCloseButton = false // TODO: Has Shadow
+    var hideHeader = false
 
     // MARK: Scaled Metrics
 
@@ -247,7 +247,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var headerHeight: CGFloat {
         if nonEmptyViewExpanded {
-            if _hideHeader {
+            if hideHeader {
                 return 0
             }
 
@@ -262,11 +262,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var showTitle: Bool {
-        guard !_hideHeader || !expanded else {
+        guard !hideHeader || !expanded else {
             return false
         }
 
-        guard let title = _title, !title.isEmpty else {
+        guard let title = title, !title.isEmpty else {
             return false
         }
 
@@ -274,11 +274,11 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var showSubtitle: Bool {
-        guard !_hideHeader || !expanded else {
+        guard !hideHeader || !expanded else {
             return false
         }
 
-        guard let subtitle = _subtitle, !subtitle.isEmpty else {
+        guard let subtitle = subtitle, !subtitle.isEmpty else {
             return false
         }
 
@@ -286,7 +286,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var hideIcon: Bool {
-        guard !_hideHeader || !expanded else {
+        guard !hideHeader || !expanded else {
             return true
         }
 
@@ -294,7 +294,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var hideSeparator: Bool {
-        guard !_hideHeader else {
+        guard !hideHeader else {
             return true
         }
 
@@ -302,7 +302,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var hideCloseButton: Bool {
-        guard !_hideHeader else {
+        guard !hideHeader else {
             return true
         }
 
@@ -310,7 +310,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var backgroundColor: Color? {
-        _hideBackground
+        hideBackground
             ? nil
             : (
                 _backgroundColor ?? (
@@ -354,15 +354,15 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
 
     var titleAndSubtitle: some View {
         VStack(alignment: .leading) {
-            if let title = _title {
+            if let title = title {
                 Text(title)
-                    .font(_titleFont ?? .headline)
+                    .font(titleFont ?? .headline)
                     .background(DEBUG_LAYOUT ? .red.tint : .clear)
                     .matchedGeometryEffect(id: "title", in: animation)
             }
-            if let subtitle = _subtitle {
+            if let subtitle = subtitle {
                 Text(subtitle)
-                    .font(_subtitleFont ?? .subheadline)
+                    .font(subtitleFont ?? .subheadline)
                     .background(DEBUG_LAYOUT ? .orange.tint : .clear)
                     .matchedGeometryEffect(id: "subtitle", in: animation)
             }
@@ -415,8 +415,8 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                                  * the subtitle is being shown.
                                  */
                                 if hideIcon
-                                    && _title == nil
-                                    && _subtitle == nil
+                                    && title == nil
+                                    && subtitle == nil
                                 {
                                     // Tests on the github process transparency differently
                                     Color.white.opacity(isRunningUnitTests() ? 1.0 : 0.01)
@@ -469,7 +469,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         .frame(
             minHeight: headerHeight
         )
-        .frame(minWidth: nonEmptyViewExpanded && !_hideHeader ? minIconSize * 2 : nil)
+        .frame(minWidth: nonEmptyViewExpanded && !hideHeader ? minIconSize * 2 : nil)
     }
 
     public var body: some View {
@@ -495,9 +495,9 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
         // FIXME: Material doesn't render in snapshot tests for some reason
         .optionalBackground(backgroundColor)
         .optionalBackground(
-            _hideBackground
+            hideBackground
                 ? nil as Material?
-                : _backgroundMaterial as Material?
+                : backgroundMaterial as Material?
         )
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
         .animation(.spring(), value: expanded)
