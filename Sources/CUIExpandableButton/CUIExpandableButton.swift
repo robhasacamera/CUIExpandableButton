@@ -192,7 +192,10 @@ import SwiftUI
 /// - Backgound material other then `utlraThinMaterial`
 /// - Other background style.
 /// - Other placement for expandable content.
-public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content: View {
+public struct CUIExpandableButton<Icon, Content>: CUIStylizedWindow where Icon: View, Content: View {
+    public typealias Window = CUIExpandableButton
+    public typealias Control = CUIExpandableButton
+
     @Namespace private var animation
 
     /// An action is a closure with no return type
@@ -218,16 +221,17 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     let action: Action?
 
     // MARK: Modifier Vars
-    var title: String?
-    var titleFont: Font?
-    var subtitle: String?
-    var subtitleFont: Font?
 
-    var hideBackground: Bool = false
-    var backgroundMaterial: Material?
+    public var title: String?
+    public var titleFont: Font?
+    public var subtitle: String?
+    public var subtitleFont: Font?
+
+    public var hideBackground: Bool = false
+    public var backgroundMaterial: Material?
 
     var _backgroundColor: Color?
-    var backgroundColor: Color? {
+    public var backgroundColor: Color? {
         get {
             hideBackground
                 ? nil
@@ -245,7 +249,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var _cornerRadius: CGFloat?
-    var cornerRadius: CGFloat {
+    public var cornerRadius: CGFloat? {
         get {
             if let radius = _cornerRadius {
                 if !nonEmptyViewExpanded {
@@ -265,13 +269,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var _hideIcon: Bool = false // TODO: Has Shadow
-    var hideIcon: Bool {
+    public var hideIcon: Bool {
         get {
-        guard !hideHeader || !expanded else {
-            return true
-        }
+            guard !hideHeader || !expanded else {
+                return true
+            }
 
-        return _hideIcon
+            return _hideIcon
         }
         set {
             _hideIcon = newValue
@@ -279,10 +283,10 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     // These are only displayed when expanded
-    var hideHeader = false
+    public var hideHeader = false
 
     var _hideSeparator = false // TODO: Has Shadow
-    var hideSeparator: Bool {
+    public var hideSeparator: Bool {
         get {
             guard !hideHeader else {
                 return true
@@ -296,13 +300,13 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
     }
 
     var _hideCloseButton = false // TODO: Has Shadow
-    var hideCloseButton: Bool {
+    public var hideCloseButton: Bool {
         get {
-        guard !hideHeader else {
-            return true
-        }
+            guard !hideHeader else {
+                return true
+            }
 
-        return _hideCloseButton
+            return _hideCloseButton
         }
         set {
             _hideCloseButton = newValue
@@ -541,7 +545,7 @@ public struct CUIExpandableButton<Icon, Content>: View where Icon: View, Content
                 ? nil as Material?
                 : backgroundMaterial as Material?
         )
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+        .clipShape(RoundedRectangle(cornerRadius: cornerRadius ?? 0))
         .animation(.spring(), value: expanded)
         .fixedSize()
     }
