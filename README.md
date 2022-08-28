@@ -54,7 +54,7 @@ CUIExpandableButton(
 }
 ```
 
-Additionally, you can hide the icon altogether, or choose to hide the icon only for a specific state. When hiding the icon for the collapsed state, it's a good idea to show a title to prevent an empty button in collapsed state, though it is possible for the button to empty.
+Additionally, you can hide the icon altogether. When hiding the icon, it's a good idea to show a title to prevent an empty button in collapsed state. Though it is possible for the button to empty.
 
 ```swift
 CUIExpandableButton(
@@ -76,7 +76,7 @@ CUIExpandableButton(
         .frame(width: 200)
         .padding(8)
 }
-.hideIcon(forState: .expanded)
+.hideIcon(expanded)
 .title("New Message")
 ```
 
@@ -136,8 +136,8 @@ CUIExpandableButton(
         .frame(width: 200)
         .padding(8)
 }
-.title("Visit SF!", forState: .collapsed)
-.subtitle("Top attractions", forState: .expanded)
+.title(expanded ? "Visit SF!" : nil)
+.subtitle(expanded ? "Top attractions" : nil)
 ```
 
 ### Header Only Options
@@ -164,7 +164,7 @@ CUIExpandableButton(
         .padding(8)
 )
 .hideSeperator()
-.title("Alert!", forState: .expanded)
+.title(expanded ? "Alert!" : nil)
 
 CUIExpandableButton(
     expanded: $expanded,
@@ -175,7 +175,7 @@ CUIExpandableButton(
         .padding(8)
 )
 .hideCloseButton()
-.title("Alert!", forState: .expanded)
+.title(expanded ? "Alert!" : nil)
 .subtitle("You need to take action!")
 ```
 

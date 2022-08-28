@@ -102,10 +102,6 @@ import SwiftUI
 /// - Hiding various elements of the button like the icon, close button or the
 /// entire header.
 ///
-/// Some modifiers provide the ability to customize content based on the state
-/// of the button. For example, you can use `setTitle(_:forState:)`
-/// to add a title that is only shown when the button is expanded.
-///
 /// ```
 ///
 /// CUIExpandableButton(
@@ -114,7 +110,8 @@ import SwiftUI
 /// ) {
 ///     ExampleSettingsView()
 /// }
-/// .title("Settings", forState: .expanded)
+/// .title("Settings")
+/// .subtitle(expanded ? "Customize things!" : nil)
 ///
 /// ```
 /// Other modifiers only affect the display of the button in a specific state, such as ``hideHeader(_:)``, which only affect the button when expanded.
@@ -134,7 +131,7 @@ import SwiftUI
 ///     ExampleContentView()
 /// }
 /// .title("Customize")
-/// .subtitle("Lots of options", forState: .expanded)
+/// .subtitle("Lots of options")
 /// .foregroundColor(.yellow)
 /// .fontWeight(.bold)
 ///
