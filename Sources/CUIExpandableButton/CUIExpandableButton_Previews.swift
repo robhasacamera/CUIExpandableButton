@@ -108,7 +108,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed5 = false
                         collapsed6 = false
                     }
-                    .title(Mock.title, forState: .collapsed)
+                    .title(Mock.title)
                 }
 
                 CUICaptionedView(".subtitle(...)") {
@@ -125,7 +125,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed5 = false
                         collapsed6 = false
                     }
-                    .subtitle(Mock.subtitle, forState: .collapsed)
+                    .subtitle(Mock.subtitle)
                 }
 
                 CUICaptionedView(".hideIcon") {
@@ -142,7 +142,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed5 = false
                         collapsed6 = false
                     }
-                    .hideIcon(forState: .collapsed)
+                    .hideIcon()
                 }
 
                 CUICaptionedView(".title(...) & .subtitle(...)") {
@@ -159,8 +159,8 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed4 = false
                         collapsed6 = false
                     }
-                    .title(Mock.title, forState: .collapsed)
-                    .subtitle(Mock.title, forState: .collapsed)
+                    .title(Mock.title)
+                    .subtitle(Mock.title)
                 }
 
                 CUICaptionedView(".hideBackground") {
@@ -177,7 +177,7 @@ struct CUIExpandableButtonPreview_CollapsedOptions: View {
                         collapsed4 = false
                         collapsed5 = false
                     }
-                    .hideBackground(forState: .collapsed)
+                    .hideBackground()
                 }
             }
             .animation(.default, value: collapsed0)
@@ -256,7 +256,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                         expanded7 = false
                     }
-                    .hideIcon(forState: .expanded)
+                    .hideIcon()
                 }
 
                 CUICaptionedView(".title(...)") {
@@ -274,7 +274,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                         expanded7 = false
                     }
-                    .title(Mock.title, forState: .expanded)
+                    .title(Mock.title)
                 }
 
                 CUICaptionedView(".subtitle(...)") {
@@ -292,7 +292,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded6 = false
                         expanded7 = false
                     }
-                    .subtitle(Mock.subtitle, forState: .expanded)
+                    .subtitle(Mock.subtitle)
                 }
 
                 CUICaptionedView(".hideCloseButton()") {
@@ -346,7 +346,7 @@ struct CUIExpandableButtonPreview_ExpandedOptions: View {
                         expanded5 = false
                         expanded6 = false
                     }
-                    .hideBackground(forState: .expanded)
+                    .hideBackground()
                 }
             }
             .animation(.default, value: expanded0)

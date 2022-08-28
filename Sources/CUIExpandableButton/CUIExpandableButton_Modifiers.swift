@@ -58,17 +58,14 @@ public extension CUIExpandableButton {
 
     /// Sets the title to display for the button.
     ///
-    /// The title can be set for the expanded state, collapsed state, or both.
-    /// A value of `nil` will hide the title for that state.
+    /// A value of `nil` will hide the title.
     /// - Parameters:
-    ///   - title: The title to display for the provided state.
-    ///   - font: The font to display the title with for the given state.
-    ///   - state: The state to display the provided title in.
-    /// - Returns: Button that displays the provided title in the provided state.
+    ///   - title: The title to display.
+    ///   - font: The font to use when  displaying the title.
+    /// - Returns: Button that displays the provided title.
     func title(
         _ title: String?,
-        font: Font? = nil,
-        forState state: CUIExpandableButtonState = .any
+        font: Font? = nil
     ) -> CUIExpandableButton {
         var newSelf = self
 
@@ -80,17 +77,14 @@ public extension CUIExpandableButton {
 
     /// Sets the subtitle to display for the button.
     ///
-    /// The subtitle can be set for the expanded state, collapsed state, or both.
-    /// A value of `nil` will hide the subtitle for that state.
+    /// A value of `nil` will hide the subtitle.
     /// - Parameters:
-    ///   - subtitle: The subtitle to display for the provided state.
-    ///   - font: The font to display the subtitle with for the given state.
-    ///   - state: The state to display the provided subtitle in.
-    /// - Returns: Button that displays the provided subtitle in the provided state.
+    ///   - subtitle: The subtitle to display.
+    ///   - font: The font to use when displaying  the subtitle.
+    /// - Returns: Button that displays the provided subtitle.
     func subtitle(
         _ subtitle: String?,
-        font: Font? = nil,
-        forState state: CUIExpandableButtonState = .any
+        font: Font? = nil
     ) -> CUIExpandableButton {
         var newSelf = self
 
@@ -107,11 +101,9 @@ public extension CUIExpandableButton {
     /// background underneath.
     /// - Parameters:
     ///   - color: The color for the background.
-    ///   - state: The state to display the provided background color.
     /// - Returns: Button that displays the provided background color.
     func backgroundColor(
-        _ color: Color?,
-        forState state: CUIExpandableButtonState = .any
+        _ color: Color?
     ) -> CUIExpandableButton {
         var newSelf = self
 
@@ -128,11 +120,9 @@ public extension CUIExpandableButton {
     /// - Parameters:
     ///   - hideBackground: Indicates whether to hide the background
     ///   (`true`) or show the background (`false`).
-    ///   - state: The state to hide/show the background in.
-    /// - Returns: Button that hides/shows the background in the provided state.
+    /// - Returns: Button that hides/shows the background.
     func hideBackground(
-        _ hideBackground: Bool = true,
-        forState state: CUIExpandableButtonState = .any
+        _ hideBackground: Bool = true
     ) -> CUIExpandableButton {
         var newSelf = self
 
@@ -146,11 +136,9 @@ public extension CUIExpandableButton {
     /// This function accepts a `Bool` to allow hiding the icon to be toggled.
     /// - Parameters:
     ///   - hideIcon: Indicates whether to hide the icon (`true`) or show the icon (`false`).
-    ///   - state: The state to hide/show the background in.
-    /// - Returns: Button that hides/shows the icon in the provided state.
+    /// - Returns: Button that hides/shows the icon.
     func hideIcon(
-        _ hideIcon: Bool = true,
-        forState state: CUIExpandableButtonState = .any
+        _ hideIcon: Bool = true
     ) -> CUIExpandableButton {
         var newSelf = self
 
@@ -165,11 +153,9 @@ public extension CUIExpandableButton {
     /// the width, in which case it's max value is height / 2.0. Any value greater than this will be ignored.
     /// - Parameters:
     ///   - radius: The radius for the corners of the button. A value of `nil` will use the default value instead.
-    ///   - state: The state to use the provided corner radius.
     /// - Returns: Button that has corners rounded at the provided radius.
     func buttonCornerRadius(
-        _ radius: CGFloat?,
-        forState state: CUIExpandableButtonState = .any
+        _ radius: CGFloat?
     ) -> CUIExpandableButton {
         var newSelf = self
 
@@ -180,14 +166,12 @@ public extension CUIExpandableButton {
 
     /// Sets the material of the background of the button.
     ///
-    /// A nil value will hide the material background altogether, however background color will still be applied.
+    /// A `nil` value will hide the material background altogether, however background color will still be applied.
     /// - Parameters:
-    ///   - material: The material to use for the background
-    ///   - state: The state to use the provided material.
+    ///   - material: The material to use for the background.
     /// - Returns: Button that has a background using the material provided.
     func backgroundMaterial(
-        _ material: Material?,
-        forState state: CUIExpandableButtonState = .any
+        _ material: Material?
     ) -> CUIExpandableButton {
         var newSelf = self
 
@@ -199,7 +183,9 @@ public extension CUIExpandableButton {
     /// Hides the separator displayed in the header when the button is expanded.
     /// - Parameter hideSeparator: Indicates whether to hide the separator (`true`) or show the separator (`false`).
     /// - Returns: Button that hides/shows the separator.
-    func hideSeparator(_ hideSeparator: Bool = true) -> CUIExpandableButton {
+    func hideSeparator(
+        _ hideSeparator: Bool = true
+    ) -> CUIExpandableButton {
         var newSelf = self
 
         newSelf._hideSeparator = hideSeparator
@@ -210,7 +196,9 @@ public extension CUIExpandableButton {
     /// Hides the close button displayed in the header when the button is expanded.
     /// - Parameter hideSeparator: Indicates whether to hide the close button (`true`) or show the close button (`false`).
     /// - Returns: Button that hides/shows the close button.
-    func hideCloseButton(_ hideCloseButton: Bool = true) -> CUIExpandableButton {
+    func hideCloseButton(
+        _ hideCloseButton: Bool = true
+    ) -> CUIExpandableButton {
         var newSelf = self
 
         newSelf._hideCloseButton = hideCloseButton
@@ -224,7 +212,9 @@ public extension CUIExpandableButton {
     /// Hiding the header will hide the other header element regardless of their settings.
     /// - Parameter hideSeparator: Indicates whether to hide the header (`true`) or show the header (`false`).
     /// - Returns: Button that hides/shows the header.
-    func hideHeader(_ hideHeader: Bool = true) -> CUIExpandableButton {
+    func hideHeader(
+        _ hideHeader: Bool = true
+    ) -> CUIExpandableButton {
         var newSelf = self
 
         newSelf.hideHeader = hideHeader
