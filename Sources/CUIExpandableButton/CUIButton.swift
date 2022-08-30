@@ -31,9 +31,7 @@ import SwiftUI
 ///
 /// This control can be customized using modifiers defined in ``CUIStylizedControl``.
 public struct CUIButton<Icon>: _CUIStylizedControl where Icon: View {
-    public typealias Action = CUIExpandableButton<Icon, EmptyView>.Action
     public typealias Control = CUIButton<Icon>
-    typealias _Control = CUIExpandableButton<Icon, EmptyView>
 
     var control: CUIExpandableButton<Icon, EmptyView>
 

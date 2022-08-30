@@ -27,10 +27,7 @@
 import CUIPreviewKit
 import SwiftUI
 
-struct CloseButton: View {
-    // Consider making this a global type alias
-    typealias Action = () -> Void
-
+struct CloseButton: CUIView {
     @ScaledMetric(relativeTo: .title)
     var size: CGFloat = .icon
     let action: Action

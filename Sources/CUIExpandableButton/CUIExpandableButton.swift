@@ -190,13 +190,11 @@ import SwiftUI
 /// - Other background style.
 /// - Other placement for expandable content.
 public struct CUIExpandableButton<Icon, Content>: CUIStylizedWindow where Icon: View, Content: View {
-    public typealias Window = CUIExpandableButton
-    public typealias Control = CUIExpandableButton
-
     @Namespace private var animation
 
-    /// An action is a closure with no return type
-    public typealias Action = () -> Void
+    // TODO: Consider moving this to a CUIView protocol. That way we have a place to define all common types
+    public typealias Control = CUIExpandableButton
+    public typealias Window = CUIExpandableButton
 
     // MARK: State
 
