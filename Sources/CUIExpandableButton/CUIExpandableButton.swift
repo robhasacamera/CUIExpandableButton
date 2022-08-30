@@ -268,7 +268,7 @@ public struct CUIExpandableButton<Icon, Content>: CUIStylizedWindow where Icon: 
     var _hideIcon: Bool = false // TODO: Has Shadow
     public var hideIcon: Bool {
         get {
-            guard !hideHeader || !expanded else {
+            guard !hideHeader || !expanded || icon is EmptyView else {
                 return true
             }
 
@@ -569,7 +569,6 @@ public extension CUIExpandableButton where Content == EmptyView {
 // MARK: - SFSymbol Initializers
 
 public extension CUIExpandableButton where Icon == SFSymbolIcon {
-    // TODO: Document param
     /// Creates an expandable button, using a SF Symbol as the icon.
     /// - Parameters:
     ///   - expanded: Bool binding that tracks the button's expanded state.

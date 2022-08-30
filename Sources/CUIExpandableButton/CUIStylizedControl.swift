@@ -26,6 +26,7 @@
 
 import SwiftUI
 
+/// Provides a common interface for stylizing controls
 public protocol CUIStylizedControl: View {
     associatedtype Control: CUIStylizedControl
 

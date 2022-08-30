@@ -27,6 +27,9 @@
 import CUIPreviewKit
 import SwiftUI
 
+/// A control that executes an action when pressed.
+///
+/// This control can be customized using modifiers defined in ``CUIStylizedControl``.
 public struct CUIButton<Icon>: _CUIStylizedControl where Icon: View {
     public typealias Action = CUIExpandableButton<Icon, EmptyView>.Action
     public typealias Control = CUIButton<Icon>
@@ -76,8 +79,10 @@ public extension CUIButton where Icon == SFSymbolIcon {
     }
 }
 
-public extension CUIButton where Icon == Rectangle {
+public extension CUIButton where Icon == EmptyView {
     /// Creates a stylized button that iniates an action.
+    ///
+    /// This controls creates
     /// - Parameters:
     ///   - title: The title to display for the button.
     ///   - action: Action that will be performed when tapping the button.
@@ -88,7 +93,7 @@ public extension CUIButton where Icon == Rectangle {
         control = CUIExpandableButton(
             expanded: .constant(false),
             icon: {
-                Rectangle()
+                EmptyView()
             }, content: {
                 EmptyView()
             }, action: action
