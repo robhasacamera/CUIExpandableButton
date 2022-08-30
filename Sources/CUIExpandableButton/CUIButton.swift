@@ -61,8 +61,12 @@ struct CUIButton_Previews: PreviewProvider {
             VStack {
                 CUICaptionedView("Custom Icon") {
                     CUIButton {
-                        Text("Button Text")
-                            .padding()
+                        Rectangle()
+                            .foregroundColor(.black)
+                            .frame(
+                                width: 10,
+                                height: 10
+                            )
                     } action: {
                         print("button pressed")
                     }
