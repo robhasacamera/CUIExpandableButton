@@ -197,116 +197,118 @@ public extension CUIStylizedControl {
 }
 
 protocol _CUIStylizedControl: CUIStylizedControl {
-    var button: Control { get set }
+    associatedtype _Control: CUIStylizedControl
+
+    var control: _Control { get set }
 }
 
 extension _CUIStylizedControl {
     public var title: String? {
         get {
-            button.title
+            control.title
         } set {
-            var newButton = button
+            var newButton = control
 
             newButton.title = newValue
 
-            button = newButton
+            control = newButton
         }
     }
 
     public var titleFont: Font? {
         get {
-            button.titleFont
+            control.titleFont
         }
         set {
-            var newButton = button
+            var newButton = control
 
             newButton.titleFont = newValue
 
-            button = newButton
+            control = newButton
         }
     }
 
     public var subtitle: String? {
         get {
-            button.subtitle
+            control.subtitle
         } set {
-            var newButton = button
+            var newButton = control
 
             newButton.subtitle = newValue
 
-            button = newButton
+            control = newButton
         }
     }
 
     public var subtitleFont: Font? {
         get {
-            button.subtitleFont
+            control.subtitleFont
         } set {
-            var newButton = button
+            var newButton = control
 
             newButton.subtitleFont = newValue
 
-            button = newButton
+            control = newButton
         }
     }
 
     public var hideBackground: Bool {
         get {
-            button.hideBackground
+            control.hideBackground
         } set {
-            var newButton = button
+            var newButton = control
 
             newButton.hideBackground = newValue
 
-            button = newButton
+            control = newButton
         }
     }
 
     public var backgroundMaterial: Material? {
         get {
-            button.backgroundMaterial
+            control.backgroundMaterial
         } set {
-            var newButton = button
+            var newButton = control
 
             newButton.backgroundMaterial = newValue
 
-            button = newButton
+            control = newButton
         }
     }
 
     public var backgroundColor: Color? {
         get {
-            button.backgroundColor
+            control.backgroundColor
         } set {
-            var newButton = button
+            var newButton = control
 
             newButton.backgroundColor = newValue
 
-            button = newButton
+            control = newButton
         }
     }
 
     public var cornerRadius: CGFloat? {
         get {
-            button.cornerRadius
+            control.cornerRadius
         } set {
-            var newButton = button
+            var newButton = control
 
             newButton.cornerRadius = newValue
 
-            button = newButton
+            control = newButton
         }
     }
 
     public var hideIcon: Bool {
         get {
-            button.hideIcon
+            control.hideIcon
         } set {
-            var newButton = button
+            var newButton = control
 
             newButton.hideIcon = newValue
 
-            button = newButton
+            control = newButton
         }
     }
 }

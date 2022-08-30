@@ -28,11 +28,11 @@ import CUIPreviewKit
 import SwiftUI
 
 public struct CUIButton<Icon>: _CUIStylizedControl where Icon: View {
-    public typealias Control = CUIExpandableButton<Icon, EmptyView>
-    
     public typealias Action = CUIExpandableButton<Icon, EmptyView>.Action
+    public typealias Control = CUIButton<Icon>
+    typealias _Control = CUIExpandableButton<Icon, EmptyView>
 
-    var button: CUIExpandableButton<Icon, EmptyView>
+    var control: CUIExpandableButton<Icon, EmptyView>
 
     /// Creates a stylized button that initiates an action.
     /// - Parameters:
@@ -42,7 +42,7 @@ public struct CUIButton<Icon>: _CUIStylizedControl where Icon: View {
         @ViewBuilder icon: () -> Icon,
         action: @escaping Action
     ) {
-        button = CUIExpandableButton(
+        control = CUIExpandableButton(
             expanded: .constant(false),
             icon: icon,
             content: {
@@ -53,7 +53,7 @@ public struct CUIButton<Icon>: _CUIStylizedControl where Icon: View {
     }
 
     public var body: some View {
-        button
+        control
     }
 }
 
@@ -66,13 +66,39 @@ public extension CUIButton where Icon == SFSymbolIcon {
         sfSymbolName: String,
         action: @escaping Action
     ) {
-        button = CUIExpandableButton(expanded: .constant(false), sfSymbolName: sfSymbolName, content: {
+        control = CUIExpandableButton(expanded: .constant(false), sfSymbolName: sfSymbolName, content: {
             EmptyView()
         }, action: action)
     }
 
     var body: some View {
-        button
+        control
+    }
+}
+
+public extension CUIButton where Icon == Rectangle {
+    /// Creates a stylized button that iniates an action.
+    /// - Parameters:
+    ///   - title: The title to display for the button.
+    ///   - action: Action that will be performed when tapping the button.
+    init(
+        title: String,
+        action: @escaping Action
+    ) {
+        control = CUIExpandableButton(
+            expanded: .constant(false),
+            icon: {
+                Rectangle()
+            }, content: {
+                EmptyView()
+            }, action: action
+        )
+        .title(title)
+        .hideIcon()
+    }
+
+    var body: some View {
+        control
     }
 }
 
@@ -80,7 +106,7 @@ struct CUIButton_Previews: PreviewProvider {
     static var previews: some View {
         CUICenteredPreview(title: "CUIButton") {
             VStack {
-                CUICaptionedView("Custom Icon") {
+                CUICaptionedView("Custom Icon Init") {
                     CUIButton {
                         Rectangle()
                             .foregroundColor(.black)
@@ -92,10 +118,24 @@ struct CUIButton_Previews: PreviewProvider {
                         print("button pressed")
                     }
                 }
-                CUICaptionedView("SF Symbol Icon") {
+
+                CUICaptionedView("SF Symbol Init") {
                     CUIButton(sfSymbolName: "doc.fill") {
                         print("button pressed")
                     }
+                }
+
+                CUICaptionedView("Title Init") {
+                    CUIButton(title: "doc.fill") {
+                        print("button pressed")
+                    }
+                }
+
+                CUICaptionedView(".title(...)") {
+                    CUIButton(sfSymbolName: "doc.fill") {
+                        print("button pressed")
+                    }
+                    .title("Title")
                 }
             }
         }
