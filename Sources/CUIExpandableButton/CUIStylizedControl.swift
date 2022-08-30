@@ -196,4 +196,118 @@ public extension CUIStylizedControl {
     }
 }
 
+protocol _CUIStylizedControl: CUIStylizedControl {
+    var button: Control { get set }
+}
+
+extension _CUIStylizedControl {
+    public var title: String? {
+        get {
+            button.title
+        } set {
+            var newButton = button
+
+            newButton.title = newValue
+
+            button = newButton
+        }
+    }
+
+    public var titleFont: Font? {
+        get {
+            button.titleFont
+        }
+        set {
+            var newButton = button
+
+            newButton.titleFont = newValue
+
+            button = newButton
+        }
+    }
+
+    public var subtitle: String? {
+        get {
+            button.subtitle
+        } set {
+            var newButton = button
+
+            newButton.subtitle = newValue
+
+            button = newButton
+        }
+    }
+
+    public var subtitleFont: Font? {
+        get {
+            button.subtitleFont
+        } set {
+            var newButton = button
+
+            newButton.subtitleFont = newValue
+
+            button = newButton
+        }
+    }
+
+    public var hideBackground: Bool {
+        get {
+            button.hideBackground
+        } set {
+            var newButton = button
+
+            newButton.hideBackground = newValue
+
+            button = newButton
+        }
+    }
+
+    public var backgroundMaterial: Material? {
+        get {
+            button.backgroundMaterial
+        } set {
+            var newButton = button
+
+            newButton.backgroundMaterial = newValue
+
+            button = newButton
+        }
+    }
+
+    public var backgroundColor: Color? {
+        get {
+            button.backgroundColor
+        } set {
+            var newButton = button
+
+            newButton.backgroundColor = newValue
+
+            button = newButton
+        }
+    }
+
+    public var cornerRadius: CGFloat? {
+        get {
+            button.cornerRadius
+        } set {
+            var newButton = button
+
+            newButton.cornerRadius = newValue
+
+            button = newButton
+        }
+    }
+
+    public var hideIcon: Bool {
+        get {
+            button.hideIcon
+        } set {
+            var newButton = button
+
+            newButton.hideIcon = newValue
+
+            button = newButton
+        }
+    }
+}
 
