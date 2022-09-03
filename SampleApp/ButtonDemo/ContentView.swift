@@ -273,27 +273,6 @@ struct ContentView: View {
             }
             .background(.ultraThinMaterial)
             .frame(height: 348)
-
-            HStack {
-                CUIExpandableButton(
-                    sfSymbolName: "square.and.arrow.up"
-                ) {
-                    showAlert = true
-                }.alert("This button only has an action, no expandable content", isPresented: $showAlert) {
-                    Button("OK", role: .cancel) {}
-                }
-
-                CUIExpandableButton {
-                    Image("Background")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 26, height: 26)
-                } action: {
-                    showAlert = true
-                }.alert("This button only has an action, no expandable content", isPresented: $showAlert) {
-                    Button("OK", role: .cancel) {}
-                }
-            }
         }
         .background(alignment: .center) {
             Image("Background")
