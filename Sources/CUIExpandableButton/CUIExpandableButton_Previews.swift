@@ -35,7 +35,7 @@ enum Mock {
     static let sfSymbolName = "gearshape.fill"
 
     static var content: some View {
-        Text(LoremIpsum.words(2))
+        Text(CUILoremIpsum.words(2))
             .font(.body)
             .padding(.standardSpacing)
             .frame(width: 200)
@@ -386,7 +386,7 @@ struct CUIExpandableButtonPreview_OtherOptions: View {
                         expanded: $expanded1,
                         sfSymbolName: Mock.sfSymbolName
                     ) {
-                        Text(LoremIpsum.words(8))
+                        Text(CUILoremIpsum.words(8))
                             .font(.body)
                             .padding(.standardSpacing)
                             .frame(width: 200)
@@ -527,7 +527,7 @@ struct CUIExpandableButtonPreview_CustomIcons: View {
                         ) {
                             tallIcon
                         } content: {
-                            Text(LoremIpsum.words(2))
+                            Text(CUILoremIpsum.words(2))
                                 .font(.body)
                                 .padding(.standardSpacing)
                                 .frame(width: 200)

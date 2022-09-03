@@ -21,7 +21,7 @@ let package = Package(
         .package(
             name: "CUISeparator",
             url: "https://github.com/robhasacamera/CUISeparator.git",
-            from: "0.1.2"
+            from: "0.3.1"
         )
     ],
     targets: [

@@ -504,7 +504,7 @@ public struct CUIExpandableButton<Icon, Content>: CUIStylizedWindow where Icon: 
             }
 
             if nonEmptyViewExpanded && !hideSeparator {
-                CUISeparator(style: .horizontal)
+                CUISeparator()
             }
         }
         .frame(
