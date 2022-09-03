@@ -26,7 +26,7 @@
 
 import SwiftUI
 
-public protocol CUIStylizedWindow: CUIStylizedControl {
+public protocol CUIStylizedWindow: CUIStylizedControl where Control == Window {
     associatedtype Window: CUIStylizedWindow
 
     var hideHeader: Bool { get set }
@@ -88,4 +88,50 @@ public extension CUIStylizedWindow {
 
         return newSelf as! Self.Window
     }
+}
+
+protocol _CUIStylizedWindow: CUIStylizedWindow, _CUIStylizedControl {
+    associatedtype _Window: CUIStylizedWindow
+
+    var control: _Window { get set }
+}
+
+extension _CUIStylizedWindow {
+    public var hideHeader: Bool {
+        get {
+            control.hideHeader
+        }
+        set {
+            var newControl = control
+
+            newControl.hideHeader = newValue
+
+            control = newControl
+        }
+
+    }
+    public var hideSeparator: Bool {
+        get {
+            control.hideSeparator
+        }
+        set {
+            var newControl = control
+
+            newControl.hideSeparator = newValue
+
+            control = newControl
+        }
+
+    }
+    public var hideCloseButton: Bool {
+        get {
+            control.hideCloseButton
+        }
+        set {
+            var newControl = control
+
+            newControl.hideCloseButton = newValue
+
+            control = newControl
+        } }
 }

@@ -190,13 +190,11 @@ import SwiftUI
 /// - Other background style.
 /// - Other placement for expandable content.
 public struct CUIExpandableButton<Icon, Content>: CUIStylizedWindow where Icon: View, Content: View {
-    public typealias Window = CUIExpandableButton
-    public typealias Control = CUIExpandableButton
-
     @Namespace private var animation
 
-    /// An action is a closure with no return type
-    public typealias Action = () -> Void
+    // TODO: Consider moving this to a CUIView protocol. That way we have a place to define all common types
+    public typealias Control = CUIExpandableButton
+    public typealias Window = CUIExpandableButton
 
     // MARK: State
 
@@ -268,7 +266,7 @@ public struct CUIExpandableButton<Icon, Content>: CUIStylizedWindow where Icon: 
     var _hideIcon: Bool = false // TODO: Has Shadow
     public var hideIcon: Bool {
         get {
-            guard !hideHeader || !expanded else {
+            guard !hideHeader || !expanded || icon is EmptyView else {
                 return true
             }
 
@@ -506,7 +504,7 @@ public struct CUIExpandableButton<Icon, Content>: CUIStylizedWindow where Icon: 
             }
 
             if nonEmptyViewExpanded && !hideSeparator {
-                CUISeparator(style: .horizontal)
+                CUISeparator()
             }
         }
         .frame(
@@ -569,7 +567,6 @@ public extension CUIExpandableButton where Content == EmptyView {
 // MARK: - SFSymbol Initializers
 
 public extension CUIExpandableButton where Icon == SFSymbolIcon {
-    // TODO: Document param
     /// Creates an expandable button, using a SF Symbol as the icon.
     /// - Parameters:
     ///   - expanded: Bool binding that tracks the button's expanded state.

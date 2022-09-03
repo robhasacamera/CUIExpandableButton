@@ -24,32 +24,10 @@
 // SOFTWARE.
 //
 
-import CUIPreviewKit
 import SwiftUI
 
-struct CloseButton: CUIView {
-    @ScaledMetric(relativeTo: .title)
-    var size: CGFloat = .icon
-    let action: Action
-
-    var body: some View {
-        Button(action: action) {
-            Image(systemName: "xmark")
-                .font(.headline)
-                .frame(width: size, height: size)
-        }
-        .buttonStyle(.plain)
-    }
-}
-
-struct CloseButton_Previews: PreviewProvider {
-    static var previews: some View {
-        CUICenteredPreview {
-            VStack {
-                CloseButton(action: {})
-                CloseButton(action: {})
-                    .foregroundColor(.yellow)
-            }
-        }
-    }
+/// Base protocol for Views in Crystal UI.
+public protocol CUIView: View {
+    /// An action is a closure with no return type
+    typealias Action = () -> Void
 }

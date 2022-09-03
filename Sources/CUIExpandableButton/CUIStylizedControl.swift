@@ -26,7 +26,8 @@
 
 import SwiftUI
 
-public protocol CUIStylizedControl: View {
+/// Provides a common interface for stylizing controls
+public protocol CUIStylizedControl: CUIView {
     associatedtype Control: CUIStylizedControl
 
     var title: String? { get set }
@@ -196,4 +197,120 @@ public extension CUIStylizedControl {
     }
 }
 
+protocol _CUIStylizedControl: CUIStylizedControl {
+    associatedtype _Control: CUIStylizedControl
+
+    var control: _Control { get set }
+}
+
+extension _CUIStylizedControl {
+    public var title: String? {
+        get {
+            control.title
+        } set {
+            var newButton = control
+
+            newButton.title = newValue
+
+            control = newButton
+        }
+    }
+
+    public var titleFont: Font? {
+        get {
+            control.titleFont
+        }
+        set {
+            var newButton = control
+
+            newButton.titleFont = newValue
+
+            control = newButton
+        }
+    }
+
+    public var subtitle: String? {
+        get {
+            control.subtitle
+        } set {
+            var newButton = control
+
+            newButton.subtitle = newValue
+
+            control = newButton
+        }
+    }
+
+    public var subtitleFont: Font? {
+        get {
+            control.subtitleFont
+        } set {
+            var newButton = control
+
+            newButton.subtitleFont = newValue
+
+            control = newButton
+        }
+    }
+
+    public var hideBackground: Bool {
+        get {
+            control.hideBackground
+        } set {
+            var newButton = control
+
+            newButton.hideBackground = newValue
+
+            control = newButton
+        }
+    }
+
+    public var backgroundMaterial: Material? {
+        get {
+            control.backgroundMaterial
+        } set {
+            var newButton = control
+
+            newButton.backgroundMaterial = newValue
+
+            control = newButton
+        }
+    }
+
+    public var backgroundColor: Color? {
+        get {
+            control.backgroundColor
+        } set {
+            var newButton = control
+
+            newButton.backgroundColor = newValue
+
+            control = newButton
+        }
+    }
+
+    public var cornerRadius: CGFloat? {
+        get {
+            control.cornerRadius
+        } set {
+            var newButton = control
+
+            newButton.cornerRadius = newValue
+
+            control = newButton
+        }
+    }
+
+    public var hideIcon: Bool {
+        get {
+            control.hideIcon
+        } set {
+            var newButton = control
+
+            newButton.hideIcon = newValue
+
+            control = newButton
+        }
+    }
+}
 
