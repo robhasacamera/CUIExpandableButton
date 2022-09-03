@@ -137,7 +137,7 @@ import SwiftUI
 ///
 /// ```
 ///
-/// ### Additional action and non-expanding buttons
+/// ### Additional action
 ///
 /// The button provides access to an additional action when tapped. This can be
 /// used to perform another action when expanding or collapsing the button's
@@ -157,19 +157,6 @@ import SwiftUI
 ///
 /// ```
 ///
-/// The button also supports not displaying content at all. This is to provide
-/// a consistent set of controls when using expanding and non-expanding buttons
-/// in the same UI. When not adding expandable content, an action is required.
-///
-/// ```
-/// CUIExpandableButton(
-///     expanded: $expanded,
-///     sfSymbolName: "bell.fill",
-/// ) {
-///     print("Button was pressed")
-/// }
-///
-/// ```
 /// ### Minimum sizes
 /// - When collapsed, the button maintains a minimum size of 44x44pt
 /// - When expanded, if both the icon and close button are show, the
@@ -546,26 +533,9 @@ public struct CUIExpandableButton<Icon, Content>: CUIStylizedWindow where Icon: 
     }
 }
 
-public extension CUIExpandableButton where Content == EmptyView {
-    /// Creates a nonexpandabled button that iniates an action.
-    /// - Parameters:
-    ///   - icon: View that is displayed as an icon.
-    ///   - action: Action that will be performed when tapping the button.
-    init(
-        @ViewBuilder icon: () -> Icon,
-        action: @escaping Action
-    ) {
-        self.init(
-            expanded: .constant(false),
-            icon: icon,
-            content: { EmptyView() },
-            action: action
-        )
-    }
-}
-
 // MARK: - SFSymbol Initializers
 
+// TODO: Add a convienience initializer that doesn't require the icon at all.
 public extension CUIExpandableButton where Icon == SFSymbolIcon {
     /// Creates an expandable button, using a SF Symbol as the icon.
     /// - Parameters:
@@ -584,24 +554,6 @@ public extension CUIExpandableButton where Icon == SFSymbolIcon {
             expanded: expanded,
             icon: { SFSymbolIcon(iconName: sfSymbolName) },
             content: content,
-            action: action
-        )
-    }
-}
-
-public extension CUIExpandableButton where Icon == SFSymbolIcon, Content == EmptyView {
-    /// Creates a nonexpandabled button that iniates an action.
-    /// - Parameters:
-    ///   - sfSymbolName: The name of the SF Symbol to use as the icon.
-    ///   - action: Action that will be performed when tapping the button.
-    init(
-        sfSymbolName: String,
-        action: @escaping Action
-    ) {
-        self.init(
-            expanded: .constant(false),
-            sfSymbolName: sfSymbolName,
-            content: { EmptyView() },
             action: action
         )
     }

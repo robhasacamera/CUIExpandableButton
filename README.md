@@ -97,17 +97,6 @@ CUIExpandableButton(
 }
 ```
 
-When providing an action, you can choose not to provide content for the expanded state. This is useful if you want non-expanding buttons that match the style of expanding buttons.
-
-```swift
-CUIExpandableButton(
-    expanded: $expanded,
-    sfSymbolName: "bell.fill"
-) {
-    print("Button was pressed")
-}
-```
-
 ### Title & Subtitle
 
 The button provides options to show a title and subtitle. 
@@ -221,7 +210,7 @@ CUIExpandableButton supports Swift Package Manager. To use it the following to y
 
 ```
 dependencies: [
-    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.14.1")
+    .package(name: "CUIExpandableButton", url: "https://github.com/robhasacamera/CUIExpandableButton.git", from: "0.15.0")
 ],
 ```
 
